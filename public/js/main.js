@@ -203,6 +203,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initNavigation();
   initPortfolioGrid();
   initStartupStory();
+  initCooperationModal();
   initBlogGrid();
   initTemplateFilter();
   initAccordion();
@@ -313,63 +314,321 @@ function initNavigation() {
 }
 
 /**
- * 3.5. Interactive Startup Story logic
+ * 3.5. Interactive Startup Story logic (GSAP Pinned Scroll Implementation)
  */
 function initStartupStory() {
-  const buttons = document.querySelectorAll('.story-timeline-btn');
+  const section = document.getElementById('startup-story');
+  if (!section) return;
 
-  if (!buttons.length) return;
+  // 1. Preload story images
+  const imagesToPreload = [
+    "assets/projects/project-04/screen-01.webp",
+    "assets/projects/project-02/screen-01.webp",
+    "assets/projects/project-01/cover.webp",
+    "assets/projects/project-03/screen-01.webp",
+    "assets/projects/project-03/cover.webp"
+  ];
+  imagesToPreload.forEach(src => {
+    const img = new Image();
+    img.src = src;
+  });
 
-  const updateStage = (stageNum) => {
-    // 1. Update Buttons Styling
-    buttons.forEach(btn => {
-      const btnStage = btn.getAttribute('data-stage');
-      const badge = btn.querySelector('span');
+  // Query DOM elements
+  const images = section.querySelectorAll('[data-story-image]');
+  const desktopButtons = section.querySelectorAll('[data-story-step]');
+  const mobileButtons = section.querySelectorAll('[data-story-step-mob]');
+  const introBlock = document.getElementById('story-intro-block');
+  const microLabel = document.getElementById('story-micro-label');
+  const microStep = document.getElementById('story-micro-step');
+  const microStepNum = document.getElementById('micro-step-num');
+  const desktopHud = document.getElementById('story-desktop-hud');
+  const mobileHud = document.getElementById('story-mobile-hud');
+  const ctaOverlay = document.getElementById('product-cta-overlay');
+  const desktopProgressFill = document.getElementById('story-desktop-progress-fill');
 
-      if (btnStage === stageNum) {
-        btn.classList.add('border-primary-accent', 'bg-primary-accent/5', 'active');
-        btn.classList.remove('border-border-subtle', 'bg-card-bg');
-        if (badge) {
-          badge.classList.add('bg-primary-accent', 'text-white');
-          badge.classList.remove('bg-muted-bg', 'text-muted-fg');
-        }
+  // Step information
+  const stepsData = {
+    1: { num: "۰۱", title: "نیاز و مسئله", desc: "شناسایی یک چالش واقعی کاربران در بازار داخلی" },
+    2: { num: "۰۲", title: "ایده و مفهوم", desc: "طراحی معماری ساده‌تر برای کاربری‌های پیچیده" },
+    3: { num: "۰۳", title: "طراحی رابط و تجربه", desc: "پیاده‌سازی یک تجربه بصری منحصربه‌فرد و مدرن" },
+    4: { num: "۰۴", title: "توسعه و مهندسی", desc: "کدنویسی بهینه و ساختارمند وب‌اپلیکیشن" },
+    5: { num: "۰۵", title: "محصول نهایی", desc: "عرضه نهایی نکسا با آمار عالی و رشد موفق" }
+  };
+
+  // Check reduced motion
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Active stage updater
+  const updateActiveUI = (stageNum) => {
+    const persianNum = stepsData[stageNum].num;
+
+    // Update micro step number
+    if (microStepNum) microStepNum.textContent = persianNum;
+
+    // Update Desktop list styles
+    desktopButtons.forEach(btn => {
+      const step = parseInt(btn.getAttribute('data-story-step'), 10);
+      if (step === stageNum) {
+        btn.classList.add('active');
+        gsap.to(btn, { opacity: 1, duration: 0.3 });
       } else {
-        btn.classList.remove('border-primary-accent', 'bg-primary-accent/5', 'active');
-        btn.classList.add('border-border-subtle', 'bg-card-bg');
-        if (badge) {
-          badge.classList.remove('bg-primary-accent', 'text-white');
-          badge.classList.add('bg-muted-bg', 'text-muted-fg');
-        }
+        btn.classList.remove('active');
+        gsap.to(btn, { opacity: 0.4, duration: 0.3 });
       }
     });
 
-    // 2. Switch Images smoothly with fade transition
-    for (let i = 1; i <= 5; i++) {
-      const img = document.getElementById(`story-visual-0${i}`);
-      if (img) {
-        if (String(i) === stageNum) {
-          img.classList.add('opacity-100');
-          img.classList.remove('opacity-0');
+    // Update Mobile text & buttons styling
+    if (mobileHud) {
+      const mobStepNum = document.getElementById('mobile-step-num');
+      const mobStepTitle = document.getElementById('mobile-step-title');
+      const mobStepDesc = document.getElementById('mobile-step-desc');
+
+      if (mobStepNum) mobStepNum.textContent = `مرحله ${persianNum}`;
+      if (mobStepTitle) mobStepTitle.textContent = stepsData[stageNum].title;
+      if (mobStepDesc) mobStepDesc.textContent = stepsData[stageNum].desc;
+
+      mobileButtons.forEach(btn => {
+        const step = parseInt(btn.getAttribute('data-story-step-mob'), 10);
+        if (step === stageNum) {
+          btn.className = "w-9 h-9 rounded-full border-2 border-primary-accent bg-primary-accent/10 text-white flex items-center justify-center text-xs font-black transition-all cursor-pointer";
+        } else if (step < stageNum) {
+          btn.className = "w-9 h-9 rounded-full border-2 border-primary-accent/60 bg-black/40 text-primary-accent flex items-center justify-center text-xs font-black transition-all cursor-pointer";
         } else {
-          img.classList.remove('opacity-100');
-          img.classList.add('opacity-0');
+          btn.className = "w-9 h-9 rounded-full border-2 border-white/10 bg-black/40 text-white/50 flex items-center justify-center text-xs font-black transition-all cursor-pointer";
+        }
+      });
+
+      // Update mobile connector progress fills
+      for (let i = 1; i <= 4; i++) {
+        const fill = document.getElementById(`mobile-progress-${i}`);
+        if (fill) {
+          if (i < stageNum) {
+            fill.style.width = '100%';
+          } else {
+            fill.style.width = '0%';
+          }
         }
       }
     }
   };
 
-  buttons.forEach(btn => {
-    // Switch on click
-    btn.addEventListener('click', () => {
-      const stage = btn.getAttribute('data-stage');
-      updateStage(stage);
-    });
+  // Register ScrollTrigger
+  gsap.registerPlugin(ScrollTrigger);
 
-    // Optional subtle change on hover/focus
-    btn.addEventListener('mouseenter', () => {
-      const stage = btn.getAttribute('data-stage');
-      updateStage(stage);
+  // Set initial states for elements
+  gsap.set([microLabel, microStep], { opacity: 0, y: -10 });
+  gsap.set([desktopHud], { opacity: 0, x: 20 });
+  gsap.set([mobileHud], { opacity: 0, y: 20 });
+  gsap.set(ctaOverlay, { opacity: 0, y: 15 });
+
+  // Pre-set images scales and opacities
+  images.forEach(img => {
+    const idx = parseInt(img.getAttribute('data-story-image'), 10);
+    if (idx === 1) {
+      gsap.set(img, { opacity: 1, scale: 1 });
+    } else {
+      gsap.set(img, { opacity: 0, scale: prefersReduced ? 1 : 1.04 });
+    }
+  });
+
+  // Create GSAP ScrollTrigger timeline
+  const tl = gsap.timeline({
+    scrollTrigger: {
+      trigger: section,
+      start: "top top",
+      end: "+=3200",
+      scrub: 1,
+      pin: true,
+      anticipatePin: 1,
+      invalidateOnRefresh: true,
+      onUpdate: (self) => {
+        // Track progress to calculate the current active stage
+        // Stages: 1 (0 to 0.2), 2 (0.2 to 0.4), 3 (0.4 to 0.6), 4 (0.6 to 0.8), 5 (0.8 to 1.0)
+        const prog = self.progress;
+        let activeStage = 1;
+        if (prog >= 0.2 && prog < 0.4) activeStage = 2;
+        else if (prog >= 0.4 && prog < 0.6) activeStage = 3;
+        else if (prog >= 0.6 && prog < 0.8) activeStage = 4;
+        else if (prog >= 0.8) activeStage = 5;
+
+        updateActiveUI(activeStage);
+
+        // Update Desktop Progress Fill Line height
+        if (desktopProgressFill) {
+          desktopProgressFill.style.transform = `scaleY(${prog})`;
+        }
+      }
+    }
+  });
+
+  // Build the timeline animations step by step
+
+  // 1. Scroll starts: Fade out intro-block & fade in HUDs
+  tl.to(introBlock, {
+    opacity: 0,
+    scale: prefersReduced ? 1 : 0.95,
+    y: prefersReduced ? 0 : -30,
+    duration: 0.5
+  }, 0);
+
+  // Expand image-container slightly
+  images.forEach(img => {
+    const idx = parseInt(img.getAttribute('data-story-image'), 10);
+    if (idx === 1) {
+      if (!prefersReduced) {
+        tl.to(img, { scale: 1.01, duration: 0.5 }, 0);
+      }
+    }
+  });
+
+  // Fade in HUD Overlays & Micro labels
+  tl.to([microLabel, microStep], {
+    opacity: 1,
+    y: 0,
+    stagger: 0.1,
+    duration: 0.4
+  }, 0.2);
+
+  tl.to([desktopHud, mobileHud], {
+    opacity: 1,
+    x: 0,
+    y: 0,
+    duration: 0.5
+  }, 0.3);
+
+  // Define crossfade helpers for stage transitions on timeline
+  const addCrossfade = (fromIdx, toIdx, startTime) => {
+    const fromImg = section.querySelector(`[data-story-image="${fromIdx}"]`);
+    const toImg = section.querySelector(`[data-story-image="${toIdx}"]`);
+
+    if (fromImg && toImg) {
+      // Fade out fromImg
+      tl.to(fromImg, {
+        opacity: 0,
+        scale: prefersReduced ? 1 : 1.04,
+        duration: 0.6
+      }, startTime);
+
+      // Fade in toImg
+      tl.to(toImg, {
+        opacity: 1,
+        scale: 1,
+        duration: 0.6
+      }, startTime);
+    }
+  };
+
+  // Transition Stage 1 -> Stage 2
+  addCrossfade(1, 2, 0.6);
+
+  // Transition Stage 2 -> Stage 3
+  addCrossfade(2, 3, 1.2);
+
+  // Transition Stage 3 -> Stage 4
+  addCrossfade(3, 4, 1.8);
+
+  // Transition Stage 4 -> Stage 5
+  addCrossfade(4, 5, 2.4);
+
+  // CTA Overlay appears at Stage 5
+  tl.to(ctaOverlay, {
+    opacity: 1,
+    y: 0,
+    duration: 0.4
+  }, 2.6);
+
+  // Extra padding time at the end to let product stage stay a bit
+  tl.to({}, { duration: 0.4 });
+
+  // Handle Button Clicks (both desktop and mobile) for direct smooth navigation
+  const setupNavClicks = (buttons, isMobile) => {
+    buttons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const stepAttr = isMobile ? 'data-story-step-mob' : 'data-story-step';
+        const targetStep = parseInt(btn.getAttribute(stepAttr), 10);
+
+        // Map target steps to accurate timeline progress points
+        const stepProgressMap = {
+          1: 0.05,
+          2: 0.30,
+          3: 0.50,
+          4: 0.70,
+          5: 0.95
+        };
+
+        const targetProgress = stepProgressMap[targetStep];
+        const scrollTriggerInstance = tl.scrollTrigger;
+
+        if (scrollTriggerInstance) {
+          const start = scrollTriggerInstance.start;
+          const end = scrollTriggerInstance.end;
+          const targetScroll = start + (end - start) * targetProgress;
+
+          gsap.to(window, {
+            scrollTo: { y: targetScroll, autoKill: false },
+            duration: 1.2,
+            ease: "power2.out"
+          });
+        }
+      });
     });
+  };
+
+  setupNavClicks(desktopButtons, false);
+  setupNavClicks(mobileButtons, true);
+
+  // Initial trigger refresh to sync layouts
+  setTimeout(() => {
+    ScrollTrigger.refresh();
+  }, 100);
+}
+
+/**
+ * 3.5b. Cooperation/Contact Modal Handling
+ */
+function initCooperationModal() {
+  const modal = document.getElementById('cooperation-modal');
+  const openBtn = document.getElementById('open-cooperation-modal-btn');
+  const closeBtn = document.getElementById('cooperation-modal-close');
+
+  if (!modal || !openBtn) return;
+
+  const openModal = () => {
+    modal.classList.remove('hidden');
+    document.body.style.overflow = 'hidden'; // Lock background scroll
+    setTimeout(() => {
+      modal.classList.remove('opacity-0');
+      modal.querySelector('.modal-content').classList.remove('scale-95', 'opacity-0');
+    }, 10);
+  };
+
+  const closeModal = () => {
+    modal.classList.add('opacity-0');
+    modal.querySelector('.modal-content').classList.add('scale-95', 'opacity-0');
+    setTimeout(() => {
+      modal.classList.add('hidden');
+      document.body.style.overflow = ''; // Unlock scroll
+    }, 250);
+  };
+
+  openBtn.addEventListener('click', openModal);
+
+  if (closeBtn) {
+    closeBtn.addEventListener('click', closeModal);
+  }
+
+  // Close on backdrop click
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) {
+      closeModal();
+    }
+  });
+
+  // ESC Close
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
+      closeModal();
+    }
   });
 }
 

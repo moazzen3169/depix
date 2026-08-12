@@ -235,98 +235,174 @@
     <!-- ==========================================
          03 — OUR PRODUCT / STARTUP STORY
          ========================================== -->
-    <section id="startup-story" class="py-24 sm:py-32 bg-muted-bg/30 border-y border-border-subtle scroll-animate">
-      <div class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12">
+    <section id="startup-story" class="relative w-full h-screen overflow-hidden bg-bg-main" aria-label="داستان ساخت محصول">
 
-        <!-- Title -->
-        <div class="text-center max-w-2xl mx-auto mb-16 space-y-3">
-          <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-fg-main">از یک نیاز تا یک محصول</h2>
-          <p class="text-base sm:text-lg text-muted-fg">یک محصول واقعی که خودمان ساخته‌ایم تا توانایی‌مان را نشان دهیم.</p>
+      <!-- Immersive Image Hero Canvas -->
+      <div id="story-image-container" class="absolute inset-0 w-full h-full z-0 overflow-hidden">
+        <!-- Deep Radial & Linear Overlay for outstanding text contrast -->
+        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-black/70 z-10 pointer-events-none"></div>
+        <div class="absolute inset-0 bg-gradient-to-l from-black/60 via-transparent to-black/60 z-10 pointer-events-none"></div>
+
+        <!-- The 5 Cinematic Images -->
+        <div class="relative w-full h-full">
+          <img data-story-image="1" src="assets/projects/project-04/screen-01.webp" alt="نیاز" class="absolute inset-0 w-full h-full object-cover origin-center opacity-100 z-0 select-none pointer-events-none" />
+          <img data-story-image="2" src="assets/projects/project-02/screen-01.webp" alt="ایده" class="absolute inset-0 w-full h-full object-cover origin-center opacity-0 z-0 select-none pointer-events-none" />
+          <img data-story-image="3" src="assets/projects/project-01/cover.webp" alt="طراحی" class="absolute inset-0 w-full h-full object-cover origin-center opacity-0 z-0 select-none pointer-events-none" />
+          <img data-story-image="4" src="assets/projects/project-03/screen-01.webp" alt="توسعه" class="absolute inset-0 w-full h-full object-cover origin-center opacity-0 z-0 select-none pointer-events-none" />
+          <img data-story-image="5" src="assets/projects/project-03/cover.webp" alt="محصول نهایی" class="absolute inset-0 w-full h-full object-cover origin-center opacity-0 z-0 select-none pointer-events-none" />
+        </div>
+      </div>
+
+      <!-- Foreground Interactive Overlay Content -->
+      <div class="absolute inset-0 w-full h-full z-20 flex flex-col justify-between p-6 sm:p-10 lg:p-12">
+
+        <!-- Header / Micro-Label Row -->
+        <div class="flex items-center justify-between w-full pointer-events-none">
+          <div id="story-micro-label" class="opacity-0 translate-y-[-10px] transition-all duration-500">
+            <span class="text-xs font-bold text-primary-accent tracking-widest uppercase">داستان توسعه محصول نکسا</span>
+          </div>
+          <div id="story-micro-step" class="opacity-0 translate-y-[-10px] transition-all duration-500">
+            <span class="text-xs font-black text-white/50 tracking-wider font-mono">STEP <span id="micro-step-num">۰۱</span>/۰۵</span>
+          </div>
         </div>
 
-        <!-- Asymmetric layout with the visual story -->
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-
-          <!-- Left card: Product Hero Visual -->
-          <div class="lg:col-span-7 space-y-6">
-            <div class="relative w-full aspect-[16/10] bg-card-bg border border-border-subtle rounded-2xl overflow-hidden shadow-2xl transition-all duration-500 hover:border-primary-accent/40 group">
-              <!-- Grid Background pattern -->
-              <div class="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none"></div>
-
-              <!-- Interactive Images loaded through code -->
-              <div class="relative w-full h-full">
-                <img id="story-visual-01" src="assets/projects/project-04/screen-01.webp" alt="نیاز" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-500 opacity-100" loading="lazy">
-                <img id="story-visual-02" src="assets/projects/project-02/screen-01.webp" alt="ایده" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-500 opacity-0" loading="lazy">
-                <img id="story-visual-03" src="assets/projects/project-01/cover.webp" alt="طراحی" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-500 opacity-0" loading="lazy">
-                <img id="story-visual-04" src="assets/projects/project-03/screen-01.webp" alt="توسعه" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-500 opacity-0" loading="lazy">
-                <img id="story-visual-05" src="assets/projects/project-03/cover.webp" alt="محصول نهایی" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-500 opacity-0" loading="lazy">
-              </div>
-
-              <!-- Glassmorphism footer overlay -->
-              <div class="absolute bottom-6 right-6 left-6 p-4 rounded-xl border border-white/10 bg-black/40 backdrop-blur-md flex items-center justify-between text-right z-10">
-                <div class="space-y-0.5">
-                  <h3 class="text-base font-bold text-white">نکسا (Nexa)</h3>
-                  <p class="text-xs text-gray-300">پلتفرم مدیریت پروژه تیمی و SaaS هوشمند</p>
-                </div>
-                <a href="#portfolio" onclick="openCaseStudy(3); return false;" class="px-4 py-2 rounded-lg bg-primary-accent hover:bg-accent-hover text-white text-xs font-bold transition-all shadow-md shadow-primary-accent/25">
-                  مشاهده محصول ←
-                </a>
-              </div>
-            </div>
+        <!-- Centered Intro Block (Fades away as scroll progresses) -->
+        <div id="story-intro-block" class="absolute inset-0 flex flex-col items-center justify-center text-center max-w-2xl mx-auto px-4 z-30 pointer-events-none">
+          <h2 class="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white mb-4 drop-shadow-lg leading-tight">از یک نیاز تا یک محصول</h2>
+          <p class="text-base sm:text-xl text-gray-200 drop-shadow font-medium">یک سناریوی زنده از چگونگی خلق ارزش و توسعه استارت‌آپ نکسا</p>
+          <div class="mt-8 flex flex-col items-center gap-2">
+            <span class="text-xs text-white/40 tracking-widest font-bold uppercase animate-bounce">برای شروع داستان، اسکرول کنید</span>
+            <svg class="w-5 h-5 text-primary-accent animate-pulse" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 13l-7 7-7-7m14-6l-7 7-7-7" />
+            </svg>
           </div>
+        </div>
 
-          <!-- Right side timeline interactive stepper -->
-          <div class="lg:col-span-5 space-y-4">
-            <div class="flex flex-col gap-3">
+        <!-- Main Desktop Interactive HUD Overlay (hidden on lg and down) -->
+        <div class="hidden lg:flex items-center justify-between w-full h-full pointer-events-none">
+          <!-- Left side blank or subtle details -->
+          <div class="flex-1"></div>
 
+          <!-- Right side Glassmorphism Step Indicator/Navigator -->
+          <div id="story-desktop-hud" class="pointer-events-auto relative flex flex-col gap-5 p-8 rounded-2xl border border-white/10 bg-black/45 backdrop-blur-xl max-w-sm text-right shadow-2xl mr-auto translate-x-[20px] opacity-0 transition-all duration-500">
+
+            <!-- Progress Line Track -->
+            <div class="absolute right-[27px] top-[40px] bottom-[40px] w-[2px] bg-white/10 pointer-events-none">
+              <div id="story-desktop-progress-fill" class="absolute top-0 right-0 left-0 w-full bg-primary-accent origin-top scale-y-0 h-full"></div>
+            </div>
+
+            <!-- Steps list container -->
+            <div class="flex flex-col gap-6 pr-6 relative">
               <!-- Step 1 -->
-              <button id="story-btn-01" class="story-timeline-btn active text-right w-full p-4 rounded-xl border border-primary-accent bg-primary-accent/5 transition-all duration-300 flex items-start gap-4 cursor-pointer focus-visible:ring-2 focus-visible:ring-primary-accent" data-stage="1" aria-label="مرحله اول: نیاز">
-                <span class="w-8 h-8 rounded-full bg-primary-accent text-white flex items-center justify-center text-xs font-bold flex-shrink-0">۰۱</span>
-                <div class="space-y-1">
-                  <h4 class="text-sm font-extrabold text-fg-main">۰۱. نیاز</h4>
-                  <p class="text-xs text-muted-fg font-medium">شناسایی یک چالش واقعی کاربران در بازار داخلی</p>
+              <button data-story-step="1" class="group flex items-start gap-4 text-right focus:outline-none transition-all duration-300 opacity-100 cursor-pointer">
+                <span class="step-dot absolute right-[-24px] w-3 h-3 rounded-full border-2 border-white/40 bg-black transition-all group-hover:border-primary-accent z-10 flex items-center justify-center">
+                  <span class="w-1.5 h-1.5 rounded-full bg-primary-accent scale-0 transition-transform duration-300"></span>
+                </span>
+                <div class="space-y-0.5">
+                  <div class="text-[10px] font-bold text-primary-accent tracking-wider uppercase font-mono">مرحله ۰۱</div>
+                  <div class="text-sm font-black text-white group-hover:text-primary-accent transition-colors">نیاز و مسئله</div>
+                  <div class="text-xs text-gray-300 font-medium leading-relaxed max-h-0 overflow-hidden group-[.active]:max-h-[100px] transition-all duration-500 opacity-0 group-[.active]:opacity-100 font-normal">شناسایی یک چالش واقعی کاربران در بازار داخلی</div>
                 </div>
               </button>
 
               <!-- Step 2 -->
-              <button id="story-btn-02" class="story-timeline-btn text-right w-full p-4 rounded-xl border border-border-subtle bg-card-bg hover:border-primary-accent/40 transition-all duration-300 flex items-start gap-4 cursor-pointer focus-visible:ring-2 focus-visible:ring-primary-accent" data-stage="2" aria-label="مرحله دوم: ایده">
-                <span class="w-8 h-8 rounded-full bg-muted-bg text-muted-fg flex items-center justify-center text-xs font-bold flex-shrink-0">۰۲</span>
-                <div class="space-y-1">
-                  <h4 class="text-sm font-extrabold text-fg-main">۰۲. ایده</h4>
-                  <p class="text-xs text-muted-fg font-medium">طراحی معماری ساده‌تر برای کاربری‌های پیچیده</p>
+              <button data-story-step="2" class="group flex items-start gap-4 text-right focus:outline-none transition-all duration-300 opacity-40 cursor-pointer">
+                <span class="step-dot absolute right-[-24px] w-3 h-3 rounded-full border-2 border-white/20 bg-black transition-all group-hover:border-primary-accent z-10 flex items-center justify-center">
+                  <span class="w-1.5 h-1.5 rounded-full bg-primary-accent scale-0 transition-transform duration-300"></span>
+                </span>
+                <div class="space-y-0.5">
+                  <div class="text-[10px] font-bold text-gray-400 tracking-wider uppercase font-mono">مرحله ۰۲</div>
+                  <div class="text-sm font-black text-white group-hover:text-primary-accent transition-colors">ایده و مفهوم</div>
+                  <div class="text-xs text-gray-300 font-medium leading-relaxed max-h-0 overflow-hidden group-[.active]:max-h-[100px] transition-all duration-500 opacity-0 group-[.active]:opacity-100 font-normal">طراحی معماری ساده‌تر برای کاربری‌های پیچیده</div>
                 </div>
               </button>
 
               <!-- Step 3 -->
-              <button id="story-btn-03" class="story-timeline-btn text-right w-full p-4 rounded-xl border border-border-subtle bg-card-bg hover:border-primary-accent/40 transition-all duration-300 flex items-start gap-4 cursor-pointer focus-visible:ring-2 focus-visible:ring-primary-accent" data-stage="3" aria-label="مرحله سوم: طراحی">
-                <span class="w-8 h-8 rounded-full bg-muted-bg text-muted-fg flex items-center justify-center text-xs font-bold flex-shrink-0">۰۳</span>
-                <div class="space-y-1">
-                  <h4 class="text-sm font-extrabold text-fg-main">۰۳. طراحی</h4>
-                  <p class="text-xs text-muted-fg font-medium">پیاده‌سازی یک تجربه بصری منحصربه‌فرد و مدرن</p>
+              <button data-story-step="3" class="group flex items-start gap-4 text-right focus:outline-none transition-all duration-300 opacity-40 cursor-pointer">
+                <span class="step-dot absolute right-[-24px] w-3 h-3 rounded-full border-2 border-white/20 bg-black transition-all group-hover:border-primary-accent z-10 flex items-center justify-center">
+                  <span class="w-1.5 h-1.5 rounded-full bg-primary-accent scale-0 transition-transform duration-300"></span>
+                </span>
+                <div class="space-y-0.5">
+                  <div class="text-[10px] font-bold text-gray-400 tracking-wider uppercase font-mono">مرحله ۰۳</div>
+                  <div class="text-sm font-black text-white group-hover:text-primary-accent transition-colors">طراحی رابط و تجربه</div>
+                  <div class="text-xs text-gray-300 font-medium leading-relaxed max-h-0 overflow-hidden group-[.active]:max-h-[100px] transition-all duration-500 opacity-0 group-[.active]:opacity-100 font-normal">پیاده‌سازی یک تجربه بصری منحصربه‌فرد و مدرن</div>
                 </div>
               </button>
 
               <!-- Step 4 -->
-              <button id="story-btn-04" class="story-timeline-btn text-right w-full p-4 rounded-xl border border-border-subtle bg-card-bg hover:border-primary-accent/40 transition-all duration-300 flex items-start gap-4 cursor-pointer focus-visible:ring-2 focus-visible:ring-primary-accent" data-stage="4" aria-label="مرحله چهارم: توسعه">
-                <span class="w-8 h-8 rounded-full bg-muted-bg text-muted-fg flex items-center justify-center text-xs font-bold flex-shrink-0">۰۴</span>
-                <div class="space-y-1">
-                  <h4 class="text-sm font-extrabold text-fg-main">۰۴. توسعه</h4>
-                  <p class="text-xs text-muted-fg font-medium">کدنویسی بهینه و ساختارمند وب‌اپلیکیشن</p>
+              <button data-story-step="4" class="group flex items-start gap-4 text-right focus:outline-none transition-all duration-300 opacity-40 cursor-pointer">
+                <span class="step-dot absolute right-[-24px] w-3 h-3 rounded-full border-2 border-white/20 bg-black transition-all group-hover:border-primary-accent z-10 flex items-center justify-center">
+                  <span class="w-1.5 h-1.5 rounded-full bg-primary-accent scale-0 transition-transform duration-300"></span>
+                </span>
+                <div class="space-y-0.5">
+                  <div class="text-[10px] font-bold text-gray-400 tracking-wider uppercase font-mono">مرحله ۰۴</div>
+                  <div class="text-sm font-black text-white group-hover:text-primary-accent transition-colors">توسعه و مهندسی</div>
+                  <div class="text-xs text-gray-300 font-medium leading-relaxed max-h-0 overflow-hidden group-[.active]:max-h-[100px] transition-all duration-500 opacity-0 group-[.active]:opacity-100 font-normal">کدنویسی بهینه و ساختارمند وب‌اپلیکیشن</div>
                 </div>
               </button>
 
               <!-- Step 5 -->
-              <button id="story-btn-05" class="story-timeline-btn text-right w-full p-4 rounded-xl border border-border-subtle bg-card-bg hover:border-primary-accent/40 transition-all duration-300 flex items-start gap-4 cursor-pointer focus-visible:ring-2 focus-visible:ring-primary-accent" data-stage="5" aria-label="مرحله پنجم: محصول">
-                <span class="w-8 h-8 rounded-full bg-muted-bg text-muted-fg flex items-center justify-center text-xs font-bold flex-shrink-0">۰۵</span>
-                <div class="space-y-1">
-                  <h4 class="text-sm font-extrabold text-fg-main">۰۵. محصول</h4>
-                  <p class="text-xs text-muted-fg font-medium">عرضه نهایی نکسا با آمار عالی و رشد موفق</p>
+              <button data-story-step="5" class="group flex items-start gap-4 text-right focus:outline-none transition-all duration-300 opacity-40 cursor-pointer">
+                <span class="step-dot absolute right-[-24px] w-3 h-3 rounded-full border-2 border-white/20 bg-black transition-all group-hover:border-primary-accent z-10 flex items-center justify-center">
+                  <span class="w-1.5 h-1.5 rounded-full bg-primary-accent scale-0 transition-transform duration-300"></span>
+                </span>
+                <div class="space-y-0.5">
+                  <div class="text-[10px] font-bold text-gray-400 tracking-wider uppercase font-mono">مرحله ۰۵</div>
+                  <div class="text-sm font-black text-white group-hover:text-primary-accent transition-colors">محصول نهایی</div>
+                  <div class="text-xs text-gray-300 font-medium leading-relaxed max-h-0 overflow-hidden group-[.active]:max-h-[100px] transition-all duration-500 opacity-0 group-[.active]:opacity-100 font-normal">عرضه نهایی نکسا با آمار عالی و رشد موفق</div>
                 </div>
               </button>
-
             </div>
+
+          </div>
+        </div>
+
+        <!-- Mobile Glassmorphism HUD Overlay (hidden on lg and up) -->
+        <div id="story-mobile-hud" class="lg:hidden w-full p-5 rounded-2xl border border-white/10 bg-black/50 backdrop-blur-xl flex flex-col gap-4 text-right shadow-2xl pointer-events-auto opacity-0 translate-y-[20px] transition-all duration-500">
+          <!-- Text Display Container -->
+          <div class="min-h-[70px] flex flex-col justify-center">
+            <span id="mobile-step-num" class="text-[10px] font-bold text-primary-accent uppercase font-mono">مرحله ۰۱</span>
+            <h4 id="mobile-step-title" class="text-base font-black text-white mt-0.5 font-bold">نیاز و مسئله</h4>
+            <p id="mobile-step-desc" class="text-xs text-gray-300 font-normal leading-relaxed mt-1">شناسایی یک چالش واقعی کاربران در بازار داخلی</p>
           </div>
 
+          <!-- Bottom Stepper controls -->
+          <div class="flex items-center justify-between border-t border-white/10 pt-3">
+            <div class="flex items-center justify-between w-full gap-2">
+              <button data-story-step-mob="1" class="w-9 h-9 rounded-full border-2 border-primary-accent bg-primary-accent/10 text-white flex items-center justify-center text-xs font-black transition-all cursor-pointer">۰۱</button>
+              <div class="flex-1 h-[2px] bg-white/10 relative">
+                <div id="mobile-progress-1" class="absolute inset-y-0 right-0 bg-primary-accent w-0 transition-all duration-300"></div>
+              </div>
+              <button data-story-step-mob="2" class="w-9 h-9 rounded-full border-2 border-white/10 bg-black/40 text-white/50 flex items-center justify-center text-xs font-black transition-all cursor-pointer">۰۲</button>
+              <div class="flex-1 h-[2px] bg-white/10 relative">
+                <div id="mobile-progress-2" class="absolute inset-y-0 right-0 bg-primary-accent w-0 transition-all duration-300"></div>
+              </div>
+              <button data-story-step-mob="3" class="w-9 h-9 rounded-full border-2 border-white/10 bg-black/40 text-white/50 flex items-center justify-center text-xs font-black transition-all cursor-pointer">۰۳</button>
+              <div class="flex-1 h-[2px] bg-white/10 relative">
+                <div id="mobile-progress-3" class="absolute inset-y-0 right-0 bg-primary-accent w-0 transition-all duration-300"></div>
+              </div>
+              <button data-story-step-mob="4" class="w-9 h-9 rounded-full border-2 border-white/10 bg-black/40 text-white/50 flex items-center justify-center text-xs font-black transition-all cursor-pointer">۰۴</button>
+              <div class="flex-1 h-[2px] bg-white/10 relative">
+                <div id="mobile-progress-4" class="absolute inset-y-0 right-0 bg-primary-accent w-0 transition-all duration-300"></div>
+              </div>
+              <button data-story-step-mob="5" class="w-9 h-9 rounded-full border-2 border-white/10 bg-black/40 text-white/50 flex items-center justify-center text-xs font-black transition-all cursor-pointer">۰۵</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bottom Row (CTA and Floating Product Info) -->
+        <div class="flex items-center justify-between w-full z-30">
+          <div id="product-cta-overlay" class="opacity-0 translate-y-[15px] transition-all duration-500 flex items-center justify-between p-4 rounded-xl border border-white/10 bg-black/50 backdrop-blur-md text-right max-w-[280px] sm:max-w-sm pointer-events-auto">
+            <div class="space-y-0.5 ml-6 sm:ml-10">
+              <h3 class="text-sm sm:text-base font-bold text-white">نکسا (Nexa)</h3>
+              <p class="text-[10px] sm:text-xs text-gray-300 font-normal">پلتفرم مدیریت پروژه تیمی هوشمند</p>
+            </div>
+            <a href="#portfolio" onclick="openCaseStudy(3); return false;" class="px-3.5 py-2 rounded-lg bg-primary-accent hover:bg-accent-hover text-white text-xs font-bold transition-all shadow-md shadow-primary-accent/25 flex-shrink-0 cursor-pointer">
+              مشاهده محصول ←
+            </a>
+          </div>
+          <!-- Left side spacer for visual balance -->
+          <div class="hidden sm:block"></div>
         </div>
 
       </div>
@@ -597,100 +673,40 @@
          08 — FINAL CTA SECTION
          ========================================== -->
     <section id="contact" class="py-24 sm:py-32 bg-radial from-primary-accent/5 via-transparent to-transparent border-t border-border-subtle scroll-animate">
-      <div class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+      <div class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12 text-center">
+        <div class="max-w-3xl mx-auto space-y-8 flex flex-col items-center">
 
-          <!-- Left Info text side -->
-          <div class="lg:col-span-5 text-right space-y-6">
-            <span class="text-xs font-bold text-primary-accent tracking-widest uppercase">یک ایده دارید؟</span>
-            <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-fg-main leading-tight">
-              بیایید آن را به یک محصول واقعی تبدیل کنیم.
-            </h2>
-            <p class="text-base text-muted-fg leading-relaxed">
-              با تکمیل فرم کناری، تیم فنی و طراحی ما در کمتر از ۲۴ ساعت درخواست شما را بررسی و قرار مشاوره رایگان را هماهنگ خواهند کرد.
-            </p>
+          <span class="text-xs font-bold text-primary-accent tracking-widest uppercase">یک ایده دارید؟</span>
+          <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-fg-main leading-tight">
+            بیایید آن را به یک محصول واقعی تبدیل کنیم.
+          </h2>
+          <p class="text-base sm:text-lg text-muted-fg leading-relaxed max-w-2xl">
+            تیم فنی و طراحی ما آماده است تا در کمترین زمان ممکن درخواست شما را بررسی کند و شرایط رشد و توسعه محصول دیجیتال شما را فراهم آورد.
+          </p>
 
-            <div class="space-y-3 pt-4 text-sm text-muted-fg">
-              <p class="flex items-center gap-2.5">
-                <svg class="w-5 h-5 text-primary-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 19v-8.93a2 2 0 01.89-1.664l8-4a2 2 0 011.83 0l8 4a2 2 0 01.89 1.664V19A2 2 0 0118 21H6a2 2 0 01-2-2z" />
-                </svg>
-                <span>پاسخ‌گویی سریع، تعامل تیمی و رویکرد مهندسی محصول</span>
-              </p>
-              <p class="flex items-center gap-2.5">
-                <svg class="w-5 h-5 text-primary-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-                <span>ارائه طرح فنی و برآورد دقیق زمان‌بندی پروژه به صورت شفاف</span>
-              </p>
-            </div>
+          <div class="flex flex-col sm:flex-row gap-4 justify-center items-center pt-2 w-full max-w-md">
+            <button id="open-cooperation-modal-btn" class="w-full sm:w-auto px-8 py-4 rounded-xl text-sm font-bold text-white bg-primary-accent hover:bg-accent-hover shadow-lg shadow-primary-accent/25 hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 cursor-pointer flex items-center justify-center gap-2">
+              <span>شروع همکاری و ثبت درخواست</span>
+              <svg class="w-4 h-4 transform rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+              </svg>
+            </button>
           </div>
 
-          <!-- Form block -->
-          <div class="lg:col-span-7 bg-card-bg border border-border-subtle p-8 sm:p-10 rounded-2xl shadow-xl">
-            <form id="project-form" class="space-y-6 text-right" novalidate>
-
-              <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                <div class="space-y-2">
-                  <label for="fullName" class="text-xs font-bold text-muted-fg">نام و نام خانوادگی *</label>
-                  <input type="text" id="fullName" class="w-full px-4 py-3 rounded-xl border border-border-subtle bg-bg-main focus:border-primary-accent focus:ring-1 focus:ring-primary-accent text-sm" placeholder="مثال: علی رضایی" required>
-                </div>
-                <div class="space-y-2">
-                  <label for="companyName" class="text-xs font-bold text-muted-fg">نام شرکت (اختیاری)</label>
-                  <input type="text" id="companyName" class="w-full px-4 py-3 rounded-xl border border-border-subtle bg-bg-main focus:border-primary-accent focus:ring-1 focus:ring-primary-accent text-sm" placeholder="مثال: هلدینگ تابان">
-                </div>
-              </div>
-
-              <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                <div class="space-y-2">
-                  <label for="phone" class="text-xs font-bold text-muted-fg">شماره تماس *</label>
-                  <input type="tel" id="phone" class="w-full px-4 py-3 rounded-xl border border-border-subtle bg-bg-main focus:border-primary-accent focus:ring-1 focus:ring-primary-accent text-sm text-left" placeholder="۰۹۱۲۳۴۵۶۷۸۹" required>
-                </div>
-                <div class="space-y-2">
-                  <label for="email" class="text-xs font-bold text-muted-fg">آدرس ایمیل</label>
-                  <input type="email" id="email" class="w-full px-4 py-3 rounded-xl border border-border-subtle bg-bg-main focus:border-primary-accent focus:ring-1 focus:ring-primary-accent text-sm text-left" placeholder="name@domain.com">
-                </div>
-              </div>
-
-              <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                <div class="space-y-2">
-                  <label for="projectType" class="text-xs font-bold text-muted-fg">نوع پروژه *</label>
-                  <select id="projectType" class="w-full px-4 py-3 rounded-xl border border-border-subtle bg-bg-main focus:border-primary-accent focus:ring-1 focus:ring-primary-accent text-sm" required>
-                    <option value="" disabled selected>انتخاب کنید...</option>
-                    <option value="وب‌سایت">وب‌سایت شرکتی</option>
-                    <option value="فروشگاه اینترنتی">فروشگاه اینترنتی</option>
-                    <option value="Web Application">وب اپلیکیشن سفارشی</option>
-                    <option value="SaaS">سامانه نرم‌افزاری SaaS</option>
-                    <option value="Dashboard">داشبورد و پنل مدیریت</option>
-                    <option value="UI/UX">طراحی رابط کاربری UI/UX</option>
-                    <option value="سایر">سایر موارد</option>
-                  </select>
-                </div>
-                <div class="space-y-2">
-                  <label for="budget" class="text-xs font-bold text-muted-fg">بودجه تقریبی (اختیاری)</label>
-                  <select id="budget" class="w-full px-4 py-3 rounded-xl border border-border-subtle bg-bg-main focus:border-primary-accent focus:ring-1 focus:ring-primary-accent text-sm">
-                    <option value="" disabled selected>انتخاب کنید...</option>
-                    <option value="محدود">زیر ۵۰ میلیون تومان</option>
-                    <option value="متوسط">بین ۵۰ تا ۱۰۰ میلیون تومان</option>
-                    <option value="حرفه‌ای">بین ۱۰۰ تا ۲۰۰ میلیون تومان</option>
-                    <option value="پریمیوم">بالای ۲۰۰ میلیون تومان</option>
-                  </select>
-                </div>
-              </div>
-
-              <div class="space-y-2">
-                <label for="projectDesc" class="text-xs font-bold text-muted-fg">توضیح مختصر درباره اهداف پروژه *</label>
-                <textarea id="projectDesc" rows="4" class="w-full px-4 py-3 rounded-xl border border-border-subtle bg-bg-main focus:border-primary-accent focus:ring-1 focus:ring-primary-accent text-sm" placeholder="لطفاً اهداف، فیچرها و کلیات ایده مد نظرتان را خلاصه بنویسید..." required></textarea>
-              </div>
-
-              <!-- Status -->
-              <div id="form-status" class="hidden"></div>
-
-              <button type="submit" class="w-full py-4 rounded-xl text-sm font-bold text-white bg-primary-accent hover:bg-accent-hover shadow-lg shadow-primary-accent/15 cursor-pointer flex items-center justify-center gap-2 transition-all-custom">
-                ثبت و ارسال درخواست همکاری
-              </button>
-
-            </form>
+          <!-- Feature benefits in 2 columns centered -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-8 text-sm text-muted-fg max-w-2xl text-right">
+            <p class="flex items-center gap-2.5 bg-card-bg/45 border border-border-subtle/50 p-3 rounded-xl">
+              <svg class="w-5 h-5 text-primary-accent flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 19v-8.93a2 2 0 01.89-1.664l8-4a2 2 0 011.83 0l8 4a2 2 0 01.89 1.664V19A2 2 0 0118 21H6a2 2 0 01-2-2z" />
+              </svg>
+              <span>پاسخ‌گویی سریع، تعامل تیمی و رویکرد مهندسی محصول</span>
+            </p>
+            <p class="flex items-center gap-2.5 bg-card-bg/45 border border-border-subtle/50 p-3 rounded-xl">
+              <svg class="w-5 h-5 text-primary-accent flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <span>ارائه طرح فنی و برآورد دقیق زمان‌بندی پروژه به صورت شفاف</span>
+            </p>
           </div>
 
         </div>
@@ -784,6 +800,90 @@
       </div>
     </footer>
 
+    <!-- Cooperation / Project Form Modal -->
+    <div id="cooperation-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-md opacity-0 transition-opacity duration-300" role="dialog" aria-modal="true" aria-labelledby="cooperation-modal-title">
+      <div class="modal-content w-full max-w-2xl bg-card-bg border border-border-subtle rounded-2xl overflow-hidden shadow-2xl scale-95 opacity-0 transition-all duration-300">
+
+        <!-- Header -->
+        <div class="flex items-center justify-between px-6 py-4 border-b border-border-subtle text-right bg-muted-bg/50">
+          <h3 id="cooperation-modal-title" class="text-base sm:text-lg font-extrabold text-fg-main">ثبت درخواست همکاری</h3>
+          <button id="cooperation-modal-close" class="p-2 text-muted-fg hover:text-fg-main rounded-lg border border-border-subtle/50 hover:bg-muted-bg cursor-pointer" aria-label="بستن پنجره">
+            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+
+        <!-- Form Block Container inside Scrollable area -->
+        <div class="p-6 sm:p-8 max-h-[80vh] overflow-y-auto">
+          <form id="project-form" class="space-y-6 text-right" novalidate>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <div class="space-y-2">
+                <label for="fullName" class="text-xs font-bold text-muted-fg">نام و نام خانوادگی *</label>
+                <input type="text" id="fullName" class="w-full px-4 py-3 rounded-xl border border-border-subtle bg-bg-main focus:border-primary-accent focus:ring-1 focus:ring-primary-accent text-sm text-fg-main" placeholder="مثال: علی رضایی" required>
+              </div>
+              <div class="space-y-2">
+                <label for="companyName" class="text-xs font-bold text-muted-fg">نام شرکت (اختیاری)</label>
+                <input type="text" id="companyName" class="w-full px-4 py-3 rounded-xl border border-border-subtle bg-bg-main focus:border-primary-accent focus:ring-1 focus:ring-primary-accent text-sm text-fg-main" placeholder="مثال: هلدینگ تابان">
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <div class="space-y-2">
+                <label for="phone" class="text-xs font-bold text-muted-fg">شماره تماس *</label>
+                <input type="tel" id="phone" class="w-full px-4 py-3 rounded-xl border border-border-subtle bg-bg-main focus:border-primary-accent focus:ring-1 focus:ring-primary-accent text-sm text-left text-fg-main" placeholder="۰۹۱۲۳۴۵۶۷۸۹" required>
+              </div>
+              <div class="space-y-2">
+                <label for="email" class="text-xs font-bold text-muted-fg">آدرس ایمیل</label>
+                <input type="email" id="email" class="w-full px-4 py-3 rounded-xl border border-border-subtle bg-bg-main focus:border-primary-accent focus:ring-1 focus:ring-primary-accent text-sm text-left text-fg-main" placeholder="name@domain.com">
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <div class="space-y-2">
+                <label for="projectType" class="text-xs font-bold text-muted-fg">نوع پروژه *</label>
+                <select id="projectType" class="w-full px-4 py-3 rounded-xl border border-border-subtle bg-bg-main focus:border-primary-accent focus:ring-1 focus:ring-primary-accent text-sm text-fg-main" required>
+                  <option value="" disabled selected>انتخاب کنید...</option>
+                  <option value="وب‌سایت">وب‌سایت شرکتی</option>
+                  <option value="فروشگاه اینترنتی">فروشگاه اینترنتی</option>
+                  <option value="Web Application">وب اپلیکیشن سفارشی</option>
+                  <option value="SaaS">سامانه نرم‌افزاری SaaS</option>
+                  <option value="Dashboard">داشبورد و پنل مدیریت</option>
+                  <option value="UI/UX">طراحی رابط کاربری UI/UX</option>
+                  <option value="سایر">سایر موارد</option>
+                </select>
+              </div>
+              <div class="space-y-2">
+                <label for="budget" class="text-xs font-bold text-muted-fg">بودجه تقریبی (اختیاری)</label>
+                <select id="budget" class="w-full px-4 py-3 rounded-xl border border-border-subtle bg-bg-main focus:border-primary-accent focus:ring-1 focus:ring-primary-accent text-sm text-fg-main">
+                  <option value="" disabled selected>انتخاب کنید...</option>
+                  <option value="محدود">زیر ۵۰ میلیون تومان</option>
+                  <option value="متوسط">بین ۵۰ تا ۱۰۰ میلیون تومان</option>
+                  <option value="حرفه‌ای">بین ۱۰۰ تا ۲۰۰ میلیون تومان</option>
+                  <option value="پریمیوم">بالای ۲۰۰ میلیون تومان</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="space-y-2">
+              <label for="projectDesc" class="text-xs font-bold text-muted-fg">توضیح مختصر درباره اهداف پروژه *</label>
+              <textarea id="projectDesc" rows="4" class="w-full px-4 py-3 rounded-xl border border-border-subtle bg-bg-main focus:border-primary-accent focus:ring-1 focus:ring-primary-accent text-sm text-fg-main" placeholder="لطفاً اهداف، فیچرها و کلیات ایده مد نظرتان را خلاصه بنویسید..." required></textarea>
+            </div>
+
+            <!-- Status -->
+            <div id="form-status" class="hidden"></div>
+
+            <button type="submit" class="w-full py-4 rounded-xl text-sm font-bold text-white bg-primary-accent hover:bg-accent-hover shadow-lg shadow-primary-accent/15 cursor-pointer flex items-center justify-center gap-2 transition-all-custom">
+              ثبت و ارسال درخواست همکاری
+            </button>
+
+          </form>
+        </div>
+
+      </div>
+    </div>
+
     <!-- ACCESSIBLE MODAL FOR TEMPLATE DETAILS -->
     <div id="details-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-md opacity-0 transition-opacity duration-300" role="dialog" aria-modal="true" aria-labelledby="modal-title">
       <div class="modal-content w-full max-w-2xl bg-card-bg border border-border-subtle rounded-2xl overflow-hidden shadow-2xl scale-95 opacity-0 transition-all duration-300">
@@ -836,6 +936,10 @@
 
   </main>
 
+  <!-- GSAP Core & Plugins -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollToPlugin.min.js"></script>
   <script src="./js/main.js"></script>
 </body>
 </html>
