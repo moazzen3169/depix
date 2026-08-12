@@ -3,9 +3,111 @@
  * Highly polished, modular, accessible, and high-performance.
  */
 
+// Global state for projects and current active filter
+const projects = [
+  {
+    id: 1,
+    title: "فروشگاه بزرگ آریا",
+    category: "ecommerce",
+    categoryLabel: "فروشگاه اینترنتی · طراحی و توسعه",
+    year: "۱۴۰۴",
+    cover: "assets/projects/project-01/cover.webp",
+    type: "website",
+    featured: true, // featured card takes wider space
+    specs: {
+      type: "سامانه خرید و فروش آنلاین",
+      duration: "۸ هفته",
+      techs: ["Next.js", "Node.js", "PostgreSQL", "Tailwind CSS"],
+      metrics: [
+        { label: "نرخ تبدیل", value: "+۴۲٪" },
+        { label: "زمان لود صفحه", value: "۰.۸ ثانیه" },
+        { label: "رضایت مشتری", value: "۱۰۰٪" }
+      ]
+    },
+    screens: [
+      "assets/projects/project-01/cover.webp",
+      "assets/projects/project-01/screen-01.webp"
+    ],
+    description: "سامانه هوشمند و پیشرفته خرید اینترنتی با قابلیت فیلترینگ پیشرفته، سرعت بارگذاری خارق‌العاده و درگاه پرداخت پایدار."
+  },
+  {
+    id: 2,
+    title: "داشبورد هوش مصنوعی تابان",
+    category: "dashboard",
+    categoryLabel: "داشبورد اطلاعاتی · رابط کاربری",
+    year: "۱۴۰۴",
+    cover: "assets/projects/project-02/cover.webp",
+    type: "dashboard",
+    featured: false,
+    specs: {
+      type: "پنل معاملاتی هوشمند",
+      duration: "۱۰ هفته",
+      techs: ["React", "Python", "Tailwind CSS", "ECharts"],
+      metrics: [
+        { label: "بهبود راندمان", value: "+۳۵٪" },
+        { label: "کاربران همزمان", value: "۲۵,۰۰۰+" }
+      ]
+    },
+    screens: [
+      "assets/projects/project-02/cover.webp",
+      "assets/projects/project-02/screen-01.webp"
+    ],
+    description: "پنل معاملاتی پیشرفته جهت پایش هوشمند ارز دیجیتال و سهام با ویجت‌های کاملاً پویا و زنده."
+  },
+  {
+    id: 3,
+    title: "وب‌اپلیکیشن مدیریت وظایف نکسا",
+    category: "saas",
+    categoryLabel: "نرم‌افزار تحت وب · SaaS",
+    year: "۱۴۰۳",
+    cover: "assets/projects/project-03/cover.webp",
+    type: "saas",
+    featured: false,
+    specs: {
+      type: "پلتفرم مدیریت پروژه تیمی",
+      duration: "۶ هفته",
+      techs: ["Vue.js", "Laravel", "MySQL", "Tailwind"],
+      metrics: [
+        { label: "سرعت تحویل", value: "۱۰ هفته" },
+        { label: "کاربران فعال روزانه", value: "۱۵,۰۰۰+" }
+      ]
+    },
+    screens: [
+      "assets/projects/project-03/cover.webp",
+      "assets/projects/project-03/screen-01.webp"
+    ],
+    description: "سامانه بومی تسهیل کار تیمی و مدیریت چابک وظایف سازمانی منطبق بر متدولوژی اسکرام."
+  },
+  {
+    id: 4,
+    title: "لندینگ پیج آژانس خلاق مهر",
+    category: "landing",
+    categoryLabel: "صفحه فرود · طراحی مدرن",
+    year: "۱۴۰۴",
+    cover: "assets/projects/project-04/cover.webp",
+    type: "landing",
+    featured: true, // another featured layout
+    specs: {
+      type: "کمپین بازاریابی دیجیتال",
+      duration: "۴ هفته",
+      techs: ["HTML5", "Vanilla JS", "Tailwind CSS", "GSAP"],
+      metrics: [
+        { label: "افزایش لید ملحق شده", value: "+۸۴٪" },
+        { label: "امتیاز Lighthouse", value: "۹۹/۱۰۰" }
+      ]
+    },
+    screens: [
+      "assets/projects/project-04/cover.webp",
+      "assets/projects/project-04/screen-01.webp"
+    ],
+    description: "صفحه فرود خیره‌کننده آژانس خلاق مهر همراه با جلوه‌های بصری پویا و ساختار فنی بهینه‌سازی شده برای موبایل."
+  }
+];
+
 document.addEventListener('DOMContentLoaded', () => {
   initTheme();
   initNavigation();
+  initPortfolioGrid();
   initTemplateFilter();
   initAccordion();
   initModal();
@@ -114,7 +216,430 @@ function initNavigation() {
 }
 
 /**
- * 3. Dynamic Template Filter with Micro-Animations
+ * 3. Dynamic Visual Portfolio Grid & Custom Filtering
+ */
+function initPortfolioGrid() {
+  const container = document.getElementById('portfolio-grid-container');
+  const filterBtns = document.querySelectorAll('.portfolio-filter-btn');
+
+  if (!container) return;
+
+  // Render function to draw Dribbble-inspired grid
+  const renderProjects = (filterType = 'all') => {
+    container.innerHTML = '';
+
+    const filtered = projects.filter(p => filterType === 'all' || p.category === filterType);
+
+    filtered.forEach(p => {
+      // featured card logic - desktop spans 2 columns
+      const spanClass = p.featured ? 'md:col-span-2' : 'col-span-1';
+
+      const card = document.createElement('article');
+      card.className = `${spanClass} project-card group relative flex flex-col bg-card-bg border border-border-subtle rounded-2xl overflow-hidden hover:border-primary-accent/40 hover:shadow-2xl transition-all-custom cursor-pointer`;
+      card.setAttribute('data-id', p.id);
+      card.setAttribute('role', 'button');
+      card.setAttribute('tabindex', '0');
+      card.setAttribute('aria-label', `مشاهده پروژه ${p.title}`);
+
+      card.innerHTML = `
+        <div class="project-media relative aspect-[16/10] overflow-hidden bg-muted-bg/50">
+          <img src="${p.cover}" alt="${p.title}" class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]" loading="lazy">
+
+          <!-- Subtle Premium Hover Overlay -->
+          <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+            <span class="px-5 py-2.5 rounded-full bg-white text-black font-bold text-sm shadow-xl flex items-center gap-2 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+              <span>مشاهده پروژه</span>
+              <svg class="w-4 h-4 transform rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+              </svg>
+            </span>
+          </div>
+        </div>
+
+        <div class="project-meta p-5 flex items-center justify-between border-t border-border-subtle/50">
+          <div class="space-y-1 text-right">
+            <h3 class="text-base font-bold text-fg-main group-hover:text-primary-accent transition-colors duration-200">${p.title}</h3>
+            <span class="text-xs text-muted-fg font-medium">${p.categoryLabel}</span>
+          </div>
+          <div class="w-8 h-8 rounded-full border border-border-subtle bg-muted-bg group-hover:border-primary-accent group-hover:bg-primary-accent/10 flex items-center justify-center text-muted-fg group-hover:text-primary-accent transition-all duration-300">
+            <svg class="w-4 h-4 transform rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </div>
+        </div>
+      `;
+
+      // Click / Keyboard Key triggers case study
+      const triggerCaseStudy = () => openCaseStudy(p.id);
+      card.addEventListener('click', triggerCaseStudy);
+      card.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          triggerCaseStudy();
+        }
+      });
+
+      container.appendChild(card);
+    });
+  };
+
+  // Setup click triggers on segment filter bar
+  if (filterBtns) {
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => {
+          b.classList.remove('bg-primary-accent', 'text-white', 'border-primary-accent');
+          b.classList.add('bg-muted-bg', 'text-muted-fg', 'border-border-subtle');
+        });
+        btn.classList.add('bg-primary-accent', 'text-white', 'border-primary-accent');
+        btn.classList.remove('bg-muted-bg', 'text-muted-fg', 'border-border-subtle');
+
+        const category = btn.getAttribute('data-filter');
+        renderProjects(category);
+      });
+    });
+  }
+
+  // Initial render
+  renderProjects();
+}
+
+/**
+ * 4. Dynamic Case Study modal & Lightbox implementation
+ */
+function openCaseStudy(id) {
+  const project = projects.find(p => p.id === Number(id));
+  if (!project) return;
+
+  // Build the visual-first Case Study Modal
+  let csModal = document.getElementById('case-study-modal');
+  if (!csModal) {
+    csModal = document.createElement('div');
+    csModal.id = 'case-study-modal';
+    csModal.className = 'fixed inset-0 z-50 overflow-y-auto bg-black/80 backdrop-blur-md opacity-0 transition-opacity duration-300 flex justify-center p-4 sm:p-6';
+    csModal.setAttribute('role', 'dialog');
+    csModal.setAttribute('aria-modal', 'true');
+    document.body.appendChild(csModal);
+  }
+
+  // Generate Metric Cards dynamically
+  let metricsHTML = '';
+  if (project.specs && project.specs.metrics) {
+    project.specs.metrics.forEach(m => {
+      metricsHTML += `
+        <div class="bg-card-bg border border-border-subtle rounded-xl p-5 text-center">
+          <p class="text-3xl font-extrabold text-primary-accent tracking-tight">${m.value}</p>
+          <p class="text-xs text-muted-fg font-medium mt-1">${m.label}</p>
+        </div>
+      `;
+    });
+  }
+
+  // Generate Tech Tags
+  let techsHTML = '';
+  if (project.specs && project.specs.techs) {
+    project.specs.techs.forEach(t => {
+      techsHTML += `
+        <span class="px-3 py-1 rounded-full text-xs font-semibold bg-muted-bg text-muted-fg border border-border-subtle">${t}</span>
+      `;
+    });
+  }
+
+  // Generate beautiful editorial Gallery Grid
+  let galleryHTML = '';
+  if (project.screens && project.screens.length > 0) {
+    // Elegant rhythm: full-width, or 2 columns
+    project.screens.forEach((scr, idx) => {
+      const colClass = idx === 0 ? 'col-span-2' : 'col-span-2 md:col-span-1';
+      galleryHTML += `
+        <div class="${colClass} relative group overflow-hidden rounded-xl bg-muted-bg border border-border-subtle cursor-zoom-in">
+          <img src="${scr}" alt="${project.title} - تصویر ${idx + 1}" class="w-full h-auto object-cover transition-transform duration-500 ease-out group-hover:scale-[1.02]" loading="lazy">
+          <div class="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-center justify-center">
+            <span class="p-3 rounded-full bg-white/20 backdrop-blur text-white">
+              <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7" />
+              </svg>
+            </span>
+          </div>
+        </div>
+      `;
+    });
+  }
+
+  csModal.innerHTML = `
+    <div class="case-study-content w-full max-w-4xl bg-background border border-border-subtle rounded-2xl overflow-hidden shadow-2xl scale-95 opacity-0 transition-all duration-300 flex flex-col h-fit">
+
+      <!-- Top header bar -->
+      <div class="flex items-center justify-between px-6 py-4 bg-muted-bg border-b border-border-subtle sticky top-0 z-10 backdrop-blur-md bg-opacity-80">
+        <div class="space-y-0.5 text-right">
+          <h2 class="text-lg font-black text-fg-main">${project.title}</h2>
+          <span class="text-xs text-primary-accent font-semibold">${project.categoryLabel}</span>
+        </div>
+        <button id="cs-modal-close" class="p-2 text-muted-fg hover:text-fg-main rounded-lg border border-border-subtle/50 hover:bg-muted-bg cursor-pointer" aria-label="بستن پنجره">
+          <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Scrollable content -->
+      <div class="p-6 sm:p-8 space-y-12">
+
+        <!-- Large visual cover mockup -->
+        <div class="relative rounded-2xl overflow-hidden border border-border-subtle bg-muted-bg/30">
+          <!-- Browser mockup frame wrapper -->
+          <div class="flex items-center gap-1.5 px-4 py-3 bg-muted-bg border-b border-border-subtle">
+            <span class="w-2 h-2 rounded-full bg-red-500"></span>
+            <span class="w-2 h-2 rounded-full bg-yellow-500"></span>
+            <span class="w-2 h-2 rounded-full bg-green-500"></span>
+            <div class="mx-auto bg-background border border-border-subtle rounded text-[10px] text-muted-fg px-4 py-0.5 w-1/3 text-center truncate">
+              panterastudio.ir/projects/${project.id}
+            </div>
+          </div>
+          <img src="${project.cover}" alt="${project.title} cover" class="w-full h-auto object-cover">
+        </div>
+
+        <!-- Case study details & specs -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-start text-right">
+
+          <div class="md:col-span-2 space-y-4">
+            <h3 class="text-xl font-bold text-fg-main">درباره پروژه</h3>
+            <p class="text-base text-muted-fg leading-relaxed">${project.description}</p>
+
+            <div class="pt-4 space-y-2">
+              <h4 class="text-xs font-bold text-muted-fg uppercase tracking-wider">فناوری‌های کلیدی استفاده شده</h4>
+              <div class="flex flex-wrap gap-2">
+                ${techsHTML}
+              </div>
+            </div>
+          </div>
+
+          <!-- Specs panel -->
+          <div class="bg-card-bg border border-border-subtle rounded-xl p-6 space-y-4">
+            <div>
+              <p class="text-[10px] text-muted-fg font-bold uppercase tracking-wider">نوع پروژه</p>
+              <p class="text-sm font-bold text-fg-main mt-1">${project.specs.type}</p>
+            </div>
+            <div class="border-t border-border-subtle/50 pt-3">
+              <p class="text-[10px] text-muted-fg font-bold uppercase tracking-wider">مدت زمان پیاده‌سازی</p>
+              <p class="text-sm font-bold text-fg-main mt-1">${project.specs.duration}</p>
+            </div>
+            <div class="border-t border-border-subtle/50 pt-3">
+              <p class="text-[10px] text-muted-fg font-bold uppercase tracking-wider">سال تولید</p>
+              <p class="text-sm font-bold text-fg-main mt-1">${project.year}</p>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Metrics widgets section -->
+        ${metricsHTML ? `
+        <div class="space-y-6">
+          <h3 class="text-lg font-bold text-right text-fg-main">نتایج و دستاوردهای عددی</h3>
+          <div class="grid grid-cols-2 md:grid-cols-3 gap-6">
+            ${metricsHTML}
+          </div>
+        </div>
+        ` : ''}
+
+        <!-- Visual gallery system with premium responsive layout -->
+        <div class="space-y-6">
+          <h3 class="text-lg font-bold text-right text-fg-main">گالری صفحات و جزییات طرح</h3>
+          <div class="grid grid-cols-2 gap-6" id="case-study-gallery">
+            ${galleryHTML}
+          </div>
+        </div>
+
+        <!-- Call to action block -->
+        <div class="bg-muted-bg/50 border border-border-subtle rounded-2xl p-8 text-center space-y-6">
+          <h3 class="text-xl font-black text-fg-main">آیا این پروژه به نیاز شما نزدیک است؟</h3>
+          <p class="text-sm text-muted-fg max-w-lg mx-auto">ما مشتاقیم تجربه‌ای مشابه یا حتی فراتر را برای کسب‌وکار شما مهندسی کنیم.</p>
+          <a href="#contact" id="cs-cta-btn" class="inline-flex items-center justify-center px-6 py-3 rounded-xl text-sm font-bold text-white bg-primary-accent hover:bg-accent-hover transition-all">
+            دریافت مشاوره رایگان
+          </a>
+        </div>
+
+      </div>
+
+    </div>
+  `;
+
+  // Animate Open
+  csModal.classList.remove('hidden');
+  document.body.style.overflow = 'hidden';
+  setTimeout(() => {
+    csModal.classList.remove('opacity-0');
+    csModal.querySelector('.case-study-content').classList.remove('scale-95', 'opacity-0');
+  }, 10);
+
+  // Close functionality
+  const closeCS = () => {
+    csModal.classList.add('opacity-0');
+    csModal.querySelector('.case-study-content').classList.add('scale-95', 'opacity-0');
+    setTimeout(() => {
+      csModal.classList.add('hidden');
+      document.body.style.overflow = '';
+    }, 250);
+  };
+
+  csModal.querySelector('#cs-modal-close').addEventListener('click', closeCS);
+  csModal.addEventListener('click', (e) => {
+    if (e.target === csModal) {
+      closeCS();
+    }
+  });
+
+  // Handle CTA button click to close and go to contact
+  const ctaBtn = csModal.querySelector('#cs-cta-btn');
+  if (ctaBtn) {
+    ctaBtn.addEventListener('click', () => {
+      closeCS();
+    });
+  }
+
+  // Setup gallery image click triggers for the premium Lightbox
+  const galleryItems = csModal.querySelectorAll('#case-study-gallery img');
+  const imageUrls = Array.from(galleryItems).map(img => img.src);
+  galleryItems.forEach((img, index) => {
+    img.parentElement.addEventListener('click', () => {
+      openLightbox(imageUrls, index);
+    });
+  });
+}
+
+/**
+ * 5. Premium Fullscreen Vanilla JS Lightbox (Accessible & RTL Aware)
+ */
+function openLightbox(urls, startIndex) {
+  let currentIndex = startIndex;
+
+  let lb = document.getElementById('lb-overlay');
+  if (!lb) {
+    lb = document.createElement('div');
+    lb.id = 'lb-overlay';
+    lb.className = 'fixed inset-0 z-[100] flex flex-col justify-between bg-black/95 opacity-0 transition-opacity duration-300 select-none';
+    lb.setAttribute('role', 'dialog');
+    lb.setAttribute('aria-modal', 'true');
+    lb.setAttribute('aria-label', 'نمایش بزرگ تصاویر پروژه');
+    document.body.appendChild(lb);
+  }
+
+  const renderImage = () => {
+    const imgEl = lb.querySelector('#lb-image');
+    if (imgEl) {
+      imgEl.style.opacity = '0';
+      imgEl.style.transform = 'scale(0.98)';
+      setTimeout(() => {
+        imgEl.src = urls[currentIndex];
+        imgEl.style.opacity = '1';
+        imgEl.style.transform = 'scale(1)';
+      }, 150);
+    }
+  };
+
+  lb.innerHTML = `
+    <!-- Top toolbar -->
+    <div class="flex items-center justify-between p-4 sm:p-6 bg-gradient-to-b from-black/80 to-transparent z-10">
+      <span class="text-sm font-bold text-gray-400">تصویر ${currentIndex + 1} از ${urls.length}</span>
+      <button id="lb-close" class="p-2.5 rounded-lg bg-white/10 hover:bg-white/20 text-white cursor-pointer transition-colors" aria-label="بستن گالری">
+        <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Center layout with responsive navigation buttons -->
+    <div class="flex-1 flex items-center justify-between px-4 sm:px-12 relative">
+
+      <!-- Prev Button (RTL Aware: Next in index logic) -->
+      <button id="lb-prev" class="p-3 sm:p-4 rounded-full bg-white/5 hover:bg-white/15 text-white cursor-pointer transition-all hover:scale-105 z-10" aria-label="تصویر قبلی">
+        <!-- RTL standard: right arrow goes to next chronologically, left goes previous -->
+        <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+        </svg>
+      </button>
+
+      <!-- Center Image display container -->
+      <div class="absolute inset-0 flex items-center justify-center p-4">
+        <img id="lb-image" src="${urls[currentIndex]}" alt="بزرگنمایی تصویر" class="max-w-full max-h-[75vh] sm:max-h-[80vh] object-contain rounded-lg transition-all duration-300 ease-out shadow-2xl">
+      </div>
+
+      <!-- Next Button (RTL Aware: Prev in index logic) -->
+      <button id="lb-next" class="p-3 sm:p-4 rounded-full bg-white/5 hover:bg-white/15 text-white cursor-pointer transition-all hover:scale-105 z-10" aria-label="تصویر بعدی">
+        <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+        </svg>
+      </button>
+
+    </div>
+
+    <!-- Bottom label placeholder -->
+    <div class="p-6 text-center text-xs text-gray-500 bg-gradient-to-t from-black/80 to-transparent">
+      <span>میتوانید از کلیدهای جهت‌نما کیبورد (← / →) یا دکمه ESC استفاده کنید.</span>
+    </div>
+  `;
+
+  // Animate Lightbox Open
+  lb.classList.remove('hidden');
+  setTimeout(() => {
+    lb.classList.remove('opacity-0');
+  }, 10);
+
+  const closeLB = () => {
+    lb.classList.add('opacity-0');
+    setTimeout(() => {
+      lb.classList.add('hidden');
+    }, 250);
+  };
+
+  const nextImg = () => {
+    currentIndex = (currentIndex + 1) % urls.length;
+    renderImage();
+    lb.querySelector('.text-gray-400').textContent = `تصویر ${currentIndex + 1} از ${urls.length}`;
+  };
+
+  const prevImg = () => {
+    currentIndex = (currentIndex - 1 + urls.length) % urls.length;
+    renderImage();
+    lb.querySelector('.text-gray-400').textContent = `تصویر ${currentIndex + 1} از ${urls.length}`;
+  };
+
+  // Assign listeners
+  lb.querySelector('#lb-close').addEventListener('click', closeLB);
+  // RTL adjustments for buttons: left button triggers previous, right next
+  lb.querySelector('#lb-prev').addEventListener('click', prevImg);
+  lb.querySelector('#lb-next').addEventListener('click', nextImg);
+
+  // Keyboard navigation support
+  const handleLBKeyboard = (e) => {
+    if (lb.classList.contains('hidden')) return;
+
+    if (e.key === 'Escape') {
+      closeLB();
+      document.removeEventListener('keydown', handleLBKeyboard);
+    } else if (e.key === 'ArrowRight') {
+      // In RTL, right arrow is chronologically previous or next depending on mapping. Let's make it intuitive:
+      nextImg();
+    } else if (e.key === 'ArrowLeft') {
+      prevImg();
+    }
+  };
+  document.addEventListener('keydown', handleLBKeyboard);
+
+  // Click background to close
+  lb.addEventListener('click', (e) => {
+    if (e.target === lb || e.target.id === 'lb-image-container' || e.target.tagName === 'DIV') {
+      // confirm it wasn't a button or image click
+      if (e.target.tagName !== 'BUTTON' && e.target.tagName !== 'path' && e.target.tagName !== 'svg' && e.target.tagName !== 'IMG') {
+        closeLB();
+        document.removeEventListener('keydown', handleLBKeyboard);
+      }
+    }
+  });
+}
+
+/**
+ * 6. Dynamic Template Filter with Micro-Animations & accessible Modal Details
  */
 function initTemplateFilter() {
   const filterBtns = document.querySelectorAll('.filter-btn');
@@ -159,7 +684,7 @@ function initTemplateFilter() {
 }
 
 /**
- * 4. High-Performance Accessible Accordion
+ * 7. High-Performance Accessible Accordion
  */
 function initAccordion() {
   const accordionHeaders = document.querySelectorAll('.accordion-header');
@@ -207,7 +732,7 @@ function initAccordion() {
 }
 
 /**
- * 5. Premium Modal Handling (Demo & Details Actions)
+ * 8. Premium Modal Handling (Demo & Details Actions)
  */
 function initModal() {
   const modal = document.getElementById('details-modal');
@@ -367,7 +892,7 @@ function initModal() {
 }
 
 /**
- * 6. Contact Form Validation and Simulated States
+ * 9. Contact Form Validation and Simulated States
  */
 function initContactForm() {
   const form = document.getElementById('project-form');
@@ -478,7 +1003,7 @@ function initContactForm() {
 }
 
 /**
- * 7. Clean Scroll Reveal / Interactive Transition Triggers
+ * 10. Clean Scroll Reveal / Interactive Transition Triggers
  */
 function initScrollAnimations() {
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
