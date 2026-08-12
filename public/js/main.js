@@ -167,10 +167,43 @@ const projects = [
   }
 ];
 
+// Global state for Blog Posts
+const blogPosts = [
+  {
+    id: 1,
+    title: "چطور یک داشبورد حرفه‌ای طراحی کنیم؟",
+    category: "طراحی محصول",
+    date: "۱۴۰۵/۰۵/۲۰",
+    readTime: "۵ دقیقه",
+    image: "assets/projects/project-02/cover.webp",
+    url: "#"
+  },
+  {
+    id: 2,
+    title: "از Figma تا محصول واقعی",
+    category: "توسعه محصول",
+    date: "۱۴۰۵/۰۵/۱۲",
+    readTime: "۷ دقیقه",
+    image: "assets/projects/project-03/cover.webp",
+    url: "#"
+  },
+  {
+    id: 3,
+    title: "چرا Design System مهم است؟",
+    category: "UI/UX",
+    date: "۱۴۰۵/۰۵/۰۵",
+    readTime: "۴ دقیقه",
+    image: "assets/projects/project-01/cover.webp",
+    url: "#"
+  }
+];
+
 document.addEventListener('DOMContentLoaded', () => {
   initTheme();
   initNavigation();
   initPortfolioGrid();
+  initStartupStory();
+  initBlogGrid();
   initTemplateFilter();
   initAccordion();
   initModal();
@@ -277,6 +310,136 @@ function initNavigation() {
       });
     });
   }
+}
+
+/**
+ * 3.5. Interactive Startup Story logic
+ */
+function initStartupStory() {
+  const buttons = document.querySelectorAll('.story-timeline-btn');
+
+  if (!buttons.length) return;
+
+  const updateStage = (stageNum) => {
+    // 1. Update Buttons Styling
+    buttons.forEach(btn => {
+      const btnStage = btn.getAttribute('data-stage');
+      const badge = btn.querySelector('span');
+
+      if (btnStage === stageNum) {
+        btn.classList.add('border-primary-accent', 'bg-primary-accent/5', 'active');
+        btn.classList.remove('border-border-subtle', 'bg-card-bg');
+        if (badge) {
+          badge.classList.add('bg-primary-accent', 'text-white');
+          badge.classList.remove('bg-muted-bg', 'text-muted-fg');
+        }
+      } else {
+        btn.classList.remove('border-primary-accent', 'bg-primary-accent/5', 'active');
+        btn.classList.add('border-border-subtle', 'bg-card-bg');
+        if (badge) {
+          badge.classList.remove('bg-primary-accent', 'text-white');
+          badge.classList.add('bg-muted-bg', 'text-muted-fg');
+        }
+      }
+    });
+
+    // 2. Switch Images smoothly with fade transition
+    for (let i = 1; i <= 5; i++) {
+      const img = document.getElementById(`story-visual-0${i}`);
+      if (img) {
+        if (String(i) === stageNum) {
+          img.classList.add('opacity-100');
+          img.classList.remove('opacity-0');
+        } else {
+          img.classList.remove('opacity-100');
+          img.classList.add('opacity-0');
+        }
+      }
+    }
+  };
+
+  buttons.forEach(btn => {
+    // Switch on click
+    btn.addEventListener('click', () => {
+      const stage = btn.getAttribute('data-stage');
+      updateStage(stage);
+    });
+
+    // Optional subtle change on hover/focus
+    btn.addEventListener('mouseenter', () => {
+      const stage = btn.getAttribute('data-stage');
+      updateStage(stage);
+    });
+  });
+}
+
+/**
+ * 3.6. Dynamic Blog Preview Grid rendering
+ */
+function initBlogGrid() {
+  const container = document.getElementById('blog-grid-container');
+  if (!container) return;
+
+  container.innerHTML = '';
+
+  blogPosts.forEach(post => {
+    const card = document.createElement('article');
+    card.className = `group bg-card-bg border border-border-subtle rounded-2xl overflow-hidden hover:border-primary-accent/40 hover:shadow-2xl transition-all-custom cursor-pointer`;
+    card.setAttribute('role', 'article');
+    card.setAttribute('tabindex', '0');
+    card.setAttribute('aria-label', `مطالعه مقاله: ${post.title}`);
+
+    card.innerHTML = `
+      <div class="relative aspect-[16/10] overflow-hidden bg-muted-bg/50">
+        <img src="${post.image}" alt="${post.title}" class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]" loading="lazy">
+
+        <!-- Subtle Overlay on Hover -->
+        <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+          <span class="px-5 py-2.5 rounded-full bg-white text-black font-bold text-sm shadow-xl flex items-center gap-2 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+            <span>مطالعه مقاله</span>
+            <svg class="w-4 h-4 transform rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+            </svg>
+          </span>
+        </div>
+      </div>
+
+      <div class="p-6 text-right space-y-4">
+        <div class="flex items-center justify-between">
+          <span class="text-xs text-primary-accent font-bold">${post.category}</span>
+          <span class="text-xs text-muted-fg font-medium">${post.readTime} مطالعه</span>
+        </div>
+
+        <h3 class="text-base sm:text-lg font-bold text-fg-main group-hover:text-primary-accent transition-colors duration-200 line-clamp-2 leading-snug">
+          ${post.title}
+        </h3>
+
+        <div class="flex items-center justify-between pt-2 border-t border-border-subtle/30 text-xs text-muted-fg">
+          <span>${post.date}</span>
+          <div class="flex items-center gap-1 text-primary-accent font-bold group-hover:gap-2 transition-all">
+            <span>ادامه مطلب</span>
+            <span class="transform rotate-180">←</span>
+          </div>
+        </div>
+      </div>
+    `;
+
+    // Click triggers
+    const readArticle = () => {
+      // simulated navigation or placeholder action
+      console.log(`Navigating to article ${post.id}`);
+    };
+
+    card.addEventListener('click', readArticle);
+    card.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        readArticle();
+      }
+    });
+
+    container.appendChild(card);
+  });
 }
 
 /**
