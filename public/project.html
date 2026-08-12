@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl" class="dark font-sans">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>جزئیات پروژه | استودیو نرم‌افزار پنترا</title>
+  <meta name="description" content="طراحی و توسعه وب‌سایت، فروشگاه اینترنتی و نرم‌افزارهای تحت وب سفارشی با بالاترین استانداردهای کاربری و فنی.">
+
+  <!-- Tailwind compiled styles -->
+  <link rel="stylesheet" href="./output.css">
+</head>
+<body class="bg-bg-main text-fg-main antialiased selection:bg-primary-accent/20 selection:text-primary-accent overflow-x-hidden">
+
+  <!-- 1. HEADER & NAVBAR -->
+  <header id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-transparent">
+    <div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+
+      <!-- Right Side: Brand Logo & Name -->
+      <a href="index.html" class="flex items-center gap-3 group focus-visible:ring-2 focus-visible:ring-primary-accent rounded-lg p-1" aria-label="صفحه اصلی استودیو پنترا">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-primary-accent to-accent-hover flex items-center justify-center text-white shadow-md shadow-primary-accent/20 transition-all duration-300 group-hover:scale-105">
+          <!-- Logo SVG -->
+          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+          </svg>
+        </div>
+        <span class="text-xl font-bold tracking-tight bg-gradient-to-l from-fg-main to-muted-fg bg-clip-text text-transparent">پَنترا</span>
+      </a>
+
+      <!-- Middle: Navigation Links (Desktop) -->
+      <nav class="hidden md:flex items-center gap-8 text-sm font-medium">
+        <a href="index.html#hero" class="text-muted-fg hover:text-primary-accent transition-colors">خانه</a>
+        <a href="index.html#portfolio" class="text-fg-main hover:text-primary-accent transition-colors">نمونه‌کارها</a>
+        <a href="index.html#templates" class="text-muted-fg hover:text-primary-accent transition-colors">قالب‌های آماده</a>
+        <a href="index.html#services" class="text-muted-fg hover:text-primary-accent transition-colors">خدمات</a>
+        <a href="index.html#process" class="text-muted-fg hover:text-primary-accent transition-colors">فرآیند ما</a>
+        <a href="index.html#faq" class="text-muted-fg hover:text-primary-accent transition-colors">پرسش‌ها</a>
+      </nav>
+
+      <!-- Left Side: Theme Toggle & Primary CTA (Desktop) -->
+      <div class="flex items-center gap-4">
+        <!-- Theme Toggle Button -->
+        <button id="theme-toggle" class="p-2.5 rounded-lg border border-border-subtle bg-card-bg text-muted-fg hover:text-fg-main transition-all-custom cursor-pointer" aria-label="تغییر پوسته تاریک و روشن">
+          <!-- Sun Icon (Dark Mode View) -->
+          <svg class="sun-icon w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m12.728 0l-.707-.707M6.343 6.343l-.707-.707M12 8a4 4 0 100 8 4 4 0 000-8z" />
+          </svg>
+          <!-- Moon Icon (Light Mode View - hidden by default) -->
+          <svg class="moon-icon w-5 h-5 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+          </svg>
+        </button>
+
+        <!-- CTA Button -->
+        <a href="index.html#contact" class="hidden sm:inline-flex items-center justify-center px-5 py-2.5 rounded-xl text-sm font-semibold text-white bg-primary-accent hover:bg-accent-hover shadow-lg shadow-primary-accent/15 transition-all-custom">
+          شروع یک پروژه
+        </a>
+
+        <!-- Mobile Menu Toggle Button -->
+        <button id="mobile-menu-btn" class="md:hidden p-2.5 rounded-lg border border-border-subtle bg-card-bg text-muted-fg hover:text-fg-main transition-all-custom cursor-pointer" aria-expanded="false" aria-controls="mobile-menu" aria-label="منوی ناوبری">
+          <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Mobile Navigation Drawer -->
+    <div id="mobile-menu" class="hidden md:hidden absolute top-20 left-4 right-4 bg-card-bg border border-border-subtle rounded-2xl p-6 shadow-xl opacity-0 -translate-y-4 transition-all duration-300 z-50">
+      <nav class="flex flex-col gap-4 text-base font-semibold">
+        <a href="index.html#hero" class="text-fg-main hover:text-primary-accent py-2 border-b border-border-subtle/50">خانه</a>
+        <a href="index.html#portfolio" class="text-muted-fg hover:text-primary-accent py-2 border-b border-border-subtle/50">نمونه‌کارها</a>
+        <a href="index.html#templates" class="text-muted-fg hover:text-primary-accent py-2 border-b border-border-subtle/50">قالب‌های آماده</a>
+        <a href="index.html#services" class="text-muted-fg hover:text-primary-accent py-2 border-b border-border-subtle/50">خدمات</a>
+        <a href="index.html#process" class="text-muted-fg hover:text-primary-accent py-2 border-b border-border-subtle/50">فرآیند ما</a>
+        <a href="index.html#faq" class="text-muted-fg hover:text-primary-accent py-2">پرسش‌ها</a>
+
+        <a href="index.html#contact" class="mt-4 w-full inline-flex items-center justify-center py-3 rounded-xl text-sm font-bold text-white bg-primary-accent hover:bg-accent-hover transition-colors">
+          شروع یک پروژه
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Content Structure -->
+  <main class="overflow-hidden">
+
+    <!-- 2. PROJECT DETAILED WRAPPER -->
+    <section class="relative pt-32 pb-24 overflow-hidden bg-radial from-primary-accent/5 via-transparent to-transparent">
+      <!-- Decorative radial glows -->
+      <div class="absolute top-20 right-1/4 w-[500px] h-[500px] rounded-full bg-primary-accent/5 blur-[120px] pointer-events-none"></div>
+      <div class="absolute bottom-10 left-1/4 w-[350px] h-[350px] rounded-full bg-accent-hover/5 blur-[90px] pointer-events-none"></div>
+
+      <div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8" id="project-detail-container">
+        <!-- Dynamic Content Injected via JS (main.js -> initProjectDetailPage) -->
+        <div class="text-center py-20">
+          <p class="text-muted-fg">در حال بارگذاری جزئیات پروژه...</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- 13. FOOTER SECTION -->
+  <footer class="bg-muted-bg border-t border-border-subtle pt-20 pb-10">
+    <div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-16 pb-16 border-b border-border-subtle/50 text-right">
+
+        <!-- Column 1: Brand Info -->
+        <div class="lg:col-span-4 space-y-6">
+          <a href="index.html" class="flex items-center gap-3 group focus-visible:ring-2 focus-visible:ring-primary-accent rounded-lg p-1" aria-label="صفحه اصلی استودیو پنترا">
+            <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-primary-accent to-accent-hover flex items-center justify-center text-white shadow-md">
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+              </svg>
+            </div>
+            <span class="text-xl font-bold tracking-tight text-fg-main">پَنترا</span>
+          </a>
+          <p class="text-sm text-muted-fg leading-relaxed">
+            استودیو پنترا متشکل از مهندسان و طراحان نخبه محصول دیجیتال است که با مهندسی بی‌نقص، پایداری کدهای سایت و زیبایی کاربری را همگام می‌سازند.
+          </p>
+        </div>
+
+        <!-- Column 2: Navigation -->
+        <div class="lg:col-span-2 space-y-4">
+          <h4 class="text-sm font-bold text-fg-main">دسترسی سریع</h4>
+          <ul class="space-y-2 text-sm text-muted-fg">
+            <li><a href="index.html#hero" class="hover:text-primary-accent transition-colors">خانه</a></li>
+            <li><a href="index.html#portfolio" class="hover:text-primary-accent transition-colors">نمونه‌کارها</a></li>
+            <li><a href="index.html#templates" class="hover:text-primary-accent transition-colors">قالب‌های آماده</a></li>
+            <li><a href="index.html#services" class="hover:text-primary-accent transition-colors">خدمات فنی</a></li>
+            <li><a href="index.html#process" class="hover:text-primary-accent transition-colors">فرآیند همکاری</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 3: Services -->
+        <div class="lg:col-span-3 space-y-4">
+          <h4 class="text-sm font-bold text-fg-main">خدمات محصول</h4>
+          <ul class="space-y-2 text-sm text-muted-fg">
+            <li><a href="index.html#services" class="hover:text-primary-accent transition-colors">طراحی و توسعه وب‌سایت</a></li>
+            <li><a href="index.html#services" class="hover:text-primary-accent transition-colors">فروشگاه‌های اینترنتی قدرتمند</a></li>
+            <li><a href="index.html#services" class="hover:text-primary-accent transition-colors">وب‌اپلیکیشن‌های سفارشی</a></li>
+            <li><a href="index.html#services" class="hover:text-primary-accent transition-colors">توسعه پلتفرم‌های SaaS</a></li>
+            <li><a href="index.html#services" class="hover:text-primary-accent transition-colors">طراحی رابط کاربری UI/UX</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 4: Socials & Contact -->
+        <div class="lg:col-span-3 space-y-4">
+          <h4 class="text-sm font-bold text-fg-main">ارتباط با استودیو</h4>
+          <ul class="space-y-2.5 text-sm text-muted-fg">
+            <li class="flex items-center gap-2">
+              <svg class="w-4 h-4 text-primary-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+              </svg>
+              <span>hello@panterastudio.ir</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <svg class="w-4 h-4 text-primary-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 011.94.571l-1.057 4.96a1 1 0 01-.908.741H5V5zm16 14a2 2 0 01-2-2v-2.328a1 1 0 01.741-.908l4.96-1.057a1 1 0 011.05-.54V19h-3.28a1 1 0 01-.571-.194z" />
+              </svg>
+              <span>۰۲۱-۸۸۸۸۴۴۲۲</span>
+            </li>
+          </ul>
+          <!-- Social networks mockup icons -->
+          <div class="flex items-center gap-3 pt-2">
+            <a href="#" class="p-2 rounded-lg bg-card-bg border border-border-subtle text-muted-fg hover:text-fg-main hover:border-primary-accent transition-colors" aria-label="لینکدین استودیو">
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
+            </a>
+            <a href="#" class="p-2 rounded-lg bg-card-bg border border-border-subtle text-muted-fg hover:text-fg-main hover:border-primary-accent transition-colors" aria-label="گیت‌هاب استودیو">
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.9-.63.07-.62.07-.63 1 .07 1.53 1.03 1.53 1.03.9 1.52 2.42 1.08 3 1 .09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z"/></svg>
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Copyright -->
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-4 pt-10 text-xs text-muted-fg">
+        <p>© ۲۰۲۶ استودیو پنترا. تمامی حقوق مادی و معنوی محفوظ است.</p>
+        <div class="flex items-center gap-4">
+          <a href="#" class="hover:text-primary-accent transition-colors">قوانین همکاری</a>
+          <span class="w-1 h-1 rounded-full bg-border-subtle"></span>
+          <a href="#" class="hover:text-primary-accent transition-colors">حریم خصوصی</a>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <script src="./js/main.js"></script>
+</body>
+</html>
