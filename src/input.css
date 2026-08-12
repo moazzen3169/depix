@@ -1,1 +1,103 @@
 @import "tailwindcss";
+
+@theme {
+  --color-bg-main: var(--background);
+  --color-fg-main: var(--foreground);
+  --color-muted-bg: var(--muted);
+  --color-muted-fg: var(--muted-foreground);
+  --color-primary-accent: var(--primary);
+  --color-primary-fg: var(--primary-foreground);
+  --color-border-subtle: var(--border);
+  --color-accent-hover: var(--accent);
+  --color-card-bg: var(--card);
+  --color-card-fg: var(--card-foreground);
+
+  --radius-custom: var(--radius);
+}
+
+@layer base {
+  :root {
+    --background: #0A0A0B;
+    --foreground: #F5F5F5;
+    --muted: #111113;
+    --muted-foreground: #A1A1AA;
+    --primary: #4F46E5; /* Indigo accent */
+    --primary-foreground: #FFFFFF;
+    --border: #27272A;
+    --radius: 0.75rem;
+    --accent: #6366F1;
+    --card: #0F0F11;
+    --card-foreground: #F5F5F5;
+  }
+
+  :root.light {
+    --background: #FAFAFA;
+    --foreground: #09090B;
+    --muted: #F4F4F5;
+    --muted-foreground: #71717A;
+    --primary: #4F46E5;
+    --primary-foreground: #FFFFFF;
+    --border: #E4E4E7;
+    --radius: 0.75rem;
+    --accent: #4F46E5;
+    --card: #FFFFFF;
+    --card-foreground: #09090B;
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: 'Vazirmatn', system-ui, -apple-system, sans-serif;
+    transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+    overflow-x: hidden;
+  }
+
+  /* Accessible focus rings */
+  a:focus-visible,
+  button:focus-visible,
+  input:focus-visible,
+  textarea:focus-visible,
+  select:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 4px;
+  }
+}
+
+/* Custom visual utilities */
+.glass {
+  background: rgba(10, 10, 11, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.light .glass {
+  background: rgba(250, 250, 250, 0.8);
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--muted-foreground);
+}
+
+/* Persian typography overrides and smoothing */
+p, h1, h2, h3, h4, h5, h6, span, a, button, label, input, textarea {
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Micro interaction transitions */
+.transition-all-custom {
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
