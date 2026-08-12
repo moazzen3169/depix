@@ -15,6 +15,46 @@
   --radius-custom: var(--radius);
 }
 
+@font-face {
+  font-family: "Peyda";
+  src: url("./fonts/Peyda-Thin.woff2") format("woff2");
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Peyda";
+  src: url("./fonts/peyda-light.woff2") format("woff2");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Peyda";
+  src: url("./fonts/Peyda-Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Peyda";
+  src: url("./fonts/Peyda-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Peyda";
+  src: url("./fonts/Peyda-black.woff2") format("woff2");
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
 @layer base {
   :root {
     --background: #0A0A0B;
@@ -47,7 +87,7 @@
   body {
     background-color: var(--background);
     color: var(--foreground);
-    font-family: 'Vazirmatn', system-ui, -apple-system, sans-serif;
+    font-family: 'Peyda', system-ui, -apple-system, sans-serif;
     transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
     overflow-x: hidden;
   }
