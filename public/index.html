@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>استودیو نرم‌افزار پنترا | طراحی و توسعه محصولات دیجیتال ممتاز</title>
-  <meta name="description" content="ما در پنترا به طراحی و توسعه وب‌سایت‌های سازمانی، فروشگاه‌های اینترنتی قدرتمند و پلتفرم‌های SaaS با کیفیت پریمیوم و منطبق بر آخرین استانداردهای جهانی می‌پردازیم.">
+  <title>استودیو طراحی و توسعه محصول دیجیتال پنترا</title>
+  <meta name="description" content="پنترا یک استودیو تخصصی طراحی و توسعه محصول دیجیتال است. ما ایده شما را به محصولات واقعی، سریع و ممتاز تبدیل می‌کنیم.">
 
   <!-- Open Graph -->
-  <meta property="og:title" content="استودیو نرم‌افزار پنترا | طراحی و توسعه محصولات دیجیتال ممتاز">
-  <meta property="og:description" content="طراحی و توسعه وب‌سایت، فروشگاه اینترنتی و نرم‌افزارهای تحت وب سفارشی با بالاترین استانداردهای کاربری و فنی.">
+  <meta property="og:title" content="استودیو طراحی و توسعه محصول دیجیتال پنترا">
+  <meta property="og:description" content="ما در پنترا ایده شما را با تلفیقی از دیزاین تراز اول و مهندسی پیشرفته به محصول دیجیتال واقعی تبدیل می‌کنیم.">
   <meta property="og:type" content="website">
 
   <!-- Tailwind compiled styles -->
@@ -16,14 +16,15 @@
 </head>
 <body class="bg-bg-main text-fg-main antialiased selection:bg-primary-accent/20 selection:text-primary-accent overflow-x-hidden">
 
-  <!-- 1. HEADER & NAVBAR -->
+  <!-- ==========================================
+       00 — NAVIGATION
+       ========================================== -->
   <header id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-transparent">
-    <div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+    <div class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12 h-20 flex items-center justify-between">
 
       <!-- Right Side: Brand Logo & Name -->
       <a href="#" class="flex items-center gap-3 group focus-visible:ring-2 focus-visible:ring-primary-accent rounded-lg p-1" aria-label="صفحه اصلی استودیو پنترا">
-        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-primary-accent to-accent-hover flex items-center justify-center text-white shadow-md shadow-primary-accent/20 transition-all duration-300 group-hover:scale-105">
-          <!-- Logo SVG -->
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-primary-accent to-accent-hover flex items-center justify-center text-white shadow-md shadow-primary-accent/20 transition-all-custom group-hover:scale-105">
           <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
             <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
           </svg>
@@ -34,22 +35,22 @@
       <!-- Middle: Navigation Links (Desktop) -->
       <nav class="hidden md:flex items-center gap-8 text-sm font-medium">
         <a href="#hero" class="text-fg-main hover:text-primary-accent transition-colors">خانه</a>
-        <a href="#portfolio" class="text-muted-fg hover:text-primary-accent transition-colors">نمونه‌کارها</a>
+        <a href="#portfolio" class="text-muted-fg hover:text-primary-accent transition-colors">پروژه‌های منتخب</a>
         <a href="#startup-story" class="text-muted-fg hover:text-primary-accent transition-colors">داستان محصول</a>
+        <a href="#how-we-work" class="text-muted-fg hover:text-primary-accent transition-colors">چطور می‌سازیم؟</a>
         <a href="#templates" class="text-muted-fg hover:text-primary-accent transition-colors">قالب‌های آماده</a>
-        <a href="#process" class="text-muted-fg hover:text-primary-accent transition-colors">فرآیند ما</a>
-        <a href="#faq" class="text-muted-fg hover:text-primary-accent transition-colors">پرسش‌ها</a>
+        <a href="#blog" class="text-muted-fg hover:text-primary-accent transition-colors">وبلاگ</a>
       </nav>
 
       <!-- Left Side: Theme Toggle & Primary CTA (Desktop) -->
       <div class="flex items-center gap-4">
         <!-- Theme Toggle Button -->
         <button id="theme-toggle" class="p-2.5 rounded-lg border border-border-subtle bg-card-bg text-muted-fg hover:text-fg-main transition-all-custom cursor-pointer" aria-label="تغییر پوسته تاریک و روشن">
-          <!-- Sun Icon (Dark Mode View) -->
+          <!-- Sun Icon -->
           <svg class="sun-icon w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
             <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m12.728 0l-.707-.707M6.343 6.343l-.707-.707M12 8a4 4 0 100 8 4 4 0 000-8z" />
           </svg>
-          <!-- Moon Icon (Light Mode View - hidden by default) -->
+          <!-- Moon Icon -->
           <svg class="moon-icon w-5 h-5 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
             <path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
           </svg>
@@ -74,11 +75,11 @@
     <div id="mobile-menu" class="hidden md:hidden absolute top-20 left-4 right-4 bg-card-bg border border-border-subtle rounded-2xl p-6 shadow-xl opacity-0 -translate-y-4 transition-all duration-300 z-50">
       <nav class="flex flex-col gap-4 text-base font-semibold">
         <a href="#hero" class="text-fg-main hover:text-primary-accent py-2 border-b border-border-subtle/50">خانه</a>
-        <a href="#portfolio" class="text-muted-fg hover:text-primary-accent py-2 border-b border-border-subtle/50">نمونه‌کارها</a>
+        <a href="#portfolio" class="text-muted-fg hover:text-primary-accent py-2 border-b border-border-subtle/50">پروژه‌های منتخب</a>
         <a href="#startup-story" class="text-muted-fg hover:text-primary-accent py-2 border-b border-border-subtle/50">داستان محصول</a>
+        <a href="#how-we-work" class="text-muted-fg hover:text-primary-accent py-2 border-b border-border-subtle/50">چطور می‌سازیم؟</a>
         <a href="#templates" class="text-muted-fg hover:text-primary-accent py-2 border-b border-border-subtle/50">قالب‌های آماده</a>
-        <a href="#process" class="text-muted-fg hover:text-primary-accent py-2 border-b border-border-subtle/50">فرآیند ما</a>
-        <a href="#faq" class="text-muted-fg hover:text-primary-accent py-2">پرسش‌ها</a>
+        <a href="#blog" class="text-muted-fg hover:text-primary-accent py-2">وبلاگ</a>
 
         <a href="#contact" class="mt-4 w-full inline-flex items-center justify-center py-3 rounded-xl text-sm font-bold text-white bg-primary-accent hover:bg-accent-hover transition-colors">
           شروع یک پروژه
@@ -87,73 +88,74 @@
     </div>
   </header>
 
-  <!-- Main Content Structure -->
+  <!-- Main Content Wrap -->
   <main class="overflow-hidden">
 
-    <!-- 2. HERO SECTION -->
-    <section id="hero" class="relative pt-32 pb-16 md:pt-44 md:pb-24 overflow-hidden bg-radial from-primary-accent/5 via-transparent to-transparent">
-      <!-- Decorative radial glows -->
-      <div class="absolute top-20 right-1/4 w-[500px] h-[500px] rounded-full bg-primary-accent/5 blur-[120px] pointer-events-none"></div>
+    <!-- ==========================================
+         01 — HERO SECTION
+         ========================================== -->
+    <section id="hero" class="relative pt-32 pb-20 md:pt-48 md:pb-32 overflow-hidden bg-radial from-primary-accent/5 via-transparent to-transparent">
+      <!-- Glow Elements -->
+      <div class="absolute top-24 right-1/4 w-[500px] h-[500px] rounded-full bg-primary-accent/5 blur-[120px] pointer-events-none"></div>
       <div class="absolute bottom-10 left-1/4 w-[350px] h-[350px] rounded-full bg-accent-hover/5 blur-[90px] pointer-events-none"></div>
 
-      <div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
 
-          <!-- Hero Copy Side -->
+          <!-- Copy Content -->
           <div class="lg:col-span-7 text-right space-y-8 animate-fade-in-up">
 
-            <!-- Top Premium Badge -->
+            <!-- Small Label -->
             <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-primary-accent/20 bg-primary-accent/5 text-primary-accent text-xs font-semibold">
               <span class="w-1.5 h-1.5 rounded-full bg-primary-accent animate-pulse"></span>
-              طراحی و توسعه کلاس جهانی محصول
+              استودیو پیشرو در خلق تجربیات دیجیتال ممتاز
             </div>
 
-            <!-- Big Confident Persian Headline -->
-            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-fg-main leading-tight sm:leading-none">
-              ایده شما،<br>
-              <span class="bg-gradient-to-l from-primary-accent via-accent-hover to-purple-400 bg-clip-text text-transparent">یک محصول دیجیتال واقعی</span> می‌شود.
+            <!-- Big Core Headline -->
+            <h1 class="text-5xl sm:text-6xl lg:text-7xl font-black text-fg-main leading-tight tracking-tight">
+              ما محصول می‌سازیم.
             </h1>
 
-            <!-- Narrative Supporting Text -->
-            <p class="text-base sm:text-lg text-muted-fg max-w-xl leading-relaxed">
-              طراحی و توسعه وب‌سایت، فروشگاه اینترنتی و نرم‌افزارهای تحت وب سفارشی با تمرکز ویژه بر سرعت عالی، تجربه کاربری بی‌نقص و پایداری فنی بی‌رقیب.
+            <p class="text-sm sm:text-base font-semibold text-muted-fg uppercase tracking-widest">
+              Design × Development × Product
             </p>
 
-            <!-- Responsive Call-To-Action (CTA) Buttons -->
+            <p class="text-base sm:text-lg text-muted-fg max-w-xl leading-relaxed">
+              ما یک استودیوی محصول دیجیتال هستیم. با ترکیب دیزاین عالی و مهندسی دقیق کدهای فرانت‌اند و بک‌اند، محصولاتی زیبا و با پایداری فنی بالا خلق می‌کنیم.
+            </p>
+
+            <!-- CTA Links -->
             <div class="flex flex-wrap gap-4 pt-4">
-              <a href="#contact" class="px-8 py-4 rounded-xl text-base font-bold text-white bg-primary-accent hover:bg-accent-hover shadow-xl shadow-primary-accent/20 hover:shadow-primary-accent/30 hover:-translate-y-0.5 transition-all duration-200">
+              <a href="#contact" class="px-8 py-4 rounded-xl text-base font-bold text-white bg-primary-accent hover:bg-accent-hover shadow-xl shadow-primary-accent/20 hover:-translate-y-0.5 transition-all duration-200">
                 شروع یک پروژه
               </a>
               <a href="#portfolio" class="px-8 py-4 rounded-xl text-base font-bold text-fg-main bg-muted-bg border border-border-subtle hover:bg-border-subtle hover:-translate-y-0.5 transition-all duration-200">
-                مشاهده نمونه‌کارها
+                مشاهده پروژه‌ها
               </a>
             </div>
 
           </div>
 
-          <!-- Hero Visual Side: Real-life looking premium Browser UI Mockup -->
+          <!-- Hero Large visual - UI composition / Product screens -->
           <div class="lg:col-span-5 relative mt-10 lg:mt-0">
             <div class="relative mx-auto w-full max-w-[480px] aspect-[4/3] rounded-2xl bg-card-bg border border-border-subtle shadow-2xl overflow-hidden transition-all duration-500 hover:border-primary-accent/40 group">
 
-              <!-- Simulated Browser Top Bar -->
+              <!-- Simulated Browser Toolbar -->
               <div class="flex items-center justify-between px-4 py-3 bg-muted-bg border-b border-border-subtle">
                 <div class="flex items-center gap-1.5">
                   <span class="w-3 h-3 rounded-full bg-red-500/80"></span>
                   <span class="w-3 h-3 rounded-full bg-yellow-500/80"></span>
                   <span class="w-3 h-3 rounded-full bg-green-500/80"></span>
                 </div>
-                <!-- URL simulation bar -->
                 <div class="bg-bg-main border border-border-subtle rounded px-6 py-1 text-[11px] text-muted-fg font-mono tracking-wider w-56 text-center select-none truncate">
                   panterastudio.ir
                 </div>
-                <!-- Action menu dots -->
                 <div class="w-3 h-3"></div>
               </div>
 
-              <!-- Beautiful SVG Dashboard Simulator UI in RTL representation -->
+              <!-- Sleek UI representation inside -->
               <div class="p-6 h-full flex flex-col justify-between bg-gradient-to-br from-bg-main to-card-bg">
                 <div class="space-y-4">
-                  <!-- Header simulation -->
                   <div class="flex items-center justify-between">
                     <div class="space-y-1">
                       <div class="h-3 w-28 bg-primary-accent/20 rounded"></div>
@@ -166,7 +168,7 @@
                     </div>
                   </div>
 
-                  <!-- Charts Simulation -->
+                  <!-- Mini chart elements simulation -->
                   <div class="grid grid-cols-3 gap-3 pt-2">
                     <div class="bg-muted-bg/50 border border-border-subtle rounded-lg p-3 text-right">
                       <div class="h-2 w-10 bg-muted-fg/40 rounded mb-2"></div>
@@ -183,14 +185,13 @@
                   </div>
                 </div>
 
-                <!-- Custom visual code snippet overlayed at bottom -->
+                <!-- Custom code block -->
                 <div class="bg-[#0e0e11] border border-border-subtle/80 rounded-xl p-4 font-mono text-xs text-left text-gray-400 space-y-1 shadow-lg shadow-black/40">
-                  <div class="text-purple-400">&lt;<span class="text-blue-400">PanteraStudio</span> <span class="text-indigo-300">class</span>=<span class="text-emerald-400">"premium"</span>&gt;</div>
-                  <div class="pl-4 text-gray-400">const details = { optimize: true, RTL: 'perfect' };</div>
-                  <div class="pl-4 text-emerald-400">return buildAwesomeDigitalProducts(details);</div>
+                  <div class="text-purple-400">&lt;<span class="text-blue-400">PanteraStudio</span>&gt;</div>
+                  <div class="pl-4 text-emerald-400">const details = { design: 'high-end', code: 'crafted' };</div>
+                  <div class="pl-4 text-gray-400">return buildAwesomeDigitalProducts(details);</div>
                   <div class="text-purple-400">&lt;/<span class="text-blue-400">PanteraStudio</span>&gt;</div>
                 </div>
-
               </div>
 
             </div>
@@ -200,160 +201,261 @@
       </div>
     </section>
 
-    <!-- 3. COMPACT TRUST BAR -->
-    <section class="border-y border-border-subtle bg-muted-bg py-8">
-      <div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center divide-x-0 md:divide-x md:divide-x-reverse md:divide-border-subtle/40">
+    <!-- ==========================================
+         02 — SELECTED WORK (PORTFOLIO SECTION)
+         ========================================== -->
+    <section id="portfolio" class="py-24 sm:py-32 border-t border-border-subtle scroll-animate">
+      <div class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12">
 
-          <div class="space-y-1">
-            <p class="text-3xl font-extrabold text-primary-accent tracking-tight">۵۰+</p>
-            <p class="text-xs sm:text-sm text-muted-fg font-medium">پروژه موفق تحویل شده</p>
+        <!-- Title block -->
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16 text-right">
+          <div class="space-y-3">
+            <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-fg-main">پروژه‌های منتخب</h2>
+            <p class="text-base sm:text-lg text-muted-fg">چیزهایی که ساخته‌ایم.</p>
           </div>
 
-          <div class="space-y-1">
-            <p class="text-3xl font-extrabold text-primary-accent tracking-tight">۱۰+</p>
-            <p class="text-xs sm:text-sm text-muted-fg font-medium">مشتری دائم و راضی</p>
+          <!-- Segmented filters -->
+          <div class="flex flex-wrap gap-2.5">
+            <button class="portfolio-filter-btn px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold border bg-primary-accent text-white border-primary-accent transition-all-custom cursor-pointer" data-filter="all">همه پروژه‌ها</button>
+            <button class="portfolio-filter-btn px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold border bg-muted-bg text-muted-fg border-border-subtle hover:text-fg-main transition-all-custom cursor-pointer" data-filter="ecommerce">فروشگاهی</button>
+            <button class="portfolio-filter-btn px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold border bg-muted-bg text-muted-fg border-border-subtle hover:text-fg-main transition-all-custom cursor-pointer" data-filter="dashboard">داشبوردها</button>
+            <button class="portfolio-filter-btn px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold border bg-muted-bg text-muted-fg border-border-subtle hover:text-fg-main transition-all-custom cursor-pointer" data-filter="saas">SaaS</button>
+            <button class="portfolio-filter-btn px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold border bg-muted-bg text-muted-fg border-border-subtle hover:text-fg-main transition-all-custom cursor-pointer" data-filter="landing">Landing</button>
           </div>
-
-          <div class="space-y-1">
-            <p class="text-3xl font-extrabold text-primary-accent tracking-tight">۵+ سال</p>
-            <p class="text-xs sm:text-sm text-muted-fg font-medium">سابقه طراحی و توسعه مدرن</p>
-          </div>
-
-          <div class="space-y-1">
-            <p class="text-3xl font-extrabold text-primary-accent tracking-tight">۱۰۰٪</p>
-            <p class="text-xs sm:text-sm text-muted-fg font-medium">پشتیبانی کامل پس از تحویل</p>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- 4. DIBBBLE-INSPIRED PORTFOLIO GRID -->
-    <section id="portfolio" class="py-24 sm:py-32 scroll-animate">
-      <div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
-
-        <!-- Header text -->
-        <div class="text-center max-w-2xl mx-auto mb-16 space-y-4">
-          <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight">آثار هنری و فنی ما</h2>
-          <p class="text-base sm:text-lg text-muted-fg">
-            کیفیت کار ما در ظاهر آن آشکار است. بدون نیاز به خواندن متن‌های طولانی، به گشت و گذار بصری در نمونه کارهای ممتاز ما بپردازید.
-          </p>
         </div>
 
-        <!-- Segmented Discovery Filter Bar -->
-        <div class="flex flex-wrap justify-center gap-3 mb-12">
-          <button class="portfolio-filter-btn px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold border bg-primary-accent text-white border-primary-accent transition-all-custom cursor-pointer" data-filter="all">همه پروژه‌ها</button>
-          <button class="portfolio-filter-btn px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold border bg-muted-bg text-muted-fg border-border-subtle hover:text-fg-main transition-all-custom cursor-pointer" data-filter="ecommerce">فروشگاهی</button>
-          <button class="portfolio-filter-btn px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold border bg-muted-bg text-muted-fg border-border-subtle hover:text-fg-main transition-all-custom cursor-pointer" data-filter="dashboard">داشبوردها</button>
-          <button class="portfolio-filter-btn px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold border bg-muted-bg text-muted-fg border-border-subtle hover:text-fg-main transition-all-custom cursor-pointer" data-filter="saas">SaaS</button>
-          <button class="portfolio-filter-btn px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold border bg-muted-bg text-muted-fg border-border-subtle hover:text-fg-main transition-all-custom cursor-pointer" data-filter="landing">Landing Page</button>
-        </div>
-
-        <!-- Dribbble-inspired Project Grid Container -->
+        <!-- Dynamic Grid Container -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10" id="portfolio-grid-container">
-          <!-- Dynamically populated via JavaScript -->
+          <!-- Populated from projects array inside js/main.js -->
         </div>
 
       </div>
     </section>
 
-    <!-- 5. STARTUP STORY SECTION -->
-    <section id="startup-story" class="py-24 sm:py-32 scroll-animate bg-radial from-transparent via-transparent to-primary-accent/5">
-      <div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- ==========================================
+         03 — OUR PRODUCT / STARTUP STORY
+         ========================================== -->
+    <section id="startup-story" class="relative w-full h-screen overflow-hidden bg-bg-main" aria-label="داستان ساخت محصول">
 
-        <!-- Header -->
-        <div class="text-center max-w-2xl mx-auto mb-16 space-y-3">
-          <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight">از یک نیاز تا یک محصول</h2>
-          <p class="text-base sm:text-lg text-muted-fg">یک محصول واقعی که خودمان ساختیم.</p>
+      <!-- Immersive Image Hero Canvas -->
+      <div id="story-image-container" class="absolute inset-0 w-full h-full z-0 overflow-hidden">
+        <!-- Deep Radial & Linear Overlay for outstanding text contrast -->
+        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-black/70 z-10 pointer-events-none"></div>
+        <div class="absolute inset-0 bg-gradient-to-l from-black/60 via-transparent to-black/60 z-10 pointer-events-none"></div>
+
+        <!-- The 5 Cinematic Images -->
+        <div class="relative w-full h-full">
+          <img data-story-image="1" src="assets/projects/sayra/ps-0.webp" alt="نیاز" class="absolute inset-0 w-full h-full object-cover origin-center opacity-100 z-0 select-none pointer-events-none" />
+          <img data-story-image="2" src="assets/projects/sayra/ps-1.webp" alt="ایده" class="absolute inset-0 w-full h-full object-cover origin-center opacity-0 z-0 select-none pointer-events-none" />
+          <img data-story-image="3" src="assets/projects/sayra/ps-2.webp" alt="طراحی" class="absolute inset-0 w-full h-full object-cover origin-center opacity-0 z-0 select-none pointer-events-none" />
+          <img data-story-image="4" src="assets/projects/sayra/ps-3.webp" alt="توسعه" class="absolute inset-0 w-full h-full object-cover origin-center opacity-0 z-0 select-none pointer-events-none" />
+          <img data-story-image="5" src="assets/projects/sayra/ps-4.webp" alt="محصول نهایی" class="absolute inset-0 w-full h-full object-cover origin-center opacity-0 z-0 select-none pointer-events-none" />
+        </div>
+      </div>
+
+      <!-- Foreground Interactive Overlay Content -->
+      <div class="absolute inset-0 w-full h-full z-20 flex flex-col justify-between p-6 sm:p-10 lg:p-12">
+
+        <!-- Header / Micro-Label Row -->
+        <div class="flex items-center justify-between w-full pointer-events-none">
+          <div id="story-micro-label" class="opacity-0 translate-y-[-10px] transition-all duration-500">
+            <span class="text-xs font-bold text-primary-accent tracking-widest uppercase">داستان توسعه محصول نکسا</span>
+          </div>
+          <div id="story-micro-step" class="opacity-0 translate-y-[-10px] transition-all duration-500">
+            <span class="text-xs font-black text-white/50 tracking-wider font-mono">STEP <span id="micro-step-num">۰۱</span>/۰۵</span>
+          </div>
         </div>
 
-        <!-- Asymmetric Layout Grid -->
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        <!-- Centered Intro Block (Fades away as scroll progresses) -->
+        <div id="story-intro-block" class="absolute inset-0 flex flex-col items-center justify-center text-center max-w-2xl mx-auto px-4 z-30 pointer-events-none">
+          <h2 class="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white mb-4 drop-shadow-lg leading-tight">از یک نیاز تا یک محصول</h2>
+          <p class="text-base sm:text-xl text-gray-200 drop-shadow font-medium">یک سناریوی زنده از چگونگی خلق ارزش و توسعه استارت‌آپ نکسا</p>
+          <div class="mt-8 flex flex-col items-center gap-2">
+            <span class="text-xs text-white/40 tracking-widest font-bold uppercase animate-bounce">برای شروع داستان، اسکرول کنید</span>
+            <svg class="w-5 h-5 text-primary-accent animate-pulse" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 13l-7 7-7-7m14-6l-7 7-7-7" />
+            </svg>
+          </div>
+        </div>
 
-          <!-- Left Side: Large Product Hero Visual Card -->
-          <div class="lg:col-span-7 space-y-6">
-            <div class="relative w-full aspect-[16/10] bg-card-bg border border-border-subtle rounded-2xl overflow-hidden shadow-2xl transition-all duration-500 hover:border-primary-accent/40 group">
-              <!-- Grid Background pattern simulation inside -->
-              <div class="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none"></div>
+        <!-- Main Desktop Interactive HUD Overlay (hidden on lg and down) -->
+        <div class="hidden lg:flex items-center justify-between w-full h-full pointer-events-none">
+          <!-- Left side blank or subtle details -->
+          <div class="flex-1"></div>
 
-              <!-- Interactive Images with absolute cover and transitions -->
-              <div class="relative w-full h-full">
-                <!-- NEED Image -->
-                <img id="story-visual-01" src="assets/projects/sayra/ps-1.webp.jpg" alt="نیاز" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-500 opacity-100" loading="lazy">
-                <!-- IDEA Image -->
-                <img id="story-visual-02" src="assets/projects/sayra/ps-1.webp.jpg alt="ایده" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-500 opacity-0" loading="lazy">
-                <!-- DESIGN Image -->
-                <img id="story-visual-03" src="assets/projects/sayra/ps-2.webp" alt="طراحی" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-500 opacity-0" loading="lazy">
-                <!-- BUILD Image -->
-                <img id="story-visual-04" src="assets/projects/sayra/ps-3.webp" alt="توسعه" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-500 opacity-0" loading="lazy">
-                <!-- PRODUCT Image -->
-                <img id="story-visual-05" src="assets/projects/sayra/ps-4.webp" alt="محصول نهایی" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-500 opacity-0" loading="lazy">
-              </div>
+          <!-- Right side Glassmorphism Step Indicator/Navigator -->
+          <div id="story-desktop-hud" class="pointer-events-auto relative flex flex-col gap-5 p-8 rounded-2xl border border-white/10 bg-black/45 backdrop-blur-xl max-w-sm text-right shadow-2xl mr-auto translate-x-[20px] opacity-0 transition-all duration-500">
 
-              <!-- Glassmorphism Badge overlay for Startup Details -->
-              <div class="absolute bottom-6 right-6 left-6 p-4 rounded-xl border border-white/10 bg-black/40 backdrop-blur-md flex items-center justify-between text-right z-10">
+            <!-- Progress Line Track -->
+            <div class="absolute right-[27px] top-[40px] bottom-[40px] w-[2px] bg-white/10 pointer-events-none">
+              <div id="story-desktop-progress-fill" class="absolute top-0 right-0 left-0 w-full bg-primary-accent origin-top scale-y-0 h-full"></div>
+            </div>
+
+            <!-- Steps list container -->
+            <div class="flex flex-col gap-6 pr-6 relative">
+              <!-- Step 1 -->
+              <button data-story-step="1" class="group flex items-start gap-4 text-right focus:outline-none transition-all duration-300 opacity-100 cursor-pointer">
+                <span class="step-dot absolute right-[-24px] w-3 h-3 rounded-full border-2 border-white/40 bg-black transition-all group-hover:border-primary-accent z-10 flex items-center justify-center">
+                  <span class="w-1.5 h-1.5 rounded-full bg-primary-accent scale-0 transition-transform duration-300"></span>
+                </span>
                 <div class="space-y-0.5">
-                  <h3 class="text-base font-bold text-white">نکسا (Nexa)</h3>
-                  <p class="text-xs text-gray-300">سامانه مدیریت پروژه تیمی و SaaS هوشمند</p>
+                  <div class="text-[10px] font-bold text-primary-accent tracking-wider uppercase font-mono">مرحله ۰۱</div>
+                  <div class="text-xl font-black text-white group-hover:text-primary-accent transition-colors">نیاز و مسئله</div>
+                  <div class="text-xs text-gray-300 font-medium leading-relaxed max-h-0 overflow-hidden group-[.active]:max-h-[100px] transition-all duration-500 opacity-0 group-[.active]:opacity-100 font-normal">شناسایی یک چالش واقعی کاربران در بازار داخلی</div>
                 </div>
-                <a href="#portfolio" onclick="openCaseStudy(3); return false;" class="px-4 py-2 rounded-lg bg-primary-accent hover:bg-accent-hover text-white text-xs font-bold transition-all shadow-md shadow-primary-accent/25">
-                  مشاهده محصول ←
-                </a>
-              </div>
+              </button>
+
+              <!-- Step 2 -->
+              <button data-story-step="2" class="group flex items-start gap-4 text-right focus:outline-none transition-all duration-300 opacity-40 cursor-pointer">
+                <span class="step-dot absolute right-[-24px] w-3 h-3 rounded-full border-2 border-white/20 bg-black transition-all group-hover:border-primary-accent z-10 flex items-center justify-center">
+                  <span class="w-1.5 h-1.5 rounded-full bg-primary-accent scale-0 transition-transform duration-300"></span>
+                </span>
+                <div class="space-y-0.5">
+                  <div class="text-[10px] font-bold text-gray-400 tracking-wider uppercase font-mono">مرحله ۰۲</div>
+                  <div class="text-xl font-black text-white group-hover:text-primary-accent transition-colors">ایده و مفهوم</div>
+                  <div class="text-xs text-gray-300 font-medium leading-relaxed max-h-0 overflow-hidden group-[.active]:max-h-[100px] transition-all duration-500 opacity-0 group-[.active]:opacity-100 font-normal">طراحی معماری ساده‌تر برای کاربری‌های پیچیده</div>
+                </div>
+              </button>
+
+              <!-- Step 3 -->
+              <button data-story-step="3" class="group flex items-start gap-4 text-right focus:outline-none transition-all duration-300 opacity-40 cursor-pointer">
+                <span class="step-dot absolute right-[-24px] w-3 h-3 rounded-full border-2 border-white/20 bg-black transition-all group-hover:border-primary-accent z-10 flex items-center justify-center">
+                  <span class="w-1.5 h-1.5 rounded-full bg-primary-accent scale-0 transition-transform duration-300"></span>
+                </span>
+                <div class="space-y-0.5">
+                  <div class="text-[10px] font-bold text-gray-400 tracking-wider uppercase font-mono">مرحله ۰۳</div>
+                  <div class="text-xl font-black text-white group-hover:text-primary-accent transition-colors">طراحی رابط و تجربه</div>
+                  <div class="text-xs text-gray-300 font-medium leading-relaxed max-h-0 overflow-hidden group-[.active]:max-h-[100px] transition-all duration-500 opacity-0 group-[.active]:opacity-100 font-normal">پیاده‌سازی یک تجربه بصری منحصربه‌فرد و مدرن</div>
+                </div>
+              </button>
+
+              <!-- Step 4 -->
+              <button data-story-step="4" class="group flex items-start gap-4 text-right focus:outline-none transition-all duration-300 opacity-40 cursor-pointer">
+                <span class="step-dot absolute right-[-24px] w-3 h-3 rounded-full border-2 border-white/20 bg-black transition-all group-hover:border-primary-accent z-10 flex items-center justify-center">
+                  <span class="w-1.5 h-1.5 rounded-full bg-primary-accent scale-0 transition-transform duration-300"></span>
+                </span>
+                <div class="space-y-0.5">
+                  <div class="text-[10px] font-bold text-gray-400 tracking-wider uppercase font-mono">مرحله ۰۴</div>
+                  <div class="text-xl font-black text-white group-hover:text-primary-accent transition-colors">توسعه و مهندسی</div>
+                  <div class="text-xs text-gray-300 font-medium leading-relaxed max-h-0 overflow-hidden group-[.active]:max-h-[100px] transition-all duration-500 opacity-0 group-[.active]:opacity-100 font-normal">کدنویسی بهینه و ساختارمند وب‌اپلیکیشن</div>
+                </div>
+              </button>
+
+              <!-- Step 5 -->
+              <button data-story-step="5" class="group flex items-start gap-4 text-right focus:outline-none transition-all duration-300 opacity-40 cursor-pointer">
+                <span class="step-dot absolute right-[-24px] w-3 h-3 rounded-full border-2 border-white/20 bg-black transition-all group-hover:border-primary-accent z-10 flex items-center justify-center">
+                  <span class="w-1.5 h-1.5 rounded-full bg-primary-accent scale-0 transition-transform duration-300"></span>
+                </span>
+                <div class="space-y-0.5">
+                  <div class="text-[10px] font-bold text-gray-400 tracking-wider uppercase font-mono">مرحله ۰۵</div>
+                  <div class="text-xl font-black text-white group-hover:text-primary-accent transition-colors">محصول نهایی</div>
+                  <div class="text-xs text-gray-300 font-medium leading-relaxed max-h-0 overflow-hidden group-[.active]:max-h-[100px] transition-all duration-500 opacity-0 group-[.active]:opacity-100 font-normal">عرضه نهایی نکسا با آمار عالی و رشد موفق</div>
+                </div>
+              </button>
             </div>
+
+          </div>
+        </div>
+
+        <!-- Mobile Glassmorphism HUD Overlay (hidden on lg and up) -->
+        <div id="story-mobile-hud" class="lg:hidden w-full p-5 rounded-2xl border border-white/10 bg-black/50 backdrop-blur-xl flex flex-col gap-4 text-right shadow-2xl pointer-events-auto opacity-0 translate-y-[20px] transition-all duration-500">
+          <!-- Text Display Container -->
+          <div class="min-h-[70px] flex flex-col justify-center">
+            <span id="mobile-step-num" class="text-[10px] font-bold text-primary-accent uppercase font-mono">مرحله ۰۱</span>
+            <h4 id="mobile-step-title" class="text-base font-black text-white mt-0.5 font-bold">نیاز و مسئله</h4>
+            <p id="mobile-step-desc" class="text-xs text-gray-300 font-normal leading-relaxed mt-1">شناسایی یک چالش واقعی کاربران در بازار داخلی</p>
           </div>
 
-          <!-- Right Side: Interactive Editorial Timeline -->
-          <div class="lg:col-span-5 space-y-6">
-            <div class="flex flex-col gap-3">
-
-              <!-- Stage 1 Button -->
-              <button id="story-btn-01" class="story-timeline-btn active text-right w-full p-4 rounded-xl border border-primary-accent bg-primary-accent/5 hover:bg-primary-accent/5 transition-all duration-300 flex items-start gap-4 cursor-pointer focus-visible:ring-2 focus-visible:ring-primary-accent" data-stage="1" aria-label="مرحله اول: نیاز">
-                <span class="w-8 h-8 rounded-full bg-primary-accent text-white flex items-center justify-center text-xs font-bold flex-shrink-0">۰۱</span>
-                <div class="space-y-1">
-                  <h4 class="text-sm font-extrabold text-fg-main">نیاز</h4>
-                  <p class="text-xs text-muted-fg font-medium">یک مشکل واقعی</p>
-                </div>
-              </button>
-
-              <!-- Stage 2 Button -->
-              <button id="story-btn-02" class="story-timeline-btn text-right w-full p-4 rounded-xl border border-border-subtle bg-card-bg hover:border-primary-accent/40 transition-all duration-300 flex items-start gap-4 cursor-pointer focus-visible:ring-2 focus-visible:ring-primary-accent" data-stage="2" aria-label="مرحله دوم: ایده">
-                <span class="w-8 h-8 rounded-full bg-muted-bg text-muted-fg flex items-center justify-center text-xs font-bold flex-shrink-0">۰۲</span>
-                <div class="space-y-1">
-                  <h4 class="text-sm font-extrabold text-fg-main">ایده</h4>
-                  <p class="text-xs text-muted-fg font-medium">یک راه‌حل</p>
-                </div>
-              </button>
-
-              <!-- Stage 3 Button -->
-              <button id="story-btn-03" class="story-timeline-btn text-right w-full p-4 rounded-xl border border-border-subtle bg-card-bg hover:border-primary-accent/40 transition-all duration-300 flex items-start gap-4 cursor-pointer focus-visible:ring-2 focus-visible:ring-primary-accent" data-stage="3" aria-label="مرحله سوم: طراحی">
-                <span class="w-8 h-8 rounded-full bg-muted-bg text-muted-fg flex items-center justify-center text-xs font-bold flex-shrink-0">۰۳</span>
-                <div class="space-y-1">
-                  <h4 class="text-sm font-extrabold text-fg-main">طراحی</h4>
-                  <p class="text-xs text-muted-fg font-medium">تجربه محصول</p>
-                </div>
-              </button>
-
-              <!-- Stage 4 Button -->
-              <button id="story-btn-04" class="story-timeline-btn text-right w-full p-4 rounded-xl border border-border-subtle bg-card-bg hover:border-primary-accent/40 transition-all duration-300 flex items-start gap-4 cursor-pointer focus-visible:ring-2 focus-visible:ring-primary-accent" data-stage="4" aria-label="مرحله چهارم: توسعه">
-                <span class="w-8 h-8 rounded-full bg-muted-bg text-muted-fg flex items-center justify-center text-xs font-bold flex-shrink-0">۰۴</span>
-                <div class="space-y-1">
-                  <h4 class="text-sm font-extrabold text-fg-main">توسعه</h4>
-                  <p class="text-xs text-muted-fg font-medium">ساخت محصول</p>
-                </div>
-              </button>
-
-              <!-- Stage 5 Button -->
-              <button id="story-btn-05" class="story-timeline-btn text-right w-full p-4 rounded-xl border border-border-subtle bg-card-bg hover:border-primary-accent/40 transition-all duration-300 flex items-start gap-4 cursor-pointer focus-visible:ring-2 focus-visible:ring-primary-accent" data-stage="5" aria-label="مرحله پنجم: محصول">
-                <span class="w-8 h-8 rounded-full bg-muted-bg text-muted-fg flex items-center justify-center text-xs font-bold flex-shrink-0">۰۵</span>
-                <div class="space-y-1">
-                  <h4 class="text-sm font-extrabold text-fg-main">محصول</h4>
-                  <p class="text-xs text-muted-fg font-medium">نکسا (Nexa)</p>
-                </div>
-              </button>
-
+          <!-- Bottom Stepper controls -->
+          <div class="flex items-center justify-between border-t border-white/10 pt-3">
+            <div class="flex items-center justify-between w-full gap-2">
+              <button data-story-step-mob="1" class="w-9 h-9 rounded-full border-2 border-primary-accent bg-primary-accent/10 text-white flex items-center justify-center text-xs font-black transition-all cursor-pointer">۰۱</button>
+              <div class="flex-1 h-[2px] bg-white/10 relative">
+                <div id="mobile-progress-1" class="absolute inset-y-0 right-0 bg-primary-accent w-0 transition-all duration-300"></div>
+              </div>
+              <button data-story-step-mob="2" class="w-9 h-9 rounded-full border-2 border-white/10 bg-black/40 text-white/50 flex items-center justify-center text-xs font-black transition-all cursor-pointer">۰۲</button>
+              <div class="flex-1 h-[2px] bg-white/10 relative">
+                <div id="mobile-progress-2" class="absolute inset-y-0 right-0 bg-primary-accent w-0 transition-all duration-300"></div>
+              </div>
+              <button data-story-step-mob="3" class="w-9 h-9 rounded-full border-2 border-white/10 bg-black/40 text-white/50 flex items-center justify-center text-xs font-black transition-all cursor-pointer">۰۳</button>
+              <div class="flex-1 h-[2px] bg-white/10 relative">
+                <div id="mobile-progress-3" class="absolute inset-y-0 right-0 bg-primary-accent w-0 transition-all duration-300"></div>
+              </div>
+              <button data-story-step-mob="4" class="w-9 h-9 rounded-full border-2 border-white/10 bg-black/40 text-white/50 flex items-center justify-center text-xs font-black transition-all cursor-pointer">۰۴</button>
+              <div class="flex-1 h-[2px] bg-white/10 relative">
+                <div id="mobile-progress-4" class="absolute inset-y-0 right-0 bg-primary-accent w-0 transition-all duration-300"></div>
+              </div>
+              <button data-story-step-mob="5" class="w-9 h-9 rounded-full border-2 border-white/10 bg-black/40 text-white/50 flex items-center justify-center text-xs font-black transition-all cursor-pointer">۰۵</button>
             </div>
+          </div>
+        </div>
+
+        <!-- Bottom Row (CTA and Floating Product Info) -->
+        <div class="flex items-center justify-between w-full z-30">
+          <div id="product-cta-overlay" class="opacity-0 translate-y-[15px] transition-all duration-500 flex items-center justify-between p-4 rounded-xl border border-white/10 bg-black/50 backdrop-blur-md text-right max-w-[280px] sm:max-w-sm pointer-events-auto">
+            <div class="space-y-0.5 ml-6 sm:ml-10">
+              <h3 class="text-sm sm:text-base font-bold text-white">نکسا (Nexa)</h3>
+              <p class="text-[10px] sm:text-xs text-gray-300 font-normal">پلتفرم مدیریت پروژه تیمی هوشمند</p>
+            </div>
+            <a href="#portfolio" onclick="openCaseStudy(3); return false;" class="px-3.5 py-2 rounded-lg bg-primary-accent hover:bg-accent-hover text-white text-xs font-bold transition-all shadow-md shadow-primary-accent/25 flex-shrink-0 cursor-pointer">
+              مشاهده محصول ←
+            </a>
+          </div>
+          <!-- Left side spacer for visual balance -->
+          <div class="hidden sm:block"></div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==========================================
+         04 — HOW WE WORK (PROCESS SECTION)
+         ========================================== -->
+    <section id="how-we-work" class="py-24 sm:py-32 scroll-animate">
+      <div class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12">
+
+        <!-- Title -->
+        <div class="text-center max-w-2xl mx-auto mb-20 space-y-4">
+          <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black text-fg-main tracking-tight">چطور می‌سازیم؟</h2>
+          <p class="text-base sm:text-lg text-muted-fg">فرآیند سیستماتیک ما برای رساندن هر ایده به یک خروجی کم‌نظیر.</p>
+        </div>
+
+        <!-- 5 steps with direct visual elements / icons -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
+
+          <!-- Discovery -->
+          <div class="bg-card-bg border border-border-subtle p-8 rounded-2xl text-right space-y-4 hover:border-primary-accent/30 transition-all-custom">
+            <div class="w-12 h-12 rounded-xl bg-primary-accent/10 flex items-center justify-center text-primary-accent font-black text-lg">۰۱</div>
+            <h3 class="text-lg font-bold text-fg-main">Discovery</h3>
+            <p class="text-xs text-muted-fg leading-relaxed">بررسی عمیق اهداف تجاری، شناخت دقیق پرسونای کاربری و تحلیل ساختار رقبا.</p>
+          </div>
+
+          <!-- Design -->
+          <div class="bg-card-bg border border-border-subtle p-8 rounded-2xl text-right space-y-4 hover:border-primary-accent/30 transition-all-custom">
+            <div class="w-12 h-12 rounded-xl bg-primary-accent/10 flex items-center justify-center text-primary-accent font-black text-lg">۰۲</div>
+            <h3 class="text-lg font-bold text-fg-main">Design</h3>
+            <p class="text-xs text-muted-fg leading-relaxed">طراحی اتودهای فیگما، پیاده‌سازی هویت بصری مدرن و پروتوتایپ تجربه کاربری.</p>
+          </div>
+
+          <!-- Build -->
+          <div class="bg-card-bg border border-border-subtle p-8 rounded-2xl text-right space-y-4 hover:border-primary-accent/30 transition-all-custom">
+            <div class="w-12 h-12 rounded-xl bg-primary-accent/10 flex items-center justify-center text-primary-accent font-black text-lg">۰۳</div>
+            <h3 class="text-lg font-bold text-fg-main">Build</h3>
+            <p class="text-xs text-muted-fg leading-relaxed">کدنویسی مهندسی‌شده فرانت‌اند با بهینه‌سازی کدهای فرانت و بک‌اند پایدار.</p>
+          </div>
+
+          <!-- Test -->
+          <div class="bg-card-bg border border-border-subtle p-8 rounded-2xl text-right space-y-4 hover:border-primary-accent/30 transition-all-custom">
+            <div class="w-12 h-12 rounded-xl bg-primary-accent/10 flex items-center justify-center text-primary-accent font-black text-lg">۰۴</div>
+            <h3 class="text-lg font-bold text-fg-main">Test</h3>
+            <p class="text-xs text-muted-fg leading-relaxed">کنترل کیفیت همه‌جانبه، پایش سرعت بارگذاری و رفع باگ‌های احتمالی.</p>
+          </div>
+
+          <!-- Launch -->
+          <div class="bg-card-bg border border-border-subtle p-8 rounded-2xl text-right space-y-4 hover:border-primary-accent/30 transition-all-custom">
+            <div class="w-12 h-12 rounded-xl bg-primary-accent/10 flex items-center justify-center text-primary-accent font-black text-lg">۰۵</div>
+            <h3 class="text-lg font-bold text-fg-main">Launch</h3>
+            <p class="text-xs text-muted-fg leading-relaxed">استقرار نهایی روی زیرساخت و سرور با بالاترین ضرایب پایداری و امنیت.</p>
           </div>
 
         </div>
@@ -361,19 +463,87 @@
       </div>
     </section>
 
-    <!-- 6. READY-MADE TEMPLATES (VISUAL-FIRST) -->
-    <section id="templates" class="py-24 sm:py-32 bg-muted-bg/30 border-y border-border-subtle scroll-animate">
-      <div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- ==========================================
+         05 — PROOF / TRUST (METRICS & LOGOS)
+         ========================================== -->
+    <section class="py-20 bg-muted-bg border-y border-border-subtle scroll-animate">
+      <div class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+
+          <!-- Real Metrics side -->
+          <div class="lg:col-span-6 grid grid-cols-2 gap-6">
+
+            <div class="bg-card-bg border border-border-subtle/80 p-6 sm:p-8 rounded-2xl text-right space-y-2">
+              <span class="text-4xl sm:text-5xl font-black tracking-tight text-primary-accent">۱۲+</span>
+              <p class="text-sm font-extrabold text-fg-main">پروژه موفق</p>
+              <p class="text-xs text-muted-fg">طراحی و پیاده‌سازی کامل سامانه‌های پیچیده</p>
+            </div>
+
+            <div class="bg-card-bg border border-border-subtle/80 p-6 sm:p-8 rounded-2xl text-right space-y-2">
+              <span class="text-4xl sm:text-5xl font-black tracking-tight text-primary-accent">۴</span>
+              <p class="text-sm font-extrabold text-fg-main">محصول داخلی</p>
+              <p class="text-xs text-muted-fg">توسعه پلتفرم‌ها و سرویس‌های فعال خودمان</p>
+            </div>
+
+            <div class="bg-card-bg border border-border-subtle/80 p-6 sm:p-8 rounded-2xl text-right space-y-2">
+              <span class="text-4xl sm:text-5xl font-black tracking-tight text-primary-accent">۸+</span>
+              <p class="text-sm font-extrabold text-fg-main">صنایع مختلف</p>
+              <p class="text-xs text-muted-fg">همکاری موفق در صنایع متعدد تکنولوژی کشور</p>
+            </div>
+
+            <div class="bg-card-bg border border-border-subtle/80 p-6 sm:p-8 rounded-2xl text-right space-y-2">
+              <span class="text-4xl sm:text-5xl font-black tracking-tight text-primary-accent">۳+</span>
+              <p class="text-sm font-extrabold text-fg-main">سال فعالیت</p>
+              <p class="text-xs text-muted-fg">تجربه مستمر تیم فنی و طراحان تراز اول</p>
+            </div>
+
+          </div>
+
+          <!-- Credibility intro & logo wall -->
+          <div class="lg:col-span-6 space-y-8 text-right">
+            <div class="space-y-3">
+              <h3 class="text-2xl sm:text-3xl font-black text-fg-main leading-tight">اعتبار ما حاصل کیفیت کارهای ماست.</h3>
+              <p class="text-sm sm:text-base text-muted-fg leading-relaxed">
+                در پنترا ادعایی نداریم؛ تمام آمار ما نشان‌دهنده تعهد بی‌قید و شرط تیم به سرعت کدهای وب‌سایت، درگاه‌های پرداخت، امنیت زیرساخت و ظرافت‌های تجربه کاربری است.
+              </p>
+            </div>
+
+            <!-- Monochrome Logo Wall -->
+            <div class="space-y-4">
+              <p class="text-xs font-bold text-muted-fg uppercase tracking-wider">استارت‌آپ‌هایی که به ما اعتماد کرده‌اند</p>
+              <div class="grid grid-cols-3 gap-6 opacity-30">
+                <div class="flex items-center justify-center p-4 bg-card-bg border border-border-subtle rounded-xl h-14">
+                  <span class="text-xs font-bold select-none text-muted-fg">NEXA</span>
+                </div>
+                <div class="flex items-center justify-center p-4 bg-card-bg border border-border-subtle rounded-xl h-14">
+                  <span class="text-xs font-bold select-none text-muted-fg">TABAN</span>
+                </div>
+                <div class="flex items-center justify-center p-4 bg-card-bg border border-border-subtle rounded-xl h-14">
+                  <span class="text-xs font-bold select-none text-muted-fg">ARIA</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         06 — READY-MADE TEMPLATES
+         ========================================== -->
+    <section id="templates" class="py-24 sm:py-32 scroll-animate">
+      <div class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12">
 
         <!-- Header -->
         <div class="text-center max-w-2xl mx-auto mb-16 space-y-4">
-          <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight">قالب‌های آماده ممتاز</h2>
+          <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black text-fg-main tracking-tight">قالب‌های آماده</h2>
           <p class="text-base sm:text-lg text-muted-fg">
-            محصولات از پیش‌طراحی‌شده و آماده استقرار ما که با بالاترین کیفیت مهندسی و تعهد بصری آماده شده‌اند.
+            توسعه‌یافته با کدهای بهینه، ساختار بصری لوکس و آماده استفاده سریع برای ارتقا کسب‌وکار شما.
           </p>
         </div>
 
-        <!-- Filter Categories (Vanilla JS Triggered) -->
+        <!-- Filter tabs for templates -->
         <div class="flex flex-wrap justify-center gap-3 mb-12">
           <button class="filter-btn px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold border bg-primary-accent text-white border-primary-accent transition-all-custom cursor-pointer" data-filter="all">همه</button>
           <button class="filter-btn px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold border bg-muted-bg text-muted-fg border-border-subtle hover:text-fg-main transition-all-custom cursor-pointer" data-filter="corporate">شرکتی</button>
@@ -382,26 +552,22 @@
           <button class="filter-btn px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold border bg-muted-bg text-muted-fg border-border-subtle hover:text-fg-main transition-all-custom cursor-pointer" data-filter="dashboard">داشبورد</button>
         </div>
 
-        <!-- Templates Grid -->
+        <!-- Templates cards grid -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
 
-          <!-- Template Card 1 -->
+          <!-- Template 1 -->
           <div class="template-card group bg-card-bg border border-border-subtle rounded-2xl overflow-hidden hover:border-primary-accent/45 hover:shadow-lg transition-all duration-300" data-category="saas">
             <div class="relative aspect-video bg-muted-bg/60 overflow-hidden flex flex-col justify-end p-4 border-b border-border-subtle">
-              <!-- Grid simulation inside -->
-              <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent z-10"></div>
+              <div class="absolute inset-0 bg-gradient-to-t from-black/85 to-transparent z-10"></div>
               <div class="z-20 space-y-1">
                 <span class="px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider rounded bg-primary-accent/20 text-primary-accent border border-primary-accent/20">SaaS Landing</span>
                 <h4 class="text-base font-bold text-white">پوسته فرود نکسا (Nexa)</h4>
               </div>
             </div>
             <div class="p-6 text-right space-y-4">
-              <div class="space-y-1.5">
-                <div class="flex flex-wrap gap-1.5">
-                  <span class="text-[10px] px-2 py-0.5 bg-muted-bg text-muted-fg rounded border border-border-subtle">RTL Ready</span>
-                  <span class="text-[10px] px-2 py-0.5 bg-muted-bg text-muted-fg rounded border border-border-subtle">Responsive</span>
-                  <span class="text-[10px] px-2 py-0.5 bg-muted-bg text-muted-fg rounded border border-border-subtle">Figma File</span>
-                </div>
+              <div class="flex flex-wrap gap-1.5">
+                <span class="text-[10px] px-2 py-0.5 bg-muted-bg text-muted-fg rounded border border-border-subtle">RTL Ready</span>
+                <span class="text-[10px] px-2 py-0.5 bg-muted-bg text-muted-fg rounded border border-border-subtle">Figma File</span>
               </div>
               <div class="grid grid-cols-2 gap-2 pt-2">
                 <button class="open-details-btn py-2 text-xs font-bold rounded-lg border border-border-subtle bg-muted-bg hover:bg-border-subtle text-fg-main cursor-pointer" data-id="nexa">توضیحات</button>
@@ -410,22 +576,19 @@
             </div>
           </div>
 
-          <!-- Template Card 2 -->
+          <!-- Template 2 -->
           <div class="template-card group bg-card-bg border border-border-subtle rounded-2xl overflow-hidden hover:border-primary-accent/45 hover:shadow-lg transition-all duration-300" data-category="ecommerce">
             <div class="relative aspect-video bg-muted-bg/60 overflow-hidden flex flex-col justify-end p-4 border-b border-border-subtle">
-              <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent z-10"></div>
+              <div class="absolute inset-0 bg-gradient-to-t from-black/85 to-transparent z-10"></div>
               <div class="z-20 space-y-1">
                 <span class="px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider rounded bg-primary-accent/20 text-primary-accent border border-primary-accent/20">فروشگاهی</span>
                 <h4 class="text-base font-bold text-white">قالب شاپ آریا (Aria)</h4>
               </div>
             </div>
             <div class="p-6 text-right space-y-4">
-              <div class="space-y-1.5">
-                <div class="flex flex-wrap gap-1.5">
-                  <span class="text-[10px] px-2 py-0.5 bg-muted-bg text-muted-fg rounded border border-border-subtle">Tailwind CSS</span>
-                  <span class="text-[10px] px-2 py-0.5 bg-muted-bg text-muted-fg rounded border border-border-subtle">سبد خرید مدرن</span>
-                  <span class="text-[10px] px-2 py-0.5 bg-muted-bg text-muted-fg rounded border border-border-subtle">Mobile-First</span>
-                </div>
+              <div class="flex flex-wrap gap-1.5">
+                <span class="text-[10px] px-2 py-0.5 bg-muted-bg text-muted-fg rounded border border-border-subtle">Tailwind CSS</span>
+                <span class="text-[10px] px-2 py-0.5 bg-muted-bg text-muted-fg rounded border border-border-subtle">Mobile-First</span>
               </div>
               <div class="grid grid-cols-2 gap-2 pt-2">
                 <button class="open-details-btn py-2 text-xs font-bold rounded-lg border border-border-subtle bg-muted-bg hover:bg-border-subtle text-fg-main cursor-pointer" data-id="aria">توضیحات</button>
@@ -434,22 +597,19 @@
             </div>
           </div>
 
-          <!-- Template Card 3 -->
+          <!-- Template 3 -->
           <div class="template-card group bg-card-bg border border-border-subtle rounded-2xl overflow-hidden hover:border-primary-accent/45 hover:shadow-lg transition-all duration-300" data-category="corporate">
             <div class="relative aspect-video bg-muted-bg/60 overflow-hidden flex flex-col justify-end p-4 border-b border-border-subtle">
-              <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent z-10"></div>
+              <div class="absolute inset-0 bg-gradient-to-t from-black/85 to-transparent z-10"></div>
               <div class="z-20 space-y-1">
                 <span class="px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider rounded bg-primary-accent/20 text-primary-accent border border-primary-accent/20">شرکتی</span>
                 <h4 class="text-base font-bold text-white">پورتال معرفی اوستا (Avesta)</h4>
               </div>
             </div>
             <div class="p-6 text-right space-y-4">
-              <div class="space-y-1.5">
-                <div class="flex flex-wrap gap-1.5">
-                  <span class="text-[10px] px-2 py-0.5 bg-muted-bg text-muted-fg rounded border border-border-subtle">سئو عالی</span>
-                  <span class="text-[10px] px-2 py-0.5 bg-muted-bg text-muted-fg rounded border border-border-subtle">فرانت‌اند بهینه</span>
-                  <span class="text-[10px] px-2 py-0.5 bg-muted-bg text-muted-fg rounded border border-border-subtle">انیمیشن نرم</span>
-                </div>
+              <div class="flex flex-wrap gap-1.5">
+                <span class="text-[10px] px-2 py-0.5 bg-muted-bg text-muted-fg rounded border border-border-subtle">انیمیشن نرم</span>
+                <span class="text-[10px] px-2 py-0.5 bg-muted-bg text-muted-fg rounded border border-border-subtle">سئو عالی</span>
               </div>
               <div class="grid grid-cols-2 gap-2 pt-2">
                 <button class="open-details-btn py-2 text-xs font-bold rounded-lg border border-border-subtle bg-muted-bg hover:bg-border-subtle text-fg-main cursor-pointer" data-id="avesta">توضیحات</button>
@@ -458,22 +618,19 @@
             </div>
           </div>
 
-          <!-- Template Card 4 -->
+          <!-- Template 4 -->
           <div class="template-card group bg-card-bg border border-border-subtle rounded-2xl overflow-hidden hover:border-primary-accent/45 hover:shadow-lg transition-all duration-300" data-category="dashboard">
             <div class="relative aspect-video bg-muted-bg/60 overflow-hidden flex flex-col justify-end p-4 border-b border-border-subtle">
-              <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent z-10"></div>
+              <div class="absolute inset-0 bg-gradient-to-t from-black/85 to-transparent z-10"></div>
               <div class="z-20 space-y-1">
                 <span class="px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider rounded bg-primary-accent/20 text-primary-accent border border-primary-accent/20">داشبورد</span>
                 <h4 class="text-base font-bold text-white">پنل مدیریت رایان (Rayan)</h4>
               </div>
             </div>
             <div class="p-6 text-right space-y-4">
-              <div class="space-y-1.5">
-                <div class="flex flex-wrap gap-1.5">
-                  <span class="text-[10px] px-2 py-0.5 bg-muted-bg text-muted-fg rounded border border-border-subtle">چارت داینامیک</span>
-                  <span class="text-[10px] px-2 py-0.5 bg-muted-bg text-muted-fg rounded border border-border-subtle">حالت تیره/روشن</span>
-                  <span class="text-[10px] px-2 py-0.5 bg-muted-bg text-muted-fg rounded border border-border-subtle">کامپوننت غنی</span>
-                </div>
+              <div class="flex flex-wrap gap-1.5">
+                <span class="text-[10px] px-2 py-0.5 bg-muted-bg text-muted-fg rounded border border-border-subtle">چارت داینامیک</span>
+                <span class="text-[10px] px-2 py-0.5 bg-muted-bg text-muted-fg rounded border border-border-subtle">تیره/روشن</span>
               </div>
               <div class="grid grid-cols-2 gap-2 pt-2">
                 <button class="open-details-btn py-2 text-xs font-bold rounded-lg border border-border-subtle bg-muted-bg hover:bg-border-subtle text-fg-main cursor-pointer" data-id="rayan">توضیحات</button>
@@ -486,306 +643,16 @@
       </div>
     </section>
 
-    <!-- 7. WHY CHOOSE US (VISUAL PROOF) -->
-    <section class="py-24 sm:py-32 scroll-animate">
-      <div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
-
-        <!-- Header -->
-        <div class="text-center max-w-2xl mx-auto mb-16 space-y-4">
-          <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight">کیفیت اثبات‌شده ما</h2>
-          <p class="text-base sm:text-lg text-muted-fg">
-            توسعه محصول با رویکرد مهندسی و ارزش‌آفرینی بصری برای دستیابی به حداکثر بازدهی تجاری.
-          </p>
-        </div>
-
-        <!-- Evidences Cards Grid -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
-
-          <!-- Card 1 -->
-          <div class="bg-card-bg border border-border-subtle p-6 rounded-2xl text-center space-y-3">
-            <div class="text-primary-accent flex justify-center">
-              <svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
-              </svg>
-            </div>
-            <h3 class="text-sm font-bold text-fg-main">کیفیت قبل از تحویل</h3>
-          </div>
-
-          <!-- Card 2 -->
-          <div class="bg-card-bg border border-border-subtle p-6 rounded-2xl text-center space-y-3">
-            <div class="text-primary-accent flex justify-center">
-              <svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
-              </svg>
-            </div>
-            <h3 class="text-sm font-bold text-fg-main">ساختار کد قابل توسعه</h3>
-          </div>
-
-          <!-- Card 3 -->
-          <div class="bg-card-bg border border-border-subtle p-6 rounded-2xl text-center space-y-3">
-            <div class="text-primary-accent flex justify-center">
-              <svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"/>
-              </svg>
-            </div>
-            <h3 class="text-sm font-bold text-fg-main">طراحی Mobile First</h3>
-          </div>
-
-          <!-- Card 4 -->
-          <div class="bg-card-bg border border-border-subtle p-6 rounded-2xl text-center space-y-3">
-            <div class="text-primary-accent flex justify-center">
-              <svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/>
-              </svg>
-            </div>
-            <h3 class="text-sm font-bold text-fg-main">پشتیبانی متعهدانه</h3>
-          </div>
-
-          <!-- Card 5 -->
-          <div class="bg-card-bg border border-border-subtle p-6 rounded-2xl text-center space-y-3">
-            <div class="text-primary-accent flex justify-center">
-              <svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
-              </svg>
-            </div>
-            <h3 class="text-sm font-bold text-fg-main">فرآیند کاملاً شفاف</h3>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- 8. COOPERATIVE PROCESS -->
-    <section id="process" class="py-24 sm:py-32 bg-muted-bg/40 border-y border-border-subtle scroll-animate">
-      <div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
-
-        <!-- Header -->
-        <div class="text-center max-w-2xl mx-auto mb-20 space-y-4">
-          <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight">مسیر اجرای ایده شما</h2>
-          <p class="text-base sm:text-lg text-muted-fg">
-            گام‌های ما متعهد به سرعت و کیفیت بصری محصول دیجیتال شما چیده شده است.
-          </p>
-        </div>
-
-        <!-- 6 Steps Interactive Stepper / Timeline (RTL Responsive) -->
-        <div class="relative">
-
-          <!-- Desktop horizontal line connector -->
-          <div class="hidden lg:block absolute top-1/2 left-4 right-4 h-0.5 bg-border-subtle/50 -translate-y-1/2 z-0"></div>
-
-          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-8 relative z-10 text-right lg:text-center">
-
-            <!-- Step 1 -->
-            <div class="bg-card-bg border border-border-subtle p-6 rounded-2xl space-y-2 shadow-sm hover:border-primary-accent/40 transition-all">
-              <div class="w-12 h-12 rounded-full bg-primary-accent/10 text-primary-accent flex items-center justify-center font-black mx-auto">۰۱</div>
-              <h4 class="text-base font-extrabold">شناخت نیاز</h4>
-            </div>
-
-            <!-- Step 2 -->
-            <div class="bg-card-bg border border-border-subtle p-6 rounded-2xl space-y-2 shadow-sm hover:border-primary-accent/40 transition-all">
-              <div class="w-12 h-12 rounded-full bg-primary-accent/10 text-primary-accent flex items-center justify-center font-black mx-auto">۰۲</div>
-              <h4 class="text-base font-extrabold">پیشنهاد</h4>
-            </div>
-
-            <!-- Step 3 -->
-            <div class="bg-card-bg border border-border-subtle p-6 rounded-2xl space-y-2 shadow-sm hover:border-primary-accent/40 transition-all">
-              <div class="w-12 h-12 rounded-full bg-primary-accent/10 text-primary-accent flex items-center justify-center font-black mx-auto">۰۳</div>
-              <h4 class="text-base font-extrabold">UI/UX</h4>
-            </div>
-
-            <!-- Step 4 -->
-            <div class="bg-card-bg border border-border-subtle p-6 rounded-2xl space-y-2 shadow-sm hover:border-primary-accent/40 transition-all">
-              <div class="w-12 h-12 rounded-full bg-primary-accent/10 text-primary-accent flex items-center justify-center font-black mx-auto">۰۴</div>
-              <h4 class="text-base font-extrabold">توسعه</h4>
-            </div>
-
-            <!-- Step 5 -->
-            <div class="bg-card-bg border border-border-subtle p-6 rounded-2xl space-y-2 shadow-sm hover:border-primary-accent/40 transition-all">
-              <div class="w-12 h-12 rounded-full bg-primary-accent/10 text-primary-accent flex items-center justify-center font-black mx-auto">۰۵</div>
-              <h4 class="text-base font-extrabold">تست</h4>
-            </div>
-
-            <!-- Step 6 -->
-            <div class="bg-card-bg border border-border-subtle p-6 rounded-2xl space-y-2 shadow-sm hover:border-primary-accent/40 transition-all">
-              <div class="w-12 h-12 rounded-full bg-primary-accent/10 text-primary-accent flex items-center justify-center font-black mx-auto">۰۶</div>
-              <h4 class="text-base font-extrabold">تحویل</h4>
-            </div>
-
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- 9. TECHNICAL STACK -->
-    <section class="py-16 bg-muted-bg border-b border-border-subtle">
-      <div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-8">
-        <h3 class="text-sm font-bold text-muted-fg tracking-widest uppercase">زیرساخت‌های مهندسی تراز اول ما</h3>
-
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 items-center max-w-4xl mx-auto opacity-70">
-          <div class="space-y-1">
-            <p class="text-xs text-muted-fg font-medium">Frontend</p>
-            <p class="text-sm font-extrabold text-fg-main">Next.js · React · TypeScript</p>
-          </div>
-          <div class="space-y-1">
-            <p class="text-xs text-muted-fg font-medium">Backend</p>
-            <p class="text-sm font-extrabold text-fg-main">Node.js · Laravel</p>
-          </div>
-          <div class="space-y-1">
-            <p class="text-xs text-muted-fg font-medium">Database</p>
-            <p class="text-sm font-extrabold text-fg-main">PostgreSQL · MySQL</p>
-          </div>
-          <div class="space-y-1">
-            <p class="text-xs text-muted-fg font-medium">Infrastructure</p>
-            <p class="text-sm font-extrabold text-fg-main">Docker · Linux · CI/CD</p>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- 10. TESTIMONIALS -->
-    <section class="py-24 sm:py-32 scroll-animate">
-      <div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
-
-        <!-- Header -->
-        <div class="text-center max-w-2xl mx-auto mb-16 space-y-4">
-          <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight">نظرات همکاران ما</h2>
-          <p class="text-base sm:text-lg text-muted-fg">رضایت قلبی و حرفه‌ای مخاطبانی که تجربه همکاری با ما را داشته‌اند.</p>
-        </div>
-
-        <!-- 3 Cards -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-
-          <!-- Testimonial 1 -->
-          <div class="bg-card-bg border border-border-subtle p-8 rounded-2xl flex flex-col justify-between gap-6 hover:border-primary-accent/30 transition-all duration-300">
-            <p class="text-sm text-muted-fg leading-relaxed italic">
-              «فرآیند توسعه بسیار شفاف و حرفه‌ای بود.»
-            </p>
-            <div class="flex items-center gap-4 border-t border-border-subtle/50 pt-4">
-              <span class="w-10 h-10 rounded-full bg-primary-accent/15 flex items-center justify-center text-primary-accent font-black">م</span>
-              <div class="text-right">
-                <p class="text-sm font-bold text-fg-main">مهندس راد</p>
-                <p class="text-xs text-muted-fg">مدیرعامل · پلتفرم تابان</p>
-              </div>
-            </div>
-          </div>
-
-          <!-- Testimonial 2 -->
-          <div class="bg-card-bg border border-border-subtle p-8 rounded-2xl flex flex-col justify-between gap-6 hover:border-primary-accent/30 transition-all duration-300">
-            <p class="text-sm text-muted-fg leading-relaxed italic">
-              «پشتیبانی سریع، طراحی منطبق بر استانداردهای بالا و تجربه کاربری شگفت‌انگیز.»
-            </p>
-            <div class="flex items-center gap-4 border-t border-border-subtle/50 pt-4">
-              <span class="w-10 h-10 rounded-full bg-primary-accent/15 flex items-center justify-center text-primary-accent font-black">آ</span>
-              <div class="text-right">
-                <p class="text-sm font-bold text-fg-main">آیدا حسینی</p>
-                <p class="text-xs text-muted-fg">مدیر محصول · استارتاپ نکسا</p>
-              </div>
-            </div>
-          </div>
-
-          <!-- Testimonial 3 -->
-          <div class="bg-card-bg border border-border-subtle p-8 rounded-2xl flex flex-col justify-between gap-6 hover:border-primary-accent/30 transition-all duration-300">
-            <p class="text-sm text-muted-fg leading-relaxed italic">
-              «بازطراحی فوق‌العاده همراه با بهبود نرخ تبدیل برای شرکت خلاق ما.»
-            </p>
-            <div class="flex items-center gap-4 border-t border-border-subtle/50 pt-4">
-              <span class="w-10 h-10 rounded-full bg-primary-accent/15 flex items-center justify-center text-primary-accent font-black">ع</span>
-              <div class="text-right">
-                <p class="text-sm font-bold text-fg-main">علی سلیمانی</p>
-                <p class="text-xs text-muted-fg">هم‌بنیان‌گذار · هلدینگ مهر</p>
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- 11. FAQ SECTION (Accessible Accordion) -->
-    <section id="faq" class="py-24 sm:py-32 bg-muted-bg/30 border-y border-border-subtle scroll-animate">
-      <div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
-
-        <!-- Header -->
-        <div class="text-center max-w-2xl mx-auto mb-16 space-y-4">
-          <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight">پرسش‌های متداول</h2>
-          <p class="text-base sm:text-lg text-muted-fg">پاسخ کوتاه و شفاف به پرسش‌های پرتکرار شما.</p>
-        </div>
-
-        <!-- Accordions list -->
-        <div class="max-w-3xl mx-auto space-y-4">
-
-          <!-- Accordion 1 -->
-          <div class="border border-border-subtle bg-card-bg rounded-xl overflow-hidden transition-colors">
-            <button class="accordion-header w-full px-6 py-5 flex items-center justify-between text-right font-extrabold text-base focus-visible:bg-muted-bg/50 cursor-pointer" aria-expanded="false" aria-controls="faq-ans-1">
-              <span>هزینه طراحی و توسعه سایت چقدر است؟</span>
-              <svg class="accordion-icon w-5 h-5 text-muted-fg transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7" />
-              </svg>
-            </button>
-            <div id="faq-ans-1" class="max-h-0 opacity-0 overflow-hidden transition-all duration-300">
-              <div class="px-6 pb-5 text-sm text-muted-fg leading-relaxed">
-                هزینه‌ها بسته به میزان پیچیدگی بصری، ابعاد کارآمدی فنی، یکپارچه‌سازی با سیستم‌های پرداخت و زیرساخت مد نظر متغیر است. پس از یک جلسه شناخت فنی، ما برآورد عادلانه و شفاف هزینه را ارائه می‌دهیم.
-              </div>
-            </div>
-          </div>
-
-          <!-- Accordion 2 -->
-          <div class="border border-border-subtle bg-card-bg rounded-xl overflow-hidden transition-colors">
-            <button class="accordion-header w-full px-6 py-5 flex items-center justify-between text-right font-extrabold text-base focus-visible:bg-muted-bg/50 cursor-pointer" aria-expanded="false" aria-controls="faq-ans-2">
-              <span>پروژه معمولاً چقدر زمان می‌برد؟</span>
-              <svg class="accordion-icon w-5 h-5 text-muted-fg transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7" />
-              </svg>
-            </button>
-            <div id="faq-ans-2" class="max-h-0 opacity-0 overflow-hidden transition-all duration-300">
-              <div class="px-6 pb-5 text-sm text-muted-fg leading-relaxed">
-                یک فرانت‌سایت سبک معمولاً بین ۲ تا ۴ هفته و سامانه‌های پیشرفته SaaS یا فروشگاهی سفارشی بین ۶ تا ۱۲ هفته زمان لازم دارند. زمان‌بندی دقیق در فاز پروپوزال درج خواهد شد.
-              </div>
-            </div>
-          </div>
-
-          <!-- Accordion 3 -->
-          <div class="border border-border-subtle bg-card-bg rounded-xl overflow-hidden transition-colors">
-            <button class="accordion-header w-full px-6 py-5 flex items-center justify-between text-right font-extrabold text-base focus-visible:bg-muted-bg/50 cursor-pointer" aria-expanded="false" aria-controls="faq-ans-3">
-              <span>آیا طراحی UI/UX را هم به طور مجزا انجام می‌دهید؟</span>
-              <svg class="accordion-icon w-5 h-5 text-muted-fg transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7" />
-              </svg>
-            </button>
-            <div id="faq-ans-3" class="px-6 pb-5 text-sm text-muted-fg leading-relaxed">
-              بله، تیم محصول پنترا شامل طراحان ممتاز UI/UX است که می‌توانند تمام اتودها، طرح‌ها و تجربه کاربری پروژه شما را قبل از فرآیند توسعه برنامه‌نویسی به صورت مستقل آماده کنند.
-            </div>
-          </div>
-
-          <!-- Accordion 4 -->
-          <div class="border border-border-subtle bg-card-bg rounded-xl overflow-hidden transition-colors">
-            <button class="accordion-header w-full px-6 py-5 flex items-center justify-between text-right font-extrabold text-base focus-visible:bg-muted-bg/50 cursor-pointer" aria-expanded="false" aria-controls="faq-ans-4">
-              <span>مالکیت Source Code چگونه است؟</span>
-              <svg class="accordion-icon w-5 h-5 text-muted-fg transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7" />
-              </svg>
-            </button>
-            <div id="faq-ans-4" class="max-h-0 opacity-0 overflow-hidden transition-all duration-300">
-              <div class="px-6 pb-5 text-sm text-muted-fg leading-relaxed">
-                مالکیت کامل کدهای پروژه و کلیه داکیومنت‌ها پس از اتمام پروژه و تسویه حساب مالی، ۱۰۰٪ متعلق به کارفرمای محترم خواهد بود و ما تمام کدهای مرجع را به شما منتقل می‌کنیم.
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- 11.5. BLOG PREVIEW SECTION -->
-    <section id="blog" class="py-24 sm:py-32 scroll-animate">
-      <div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- ==========================================
+         07 — BLOG PREVIEW SECTION
+         ========================================== -->
+    <section id="blog" class="py-24 sm:py-32 bg-muted-bg/10 border-t border-border-subtle scroll-animate">
+      <div class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12">
 
         <!-- Blog Section Header -->
         <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-16 text-right">
           <div class="space-y-3">
-            <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight">از وبلاگ</h2>
+            <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-fg-main">از وبلاگ</h2>
             <p class="text-base sm:text-lg text-muted-fg">یادداشت‌هایی درباره طراحی و توسعه محصول.</p>
           </div>
           <a href="#" class="inline-flex items-center gap-1.5 text-sm font-bold text-primary-accent hover:gap-2.5 transition-all">
@@ -794,121 +661,63 @@
           </a>
         </div>
 
-        <!-- Blog Cards Grid -->
+        <!-- Blog Cards Grid (Exactly 3 Cards Rendered from blogPosts array) -->
         <div id="blog-grid-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
-          <!-- Dynamically populated via JavaScript -->
+          <!-- Dynamically populated via main.js -->
         </div>
 
       </div>
     </section>
 
-    <!-- 12. DYNAMIC PROJECT INQUIRY FORM (High Conversion Section) -->
-    <section id="contact" class="py-24 sm:py-32 bg-radial from-primary-accent/5 via-transparent to-transparent scroll-animate">
-      <div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- ==========================================
+         08 — FINAL CTA SECTION
+         ========================================== -->
+    <section id="contact" class="py-24 sm:py-32 bg-radial from-primary-accent/5 via-transparent to-transparent border-t border-border-subtle scroll-animate">
+      <div class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12 text-center">
+        <div class="max-w-3xl mx-auto space-y-8 flex flex-col items-center">
 
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+          <span class="text-xs font-bold text-primary-accent tracking-widest uppercase">یک ایده دارید؟</span>
+          <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-fg-main leading-tight">
+            بیایید آن را به یک محصول واقعی تبدیل کنیم.
+          </h2>
+          <p class="text-base sm:text-lg text-muted-fg leading-relaxed max-w-2xl">
+            تیم فنی و طراحی ما آماده است تا در کمترین زمان ممکن درخواست شما را بررسی کند و شرایط رشد و توسعه محصول دیجیتال شما را فراهم آورد.
+          </p>
 
-          <!-- CTA side -->
-          <div class="lg:col-span-5 text-right space-y-6">
-            <span class="text-xs font-bold text-primary-accent tracking-widest uppercase">شروع ایده شما</span>
-            <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-fg-main">
-              یک ایده دارید؟<br>
-              بیایید آن را بسازیم.
-            </h2>
-            <p class="text-base text-muted-fg leading-relaxed">
-              در چند دقیقه درباره پروژه‌تان با ما صحبت کنید.
+          <div class="flex flex-col sm:flex-row gap-4 justify-center items-center pt-2 w-full max-w-md">
+            <button id="open-cooperation-modal-btn" class="w-full sm:w-auto px-8 py-4 rounded-xl text-sm font-bold text-white bg-primary-accent hover:bg-accent-hover shadow-lg shadow-primary-accent/25 hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 cursor-pointer flex items-center justify-center gap-2">
+              <span>شروع همکاری و ثبت درخواست</span>
+              <svg class="w-4 h-4 transform rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+              </svg>
+            </button>
+          </div>
+
+          <!-- Feature benefits in 2 columns centered -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-8 text-sm text-muted-fg max-w-2xl text-right">
+            <p class="flex items-center gap-2.5 bg-card-bg/45 border border-border-subtle/50 p-3 rounded-xl">
+              <svg class="w-5 h-5 text-primary-accent flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 19v-8.93a2 2 0 01.89-1.664l8-4a2 2 0 011.83 0l8 4a2 2 0 01.89 1.664V19A2 2 0 0118 21H6a2 2 0 01-2-2z" />
+              </svg>
+              <span>پاسخ‌گویی سریع، تعامل تیمی و رویکرد مهندسی محصول</span>
             </p>
-            <div class="space-y-3 pt-4 text-sm text-muted-fg">
-              <p class="flex items-center gap-2.5">
-                <svg class="w-5 h-5 text-primary-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 19v-8.93a2 2 0 01.89-1.664l8-4a2 2 0 011.83 0l8 4a2 2 0 01.89 1.664V19A2 2 0 0118 21H6a2 2 0 01-2-2z" />
-                </svg>
-                <span>پاسخ‌گویی سریع زیر ۲۴ ساعت کاری</span>
-              </p>
-              <p class="flex items-center gap-2.5">
-                <svg class="w-5 h-5 text-primary-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-                <span>ارائه دقیق برآورد مالی و پروپوزال فنی رایگان</span>
-              </p>
-            </div>
-          </div>
-
-          <!-- Form Card side -->
-          <div class="lg:col-span-7 bg-card-bg border border-border-subtle p-8 sm:p-10 rounded-2xl shadow-xl relative">
-            <form id="project-form" class="space-y-6 text-right" novalidate>
-
-              <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                <div class="space-y-2">
-                  <label for="fullName" class="text-xs font-bold text-muted-fg">نام و نام خانوادگی *</label>
-                  <input type="text" id="fullName" class="w-full px-4 py-3 rounded-xl border border-border-subtle bg-bg-main focus:border-primary-accent focus:ring-1 focus:ring-primary-accent text-sm" placeholder="مثال: علی رضایی" required>
-                </div>
-                <div class="space-y-2">
-                  <label for="companyName" class="text-xs font-bold text-muted-fg">نام شرکت (اختیاری)</label>
-                  <input type="text" id="companyName" class="w-full px-4 py-3 rounded-xl border border-border-subtle bg-bg-main focus:border-primary-accent focus:ring-1 focus:ring-primary-accent text-sm" placeholder="مثال: هلدینگ تابان">
-                </div>
-              </div>
-
-              <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                <div class="space-y-2">
-                  <label for="phone" class="text-xs font-bold text-muted-fg">شماره تماس *</label>
-                  <input type="tel" id="phone" class="w-full px-4 py-3 rounded-xl border border-border-subtle bg-bg-main focus:border-primary-accent focus:ring-1 focus:ring-primary-accent text-sm text-left" placeholder="۰۹۱۲۳۴۵۶۷۸۹" required>
-                </div>
-                <div class="space-y-2">
-                  <label for="email" class="text-xs font-bold text-muted-fg">آدرس ایمیل</label>
-                  <input type="email" id="email" class="w-full px-4 py-3 rounded-xl border border-border-subtle bg-bg-main focus:border-primary-accent focus:ring-1 focus:ring-primary-accent text-sm text-left" placeholder="name@domain.com">
-                </div>
-              </div>
-
-              <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                <div class="space-y-2">
-                  <label for="projectType" class="text-xs font-bold text-muted-fg">نوع پروژه *</label>
-                  <select id="projectType" class="w-full px-4 py-3 rounded-xl border border-border-subtle bg-bg-main focus:border-primary-accent focus:ring-1 focus:ring-primary-accent text-sm" required>
-                    <option value="" disabled selected>انتخاب کنید...</option>
-                    <option value="وب‌سایت">وب‌سایت شرکتی</option>
-                    <option value="فروشگاه اینترنتی">فروشگاه اینترنتی</option>
-                    <option value="Web Application">وب اپلیکیشن سفارشی</option>
-                    <option value="SaaS">سامانه نرم‌افزاری SaaS</option>
-                    <option value="Dashboard">داشبورد و پنل مدیریت</option>
-                    <option value="UI/UX">طراحی رابط کاربری UI/UX</option>
-                    <option value="سایر">سایر موارد</option>
-                  </select>
-                </div>
-                <div class="space-y-2">
-                  <label for="budget" class="text-xs font-bold text-muted-fg">بودجه تقریبی (اختیاری)</label>
-                  <select id="budget" class="w-full px-4 py-3 rounded-xl border border-border-subtle bg-bg-main focus:border-primary-accent focus:ring-1 focus:ring-primary-accent text-sm">
-                    <option value="" disabled selected>انتخاب کنید...</option>
-                    <option value="محدود">زیر ۵۰ میلیون تومان</option>
-                    <option value="متوسط">بین ۵۰ تا ۱۰۰ میلیون تومان</option>
-                    <option value="حرفه‌ای">بین ۱۰۰ تا ۲۰۰ میلیون تومان</option>
-                    <option value="پریمیوم">بالای ۲۰۰ میلیون تومان</option>
-                  </select>
-                </div>
-              </div>
-
-              <div class="space-y-2">
-                <label for="projectDesc" class="text-xs font-bold text-muted-fg">توضیح مختصر درباره اهداف پروژه *</label>
-                <textarea id="projectDesc" rows="4" class="w-full px-4 py-3 rounded-xl border border-border-subtle bg-bg-main focus:border-primary-accent focus:ring-1 focus:ring-primary-accent text-sm" placeholder="لطفاً اهداف و فیچرهای مد نظر خود را به صورت خلاصه توضیح دهید..." required></textarea>
-              </div>
-
-              <!-- Live Status Output from JS (simulated) -->
-              <div id="form-status" class="hidden"></div>
-
-              <button type="submit" class="w-full py-4 rounded-xl text-sm font-bold text-white bg-primary-accent hover:bg-accent-hover shadow-lg shadow-primary-accent/15 cursor-pointer flex items-center justify-center gap-2 transition-all-custom">
-                ثبت و ارسال درخواست همکاری
-              </button>
-
-            </form>
+            <p class="flex items-center gap-2.5 bg-card-bg/45 border border-border-subtle/50 p-3 rounded-xl">
+              <svg class="w-5 h-5 text-primary-accent flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <span>ارائه طرح فنی و برآورد دقیق زمان‌بندی پروژه به صورت شفاف</span>
+            </p>
           </div>
 
         </div>
-
       </div>
     </section>
 
-    <!-- 13. FOOTER SECTION -->
+    <!-- ==========================================
+         09 — FOOTER SECTION
+         ========================================== -->
     <footer class="bg-muted-bg border-t border-border-subtle pt-20 pb-10">
-      <div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12">
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-16 pb-16 border-b border-border-subtle/50 text-right">
 
@@ -923,7 +732,7 @@
               <span class="text-xl font-bold tracking-tight text-fg-main">پَنترا</span>
             </a>
             <p class="text-sm text-muted-fg leading-relaxed">
-              استودیو پنترا متشکل از مهندسان و طراحان نخبه محصول دیجیتال است که با مهندسی بی‌نقص، پایداری کدهای سایت و زیبایی کاربری را همگام می‌سازند.
+              استودیو پنترا متشکل از مهندسان خلاق و طراحان نخبه محصول دیجیتال است که با مهندسی کدهای بهینه، پایداری فنی و ظرافت‌های بصری را همگام می‌سازند.
             </p>
           </div>
 
@@ -935,22 +744,21 @@
               <li><a href="#portfolio" class="hover:text-primary-accent transition-colors">نمونه‌کارها</a></li>
               <li><a href="#startup-story" class="hover:text-primary-accent transition-colors">داستان محصول</a></li>
               <li><a href="#templates" class="hover:text-primary-accent transition-colors">قالب‌های آماده</a></li>
-              <li><a href="#process" class="hover:text-primary-accent transition-colors">فرآیند همکاری</a></li>
+              <li><a href="#how-we-work" class="hover:text-primary-accent transition-colors">چطور می‌سازیم؟</a></li>
             </ul>
           </div>
 
-          <!-- Column 3: Brand & Team -->
+          <!-- Column 3: Contact & Meta links -->
           <div class="lg:col-span-3 space-y-4">
             <h4 class="text-sm font-bold text-fg-main">مطالعه بیشتر</h4>
             <ul class="space-y-2 text-sm text-muted-fg">
-              <li><a href="#startup-story" class="hover:text-primary-accent transition-colors">داستان توسعه استارتاپ ما</a></li>
-              <li><a href="#blog" class="hover:text-primary-accent transition-colors">یادداشت‌ها و وبلاگ فنی</a></li>
-              <li><a href="#faq" class="hover:text-primary-accent transition-colors">پرسش‌های متداول</a></li>
-              <li><a href="#contact" class="hover:text-primary-accent transition-colors">مشاوره و شروع همکاری</a></li>
+              <li><a href="#startup-story" class="hover:text-primary-accent transition-colors">داستان استارتاپ نکسا</a></li>
+              <li><a href="#blog" class="hover:text-primary-accent transition-colors">یادداشت‌های فنی وبلاگ</a></li>
+              <li><a href="#contact" class="hover:text-primary-accent transition-colors">دریافت پروپوزال و سفارش</a></li>
             </ul>
           </div>
 
-          <!-- Column 4: Socials & Contact -->
+          <!-- Column 4: Contact details -->
           <div class="lg:col-span-3 space-y-4">
             <h4 class="text-sm font-bold text-fg-main">ارتباط با استودیو</h4>
             <ul class="space-y-2.5 text-sm text-muted-fg">
@@ -967,7 +775,6 @@
                 <span>۰۲۱-۸۸۸۸۴۴۲۲</span>
               </li>
             </ul>
-            <!-- Social networks mockup icons -->
             <div class="flex items-center gap-3 pt-2">
               <a href="#" class="p-2 rounded-lg bg-card-bg border border-border-subtle text-muted-fg hover:text-fg-main hover:border-primary-accent transition-colors" aria-label="لینکدین استودیو">
                 <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
@@ -993,13 +800,97 @@
       </div>
     </footer>
 
+    <!-- Cooperation / Project Form Modal -->
+    <div id="cooperation-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-md opacity-0 transition-opacity duration-300" role="dialog" aria-modal="true" aria-labelledby="cooperation-modal-title">
+      <div class="modal-content w-full max-w-2xl bg-card-bg border border-border-subtle rounded-2xl overflow-hidden shadow-2xl scale-95 opacity-0 transition-all duration-300">
+
+        <!-- Header -->
+        <div class="flex items-center justify-between px-6 py-4 border-b border-border-subtle text-right bg-muted-bg/50">
+          <h3 id="cooperation-modal-title" class="text-base sm:text-lg font-extrabold text-fg-main">ثبت درخواست همکاری</h3>
+          <button id="cooperation-modal-close" class="p-2 text-muted-fg hover:text-fg-main rounded-lg border border-border-subtle/50 hover:bg-muted-bg cursor-pointer" aria-label="بستن پنجره">
+            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+
+        <!-- Form Block Container inside Scrollable area -->
+        <div class="p-6 sm:p-8 max-h-[80vh] overflow-y-auto">
+          <form id="project-form" class="space-y-6 text-right" novalidate>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <div class="space-y-2">
+                <label for="fullName" class="text-xs font-bold text-muted-fg">نام و نام خانوادگی *</label>
+                <input type="text" id="fullName" class="w-full px-4 py-3 rounded-xl border border-border-subtle bg-bg-main focus:border-primary-accent focus:ring-1 focus:ring-primary-accent text-sm text-fg-main" placeholder="مثال: علی رضایی" required>
+              </div>
+              <div class="space-y-2">
+                <label for="companyName" class="text-xs font-bold text-muted-fg">نام شرکت (اختیاری)</label>
+                <input type="text" id="companyName" class="w-full px-4 py-3 rounded-xl border border-border-subtle bg-bg-main focus:border-primary-accent focus:ring-1 focus:ring-primary-accent text-sm text-fg-main" placeholder="مثال: هلدینگ تابان">
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <div class="space-y-2">
+                <label for="phone" class="text-xs font-bold text-muted-fg">شماره تماس *</label>
+                <input type="tel" id="phone" class="w-full px-4 py-3 rounded-xl border border-border-subtle bg-bg-main focus:border-primary-accent focus:ring-1 focus:ring-primary-accent text-sm text-left text-fg-main" placeholder="۰۹۱۲۳۴۵۶۷۸۹" required>
+              </div>
+              <div class="space-y-2">
+                <label for="email" class="text-xs font-bold text-muted-fg">آدرس ایمیل</label>
+                <input type="email" id="email" class="w-full px-4 py-3 rounded-xl border border-border-subtle bg-bg-main focus:border-primary-accent focus:ring-1 focus:ring-primary-accent text-sm text-left text-fg-main" placeholder="name@domain.com">
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <div class="space-y-2">
+                <label for="projectType" class="text-xs font-bold text-muted-fg">نوع پروژه *</label>
+                <select id="projectType" class="w-full px-4 py-3 rounded-xl border border-border-subtle bg-bg-main focus:border-primary-accent focus:ring-1 focus:ring-primary-accent text-sm text-fg-main" required>
+                  <option value="" disabled selected>انتخاب کنید...</option>
+                  <option value="وب‌سایت">وب‌سایت شرکتی</option>
+                  <option value="فروشگاه اینترنتی">فروشگاه اینترنتی</option>
+                  <option value="Web Application">وب اپلیکیشن سفارشی</option>
+                  <option value="SaaS">سامانه نرم‌افزاری SaaS</option>
+                  <option value="Dashboard">داشبورد و پنل مدیریت</option>
+                  <option value="UI/UX">طراحی رابط کاربری UI/UX</option>
+                  <option value="سایر">سایر موارد</option>
+                </select>
+              </div>
+              <div class="space-y-2">
+                <label for="budget" class="text-xs font-bold text-muted-fg">بودجه تقریبی (اختیاری)</label>
+                <select id="budget" class="w-full px-4 py-3 rounded-xl border border-border-subtle bg-bg-main focus:border-primary-accent focus:ring-1 focus:ring-primary-accent text-sm text-fg-main">
+                  <option value="" disabled selected>انتخاب کنید...</option>
+                  <option value="محدود">زیر ۵۰ میلیون تومان</option>
+                  <option value="متوسط">بین ۵۰ تا ۱۰۰ میلیون تومان</option>
+                  <option value="حرفه‌ای">بین ۱۰۰ تا ۲۰۰ میلیون تومان</option>
+                  <option value="پریمیوم">بالای ۲۰۰ میلیون تومان</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="space-y-2">
+              <label for="projectDesc" class="text-xs font-bold text-muted-fg">توضیح مختصر درباره اهداف پروژه *</label>
+              <textarea id="projectDesc" rows="4" class="w-full px-4 py-3 rounded-xl border border-border-subtle bg-bg-main focus:border-primary-accent focus:ring-1 focus:ring-primary-accent text-sm text-fg-main" placeholder="لطفاً اهداف، فیچرها و کلیات ایده مد نظرتان را خلاصه بنویسید..." required></textarea>
+            </div>
+
+            <!-- Status -->
+            <div id="form-status" class="hidden"></div>
+
+            <button type="submit" class="w-full py-4 rounded-xl text-sm font-bold text-white bg-primary-accent hover:bg-accent-hover shadow-lg shadow-primary-accent/15 cursor-pointer flex items-center justify-center gap-2 transition-all-custom">
+              ثبت و ارسال درخواست همکاری
+            </button>
+
+          </form>
+        </div>
+
+      </div>
+    </div>
+
     <!-- ACCESSIBLE MODAL FOR TEMPLATE DETAILS -->
     <div id="details-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-md opacity-0 transition-opacity duration-300" role="dialog" aria-modal="true" aria-labelledby="modal-title">
       <div class="modal-content w-full max-w-2xl bg-card-bg border border-border-subtle rounded-2xl overflow-hidden shadow-2xl scale-95 opacity-0 transition-all duration-300">
 
-        <!-- Modal Top bar -->
+        <!-- Modal Header -->
         <div class="flex items-center justify-between px-6 py-4 bg-muted-bg border-b border-border-subtle">
-          <h3 id="modal-title" class="text-lg font-extrabold text-fg-main">عنوان پیش‌فرض پوسته</h3>
+          <h3 id="modal-title" class="text-lg font-extrabold text-fg-main">عنوان پوسته</h3>
           <button id="modal-close" class="p-2 text-muted-fg hover:text-fg-main rounded-lg border border-border-subtle/50 hover:bg-muted-bg cursor-pointer" aria-label="بستن پنجره">
             <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
@@ -1007,29 +898,27 @@
           </button>
         </div>
 
-        <!-- Modal Body Content -->
+        <!-- Modal Body -->
         <div class="p-6 space-y-6">
           <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 
-            <!-- Graphic side simulated dynamically in JS -->
             <div id="modal-image" class="aspect-video bg-muted-bg/50 rounded-xl overflow-hidden">
-              <!-- Dynamic preview visual gets injected here -->
+              <!-- Visual Mockup gets injected here -->
             </div>
 
-            <!-- Specs list side -->
             <div class="space-y-4 text-right">
               <div>
-                <p class="text-[10px] text-muted-fg font-bold uppercase tracking-wider">دسته‌بندی محصول</p>
-                <p id="modal-category" class="text-sm font-bold text-fg-main mt-0.5">داشبورد پیشرفته</p>
+                <p class="text-[10px] text-muted-fg font-bold uppercase tracking-wider">دسته‌بندی پوسته</p>
+                <p id="modal-category" class="text-sm font-bold text-fg-main mt-0.5">SaaS</p>
               </div>
               <div>
-                <p class="text-[10px] text-muted-fg font-bold uppercase tracking-wider">توضیحات و کاربری</p>
-                <p id="modal-desc" class="text-xs text-muted-fg leading-relaxed mt-1">توضیحات تکمیلی محصول و ارزش‌افزوده‌های آن برای استارتاپ شما.</p>
+                <p class="text-[10px] text-muted-fg font-bold uppercase tracking-wider">توضیحات و مشخصات</p>
+                <p id="modal-desc" class="text-xs text-muted-fg leading-relaxed mt-1">توضیحات قالب و مزیت‌های فنی آن.</p>
               </div>
               <div class="space-y-1">
-                <p class="text-[10px] text-muted-fg font-bold uppercase tracking-wider mb-1.5">تکنولوژی‌های بکار رفته</p>
+                <p class="text-[10px] text-muted-fg font-bold uppercase tracking-wider mb-1.5">تکنولوژی‌ها</p>
                 <div id="modal-tags" class="flex flex-wrap gap-1.5">
-                  <!-- Badges inserted dynamic via JS -->
+                  <!-- Badges loaded dynamically -->
                 </div>
               </div>
             </div>
@@ -1037,9 +926,9 @@
           </div>
         </div>
 
-        <!-- Footer actions -->
+        <!-- Footer -->
         <div class="flex items-center justify-end gap-3 px-6 py-4 bg-muted-bg border-t border-border-subtle">
-          <a id="modal-demo-link" href="#contact" class="px-5 py-2 rounded-xl text-xs sm:text-sm font-bold text-white bg-primary-accent hover:bg-accent-hover">دریافت اطلاعات و سفارش قالب</a>
+          <a id="modal-demo-link" href="#contact" class="px-5 py-2 rounded-xl text-xs sm:text-sm font-bold text-white bg-primary-accent hover:bg-accent-hover">سفارش و استقرار قالب</a>
         </div>
 
       </div>
@@ -1047,6 +936,10 @@
 
   </main>
 
+  <!-- GSAP Core & Plugins -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollToPlugin.min.js"></script>
   <script src="./js/main.js"></script>
 </body>
 </html>
