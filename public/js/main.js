@@ -205,9 +205,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initStartupStory();
   initCooperationModal();
   initBlogGrid();
-  initTemplateFilter();
   initAccordion();
-  initModal();
   initContactForm();
   initScrollAnimations();
   initProjectDetailPage(); // Check if we are on project.html
@@ -755,13 +753,15 @@ function initPortfolioGrid() {
         </div>
       `;
 
-      // Click / Keyboard Key triggers case study
-      const triggerCaseStudy = () => openCaseStudy(p.id);
-      card.addEventListener('click', triggerCaseStudy);
+      // Click / Keyboard Key navigates directly to the project detail page
+      const navigateToProject = () => {
+        window.location.href = `project.html?id=${p.id}`;
+      };
+      card.addEventListener('click', navigateToProject);
       card.addEventListener('keydown', (e) => {
         if (e.key === 'Enter' || e.key === ' ') {
           e.preventDefault();
-          triggerCaseStudy();
+          navigateToProject();
         }
       });
 
@@ -1697,7 +1697,7 @@ function initProjectDetailPage() {
   let relatedHTML = '';
   related.forEach(p => {
     relatedHTML += `
-      <a href="project.html?id=${p.id}" class="group block bg-card-bg border border-border-subtle rounded-2xl overflow-hidden hover:border-primary-accent/40 hover:shadow-xl transition-all duration-300">
+      <div onclick="window.location.href='project.html?id=${p.id}'" class="group block bg-card-bg border border-border-subtle rounded-2xl overflow-hidden hover:border-primary-accent/40 hover:shadow-xl transition-all duration-300 cursor-pointer">
         <div class="aspect-[16/10] overflow-hidden bg-muted-bg/50">
           <img src="${p.cover}" alt="${p.title}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-102">
         </div>
@@ -1705,7 +1705,7 @@ function initProjectDetailPage() {
           <h4 class="text-base font-extrabold text-fg-main group-hover:text-primary-accent transition-colors">${p.title}</h4>
           <p class="text-xs text-muted-fg mt-1 font-medium">${p.categoryLabel}</p>
         </div>
-      </a>
+      </div>
     `;
   });
 

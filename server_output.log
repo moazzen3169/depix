@@ -1,33 +1,5 @@
-127.0.0.1 - - [12/Aug/2026 16:41:17] "HEAD /main.html HTTP/1.1" 200 -
-127.0.0.1 - - [12/Aug/2026 16:42:07] "GET /main.html HTTP/1.1" 200 -
-127.0.0.1 - - [12/Aug/2026 16:42:07] "GET /assets/projects/project-04/screen-01.webp HTTP/1.1" 200 -
-127.0.0.1 - - [12/Aug/2026 16:42:07] "GET /output.css HTTP/1.1" 200 -
-127.0.0.1 - - [12/Aug/2026 16:42:07] "GET /assets/projects/project-02/screen-01.webp HTTP/1.1" 200 -
-127.0.0.1 - - [12/Aug/2026 16:42:07] "GET /assets/projects/project-01/cover.webp HTTP/1.1" 200 -
-127.0.0.1 - - [12/Aug/2026 16:42:07] "GET /assets/projects/project-03/screen-01.webp HTTP/1.1" 200 -
-127.0.0.1 - - [12/Aug/2026 16:42:07] "GET /assets/projects/project-03/cover.webp HTTP/1.1" 200 -
-127.0.0.1 - - [12/Aug/2026 16:42:08] "GET /js/main.js HTTP/1.1" 200 -
-127.0.0.1 - - [12/Aug/2026 16:42:08] code 404, message File not found
-127.0.0.1 - - [12/Aug/2026 16:42:08] "GET /fonts/Peyda-Bold.woff2 HTTP/1.1" 404 -
-127.0.0.1 - - [12/Aug/2026 16:42:08] code 404, message File not found
-127.0.0.1 - - [12/Aug/2026 16:42:08] "GET /fonts/Peyda-black.woff2 HTTP/1.1" 404 -
-127.0.0.1 - - [12/Aug/2026 16:42:08] code 404, message File not found
-127.0.0.1 - - [12/Aug/2026 16:42:08] "GET /fonts/Peyda-Medium.woff2 HTTP/1.1" 404 -
-127.0.0.1 - - [12/Aug/2026 16:42:09] "GET /assets/projects/project-02/cover.webp HTTP/1.1" 200 -
-127.0.0.1 - - [12/Aug/2026 16:42:09] "GET /assets/projects/project-04/cover.webp HTTP/1.1" 200 -
-127.0.0.1 - - [12/Aug/2026 16:42:17] "GET /main.html HTTP/1.1" 200 -
-127.0.0.1 - - [12/Aug/2026 16:42:17] "GET /assets/projects/project-02/screen-01.webp HTTP/1.1" 200 -
-127.0.0.1 - - [12/Aug/2026 16:42:17] "GET /output.css HTTP/1.1" 200 -
-127.0.0.1 - - [12/Aug/2026 16:42:17] "GET /assets/projects/project-04/screen-01.webp HTTP/1.1" 200 -
-127.0.0.1 - - [12/Aug/2026 16:42:17] "GET /assets/projects/project-01/cover.webp HTTP/1.1" 200 -
-127.0.0.1 - - [12/Aug/2026 16:42:17] "GET /assets/projects/project-03/screen-01.webp HTTP/1.1" 200 -
-127.0.0.1 - - [12/Aug/2026 16:42:17] "GET /assets/projects/project-03/cover.webp HTTP/1.1" 200 -
-127.0.0.1 - - [12/Aug/2026 16:42:17] "GET /js/main.js HTTP/1.1" 200 -
-127.0.0.1 - - [12/Aug/2026 16:42:17] code 404, message File not found
-127.0.0.1 - - [12/Aug/2026 16:42:17] "GET /fonts/Peyda-Bold.woff2 HTTP/1.1" 404 -
-127.0.0.1 - - [12/Aug/2026 16:42:17] code 404, message File not found
-127.0.0.1 - - [12/Aug/2026 16:42:17] "GET /fonts/Peyda-black.woff2 HTTP/1.1" 404 -
-127.0.0.1 - - [12/Aug/2026 16:42:17] code 404, message File not found
-127.0.0.1 - - [12/Aug/2026 16:42:17] "GET /fonts/Peyda-Medium.woff2 HTTP/1.1" 404 -
-127.0.0.1 - - [12/Aug/2026 16:42:17] "GET /assets/projects/project-02/cover.webp HTTP/1.1" 200 -
-127.0.0.1 - - [12/Aug/2026 16:42:17] "GET /assets/projects/project-04/cover.webp HTTP/1.1" 200 -
+
+> pantter@1.0.0 dev
+> npx @tailwindcss/cli -i ./src/input.css -o ./public/output.css --watch
+
+≈ tailwindcss v4.3.3
