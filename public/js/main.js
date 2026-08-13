@@ -346,11 +346,11 @@ function initStartupStory() {
 
   // Step information
   const stepsData = {
-    1: { num: "۰۱", title: "نیاز و مسئله", desc: "شناسایی یک چالش واقعی کاربران در بازار داخلی" },
-    2: { num: "۰۲", title: "ایده و مفهوم", desc: "طراحی معماری ساده‌تر برای کاربری‌های پیچیده" },
-    3: { num: "۰۳", title: "طراحی رابط و تجربه", desc: "پیاده‌سازی یک تجربه بصری منحصربه‌فرد و مدرن" },
-    4: { num: "۰۴", title: "توسعه و مهندسی", desc: "کدنویسی بهینه و ساختارمند وب‌اپلیکیشن" },
-    5: { num: "۰۵", title: "محصول نهایی", desc: "عرضه نهایی نکسا با آمار عالی و رشد موفق" }
+    1: { num: "۰۱", title: "کشف نیاز و مسئله", desc: "تحلیل چالش‌های عمیق مدیریت پروژه در تیم‌های توزیع‌شده و کشف خلأهای موجود در ابزارهای فعلی بازار." },
+    2: { num: "۰۲", title: "ایده‌پردازی و ساختار", desc: "مهندسی سناریوها و پیاده‌سازی متدولوژی‌های مدیریت چابک (Agile) جهت ساده‌سازی وظایف چندلایه و پیچیده." },
+    3: { num: "۰۳", title: "طراحی رابط و تجربه کاربری", desc: "طراحی پروتوتایپ‌های تعاملی، سیستم‌های بصری مدرن و معماری اطلاعات متمرکز در بستر دیزاین سیستم اختصاصی." },
+    4: { num: "۰۴", title: "توسعه پیشرفته و مهندسی", desc: "کدنویسی بهینه فرانت‌اند، طراحی میکروسرویس‌های فوق‌سریع بک‌اند و یکپارچه‌سازی وب‌سوکت‌ها برای تعاملات همزمان." },
+    5: { num: "۰۵", title: "محصول نهایی و عرضه موفق", desc: "عرضه نهایی پلتفرم نکسا با نرخ پایداری بالا، سرعت رندر عالی زیر ۱ ثانیه و جلب رضایت حداکثری کسب‌وکارهای مدرن." }
   };
 
   // Check reduced motion
@@ -380,10 +380,32 @@ function initStartupStory() {
       const mobStepNum = document.getElementById('mobile-step-num');
       const mobStepTitle = document.getElementById('mobile-step-title');
       const mobStepDesc = document.getElementById('mobile-step-desc');
+      const mobileTextContainer = document.getElementById('mobile-text-container');
+      const mobileHudCta = document.getElementById('mobile-hud-cta');
 
-      if (mobStepNum) mobStepNum.textContent = `مرحله ${persianNum}`;
-      if (mobStepTitle) mobStepTitle.textContent = stepsData[stageNum].title;
-      if (mobStepDesc) mobStepDesc.textContent = stepsData[stageNum].desc;
+      // Check if text has changed to prevent flashing
+      if (mobStepTitle && mobStepTitle.textContent !== stepsData[stageNum].title) {
+        // Micro transitions for mobile text swap
+        gsap.killTweensOf(mobileTextContainer);
+        gsap.fromTo(mobileTextContainer,
+          { opacity: 0.4, y: 5 },
+          { opacity: 1, y: 0, duration: 0.4, ease: "power2.out" }
+        );
+
+        if (mobStepNum) mobStepNum.textContent = `مرحله ${persianNum}`;
+        if (mobStepTitle) mobStepTitle.textContent = stepsData[stageNum].title;
+        if (mobStepDesc) mobStepDesc.textContent = stepsData[stageNum].desc;
+      }
+
+      // Show/Hide integrated mobile HUD CTA in Step 5
+      if (mobileHudCta) {
+        if (stageNum === 5) {
+          mobileHudCta.classList.remove('hidden');
+          gsap.fromTo(mobileHudCta, { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.4, ease: "power2.out" });
+        } else {
+          mobileHudCta.classList.add('hidden');
+        }
+      }
 
       mobileButtons.forEach(btn => {
         const step = parseInt(btn.getAttribute('data-story-step-mob'), 10);
@@ -429,13 +451,15 @@ function initStartupStory() {
     }
   });
 
-  // Create GSAP ScrollTrigger timeline
+  const isMobileViewport = window.innerWidth < 1024;
+
+  // Create GSAP ScrollTrigger timeline with increased delay/scroll-range on mobile
   const tl = gsap.timeline({
     scrollTrigger: {
       trigger: section,
       start: "top top",
-      end: "+=3200",
-      scrub: 1,
+      end: isMobileViewport ? "+=5200" : "+=3600",
+      scrub: isMobileViewport ? 1.8 : 1.2, // smoother scrub lag for touch-inertia feel
       pin: true,
       anticipatePin: 1,
       invalidateOnRefresh: true,
