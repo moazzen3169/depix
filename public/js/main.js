@@ -198,6 +198,46 @@ const blogPosts = [
   }
 ];
 
+// Centralized contact data object containing real/placeholder values
+const consultationConfig = {
+  phone: {
+    label: "تماس تلفنی",
+    value: "۰۲۱-۸۸۸۸۴۴۲۲",
+    href: "tel:+982188884422",
+    icon: `<svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 011.94.571l-1.057 4.96a1 1 0 01-.908.741H5V5zm16 14a2 2 0 01-2-2v-2.328a1 1 0 01.741-.908l4.96-1.057a1 1 0 011.05-.54V19h-3.28a1 1 0 01-.571-.194z" /></svg>`
+  },
+  email: {
+    label: "پست الکترونیک",
+    value: "hello@depix.studio",
+    href: "mailto:hello@depix.studio",
+    icon: `<svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>`
+  },
+  telegram: {
+    label: "تلگرام استودیو",
+    value: "depix_studio@",
+    href: "https://t.me/depix_studio",
+    icon: `<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.07-.2-.08-.06-.19-.04-.27-.02-.11.02-1.89 1.19-5.34 3.52-.5.35-.96.52-1.37.51-.45-.01-1.32-.26-1.97-.47-.79-.26-1.42-.4-1.37-.85.03-.23.35-.47.96-.72 3.76-1.63 6.27-2.71 7.53-3.23 3.58-1.48 4.32-1.74 4.81-1.75.11 0 .35.03.5.16.13.11.17.26.19.37-.02.08-.01.23-.02.27z"/></svg>`
+  },
+  whatsapp: {
+    label: "واتس‌اپ استودیو",
+    value: "۰۹۱۲۳۴۵۶۷۸۹",
+    href: "https://wa.me/989123456789",
+    icon: `<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12.004 2C6.48 2 2 6.48 2 12.004c0 1.908.533 3.69 1.46 5.215L2.03 21.97l4.89-.1.01-.01c1.512.87 3.255 1.36 5.074 1.36 5.524 0 10.004-4.48 10.004-10.004S17.528 2 12.004 2zm0 18.008c-1.633 0-3.21-.444-4.577-1.28l-.33-.2-.294.02-3.15.064.67-3.116-.16-.27a7.94 7.94 0 01-1.11-4.22c0-4.413 3.591-8.004 8.004-8.004 4.412 0 8.003 3.59 8.003 8.004s-3.59 8.004-8.003 8.004z"/></svg>`
+  },
+  instagram: {
+    label: "اینستاگرام",
+    value: "depix.studio@",
+    href: "https://instagram.com/depix.studio",
+    icon: `<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.051.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>`
+  },
+  linkedin: {
+    label: "لینکدین",
+    value: "depix-studio",
+    href: "https://linkedin.com/company/depix-studio",
+    icon: `<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>`
+  }
+};
+
 document.addEventListener('DOMContentLoaded', () => {
   initTheme();
   initNavigation();
@@ -209,6 +249,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initContactForm();
   initScrollAnimations();
   initProjectDetailPage(); // Check if we are on project.html
+  initConsultationExperience(); // Initialize persistent floating CTA and overlay
 });
 
 /**
@@ -1610,6 +1651,313 @@ function initScrollAnimations() {
     el.classList.add('opacity-0', 'translate-y-8', 'transition-all-custom', 'duration-700');
     observer.observe(el);
   });
+}
+
+/**
+ * 12. Persistent Floating Consultation CTA & Immersive Fullscreen Overlay Module
+ */
+function initConsultationExperience() {
+  const trigger = document.getElementById('consultation-trigger');
+  const overlay = document.getElementById('consultation-overlay');
+  const closeBtn = document.getElementById('consultation-close');
+  const stateContact = document.getElementById('consultation-state-contact');
+  const stateInquiry = document.getElementById('consultation-state-inquiry');
+  const toInquiryBtn = document.getElementById('to-project-inquiry-btn');
+  const backToContactBtn = document.getElementById('back-to-contact-btn');
+  const methodsGrid = document.getElementById('contact-methods-grid');
+  const socialsRow = document.getElementById('contact-socials-row');
+  const inquiryForm = document.getElementById('consultation-project-form');
+  const formStatus = document.getElementById('consultation-form-status');
+  const successState = document.getElementById('consultation-success-state');
+  const successCloseBtn = document.getElementById('consultation-success-close-btn');
+
+  if (!trigger || !overlay) return;
+
+  // Active pulsing dot visually configured via HTML + CSS inside input.css
+  const dot = trigger.querySelector('.animate-ping');
+  if (dot) {
+    dot.classList.add('consultation-dot-pulse');
+  }
+
+  // Populate Contact Grid dynamically from consultationConfig
+  if (methodsGrid) {
+    methodsGrid.innerHTML = '';
+    const primaryKeys = ['telegram', 'whatsapp', 'email', 'phone'];
+    primaryKeys.forEach((key, idx) => {
+      const data = consultationConfig[key];
+      if (!data) return;
+
+      const item = document.createElement('a');
+      item.href = data.href;
+      item.target = "_blank";
+      item.rel = "noopener noreferrer";
+      item.className = "contact-item group flex items-center justify-between p-5 rounded-2xl bg-muted-bg/50 border border-border-subtle/80 hover:bg-muted-bg hover:border-primary-accent/40 hover:scale-[1.01] active:scale-[0.99] transition-all-custom text-right";
+      item.setAttribute('aria-label', `${data.label}: ${data.value}`);
+
+      item.innerHTML = `
+        <div class="flex items-center gap-4">
+          <div class="w-10 h-10 rounded-xl bg-primary-accent/10 flex items-center justify-center text-primary-accent group-hover:bg-primary-accent group-hover:text-white transition-colors duration-300">
+            ${data.icon}
+          </div>
+          <div class="space-y-0.5">
+            <span class="text-xs text-muted-fg font-bold block">${data.label}</span>
+            <span class="text-sm font-extrabold text-fg-main group-hover:text-primary-accent transition-colors duration-200 font-mono">${data.value}</span>
+          </div>
+        </div>
+        <svg class="w-4 h-4 text-muted-fg transform rotate-180 transition-transform duration-300 group-hover:translate-x-1 group-hover:text-primary-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+        </svg>
+      `;
+      methodsGrid.appendChild(item);
+    });
+  }
+
+  // Populate Socials dynamically from consultationConfig
+  if (socialsRow) {
+    socialsRow.innerHTML = '';
+    const socialKeys = ['instagram', 'linkedin'];
+    socialKeys.forEach(key => {
+      const data = consultationConfig[key];
+      if (!data) return;
+
+      const item = document.createElement('a');
+      item.href = data.href;
+      item.target = "_blank";
+      item.rel = "noopener noreferrer";
+      item.className = "px-4 py-2 rounded-xl bg-card-bg border border-border-subtle/80 text-xs font-bold text-muted-fg hover:text-fg-main hover:border-primary-accent/40 transition-colors flex items-center gap-2";
+      item.setAttribute('aria-label', `${data.label}: ${data.value}`);
+
+      item.innerHTML = `
+        <span class="text-primary-accent">${data.icon}</span>
+        <span>${data.label}</span>
+      `;
+      socialsRow.appendChild(item);
+    });
+  }
+
+  // Scroll Behavior: Slightly reduce visual footprint during rapid scrolling
+  let isScrolling;
+  let lastScrollY = window.scrollY;
+  window.addEventListener('scroll', () => {
+    const currentScrollY = window.scrollY;
+    const diff = Math.abs(currentScrollY - lastScrollY);
+
+    if (diff > 25 && overlay.classList.contains('pointer-events-none')) {
+      // Rapid downward or upward scroll
+      gsap.to(trigger, { scale: 0.94, opacity: 0.8, duration: 0.25, overwrite: "auto" });
+      const textSpan = document.getElementById('consultation-trigger-text');
+      if (textSpan && window.innerWidth >= 768) {
+        gsap.to(textSpan, { width: 0, opacity: 0, marginLeft: 0, duration: 0.25, overwrite: "auto" });
+      }
+    }
+
+    lastScrollY = currentScrollY;
+
+    window.clearTimeout(isScrolling);
+    isScrolling = setTimeout(() => {
+      // Stopped scrolling
+      gsap.to(trigger, { scale: 1, opacity: 1, duration: 0.3, overwrite: "auto" });
+      const textSpan = document.getElementById('consultation-trigger-text');
+      if (textSpan && window.innerWidth >= 768) {
+        gsap.to(textSpan, { width: "auto", opacity: 1, marginLeft: "0.5rem", duration: 0.3, overwrite: "auto" });
+      }
+    }, 200);
+  }, { passive: true });
+
+  // Open & Close GSAP timelines
+  let openTl;
+  const isReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  const initAnimations = () => {
+    openTl = gsap.timeline({ paused: true });
+
+    if (isReduced) {
+      openTl
+        .to(overlay, { opacity: 1, duration: 0.2 })
+        .to([stateContact, stateInquiry], { opacity: 1, duration: 0.2 });
+    } else {
+      openTl
+        .to(trigger, { scale: 0.9, opacity: 0, duration: 0.25, ease: "power2.inOut" })
+        .to(overlay, { opacity: 1, duration: 0.35, ease: "power2.out" }, "-=0.15")
+        .fromTo('#consultation-title', { y: 25, opacity: 0 }, { y: 0, opacity: 1, duration: 0.45, ease: "power3.out" }, "-=0.15")
+        .fromTo('.contact-item', { y: 15, opacity: 0 }, { y: 0, opacity: 1, stagger: 0.05, duration: 0.35, ease: "power2.out" }, "-=0.25")
+        .fromTo(toInquiryBtn, { y: 10, opacity: 0 }, { y: 0, opacity: 1, duration: 0.35, ease: "power2.out" }, "-=0.2");
+    }
+  };
+
+  initAnimations();
+
+  // Scroll Lock Helper
+  const lockScroll = (lock) => {
+    if (lock) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+  };
+
+  const openOverlay = () => {
+    overlay.classList.remove('pointer-events-none');
+    lockScroll(true);
+    openTl.play();
+
+    // Focus Close Button or input
+    setTimeout(() => {
+      closeBtn.focus();
+    }, 100);
+  };
+
+  const closeOverlay = () => {
+    openTl.reverse().then(() => {
+      overlay.classList.add('pointer-events-none');
+      lockScroll(false);
+      trigger.focus();
+    });
+  };
+
+  trigger.addEventListener('click', openOverlay);
+  closeBtn.addEventListener('click', closeOverlay);
+
+  // Close with ESC
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && !overlay.classList.contains('pointer-events-none')) {
+      closeOverlay();
+    }
+  });
+
+  // Transition from Contact View to Inquiry Form
+  toInquiryBtn.addEventListener('click', () => {
+    if (isReduced) {
+      stateContact.classList.add('hidden');
+      stateInquiry.classList.remove('hidden');
+      inquiryForm.classList.remove('hidden');
+      successState.classList.add('hidden');
+    } else {
+      gsap.to(stateContact, {
+        opacity: 0,
+        y: -20,
+        duration: 0.3,
+        ease: "power2.in",
+        onComplete: () => {
+          stateContact.classList.add('hidden');
+          stateInquiry.classList.remove('hidden');
+          inquiryForm.classList.remove('hidden');
+          successState.classList.add('hidden');
+          gsap.fromTo(stateInquiry, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.4, ease: "power2.out" });
+        }
+      });
+    }
+  });
+
+  // Transition back to Contact View
+  backToContactBtn.addEventListener('click', () => {
+    if (isReduced) {
+      stateInquiry.classList.add('hidden');
+      stateContact.classList.remove('hidden');
+    } else {
+      gsap.to(stateInquiry, {
+        opacity: 0,
+        y: 20,
+        duration: 0.3,
+        ease: "power2.in",
+        onComplete: () => {
+          stateInquiry.classList.add('hidden');
+          stateContact.classList.remove('hidden');
+          gsap.fromTo(stateContact, { opacity: 0, y: -20 }, { opacity: 1, y: 0, duration: 0.4, ease: "power2.out" });
+        }
+      });
+    }
+  });
+
+  // Client-side Validation helper
+  const showFormError = (msg) => {
+    formStatus.className = "p-4 rounded-xl text-sm border bg-red-500/10 text-red-400 border-red-500/20";
+    formStatus.textContent = msg;
+    formStatus.classList.remove('hidden');
+  };
+
+  // Form Submission Point
+  async function submitProjectInquiry(data) {
+    // Configurable Backend/API Endpoint Integration Point
+    console.log("Submitting Project Inquiry Data to Backend API:", data);
+    return new Promise((resolve) => setTimeout(resolve, 1500));
+  }
+
+  inquiryForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    formStatus.classList.add('hidden');
+
+    const name = document.getElementById('consultation-name').value.trim();
+    const contact = document.getElementById('consultation-contact').value.trim();
+    const type = document.getElementById('consultation-project-type').value;
+    const budget = document.getElementById('consultation-budget').value;
+    const desc = document.getElementById('consultation-desc').value.trim();
+
+    if (!name) {
+      showFormError("لطفاً نام خود را وارد کنید.");
+      return;
+    }
+
+    if (!contact) {
+      showFormError("لطفاً یک راه ارتباطی معتبر (شماره یا ایمیل) وارد کنید.");
+      return;
+    }
+
+    if (!desc) {
+      showFormError("لطفاً توضیح مختصری از پروژه خود ارائه دهید.");
+      return;
+    }
+
+    // Loader on submit button
+    const submitBtn = inquiryForm.querySelector('button[type="submit"]');
+    const origHtml = submitBtn.innerHTML;
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = `
+      <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white inline-block" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+      </svg>
+      در حال ثبت درخواست...
+    `;
+
+    try {
+      await submitProjectInquiry({ name, contact, type, budget, desc });
+
+      // Success Transition
+      if (isReduced) {
+        inquiryForm.classList.add('hidden');
+        successState.classList.remove('hidden');
+      } else {
+        gsap.to(inquiryForm, {
+          opacity: 0,
+          y: -15,
+          duration: 0.3,
+          onComplete: () => {
+            inquiryForm.classList.add('hidden');
+            successState.classList.remove('hidden');
+            gsap.fromTo(successState, { opacity: 0, y: 15 }, { opacity: 1, y: 0, duration: 0.4 });
+          }
+        });
+      }
+    } catch (err) {
+      showFormError("خطایی در ثبت درخواست رخ داده است. لطفاً دوباره تلاش کنید.");
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = origHtml;
+    }
+  });
+
+  // Success state Close action
+  const resetAndClose = () => {
+    inquiryForm.reset();
+    formStatus.classList.add('hidden');
+    stateInquiry.classList.add('hidden');
+    stateContact.classList.remove('hidden');
+    gsap.set([stateContact, stateInquiry, inquiryForm, successState], { clearProps: "all" });
+    closeOverlay();
+  };
+
+  successCloseBtn.addEventListener('click', resetAndClose);
 }
 
 /**
