@@ -318,6 +318,11 @@ function initStartupStory() {
   const section = document.getElementById('startup-story');
   if (!section) return;
 
+  // If the section is hidden (e.g. on mobile/tablet viewports), bypass initialization completely
+  if (window.getComputedStyle(section).display === 'none') {
+    return;
+  }
+
   // 1. Preload story images
   const imagesToPreload = [
     "assets/projects/project-04/screen-01.webp",
