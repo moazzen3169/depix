@@ -1626,7 +1626,7 @@ function initProjectDetailPage() {
   const project = projects.find(p => p.id === projectId) || projects[0];
 
   // Title update
-  document.title = `${project.title} | پورتفولیو پنترا`;
+  document.title = `${project.title} | پورتفولیو دپیکس`;
 
   // Render specifications
   let specsHTML = '';
@@ -1796,7 +1796,7 @@ function initProjectDetailPage() {
         <!-- Fast Contact CTA Card -->
         <div class="bg-gradient-to-tr from-primary-accent to-accent-hover text-white rounded-2xl p-8 text-center space-y-6 shadow-xl shadow-primary-accent/15">
           <h3 class="text-xl font-black">پروژه مشابه‌ای در ذهن دارید؟</h3>
-          <p class="text-sm opacity-90 leading-relaxed">ما در استودیو پنترا آماده‌ایم ایده خلاقانه شما را با برترین متدهای مهندسی و بصری پیاده‌سازی کنیم.</p>
+          <p class="text-sm opacity-90 leading-relaxed">ما در استودیو دپیکس آماده‌ایم ایده خلاقانه شما را با برترین متدهای مهندسی و بصری پیاده‌سازی کنیم.</p>
           <a href="index.html#contact" class="inline-flex w-full items-center justify-center py-3.5 px-6 rounded-xl text-sm font-bold bg-white text-primary-accent hover:bg-gray-50 transition-all-custom">
             شروع یک گفتگو رایگان
           </a>

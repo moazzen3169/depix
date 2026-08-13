@@ -447,9 +447,6 @@
   .h-9 {
     height: calc(var(--spacing) * 9);
   }
-  .h-10 {
-    height: calc(var(--spacing) * 10);
-  }
   .h-12 {
     height: calc(var(--spacing) * 12);
   }
@@ -542,9 +539,6 @@
   }
   .w-9 {
     width: calc(var(--spacing) * 9);
-  }
-  .w-10 {
-    width: calc(var(--spacing) * 10);
   }
   .w-12 {
     width: calc(var(--spacing) * 12);
@@ -1096,10 +1090,6 @@
     }
     --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));
   }
-  .from-fg-main {
-    --tw-gradient-from: var(--color-fg-main);
-    --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));
-  }
   .from-primary-accent {
     --tw-gradient-from: var(--color-primary-accent);
     --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));
@@ -1142,16 +1132,9 @@
     }
     --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));
   }
-  .to-muted-fg {
-    --tw-gradient-to: var(--color-muted-fg);
-    --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));
-  }
   .to-transparent {
     --tw-gradient-to: transparent;
     --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));
-  }
-  .bg-clip-text {
-    background-clip: text;
   }
   .object-contain {
     object-fit: contain;
@@ -1419,9 +1402,6 @@
   }
   .text-red-400 {
     color: var(--color-red-400);
-  }
-  .text-transparent {
-    color: transparent;
   }
   .text-white {
     color: var(--color-white);
@@ -1958,6 +1938,14 @@
     .lg\:text-7xl {
       font-size: var(--text-7xl);
       line-height: var(--tw-leading, var(--text-7xl--line-height));
+    }
+  }
+  @media (prefers-color-scheme: dark) {
+    .dark\:block {
+      display: block;
+    }
+    .dark\:hidden {
+      display: none;
     }
   }
 }
