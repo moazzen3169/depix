@@ -169,30 +169,162 @@ const projects = [
 const blogPosts = [
   {
     id: 1,
+    slug: "طراحی-فروشگاه-اینترنتی-با-نرخ-تبدیل-بالا",
     title: "چطور یک فروشگاه اینترنتی با نرخ تبدیل بالا طراحی کنیم؟",
     category: "طراحی محصول",
     date: "۱۴۰۴/۱۱/۲۰",
-    readTime: "۵ دقیقه",
+    readTime: "۶ دقیقه",
     image: "assets/projects/project-02/cover.webp",
-    url: "#"
+    excerpt: "راهنمای عملی و مهندسی‌شده برای بهینه‌سازی تجربه خرید کاربر، کاهش نرخ انصراف از سبد خرید و افزایش فروش کل.",
+    author: {
+      name: "امیرحسین رضایی",
+      role: "طراح ارشد محصول در دپیکس",
+      avatar: "assets/brand/favicon.png"
+    },
+    content: {
+      intro: "موفقیت یک فروشگاه آنلاین تنها به داشتن محصولات باکیفیت خلاصه نمی‌شود؛ نحوه ارائه محصول، سرعت بارگذاری، سادگی فرآیند پرداخت و هدایت ذهنی کاربر نقش بسیار تعیین‌کننده‌ای در نرخ تبدیل (Conversion Rate) دارند. در این مقاله به بررسی کلیدی‌ترین فاکتورهای طراحی یک E-Commerce مدرن می‌پردازیم.",
+      sections: [
+        {
+          title: "۱. اصول Show - Label - Explain در نمایش محصولات",
+          text: "کاربران در نگاه اول به دنبال تصویر روشن از محصول هستند. با رعایت سه اصل زیر، تصمیم‌گیری خریدار را تا ۵۰٪ سریع‌تر می‌کنید:",
+          list: [
+            "Show: تصویر فوق‌العاده باکیفیت و شفاف محصول بدون شلوغی‌های غیرضروری background.",
+            "Label: نشان دادن صریح ویژگی‌های کلیدی مانند سایز، رنگ، موجودی و قیمت.",
+            "Explain: توضیحات روان، کوتاه و شفاف درباره ارزش محصول و نحوه کاربرد آن."
+          ]
+        },
+        {
+          title: "۲. مقایسه متدولوژی‌های طراحی سبد خرید",
+          text: "طراحی مسیر پرداخت (Checkout Flow) یکی از حساس‌ترین بخش‌های دیزاین فروشگاهی است. جدول زیر مقایسه‌ای بین الگوی یک‌مرحله‌ای (Single-Step) و چندمرحله‌ای (Multi-Step) ارائه می‌دهد:",
+          table: {
+            headers: ["شاخص", "پرداخت یک‌مرحله‌ای (Single-Step)", "پرداخت چندمرحله‌ای (Multi-Step)"],
+            rows: [
+              ["سرعت تکمیل خرید", "فوق‌العاده سریع (زیر ۴۵ ثانیه)", "متوسط (۱ الی ۲ دقیقه)"],
+              ["میزان تمرکز کاربر", "بالا (عدم خروج از صفحه)", "امکان ریزش در مراحل میان‌بر"],
+              ["مناسب برای", "محصولات تک و خریدهای سریع", "فروشگاه‌های جامع با اطلاعات ارسال پیچیده"],
+              ["نرخ تبدیل میانگین", "۲۸٪ بالاتر", "پایدار و استاندارد"]
+            ]
+          }
+        },
+        {
+          image: "assets/projects/project-01/3.jpg",
+          caption: "نمونه‌ای از چیدمان مینیمال و کاربرمحور صفحه محصول در طراحی مدرن"
+        },
+        {
+          title: "۳. ساده‌سازی فرآیند تسویه‌حساب (Seamless Checkout)",
+          text: "حذف فرم‌های طولانی و اجبار به ثبت‌نام قبل از مشاهده سبد خرید، دو عامل اصلی انصراف خریداران است. امکان «خرید به عنوان مهمان» و ورود با شماره همراه (OTP) نرخ تکمیل سفارش را به طور چشمگیری افزایش می‌دهد.",
+          quote: "هر کلیک اضافی در مسیر تسویه‌حساب، احتمال انصراف مشتری را تا ۱۰ درصد افزایش می‌دهد."
+        },
+        {
+          title: "۴. چک‌لیست نهایی برای بهینه‌سازی فروشگاه",
+          list: [
+            "بهینه‌سازی سرعت بارگذاری تصاویر به زیر ۱.۵ ثانیه با فرمت WebP.",
+            "دسترسی‌پذیری کامل دکمه افزودن به سبد خرید در تمام نمایشگرهای موبایل.",
+            "نمایش شفاف هزینه‌های ارسال و مالیات پیش از وارد کردن اطلاعات کارت.",
+            "ارائه پشتیبانی زنده و پاسخ به پرسش‌های متداول خریداران در صفحه محصول."
+          ]
+        }
+      ]
+    }
   },
   {
     id: 2,
+    slug: "از-اتودهای-اولیه-فیگما-تا-خروجی-دموی-واقعی",
     title: "از اتودهای اولیه فیگما تا خروجی دموی واقعی وب‌سایت",
     category: "توسعه محصول",
     date: "۱۴۰۴/۱۱/۱۲",
     readTime: "۷ دقیقه",
     image: "assets/projects/project-03/cover.webp",
-    url: "#"
+    excerpt: "چگونه فاصله بین طراحان UI/UX و فرانت‌اند کاران را پر کنیم تا خروجی نهایی ۱۰۰٪ با طرح اولیه مطابقت داشته باشد.",
+    author: {
+      name: "سارا محمدی",
+      role: "مدیر فنی فرانت‌اند",
+      avatar: "assets/brand/favicon.png"
+    },
+    content: {
+      intro: "بزرگ‌ترین چالش در توسعه محصولات دیجیتال، تفاوت میان آنچه در فیگما (Figma) دیزاین می‌شود و آنچه در کد نهایی پیاده‌سازی می‌گردد است. در دپیکس، ما با اتخاذ دیزاین سیستم‌های دقیق و استانداردهای یکسان کدنوسی، این فاصله را به صفر رسانده‌ایم.",
+      sections: [
+        {
+          title: "۱. تعریف Design Tokens و همگام‌سازی با Tailwind CSS",
+          text: "به جای استفاده از مقادیر هاردکد شده رنگ و فاصله، از متغیرهای سیستماتیک (Tokens) استفاده می‌کنیم. این کار باعث جابه‌جایی بی‌نقص بین تم تاریک و روشن و حفظ یکپارچگی خطوط می‌شود.",
+          list: [
+            "تعریف دقیق پالت رنگی (Primary, Muted, Border, Background).",
+            "استفاده از گرید سیستم متناسب با Breakpointهای استاندار استاندارد.",
+            "تنظیم تایپوگرافی بومی (پیمانه‌بندی فونت پیدا در فونت‌های فارسی)."
+          ]
+        },
+        {
+          title: "۲. مقایسه ابزارهای پیاده‌سازی تعاملات بصری",
+          table: {
+            headers: ["ویژگی / ابزار", "CSS Transitions & Keyframes", "GSAP ScrollTrigger"],
+            rows: [
+              ["پیچیدگی انیمیشن", "ساده تا متوسط", "پیشرفته و چند مرحله‌ای"],
+              ["ارتباط با اسکرول", "محدود به Sticky", "کنترل دقیق Scrubbing & Pinning"],
+              ["عملکرد و کارایی", "بسیار سبک و سخت‌افزاری", "بهینه‌سازی شده با RequestAnimationFrame"],
+              ["کاربرد اصلی", "میکرو-اینتراکشن‌ها و Hover", "استوری‌تلینگ و معرفی محصولات"]
+            ]
+          }
+        },
+        {
+          image: "assets/projects/project-03/screen-01.webp",
+          caption: "تطابق کامل ساختار گرید کدهای فرانت‌اند با لایه‌های فیگما"
+        },
+        {
+          title: "۳. چک‌لیست تحویل طرح از دیزاین به کد (Handoff)",
+          text: "طراحان باید پیش از تحویل فایل، تمامی حالات دکمه‌ها (Default, Hover, Active, Disabled)، صفحات خطا و responsive سایزهای مختلف را آماده کنند.",
+          quote: "یک دیزاین سیستم قوی، زبان مشترک طراح و برنامه‌نویس است؛ نه صرفاً مجموعه‌ای از رنگ‌ها."
+        }
+      ]
+    }
   },
   {
     id: 3,
+    slug: "اهمیت-show-label-explain-در-طراحی-پورتفولیو",
     title: "اهمیت Show-Label-Explain در طراحی پورتفولیوها و صفحات فروشگاهی",
     category: "رابط کاربری UI/UX",
     date: "۱۴۰۴/۱۱/۰۵",
-    readTime: "۴ دقیقه",
+    readTime: "۵ دقیقه",
     image: "assets/projects/project-01/cover.webp",
-    url: "#"
+    excerpt: "چرا رویکرد بصری‌محور و نمایش بزرگ محصولات همراه با برچسب‌های ملموس، سریع‌ترین راه جذب اعتماد کاربر است.",
+    author: {
+      name: "امیرحسین رضایی",
+      role: "طراح ارشد محصول در دپیکس",
+      avatar: "assets/brand/favicon.png"
+    },
+    content: {
+      intro: "در دنیای امروز که زمان توجه (Attention Span) کاربران به چند ثانیه کاهش یافته است، متن‌های طولانی بدون تصویرسازی شفاف اثرگذاری خود را از دست داده‌اند. فلسفه Show-Label-Explain راهکاری نوین برای ارائه محصولات است.",
+      sections: [
+        {
+          title: "۱. بررسی سه رکن اصلی معماری اطلاعات بصری",
+          text: "این سه‌گانه بصری تضمین می‌کند که مخاطب در اولین نگاه، جوهره اصلی محصول شما را درک کند:",
+          list: [
+            "Show (نمایش): استفاده از کارت‌های بزرگ، اسکرین‌شات‌های واقعی و گیف‌های تعاملی.",
+            "Label (برچسب): عنوان‌های کوتاه و ملموس شامل شاخص‌های عددی و دسته پروژه.",
+            "Explain (توضیح): متون مختصر در دو الی سه جمله که ارزش خلق‌شده را تشریح می‌کنند."
+          ]
+        },
+        {
+          title: "۲. مقایسه تاثیر این رویکرد در تعامل کاربران",
+          table: {
+            headers: ["معیار سنحش", "طراحی متن‌محور سنتی", "طراحی به سبک Show-Label-Explain"],
+            rows: [
+              ["زمان ماندگاری کاربر در صفحه", "کوتاه (زیر ۳۰ ثانیه)", "طولانی (بیش از ۲ دقیقه)"],
+              ["درک ویژگی‌های کلیدی", "نیازمند مطالعه متن", "فوری و در یک نگاه"],
+              ["نرخ کلیک روی پروژه‌ها", "متوسط", "افزایش ۴۵ درصدی"]
+            ]
+          }
+        },
+        {
+          image: "assets/projects/project-04/1.webp",
+          caption: "نمونه‌ای از اجرای رویکرد بصری‌محور در معرفی محصولات لوکس"
+        },
+        {
+          title: "۳. نتیجه‌گیری و جمع‌بندی",
+          text: "استفاده از این ساختار بصری نه تنها در پورتفولیوها، بلکه در صفحات Landing Page محصولات SaaS و فروشگاه‌های مدرن بهترین بازخورد را خلق می‌کند.",
+          quote: "تصاویر باکیفیت صحبت می‌کنند، برچسب‌ها مسیر را نشان می‌دهند و توضیحات اعتماد می‌سازند."
+        }
+      ]
+    }
   }
 ];
 
@@ -247,6 +379,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initContactForm();
   initScrollAnimations();
   initProjectDetailPage(); // Check if we are on project.html
+  initBlogDetailPage(); // Check if we are on blog-detail.html
   initConsultationExperience(); // Initialize persistent floating CTA and overlay
 });
 
@@ -753,8 +886,7 @@ function initBlogGrid() {
 
     // Click triggers
     const readArticle = () => {
-      // simulated navigation or placeholder action
-      console.log(`Navigating to article ${post.id}`);
+      window.location.href = `blog-detail.html?slug=${encodeURIComponent(post.slug)}`;
     };
 
     card.addEventListener('click', readArticle);
@@ -1131,6 +1263,198 @@ function openCaseStudy(id) {
       openLightbox(project.screens, idx);
     });
   });
+}
+
+/**
+ * 13. Dedicated Blog Detail Page dynamic renderer (blog-detail.html)
+ */
+function initBlogDetailPage() {
+  const blogContainer = document.getElementById('blog-detail-container');
+  if (!blogContainer) return; // We are not on blog-detail.html
+
+  // Parse Persian Slug from Query String
+  const params = new URLSearchParams(window.location.search);
+  const rawSlug = params.get('slug');
+  const decodedSlug = rawSlug ? decodeURIComponent(rawSlug) : null;
+
+  // Find matching blog post by slug (or fallback to first post)
+  const post = blogPosts.find(p => p.slug === decodedSlug) || blogPosts[0];
+
+  // Update document title
+  document.title = `${post.title} | وبلاگ دپیکس`;
+
+  // Build rendered HTML for post content sections
+  let sectionsHTML = '';
+  if (post.content && post.content.sections) {
+    sectionsHTML = post.content.sections.map(sec => {
+      let partHTML = '';
+
+      // Section Title
+      if (sec.title) {
+        partHTML += `<h2 class="text-xl sm:text-2xl font-black text-fg-main mt-10 mb-4">${sec.title}</h2>`;
+      }
+
+      // Paragraph Text
+      if (sec.text) {
+        partHTML += `<p class="text-base sm:text-lg text-muted-fg leading-relaxed mb-6">${sec.text}</p>`;
+      }
+
+      // Bullet List
+      if (sec.list && Array.isArray(sec.list)) {
+        partHTML += `
+          <ul class="space-y-3 mb-8 pr-2">
+            ${sec.list.map(item => `
+              <li class="flex items-start gap-3 text-base text-fg-main font-medium">
+                <span class="w-2 h-2 rounded-full bg-primary-accent mt-2.5 flex-shrink-0"></span>
+                <span class="leading-relaxed">${item}</span>
+              </li>
+            `).join('')}
+          </ul>
+        `;
+      }
+
+      // Table Rendering
+      if (sec.table) {
+        partHTML += `
+          <div class="my-8 overflow-x-auto rounded-2xl border border-border-subtle bg-card-bg shadow-sm">
+            <table class="w-full text-right text-sm">
+              <thead class="bg-muted-bg/80 border-b border-border-subtle text-fg-main font-extrabold">
+                <tr>
+                  ${sec.table.headers.map(h => `<th class="px-5 py-4">${h}</th>`).join('')}
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-border-subtle/50 text-muted-fg">
+                ${sec.table.rows.map(row => `
+                  <tr class="hover:bg-muted-bg/30 transition-colors">
+                    ${row.map((cell, idx) => `
+                      <td class="px-5 py-4 ${idx === 0 ? 'font-bold text-fg-main' : ''}">${cell}</td>
+                    `).join('')}
+                  </tr>
+                `).join('')}
+              </tbody>
+            </table>
+          </div>
+        `;
+      }
+
+      // Section Image
+      if (sec.image) {
+        partHTML += `
+          <figure class="my-8 space-y-3">
+            <div class="overflow-hidden rounded-2xl border border-border-subtle bg-muted-bg/50 aspect-[16/9]">
+              <img src="${sec.image}" alt="${sec.caption || post.title}" class="w-full h-full object-cover">
+            </div>
+            ${sec.caption ? `<figcaption class="text-xs text-center text-muted-fg font-medium">${sec.caption}</figcaption>` : ''}
+          </figure>
+        `;
+      }
+
+      // Quote Block
+      if (sec.quote) {
+        partHTML += `
+          <blockquote class="my-8 p-6 rounded-2xl bg-primary-accent/5 border-r-4 border-primary-accent space-y-2">
+            <p class="text-base sm:text-lg font-bold text-fg-main leading-relaxed">« ${sec.quote} »</p>
+          </blockquote>
+        `;
+      }
+
+      return partHTML;
+    }).join('');
+  }
+
+  // Related Blog Posts (Exclude current, take up to 2)
+  const relatedPosts = blogPosts.filter(p => p.id !== post.id).slice(0, 2);
+  let relatedHTML = '';
+  relatedPosts.forEach(rp => {
+    relatedHTML += `
+      <div onclick="window.location.href='blog-detail.html?slug=${encodeURIComponent(rp.slug)}'" class="group bg-card-bg border border-border-subtle rounded-2xl overflow-hidden hover:border-primary-accent/40 hover:shadow-xl transition-all duration-300 cursor-pointer">
+        <div class="aspect-[16/10] overflow-hidden bg-muted-bg/50">
+          <img src="${rp.image}" alt="${rp.title}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-103">
+        </div>
+        <div class="p-6 text-right space-y-3">
+          <div class="flex items-center justify-between">
+            <span class="text-xs text-primary-accent font-bold">${rp.category}</span>
+            <span class="text-xs text-muted-fg font-medium">${rp.readTime} مطالعه</span>
+          </div>
+          <h4 class="text-base font-extrabold text-fg-main group-hover:text-primary-accent transition-colors line-clamp-2">${rp.title}</h4>
+        </div>
+      </div>
+    `;
+  });
+
+  // Inject into Blog Detail Container
+  blogContainer.innerHTML = `
+    <!-- Header & Navigation Breadcrumb -->
+    <div class="space-y-6 text-right">
+      <nav class="flex items-center gap-2 text-xs font-semibold text-muted-fg">
+        <a href="index.html" class="hover:text-primary-accent transition-colors">خانه</a>
+        <span>/</span>
+        <a href="index.html#blog" class="hover:text-primary-accent transition-colors">وبلاگ</a>
+        <span>/</span>
+        <span class="text-fg-main truncate max-w-[200px] sm:max-w-none">${post.title}</span>
+      </nav>
+
+      <div class="space-y-4">
+        <div class="inline-flex items-center gap-3">
+          <span class="px-3.5 py-1.5 rounded-full bg-primary-accent/10 border border-primary-accent/20 text-xs font-extrabold text-primary-accent">${post.category}</span>
+          <span class="text-xs text-muted-fg font-medium">• ${post.readTime} مطالعه</span>
+          <span class="text-xs text-muted-fg font-medium">• ${post.date}</span>
+        </div>
+
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black text-fg-main leading-tight tracking-tight">${post.title}</h1>
+        <p class="text-base sm:text-xl text-muted-fg leading-relaxed">${post.excerpt}</p>
+      </div>
+
+      <!-- Author Bar -->
+      <div class="flex items-center gap-4 py-4 border-y border-border-subtle/60">
+        <div class="w-12 h-12 rounded-full border border-border-subtle bg-primary-accent/10 flex items-center justify-center p-1 overflow-hidden">
+          <img src="${post.author.avatar}" alt="${post.author.name}" class="w-full h-full object-cover">
+        </div>
+        <div class="text-right">
+          <p class="text-sm font-extrabold text-fg-main">${post.author.name}</p>
+          <p class="text-xs text-muted-fg font-medium mt-0.5">${post.author.role}</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Feature Image -->
+    <div class="my-10 overflow-hidden rounded-3xl border border-border-subtle bg-muted-bg/50 aspect-[16/9] shadow-xl">
+      <img src="${post.image}" alt="${post.title}" class="w-full h-full object-cover">
+    </div>
+
+    <!-- Article Content -->
+    <article class="prose max-w-none text-right space-y-6">
+      <p class="text-lg sm:text-xl text-fg-main font-semibold leading-relaxed border-b border-border-subtle/50 pb-8">${post.content.intro}</p>
+      ${sectionsHTML}
+    </article>
+
+    <!-- Call To Action Box -->
+    <div class="mt-16 bg-muted-bg/50 border border-border-subtle rounded-3xl p-8 sm:p-10 text-center space-y-6">
+      <h3 class="text-2xl font-black text-fg-main">می‌خواهید ایده‌تان را به یک محصول واقعی تبدیل کنید؟</h3>
+      <p class="text-sm sm:text-base text-muted-fg max-w-xl mx-auto leading-relaxed">تیم دپیکس آماده است در تمام مراحل طراحی، توسعه فرانت‌اند و مهندسی سیستم همراه شما باشد.</p>
+      <div class="flex justify-center">
+        <a href="index.html#contact" class="px-8 py-4 rounded-xl text-sm font-bold text-white bg-primary-accent hover:bg-accent-hover shadow-xl shadow-primary-accent/20 transition-all">
+          دریافت مشاوره تخصصی
+        </a>
+      </div>
+    </div>
+
+    <!-- Related Articles Section -->
+    ${relatedHTML ? `
+    <div class="mt-20 border-t border-border-subtle/60 pt-16 space-y-8 text-right">
+      <div class="flex items-center justify-between">
+        <h3 class="text-2xl font-black text-fg-main">مقالات مرتبط</h3>
+        <a href="index.html#blog" class="text-xs sm:text-sm font-bold text-primary-accent hover:gap-2.5 transition-all flex items-center gap-1.5">
+          <span>همه مقالات</span>
+          <span class="transform rotate-180">←</span>
+        </a>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        ${relatedHTML}
+      </div>
+    </div>
+    ` : ''}
+  `;
 }
 
 /**
