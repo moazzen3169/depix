@@ -11,7 +11,7 @@ const projects = [
     category: "ecommerce",
     categoryLabel: "فروشگاه آنلاین کفش · خرید سریع و آسان",
     year: "۱۴۰۴",
-    cover: "assets/projects/project-01/cover.webp",
+    cover: "./assets/projects/project-01/cover.webp",
     type: "website",
     featured: true,
     specs: {
@@ -25,10 +25,10 @@ const projects = [
       ]
     },
     screens: [
-      "assets/projects/project-01/cover.webp",
-      "assets/projects/project-01/3.jpg",
-      "assets/projects/project-01/4.jpg",
-      "assets/projects/project-01/screen-01.webp",
+      "./assets/projects/project-01/cover.webp",
+      "./assets/projects/project-01/3.jpg",
+      "./assets/projects/project-01/4.jpg",
+      "./assets/projects/project-01/screen-01.webp",
     ],
     description: "«کفشام» یک وب‌سایت مدرن و بسیار کاربرپسند برای فروشگاه آنلاین کفش است. در طراحی این سایت تمرکز اصلی روی نمایش شفاف محصولات و خرید آسان در ۳ کلیک بوده است تا مشتریان بدون معطلی کفش مورد نظرشان را انتخاب و خریداری کنند."
   },
@@ -52,9 +52,9 @@ const projects = [
       ]
     },
     screens: [
-      "assets/projects/project-02/1.webp",
-      "assets/projects/project-02/2.webp",
-      "assets/projects/project-02/3.webp"
+      "./assets/projects/project-02/1.webp",
+      "./assets/projects/project-02/2.webp",
+      "./assets/projects/project-02/3.webp"
     ],
     description: "«چمپینگ» یک فروشگاه اینترنتی جذاب برای تجهیزات کمپینگ، کوهنوردی و سفر است. چیدمان صفحات طوری انجام شده که مشتریان به راحتی وسایل مورد نیاز خود را پیدا کرده و سفارششان را ثبت کنند."
   },
@@ -64,7 +64,7 @@ const projects = [
     category: "ecommerce",
     categoryLabel: "فروشگاه آنلاین پوشاک و مد",
     year: "۱۴۰۴",
-    cover: "assets/projects/project-03/cover.webp",
+    cover: "./assets/projects/project-03/cover.webp",
     type: "website",
     featured: false,
     specs: {
@@ -78,9 +78,8 @@ const projects = [
       ]
     },
     screens: [
-      "assets/projects/project-03/cover.webp",
-      "assets/projects/project-03/screen-01.webp",
-      "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=80&w=1200&auto=format&fit=crop"
+      "./assets/projects/project-03/cover.webp",
+      "./assets/projects/project-03/screen-01.webp",
     ],
     description: "«پنتر» یک سایت شیک و لوکس برای فروشگاه‌های لباس و مزون‌های پوشاک است. ظاهر مرتب و تیره سایت باعث می‌شود لباس‌ها و جزئیات بافت پارچه به زیبایی به چشم بیایند."
   },
@@ -90,7 +89,7 @@ const projects = [
     category: "ecommerce",
     categoryLabel: "فروشگاه لوکس ساعت و اکسسوری",
     year: "۱۴۰۴",
-    cover: "assets/projects/project-04/1.webp",
+    cover: "./assets/projects/project-04/1.webp",
     type: "website",
     featured: true,
     specs: {
@@ -104,9 +103,9 @@ const projects = [
       ]
     },
     screens: [
-      "assets/projects/project-04/1.webp",
-      "assets/projects/project-04/2.webp",
-      "assets/projects/project-04/3.webp"
+      "./assets/projects/project-04/1.webp",
+      "./assets/projects/project-04/2.webp",
+      "./assets/projects/project-04/3.webp"
     ],
     description: "«تایم‌لند» یک فروشگاه فوق‌العاده شیک برای گالری‌های ساعت مچی و اکسسوری‌های خاص است. استفاده از فونت‌های چشم‌نواز و افکت‌های ملایم، احساس حضور در یک مغازه شیک را به مشتری منتقل می‌کند."
   },
@@ -116,7 +115,7 @@ const projects = [
     category: "ecommerce",
     categoryLabel: "فروشگاه آنلاین غذا و لوازم حیوانات خانگی",
     year: "۱۴۰۳",
-    cover: "assets/projects/project-05/1.webp",
+    cover: "./assets/projects/project-05/1.webp",
     type: "website",
     featured: false,
     specs: {
@@ -130,9 +129,9 @@ const projects = [
       ]
     },
     screens: [
-      "assets/projects/project-05/1.webp",
-      "assets/projects/project-05/2.webp",
-      "assets/projects/project-05/3.jpg"
+      "./assets/projects/project-05/1.webp",
+      "./assets/projects/project-05/2.webp",
+      "./assets/projects/project-05/3.jpg"
     ],
     description: "«پت شاپ پت من» یک وب‌سایت شاداب و صمیمی برای خرید غذا و لوازم حیوانات خانگی است. دسته‌بندی‌های واضح گربه، سگ و پرندگان باعث می‌شود خریداران در سریع‌ترین زمان کالای مدنظر را انتخاب کنند."
   },
@@ -142,7 +141,7 @@ const projects = [
     category: "saas",
     categoryLabel: "سامانه آنلاین رزرو گیم‌نت",
     year: "۱۴۰۴",
-    cover: "assets/projects/sayra/ps-1.webp",
+    cover: "./assets/projects/sayra/ps-1.webp",
     type: "saas",
     featured: false,
     specs: {
@@ -156,10 +155,10 @@ const projects = [
       ]
     },
     screens: [
-      "assets/projects/sayra/ps-1.webp",
-      "assets/projects/sayra/ps-2.webp",
-      "assets/projects/sayra/ps-3.webp",
-      "assets/projects/sayra/ps-4.webp"
+      "./assets/projects/sayra/ps-1.webp",
+      "./assets/projects/sayra/ps-2.webp",
+      "./assets/projects/sayra/ps-3.webp",
+      "./assets/projects/sayra/ps-4.webp"
     ],
     description: "«سایرا» یک برنامه آنلاین کاربردی برای رزرو سیستم‌ها و کنسول‌های گیم‌نت است. این سیستم به مالکان گیم‌نت اجازه می‌دهد سیستم‌ها را مدیریت کنند و بازیکنان بدون معطلی و تداخل، زمان بازی خود را آنلاین رزرو کنند."
   }
@@ -174,12 +173,12 @@ const blogPosts = [
     category: "رشد کسب‌وکار",
     date: "۱۴۰۴/۱۱/۲۰",
     readTime: "۶ دقیقه",
-    image: "assets/projects/project-02/1.webp",
+    image: "./assets/projects/project-02/1.webp",
     excerpt: "یک سایت ضعیف فقط یک آدرس اینترنتی است؛ اما یک سایت حرفه‌ای می‌تواند به جذب مشتری، افزایش اعتماد و افزایش فروش کمک کند.",
     author: {
       name: "امیرحسین رضایی",
       role: "طراح ارشد محصول در دپیکس",
-      avatar: "assets/brand/favicon.png"
+      avatar: "./assets/brand/favicon.png"
     },
     content: {
       intro: "امروز داشتن یک وب‌سایت دیگر یک مزیت لوکس برای کسب‌وکارها نیست؛ در بسیاری از حوزه‌ها، سایت یکی از اولین جاهایی است که مشتری برای شناخت و ارزیابی یک برند به آن مراجعه می‌کند.\n\nاما یک سؤال مهم وجود دارد:\n\n**آیا هر سایتی می‌تواند به رشد کسب‌وکار کمک کند؟**\n\nپاسخ کوتاه: **نه.**\n\nیک سایت ضعیف فقط یک آدرس اینترنتی است؛ اما یک سایت حرفه‌ای می‌تواند به جذب مشتری، افزایش اعتماد و حتی افزایش فروش کمک کند.",
@@ -260,12 +259,12 @@ const blogPosts = [
     category: "تعرفه‌ها و هزینه‌ها",
     date: "۱۴۰۴/۱۱/۱۲",
     readTime: "۸ دقیقه",
-    image: "assets/projects/project-03/cover.webp",
+    image: "./assets/projects/project-03/cover.webp",
     excerpt: "بررسی تعرفه‌های سال ۱۴۰۵، بازه تقریبی قیمت‌ها و مهم‌ترین عوامل موثر بر هزینه طراحی وب‌سایت و فروشگاه اینترنتی.",
     author: {
       name: "سارا محمدی",
       role: "مدیر فنی فرانت‌اند",
-      avatar: "assets/brand/favicon.png"
+      avatar: "./assets/brand/favicon.png"
     },
     content: {
       intro: "اگر قصد راه‌اندازی یک وب‌سایت برای کسب‌وکارتان را داشته باشید، احتمالاً یکی از اولین سؤال‌هایی که به ذهنتان می‌رسد این است:\n\n**«طراحی سایت چقدر هزینه دارد؟»**\n\nپاسخ ساده‌ای برای این سؤال وجود ندارد.\n\nهزینه طراحی سایت می‌تواند از چند ده میلیون تومان شروع شود و برای پروژه‌های اختصاصی و پیچیده به صدها میلیون تومان برسد. دلیل این اختلاف قیمت هم معمولاً تفاوت در **نوع سایت، امکانات، طراحی، تکنولوژی و میزان شخصی‌سازی پروژه** است. بررسی قیمت‌های منتشرشده در بازار ۱۴۰۵ نیز همین اختلاف قابل‌توجه را نشان می‌دهد.\n\nبنابراین بهتر است به‌جای اینکه فقط دنبال «ارزان‌ترین قیمت» باشید، بدانید **برای چه سایتی و با چه امکاناتی هزینه پرداخت می‌کنید.**",
@@ -404,12 +403,12 @@ const blogPosts = [
     category: "معماری محصول",
     date: "۱۴۰۴/۱۱/۰۵",
     readTime: "۷ دقیقه",
-    image: "assets/projects/project-01/cover.webp",
+    image: "./assets/projects/project-01/cover.webp",
     excerpt: "مقایسه کامل طراحی اختصاصی وب‌سایت در برابر قالب‌های آماده؛ بررسی مزایا، معایب، هزینه‌های پنهان و مقیاس‌پذیری.",
     author: {
       name: "امیرحسین رضایی",
       role: "طراح ارشد محصول در دپیکس",
-      avatar: "assets/brand/favicon.png"
+      avatar: "./assets/brand/favicon.png"
     },
     content: {
       intro: "اگر تصمیم گرفته‌اید برای کسب‌وکارتان سایت راه‌اندازی کنید، احتمالاً خیلی زود با دو انتخاب روبه‌رو می‌شوید:\n\n**قالب آماده یا طراحی سایت اختصاصی؟**\n\nدر نگاه اول، قالب آماده انتخاب جذاب‌تری به نظر می‌رسد؛ هزینه کمتر، راه‌اندازی سریع‌تر و امکاناتی که از قبل آماده شده‌اند.\n\nاما یک سؤال مهم وجود دارد:\n\n**آیا هدف شما فقط داشتن یک سایت است، یا می‌خواهید سایت بخشی از رشد کسب‌وکارتان باشد؟**\n\nپاسخ به همین سؤال می‌تواند مسیر انتخاب شما را مشخص کند.",
@@ -723,11 +722,11 @@ function initStartupStory() {
 
   // 1. Preload story images
   const imagesToPreload = [
-    "assets/projects/sayra/ps-0.webp",
-    "assets/projects/sayra/ps-1.webp",
-    "assets/projects/sayra/ps-2.webp",
-    "assets/projects/sayra/ps-3.webp",
-    "assets/projects/sayra/ps-4.webp"
+    "./assets/projects/sayra/ps-0.webp",
+    "./assets/projects/sayra/ps-1.webp",
+    "./assets/projects/sayra/ps-2.webp",
+    "./assets/projects/sayra/ps-3.webp",
+    "./assets/projects/sayra/ps-4.webp"
   ];
   imagesToPreload.forEach(src => {
     const img = new Image();
