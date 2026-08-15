@@ -26,8 +26,9 @@ const projects = [
     },
     screens: [
       "assets/projects/project-01/cover.webp",
+      "assets/projects/project-01/3.jpg",
+      "assets/projects/project-01/4.jpg",
       "assets/projects/project-01/screen-01.webp",
-      "https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=1200&auto=format&fit=crop"
     ],
     description: "«کفشام» یک طرح اولیه (پروتوتایپ) فوق‌العاده مدرن و مینیمال برای یک فروشگاه آنلاین کفش ورزشی و روزمره است. تمرکز اصلی دیزاین این پروژه روی Show-Label-Explain بوده تا محصول با کیفیت بالا نمایش داده شده و دکمه‌های فراخوانی به اقدام (CTA) در دسترس‌ترین حالت ممکن باشند. این دمو تمام پویایی‌های لازم برای پیاده‌سازی نهایی را در خود دارد."
   },
@@ -37,7 +38,7 @@ const projects = [
     category: "ecommerce",
     categoryLabel: "فروشگاه لوازم کمپینگ · طرح اولیه پوسته",
     year: "۱۴۰۴",
-    cover: "assets/projects/project-02/cover.webp",
+    cover: "assets/projects/project-02/1.webp",
     type: "website",
     featured: false,
     specs: {
@@ -51,9 +52,9 @@ const projects = [
       ]
     },
     screens: [
-      "assets/projects/project-02/cover.webp",
-      "assets/projects/project-02/screen-01.webp",
-      "https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?q=80&w=1200&auto=format&fit=crop"
+      "assets/projects/project-02/1.webp",
+      "assets/projects/project-02/2.webp",
+      "assets/projects/project-02/3.webp"
     ],
     description: "«چمپینگ» طرح اولیه و دموی جذاب برای یک وب‌سایت فروشگاه تجهیزات کمپینگ، کوهنوردی و سفرهای آفرودی است. رابط کاربری آن با استفاده از رنگ‌های الهام‌گرفته از طبیعت و چیدمان‌های گرید نامتقارن، مخاطب را غرق در دنیای سفر می‌کند. این پروژه تجربه کاربری خرید تجهیزات را به شدت لذت‌بخش و ساده می‌سازد."
   },
@@ -89,7 +90,7 @@ const projects = [
     category: "ecommerce",
     categoryLabel: "فروشگاه لوکس ساعت · طرح اولیه پوسته",
     year: "۱۴۰۴",
-    cover: "assets/projects/project-04/cover.webp",
+    cover: "assets/projects/project-04/1.webp",
     type: "website",
     featured: true, // another featured layout
     specs: {
@@ -103,9 +104,9 @@ const projects = [
       ]
     },
     screens: [
-      "assets/projects/project-04/cover.webp",
-      "assets/projects/project-04/screen-01.webp",
-      "https://images.unsplash.com/photo-1524592094714-0f0654e20314?q=80&w=1200&auto=format&fit=crop"
+      "assets/projects/project-04/1.webp",
+      "assets/projects/project-04/2.webp",
+      "assets/projects/project-04/3.webp"
     ],
     description: "«تایم‌لند» یک طرح اولیه بسیار مجلل برای گالری‌های ساعت مچی لوکس و گران‌قیمت است. استفاده از تایپوگرافی چشم‌نواز، اسکرول‌های نرم هدایت‌شده و ترکیب رنگی خاص، احساس حضور در یک شعبه فیزیکی شیک را شبیه‌سازی می‌کند. این محصول با انیمیشن‌های مبتنی بر اسکرول به خوبی پتانسیل بالای خود را نمایش می‌دهد."
   },
@@ -115,7 +116,7 @@ const projects = [
     category: "ecommerce",
     categoryLabel: "فروشگاه لوازم و خوراک حیوانات · طرح اولیه پوسته",
     year: "۱۴۰۳",
-    cover: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=1200&auto=format&fit=crop",
+    cover: "assets/projects/project-05/1.webp",
     type: "website",
     featured: false,
     specs: {
@@ -129,8 +130,9 @@ const projects = [
       ]
     },
     screens: [
-      "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=1200&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?q=80&w=1200&auto=format&fit=crop"
+      "assets/projects/project-05/1.webp",
+      "assets/projects/project-05/2.webp",
+      "assets/projects/project-05/3.jpg"
     ],
     description: "«پت شاپ پت من» یک طرح اولیه و دموی پویا با لحنی شاداب و صمیمی برای خرید غذا و لوازم جانبی حیوانات خانگی است. فرآیند تفکیک دسته‌بندی گربه, سگ و پرندگان در این دمو با آیکون‌های سفارشی تراز اول طراحی شده است تا صاحبان حیوانات در سریع‌ترین زمان و با کمترین کلیک به کالای مدنظر خود دسترسی پیدا کنند."
   },
@@ -140,7 +142,7 @@ const projects = [
     category: "saas",
     categoryLabel: "سامانه هوشمند رزرو گیم‌نت · در حال آماده‌سازی",
     year: "۱۴۰۴",
-    cover: "assets/projects/sayra/ps-0.webp",
+    cover: "assets/projects/sayra/ps-1.webp",
     type: "saas",
     featured: false,
     specs: {
@@ -154,7 +156,6 @@ const projects = [
       ]
     },
     screens: [
-      "assets/projects/sayra/ps-0.webp",
       "assets/projects/sayra/ps-1.webp",
       "assets/projects/sayra/ps-2.webp",
       "assets/projects/sayra/ps-3.webp",
@@ -1979,7 +1980,7 @@ function initProjectDetailPage() {
   let specsHTML = '';
   if (project.specs) {
     specsHTML = `
-      <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 border-y border-border-subtle py-8">
+      <div class="grid grid-cols-1 sm:grid-cols-1 gap-6 border-y border-border-subtle py-8">
         <div>
           <p class="text-[11px] text-muted-fg font-bold uppercase tracking-wider">نوع پروژه</p>
           <p class="text-base font-extrabold text-fg-main mt-1">${project.specs.type}</p>
@@ -2111,10 +2112,6 @@ function initProjectDetailPage() {
 
         <!-- Slider with images -->
         <div class="space-y-3">
-          <div class="flex items-center justify-between">
-            <span class="text-xs text-muted-fg">جهت بزرگنمایی تصویر روی آن کلیک کنید</span>
-            <span class="text-xs text-primary-accent font-bold">ورق بزنید</span>
-          </div>
           ${sliderHTML}
         </div>
 
