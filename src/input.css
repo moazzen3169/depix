@@ -1,171 +1,171 @@
-@import "tailwindcss";
+  @import "tailwindcss";
 
-@custom-variant dark (&:where(.dark, .dark *));
+  @custom-variant dark (&:where(.dark, .dark *));
 
-@theme {
-  --color-bg-main: var(--background);
-  --color-fg-main: var(--foreground);
-  --color-muted-bg: var(--muted);
-  --color-muted-fg: var(--muted-foreground);
-  --color-primary-accent: var(--primary);
-  --color-primary-fg: var(--primary-foreground);
-  --color-border-subtle: var(--border);
-  --color-accent-hover: var(--accent);
-  --color-card-bg: var(--card);
-  --color-card-fg: var(--card-foreground);
+  @theme {
+    --color-bg-main: var(--background);
+    --color-fg-main: var(--foreground);
+    --color-muted-bg: var(--muted);
+    --color-muted-fg: var(--muted-foreground);
+    --color-primary-accent: var(--primary);
+    --color-primary-fg: var(--primary-foreground);
+    --color-border-subtle: var(--border);
+    --color-accent-hover: var(--accent);
+    --color-card-bg: var(--card);
+    --color-card-fg: var(--card-foreground);
 
-  --radius-custom: var(--radius);
-}
-
-@font-face {
-  font-family: "Peyda";
-  src: url("./fonts/Peyda-Thin.woff2") format("woff2");
-  font-weight: 100;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Peyda";
-  src: url("./fonts/peyda-light.woff2") format("woff2");
-  font-weight: 300;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Peyda";
-  src: url("./fonts/Peyda-Medium.woff2") format("woff2");
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Peyda";
-  src: url("./fonts/Peyda-Bold.woff2") format("woff2");
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Peyda";
-  src: url("./fonts/Peyda-black.woff2") format("woff2");
-  font-weight: 900;
-  font-style: normal;
-  font-display: swap;
-}
-
-@layer base {
-  :root {
-    --background: #0A0A0B;
-    --foreground: #F5F5F5;
-    --muted: #111113;
-    --muted-foreground: #A1A1AA;
-    --primary: #4F46E5; /* Indigo accent */
-    --primary-foreground: #FFFFFF;
-    --border: #27272A;
-    --radius: 0.75rem;
-    --accent: #6366F1;
-    --card: #0F0F11;
-    --card-foreground: #F5F5F5;
+    --radius-custom: var(--radius);
   }
 
-  :root.light {
-    --background: #FAFAFA;
-    --foreground: #09090B;
-    --muted: #F4F4F5;
-    --muted-foreground: #71717A;
-    --primary: #4F46E5;
-    --primary-foreground: #FFFFFF;
-    --border: #E4E4E7;
-    --radius: 0.75rem;
-    --accent: #4F46E5;
-    --card: #FFFFFF;
-    --card-foreground: #09090B;
+  @font-face {
+    font-family: "Peyda";
+    src: url("././public/assets/fonts/Peyda-Thin.woff2") format("woff2");
+    font-weight: 100;
+    font-style: normal;
+    font-display: swap;
   }
 
-  body {
-    background-color: var(--background);
-    color: var(--foreground);
-    font-family: 'Peyda', system-ui, -apple-system, sans-serif;
-    transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
-    overflow-x: hidden;
+  @font-face {
+    font-family: "Peyda";
+    src: url("./fonts/peyda-light.woff2") format("woff2");
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
   }
 
-  /* Accessible focus rings */
-  a:focus-visible,
-  button:focus-visible,
-  input:focus-visible,
-  textarea:focus-visible,
-  select:focus-visible {
-    outline: 2px solid var(--primary);
-    outline-offset: 4px;
+  @font-face {
+    font-family: "Peyda";
+    src: url("./fonts/Peyda-Medium.woff2") format("woff2");
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
   }
-}
 
-/* Custom visual utilities */
-.glass {
-  background: rgba(10, 10, 11, 0.75);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-}
-
-.light .glass {
-  background: rgba(250, 250, 250, 0.8);
-}
-
-/* Premium Consultation Overlay Classes & Pulse animation */
-@keyframes consultationPulse {
-  0% {
-    transform: scale(0.9);
-    opacity: 0.5;
+  @font-face {
+    font-family: "Peyda";
+    src: url("./fonts/Peyda-Bold.woff2") format("woff2");
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
   }
-  50% {
-    transform: scale(1.1);
-    opacity: 1;
-  }
-  100% {
-    transform: scale(0.9);
-    opacity: 0.5;
-  }
-}
 
-.consultation-dot-pulse {
-  animation: consultationPulse 3s infinite ease-in-out;
-}
+  @font-face {
+    font-family: "Peyda";
+    src: url("./fonts/Peyda-black.woff2") format("woff2");
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+  }
 
-@media (prefers-reduced-motion: reduce) {
+  @layer base {
+    :root {
+      --background: #0A0A0B;
+      --foreground: #F5F5F5;
+      --muted: #111113;
+      --muted-foreground: #A1A1AA;
+      --primary: #4F46E5; /* Indigo accent */
+      --primary-foreground: #FFFFFF;
+      --border: #27272A;
+      --radius: 0.75rem;
+      --accent: #6366F1;
+      --card: #0F0F11;
+      --card-foreground: #F5F5F5;
+    }
+
+    :root.light {
+      --background: #FAFAFA;
+      --foreground: #09090B;
+      --muted: #F4F4F5;
+      --muted-foreground: #71717A;
+      --primary: #4F46E5;
+      --primary-foreground: #FFFFFF;
+      --border: #E4E4E7;
+      --radius: 0.75rem;
+      --accent: #4F46E5;
+      --card: #FFFFFF;
+      --card-foreground: #09090B;
+    }
+
+    body {
+      background-color: var(--background);
+      color: var(--foreground);
+      font-family: 'Peyda', system-ui, -apple-system, sans-serif;
+      transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+      overflow-x: hidden;
+    }
+
+    /* Accessible focus rings */
+    a:focus-visible,
+    button:focus-visible,
+    input:focus-visible,
+    textarea:focus-visible,
+    select:focus-visible {
+      outline: 2px solid var(--primary);
+      outline-offset: 4px;
+    }
+  }
+
+  /* Custom visual utilities */
+  .glass {
+    background: rgba(10, 10, 11, 0.75);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+  }
+
+  .light .glass {
+    background: rgba(250, 250, 250, 0.8);
+  }
+
+  /* Premium Consultation Overlay Classes & Pulse animation */
+  @keyframes consultationPulse {
+    0% {
+      transform: scale(0.9);
+      opacity: 0.5;
+    }
+    50% {
+      transform: scale(1.1);
+      opacity: 1;
+    }
+    100% {
+      transform: scale(0.9);
+      opacity: 0.5;
+    }
+  }
+
   .consultation-dot-pulse {
-    animation: none !important;
+    animation: consultationPulse 3s infinite ease-in-out;
   }
-}
 
-/* Scrollbar styling */
-::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
-}
-::-webkit-scrollbar-track {
-  background: var(--background);
-}
-::-webkit-scrollbar-thumb {
-  background: var(--border);
-  border-radius: 4px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: var(--muted-foreground);
-}
+  @media (prefers-reduced-motion: reduce) {
+    .consultation-dot-pulse {
+      animation: none !important;
+    }
+  }
 
-/* Persian typography overrides and smoothing */
-p, h1, h2, h3, h4, h5, h6, span, a, button, label, input, textarea {
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+  /* Scrollbar styling */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--background);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--border);
+    border-radius: 4px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--muted-foreground);
+  }
 
-/* Micro interaction transitions */
-.transition-all-custom {
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-}
+  /* Persian typography overrides and smoothing */
+  p, h1, h2, h3, h4, h5, h6, span, a, button, label, input, textarea {
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Micro interaction transitions */
+  .transition-all-custom {
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  }
