@@ -7,163 +7,160 @@
 const projects = [
   {
     id: 1,
-    title: "فروشگاه بزرگ آریا",
+    title: "کفشام",
     category: "ecommerce",
-    categoryLabel: "فروشگاه اینترنتی · طراحی و توسعه",
+    categoryLabel: "فروشگاه کفش · طراحی اولیه پوسته",
     year: "۱۴۰۴",
     cover: "assets/projects/project-01/cover.webp",
     type: "website",
     featured: true, // featured card takes wider space
     specs: {
-      type: "سامانه خرید و فروش آنلاین",
-      duration: "۸ هفته",
-      techs: ["Next.js", "Node.js", "PostgreSQL", "Tailwind CSS", "Redis"],
+      type: "طرح اولیه فروشگاه هوشمند کفش",
+      duration: "۴ هفته",
+      techs: ["Figma", "Tailwind CSS", "JavaScript", "HTML5"],
       metrics: [
-        { label: "افزایش نرخ تبدیل", value: "+۴۲٪" },
-        { label: "زمان بارگذاری لایت‌هاوس", value: "۰.۸ ثانیه" },
-        { label: "رضایت مشتری", value: "۱۰۰٪" }
+        { label: "سرعت لود لایت‌هاوس", value: "۹۸٪" },
+        { label: "تسهیل فرآیند خرید", value: "+۳۰٪" },
+        { label: "زمان طراحی پروتوتایپ", value: "۳ هفته" }
       ]
     },
     screens: [
       "assets/projects/project-01/cover.webp",
       "assets/projects/project-01/screen-01.webp",
-      "https://images.unsplash.com/photo-1557821552-17105176677c?q=80&w=1200&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1200&auto=format&fit=crop"
+      "https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=1200&auto=format&fit=crop"
     ],
-    description: "سامانه هوشمند و پیشرفته خرید اینترنتی با قابلیت فیلترینگ پیشرفته، سرعت بارگذاری خارق‌العاده و درگاه پرداخت پایدار. این سیستم با استفاده از مدرن‌ترین الگوهای معماری نرم‌افزار پیاده‌سازی شده و قادر است هزاران تراکنش همزمان را با کمترین تاخیر پردازش کند. رابط کاربری آن به طور کامل با رویکرد Mobile-First و بهینه‌سازی دقیق تجربه خرید در بستر RTL طراحی شده است."
+    description: "«کفشام» یک طرح اولیه (پروتوتایپ) فوق‌العاده مدرن و مینیمال برای یک فروشگاه آنلاین کفش ورزشی و روزمره است. تمرکز اصلی دیزاین این پروژه روی Show-Label-Explain بوده تا محصول با کیفیت بالا نمایش داده شده و دکمه‌های فراخوانی به اقدام (CTA) در دسترس‌ترین حالت ممکن باشند. این دمو تمام پویایی‌های لازم برای پیاده‌سازی نهایی را در خود دارد."
   },
   {
     id: 2,
-    title: "داشبورد هوش مصنوعی تابان",
-    category: "dashboard",
-    categoryLabel: "داشبورد اطلاعاتی · رابط کاربری",
+    title: "چمپینگ",
+    category: "ecommerce",
+    categoryLabel: "فروشگاه لوازم کمپینگ · طرح اولیه پوسته",
     year: "۱۴۰۴",
     cover: "assets/projects/project-02/cover.webp",
-    type: "dashboard",
+    type: "website",
     featured: false,
     specs: {
-      type: "پنل معاملاتی هوشمند",
-      duration: "۱۰ هفته",
-      techs: ["React", "Python", "Tailwind CSS", "ECharts", "FastAPI"],
+      type: "پوسته پیشرفته تجهیزات مسافرتی",
+      duration: "۵ هفته",
+      techs: ["Figma", "HTML5", "CSS3", "JavaScript"],
       metrics: [
-        { label: "بهبود راندمان تحلیل", value: "+۳۵٪" },
-        { label: "کاربران فعال همزمان", value: "۲۵,۰۰۰+" },
-        { label: "دقت پیش‌بینی مدل", value: "۹۴.۲٪" }
+        { label: "بهینه‌سازی نرخ تبدیل تجربی", value: "+۴۰٪" },
+        { label: "امتیاز دسترسی‌پذیری", value: "۱۰۰/۱۰۰" },
+        { label: "تعداد صفحات نمونه‌سازی شده", value: "۶ صفحه" }
       ]
     },
     screens: [
       "assets/projects/project-02/cover.webp",
       "assets/projects/project-02/screen-01.webp",
-      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1200&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?q=80&w=1200&auto=format&fit=crop"
+      "https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?q=80&w=1200&auto=format&fit=crop"
     ],
-    description: "پنل معاملاتی پیشرفته جهت پایش هوشمند ارز دیجیتال و سهام با ویجت‌های کاملاً پویا و زنده. پلتفرم تابان با تحلیل الگوهای پیچیده قیمتی و استفاده از چارت‌های تعاملی با عملکرد رندر بالا، یکی از کاربرپسندترین داشبوردهای مدیریتی در بازار مالی کشور به شمار می‌رود."
+    description: "«چمپینگ» طرح اولیه و دموی جذاب برای یک وب‌سایت فروشگاه تجهیزات کمپینگ، کوهنوردی و سفرهای آفرودی است. رابط کاربری آن با استفاده از رنگ‌های الهام‌گرفته از طبیعت و چیدمان‌های گرید نامتقارن، مخاطب را غرق در دنیای سفر می‌کند. این پروژه تجربه کاربری خرید تجهیزات را به شدت لذت‌بخش و ساده می‌سازد."
   },
   {
     id: 3,
-    title: "وب‌اپلیکیشن مدیریت وظایف نکسا",
-    category: "saas",
-    categoryLabel: "نرم‌افزار تحت وب · SaaS",
-    year: "۱۴۰۳",
+    title: "پنتر",
+    category: "ecommerce",
+    categoryLabel: "فروشگاه لباس مردانه · طراحی اولیه پوسته",
+    year: "۱۴۰۴",
     cover: "assets/projects/project-03/cover.webp",
-    type: "saas",
+    type: "website",
     featured: false,
     specs: {
-      type: "پلتفرم مدیریت پروژه تیمی",
-      duration: "۶ هفته",
-      techs: ["Vue.js", "Laravel", "MySQL", "Tailwind CSS", "Socket.io"],
+      type: "دموی فروشگاه پوشاک و مد مدرن",
+      duration: "۴ هفته",
+      techs: ["Figma", "Tailwind CSS", "JavaScript", "Interactions"],
       metrics: [
-        { label: "کاهش چرخه کاری", value: "-۲۸٪" },
-        { label: "کاربران فعال روزانه", value: "۱۵,۰۰۰+" },
-        { label: "افزایش راندمان تیمی", value: "۵۰٪+" }
+        { label: "طراحی مینیمال و کلاسیک", value: "پرمیوم" },
+        { label: "سرعت اجرای دمو", value: "زیر ۱ ثانیه" },
+        { label: "رضایت در ارزیابی اوليه", value: "۹۵٪" }
       ]
     },
     screens: [
       "assets/projects/project-03/cover.webp",
       "assets/projects/project-03/screen-01.webp",
-      "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1200&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1531403009284-440f080d1e12?q=80&w=1200&auto=format&fit=crop"
+      "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=80&w=1200&auto=format&fit=crop"
     ],
-    description: "سامانه بومی تسهیل کار تیمی و مدیریت چابک وظایف سازمانی منطبق بر متدولوژی اسکرام. این وب‌اپلیکیشن با ارائه بردهای کانبان پیشرفته، زمان‌بندی دقیق فعالیت‌ها، سیستم گفتگوی بلادرنگ درون تیمی و اعلان‌های هوشمند، تجربه مدیریت پروژه را ارتقا می‌دهد."
+    description: "«پنتر» یک پوسته مدرن و لوکس برای فروشگاه‌های زنجیره‌ای یا مزون‌های پوشاک مردانه است. دیزاین تیره-کلاسیک این طرح اولیه به همراه انیمیشن‌های ملایم، اصالت برند را به رخ می‌کشد. ساختار گرید آن به شکلی بهینه شده که جزئیات بافت پارچه و الگوهای لباس در کانون توجه مشتریان قرار گیرد."
   },
   {
     id: 4,
-    title: "لندینگ پیج آژانس خلاق مهر",
-    category: "landing",
-    categoryLabel: "صفحه فرود · طراحی مدرن",
+    title: "تایم‌لند",
+    category: "ecommerce",
+    categoryLabel: "فروشگاه لوکس ساعت · طرح اولیه پوسته",
     year: "۱۴۰۴",
     cover: "assets/projects/project-04/cover.webp",
-    type: "landing",
+    type: "website",
     featured: true, // another featured layout
     specs: {
-      type: "کمپین بازاریابی دیجیتال",
-      duration: "۴ هفته",
-      techs: ["HTML5", "Vanilla JS", "Tailwind CSS", "GSAP", "Three.js"],
+      type: "طراحی پوسته اختصاصی اکسسوری لوکس",
+      duration: "۵ هفته",
+      techs: ["Figma", "GSAP", "Tailwind CSS", "HTML5"],
       metrics: [
-        { label: "افزایش نرخ جذب لید", value: "+۸۴٪" },
-        { label: "امتیاز Lighthouse", value: "۹۹/۱۰۰" },
-        { label: "کاهش نرخ خروج", value: "-۳۰٪" }
+        { label: "شاخص جذابیت بصری", value: "+۸۸٪" },
+        { label: "هماهنگی کامل با موبایل", value: "۱۰۰٪" },
+        { label: "تعداد کامپوننت پویا", value: "۲۴+" }
       ]
     },
     screens: [
       "assets/projects/project-04/cover.webp",
       "assets/projects/project-04/screen-01.webp",
-      "https://images.unsplash.com/photo-1541462608141-2758a6e4559c?q=80&w=1200&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1522542550221-31fd19575a2d?q=80&w=1200&auto=format&fit=crop"
+      "https://images.unsplash.com/photo-1524592094714-0f0654e20314?q=80&w=1200&auto=format&fit=crop"
     ],
-    description: "صفحه فرود خیره‌کننده آژانس خلاق مهر همراه با جلوه‌های بصری پویا، انیمیشن‌های تعاملی فوق‌العاده و ساختار فنی کاملاً بهینه. این لندینگ پیج با استفاده از گرافیک سه‌بعدی سبک و اصول بازاریابی بصری، نرخ تبدیل مخاطبان به مشتریان بالقوه را متحول ساخته است."
+    description: "«تایم‌لند» یک طرح اولیه بسیار مجلل برای گالری‌های ساعت مچی لوکس و گران‌قیمت است. استفاده از تایپوگرافی چشم‌نواز، اسکرول‌های نرم هدایت‌شده و ترکیب رنگی خاص، احساس حضور در یک شعبه فیزیکی شیک را شبیه‌سازی می‌کند. این محصول با انیمیشن‌های مبتنی بر اسکرول به خوبی پتانسیل بالای خود را نمایش می‌دهد."
   },
   {
     id: 5,
-    title: "پورتال سلامت دیجیتال سینا",
-    category: "saas",
-    categoryLabel: "سامانه درمانی · طراحی و توسعه",
+    title: "پت شاپ پت من",
+    category: "ecommerce",
+    categoryLabel: "فروشگاه لوازم و خوراک حیوانات · طرح اولیه پوسته",
     year: "۱۴۰۳",
     cover: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=1200&auto=format&fit=crop",
-    type: "saas",
+    type: "website",
     featured: false,
     specs: {
-      type: "پرونده الکترونیک و نوبت‌دهی",
-      duration: "۱۲ هفته",
-      techs: ["Next.js", "Django", "PostgreSQL", "WebRTC", "Docker"],
+      type: "پوسته اختصاصی خدمات و محصولات حیوانات خانگی",
+      duration: "۳ هفته",
+      techs: ["Figma", "Tailwind CSS", "HTML5", "Vanilla JS"],
       metrics: [
-        { label: "پزشکان فعال", value: "۱,۲۰۰+" },
-        { label: "نوبت‌دهی موفق ماهانه", value: "۸۰,۰۰۰+" },
-        { label: "سرعت رزرو نوبت", value: "زیر ۳ ثانیه" }
+        { label: "زمان ثبت نهایی سبد", value: "کاهش ۳۵٪" },
+        { label: "رضایت در تجربه تستی", value: "۹۸٪" },
+        { label: "امتیاز رنگ‌بندی و شادابی", value: "عالی" }
       ]
     },
     screens: [
       "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=1200&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?q=80&w=1200&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1200&auto=format&fit=crop"
+      "https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?q=80&w=1200&auto=format&fit=crop"
     ],
-    description: "سامانه ملی نوبت‌دهی آنلاین، پرونده الکترونیک سلامت و مشاوره‌های تصویری بلادرنگ. این پروژه با رعایت پیشرفته‌ترین استانداردهای امنیت داده‌های پزشکی و طراحی رابط کاربری ساده برای تمامی رده‌های سنی، تجربه درمان آنلاین را بازتعریف کرده است."
+    description: "«پت شاپ پت من» یک طرح اولیه و دموی پویا با لحنی شاداب و صمیمی برای خرید غذا و لوازم جانبی حیوانات خانگی است. فرآیند تفکیک دسته‌بندی گربه, سگ و پرندگان در این دمو با آیکون‌های سفارشی تراز اول طراحی شده است تا صاحبان حیوانات در سریع‌ترین زمان و با کمترین کلیک به کالای مدنظر خود دسترسی پیدا کنند."
   },
   {
     id: 6,
-    title: "داشبورد لجستیک کارا",
-    category: "dashboard",
-    categoryLabel: "سامانه لجستیک · داشبورد",
+    title: "Sayra",
+    category: "saas",
+    categoryLabel: "سامانه هوشمند رزرو گیم‌نت · در حال آماده‌سازی",
     year: "۱۴۰۴",
-    cover: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=1200&auto=format&fit=crop",
-    type: "dashboard",
+    cover: "assets/projects/sayra/ps-0.webp",
+    type: "saas",
     featured: false,
     specs: {
-      type: "مدیریت ناوگان و ردیابی آنی",
+      type: "استارت‌آپ یکپارچه مدیریت و رزرو آنلاین گیم‌سنتورها",
       duration: "۹ هفته",
-      techs: ["React", "Node.js", "MongoDB", "Mapbox API", "WebSockets"],
+      techs: ["Next.js", "Node.js", "PostgreSQL", "Socket.io", "Tailwind CSS"],
       metrics: [
-        { label: "بهبود مسیرهای توزیع", value: "+۲۲٪" },
-        { label: "ردیابی زنده خودروها", value: "۵۰۰+" },
-        { label: "کاهش زمان دلیوری", value: "-۱۸٪" }
+        { label: "ثبت رزرو بلادرنگ", value: "زیر ۱ ثانیه" },
+        { label: "اتصال به سیستم کلاینت گیم‌نت", value: "تست موفق" },
+        { label: "کاهش خطای همپوشانی رزرو", value: "۱۰۰٪" }
       ]
     },
     screens: [
-      "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=1200&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1200&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1200&auto=format&fit=crop"
+      "assets/projects/sayra/ps-0.webp",
+      "assets/projects/sayra/ps-1.webp",
+      "assets/projects/sayra/ps-2.webp",
+      "assets/projects/sayra/ps-3.webp",
+      "assets/projects/sayra/ps-4.webp"
     ],
-    description: "پورتال جامع لجستیکی برای مدیریت، هماهنگی و رصد لحظه‌ای خودروهای باربری و وضعیت انبارهای هلدینگ کارا. این سیستم مجهز به الگوریتم هوشمند بهینه‌سازی مسیر جهت کاهش مصرف سوخت و زمان ارسال کالا می‌باشد."
+    description: "«سایرا» یک وب‌اپلیکیشن و پلتفرم بومی پیشرو برای رزرو سیستم‌ها، کنسول‌ها و اتاق‌های VIP گیم‌نت‌ها و گیم‌سنترهای کشور است. این پروژه هم‌اکنون مراحل توسعه فنی و آماده‌سازی نهایی را سپری می‌کند. پنل مدیریت آن به مالکان اجازه می‌دهد سیستم‌ها را مانیتور کرده و سیستم رزرو آنلاین بلادرنگ بر بستر سوکت، مانع از هرگونه خطای تداخل زمانی برای گیمرها می‌شود."
   }
 ];
 
@@ -171,27 +168,27 @@ const projects = [
 const blogPosts = [
   {
     id: 1,
-    title: "چطور یک داشبورد حرفه‌ای طراحی کنیم؟",
+    title: "چطور یک فروشگاه اینترنتی با نرخ تبدیل بالا طراحی کنیم؟",
     category: "طراحی محصول",
-    date: "۱۴۰۵/۰۵/۲۰",
+    date: "۱۴۰۴/۱۱/۲۰",
     readTime: "۵ دقیقه",
     image: "assets/projects/project-02/cover.webp",
     url: "#"
   },
   {
     id: 2,
-    title: "از Figma تا محصول واقعی",
+    title: "از اتودهای اولیه فیگما تا خروجی دموی واقعی وب‌سایت",
     category: "توسعه محصول",
-    date: "۱۴۰۵/۰۵/۱۲",
+    date: "۱۴۰۴/۱۱/۱۲",
     readTime: "۷ دقیقه",
     image: "assets/projects/project-03/cover.webp",
     url: "#"
   },
   {
     id: 3,
-    title: "چرا Design System مهم است؟",
-    category: "UI/UX",
-    date: "۱۴۰۵/۰۵/۰۵",
+    title: "اهمیت Show-Label-Explain در طراحی پورتفولیوها و صفحات فروشگاهی",
+    category: "رابط کاربری UI/UX",
+    date: "۱۴۰۴/۱۱/۰۵",
     readTime: "۴ دقیقه",
     image: "assets/projects/project-01/cover.webp",
     url: "#"
@@ -266,8 +263,10 @@ function initTheme() {
   const applyTheme = (theme) => {
     if (theme === 'light') {
       document.documentElement.classList.add('light');
+      document.documentElement.classList.remove('dark');
     } else {
       document.documentElement.classList.remove('light');
+      document.documentElement.classList.add('dark');
     }
     localStorage.setItem('theme', theme);
     updateToggleIcons(theme);
@@ -366,11 +365,11 @@ function initStartupStory() {
 
   // 1. Preload story images
   const imagesToPreload = [
-    "assets/projects/project-04/screen-01.webp",
-    "assets/projects/project-02/screen-01.webp",
-    "assets/projects/project-01/cover.webp",
-    "assets/projects/project-03/screen-01.webp",
-    "assets/projects/project-03/cover.webp"
+    "assets/projects/sayra/ps-0.webp",
+    "assets/projects/sayra/ps-1.webp",
+    "assets/projects/sayra/ps-2.webp",
+    "assets/projects/sayra/ps-3.webp",
+    "assets/projects/sayra/ps-4.webp"
   ];
   imagesToPreload.forEach(src => {
     const img = new Image();
@@ -391,12 +390,12 @@ function initStartupStory() {
   const desktopProgressFill = document.getElementById('story-desktop-progress-fill');
 
   // Step information
-  const stepsData = {
-    1: { num: "۰۱", title: "کشف نیاز و مسئله", desc: "تحلیل چالش‌های عمیق مدیریت پروژه در تیم‌های توزیع‌شده و کشف خلأهای موجود در ابزارهای فعلی بازار." },
-    2: { num: "۰۲", title: "ایده‌پردازی و ساختار", desc: "مهندسی سناریوها و پیاده‌سازی متدولوژی‌های مدیریت چابک (Agile) جهت ساده‌سازی وظایف چندلایه و پیچیده." },
-    3: { num: "۰۳", title: "طراحی رابط و تجربه کاربری", desc: "طراحی پروتوتایپ‌های تعاملی، سیستم‌های بصری مدرن و معماری اطلاعات متمرکز در بستر دیزاین سیستم اختصاصی." },
-    4: { num: "۰۴", title: "توسعه پیشرفته و مهندسی", desc: "کدنویسی بهینه فرانت‌اند، طراحی میکروسرویس‌های فوق‌سریع بک‌اند و یکپارچه‌سازی وب‌سوکت‌ها برای تعاملات همزمان." },
-    5: { num: "۰۵", title: "محصول نهایی و عرضه موفق", desc: "عرضه نهایی پلتفرم نکسا با نرخ پایداری بالا، سرعت رندر عالی زیر ۱ ثانیه و جلب رضایت حداکثری کسب‌وکارهای مدرن." }
+    const stepsData = {
+    1: { num: "۰۱", title: "کشف نیاز و مسئله", desc: "تحلیل دغدغه‌های کلیدی گیمرها برای رزرو سیستم‌های حرفه‌ای گیم‌نت‌ها بدون تداخل و اتلاف وقت ارزشمندشان." },
+    2: { num: "۰۲", title: "ایده‌پردازی و ساختار", desc: "مدل‌سازی پلتفرم یکپارچه ابری برای رزرو بلادرنگ سیستم‌ها, کنسول‌ها و اتاق‌های VIP گیم‌سنترها." },
+    3: { num: "۰۳", title: "طراحی رابط و تجربه کاربری", desc: "طراحی پروتوتایپ‌های تیره و نئونی جذاب مطابق با سلیقه گیمرها و ایجاد پنل مدیریتی برای مالکان." },
+    4: { num: "۰۴", title: "توسعه پیشرفته و مهندسی", desc: "کدنویسی فرانت‌اند با Next.js و پیاده‌سازی وب‌سوکت‌ها (Socket.io) برای رزرو و به‌روزرسانی لحظه‌ای سیستم‌ها." },
+    5: { num: "۰۵", title: "محصول نهایی و عرضه موفق", desc: "آماده‌سازی پلتفرم سایرا با هدف تسخیر بازار تفریحات دیجیتال و ارائه خدمات بی‌وقفه به جامعه بزرگ گیمرهای کشور." }
   };
 
   // Check reduced motion

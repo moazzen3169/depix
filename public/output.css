@@ -462,6 +462,9 @@
   .h-9 {
     height: calc(var(--spacing) * 9);
   }
+  .h-10 {
+    height: calc(var(--spacing) * 10);
+  }
   .h-12 {
     height: calc(var(--spacing) * 12);
   }
@@ -560,6 +563,9 @@
   }
   .w-9 {
     width: calc(var(--spacing) * 9);
+  }
+  .w-10 {
+    width: calc(var(--spacing) * 10);
   }
   .w-12 {
     width: calc(var(--spacing) * 12);
@@ -1659,6 +1665,9 @@
     .group-hover\:border-primary-accent:is(:where(.group):hover *) {
       border-color: var(--color-primary-accent);
     }
+    .group-hover\:bg-primary-accent:is(:where(.group):hover *) {
+      background-color: var(--color-primary-accent);
+    }
     .group-hover\:bg-primary-accent\/10:is(:where(.group):hover *) {
       background-color: var(--color-primary-accent);
     }
@@ -1669,6 +1678,9 @@
     }
     .group-hover\:text-primary-accent:is(:where(.group):hover *) {
       color: var(--color-primary-accent);
+    }
+    .group-hover\:text-white:is(:where(.group):hover *) {
+      color: var(--color-white);
     }
     .group-hover\:opacity-100:is(:where(.group):hover *) {
       opacity: 100%;
@@ -1708,6 +1720,9 @@
       --tw-scale-y: 105%;
       --tw-scale-z: 105%;
       scale: var(--tw-scale-x) var(--tw-scale-y);
+    }
+    .hover\:scale-\[1\.01\]:hover {
+      scale: 1.01;
     }
     .hover\:scale-\[1\.02\]:hover {
       scale: 1.02;
@@ -1815,6 +1830,9 @@
   }
   .active\:scale-\[0\.98\]:active {
     scale: 0.98;
+  }
+  .active\:scale-\[0\.99\]:active {
+    scale: 0.99;
   }
   @media (width >= 40rem) {
     .sm\:ml-10 {
@@ -2030,13 +2048,11 @@
       line-height: var(--tw-leading, var(--text-7xl--line-height));
     }
   }
-  @media (prefers-color-scheme: dark) {
-    .dark\:block {
-      display: block;
-    }
-    .dark\:hidden {
-      display: none;
-    }
+  .dark\:block:where(.dark, .dark *) {
+    display: block;
+  }
+  .dark\:hidden:where(.dark, .dark *) {
+    display: none;
   }
 }
 @font-face {
