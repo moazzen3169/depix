@@ -176,7 +176,7 @@ const blogPosts = [
     image: "./assets/projects/project-02/1.webp",
     excerpt: "یک سایت ضعیف فقط یک آدرس اینترنتی است؛ اما یک سایت حرفه‌ای می‌تواند به جذب مشتری، افزایش اعتماد و افزایش فروش کمک کند.",
     author: {
-      name: "امیرحسین رضایی",
+      name: "هادی موذن",
       role: "طراح ارشد محصول در دپیکس",
       avatar: "./assets/brand/favicon.png"
     },
@@ -262,7 +262,7 @@ const blogPosts = [
     image: "./assets/projects/project-03/cover.webp",
     excerpt: "بررسی تعرفه‌های سال ۱۴۰۵، بازه تقریبی قیمت‌ها و مهم‌ترین عوامل موثر بر هزینه طراحی وب‌سایت و فروشگاه اینترنتی.",
     author: {
-      name: "سارا محمدی",
+      name: "هادی موذن",
       role: "مدیر فنی فرانت‌اند",
       avatar: "./assets/brand/favicon.png"
     },
@@ -406,7 +406,7 @@ const blogPosts = [
     image: "./assets/projects/project-01/cover.webp",
     excerpt: "مقایسه کامل طراحی اختصاصی وب‌سایت در برابر قالب‌های آماده؛ بررسی مزایا، معایب، هزینه‌های پنهان و مقیاس‌پذیری.",
     author: {
-      name: "امیرحسین رضایی",
+      name: "هادی موذن",
       role: "طراح ارشد محصول در دپیکس",
       avatar: "./assets/brand/favicon.png"
     },
