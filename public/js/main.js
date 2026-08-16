@@ -2201,16 +2201,22 @@ function initContactForm() {
         body: JSON.stringify(payload)
       });
 
-      const result = await response.json();
+      let result;
+      try {
+        result = await response.json();
+      } catch (jsonErr) {
+        throw new Error('پاسخ دریافت شده از سرور معتبر نیست.');
+      }
 
-      if (response.ok && result.success) {
+      if (response.ok && result && result.success === true) {
         showStatus('success', result.message || 'درخواست شما با موفقیت ثبت شد!');
         form.reset();
       } else {
-        showStatus('error', result.message || 'خطایی در ثبت اطلاعات رخ داده است.');
+        const errorMsg = (result && result.message) ? result.message : 'خطایی در ثبت اطلاعات رخ داده است.';
+        showStatus('error', errorMsg);
       }
     } catch (err) {
-      showStatus('error', 'ارتباط با سرور برقرار نشد. لطفاً اتصال اینترنت خود را بررسی کنید.');
+      showStatus('error', err.message || 'ارتباط با سرور برقرار نشد. لطفاً اتصال اینترنت خود را بررسی کنید.');
     } finally {
       if (btn) {
         btn.disabled = false;
@@ -2490,9 +2496,15 @@ function initConsultationExperience() {
       body: JSON.stringify(payload)
     });
 
-    const result = await response.json();
-    if (!response.ok || !result.success) {
-      throw new Error(result.message || 'خطایی در ثبت اطلاعات رخ داده است.');
+    let result;
+    try {
+      result = await response.json();
+    } catch (jsonErr) {
+      throw new Error('پاسخ دریافت شده از سرور معتبر نیست.');
+    }
+
+    if (!response.ok || !result || result.success !== true) {
+      throw new Error((result && result.message) ? result.message : 'خطایی در ثبت اطلاعات رخ داده است.');
     }
     return result;
   }
