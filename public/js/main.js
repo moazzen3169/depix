@@ -11,7 +11,7 @@ const projects = [
     category: "ecommerce",
     categoryLabel: "فروشگاه آنلاین کفش · خرید سریع و آسان",
     year: "۱۴۰۴",
-    cover: "./assets/projects/project-01/cover.webp",
+    cover: "./assets/projects/kafsham/cover.webp",
     type: "website",
     featured: true,
     specs: {
@@ -25,10 +25,9 @@ const projects = [
       ]
     },
     screens: [
-      "./assets/projects/project-01/cover.webp",
-      "./assets/projects/project-01/3.webp",
-      "./assets/projects/project-01/4.webp",
-      "./assets/projects/project-01/screen-01.webp",
+      "./assets/projects/kafsham/kafsham-detail.webp",
+      "./assets/projects/kafsham/kafsham-list.webp",
+      "./assets/projects/kafsham/cover.webp",
     ],
     description: "«کفشام» یک وب‌سایت مدرن و بسیار کاربرپسند برای فروشگاه آنلاین کفش است. در طراحی این سایت تمرکز اصلی روی نمایش شفاف محصولات و خرید آسان در ۳ کلیک بوده است تا مشتریان بدون معطلی کفش مورد نظرشان را انتخاب و خریداری کنند."
   },
@@ -38,7 +37,7 @@ const projects = [
     category: "ecommerce",
     categoryLabel: "فروشگاه لوازم کمپینگ و سفر",
     year: "۱۴۰۴",
-    cover: "assets/projects/project-02/1.webp",
+    cover: "assets/projects/champing/1.webp",
     type: "website",
     featured: false,
     specs: {
@@ -52,9 +51,10 @@ const projects = [
       ]
     },
     screens: [
-      "./assets/projects/project-02/1.webp",
-      "./assets/projects/project-02/2.webp",
-      "./assets/projects/project-02/3.webp"
+      "./assets/projects/champing/camping-PAGE.jpg",
+      "./assets/projects/champing/camping-DETAIL.webp",
+      "./assets/projects/champing/camping-LIST.webp",
+      "./assets/projects/champing/camping-ordering.webp",
     ],
     description: "«چمپینگ» یک فروشگاه اینترنتی جذاب برای تجهیزات کمپینگ، کوهنوردی و سفر است. چیدمان صفحات طوری انجام شده که مشتریان به راحتی وسایل مورد نیاز خود را پیدا کرده و سفارششان را ثبت کنند."
   },
@@ -64,7 +64,7 @@ const projects = [
     category: "ecommerce",
     categoryLabel: "فروشگاه آنلاین پوشاک و مد",
     year: "۱۴۰۴",
-    cover: "./assets/projects/project-03/cover.webp",
+    cover: "./assets/projects/panter/cover.webp",
     type: "website",
     featured: false,
     specs: {
@@ -78,8 +78,10 @@ const projects = [
       ]
     },
     screens: [
-      "./assets/projects/project-03/cover.webp",
-      "./assets/projects/project-03/screen-01.webp",
+      "./assets/projects/panter/panter-main.jpg",
+      "./assets/projects/panter/panter-DETAL.jpg",
+      "./assets/projects/panter/panter-list.jpg",
+      "./assets/projects/panter/panter.jpg",
     ],
     description: "«پنتر» یک سایت شیک و لوکس برای فروشگاه‌های لباس و مزون‌های پوشاک است. ظاهر مرتب و تیره سایت باعث می‌شود لباس‌ها و جزئیات بافت پارچه به زیبایی به چشم بیایند."
   },
@@ -89,7 +91,7 @@ const projects = [
     category: "ecommerce",
     categoryLabel: "فروشگاه لوکس ساعت و اکسسوری",
     year: "۱۴۰۴",
-    cover: "./assets/projects/project-04/1.webp",
+    cover: "./assets/projects/watch/cover.webp",
     type: "website",
     featured: true,
     specs: {
@@ -103,9 +105,10 @@ const projects = [
       ]
     },
     screens: [
-      "./assets/projects/project-04/1.webp",
-      "./assets/projects/project-04/2.webp",
-      "./assets/projects/project-04/3.webp"
+      "./assets/projects/watch/watch-home.jpg",
+      "./assets/projects/watch/watch-detail.jpg",
+      "./assets/projects/watch/watch-list.jpg",
+      "./assets/projects/watch/watch-ordering.jpg",
     ],
     description: "«تایم‌لند» یک فروشگاه فوق‌العاده شیک برای گالری‌های ساعت مچی و اکسسوری‌های خاص است. استفاده از فونت‌های چشم‌نواز و افکت‌های ملایم، احساس حضور در یک مغازه شیک را به مشتری منتقل می‌کند."
   },
@@ -115,7 +118,7 @@ const projects = [
     category: "ecommerce",
     categoryLabel: "فروشگاه آنلاین غذا و لوازم حیوانات خانگی",
     year: "۱۴۰۳",
-    cover: "./assets/projects/project-05/1.webp",
+    cover: "./assets/projects/petshop/2.webp",
     type: "website",
     featured: false,
     specs: {
@@ -129,9 +132,10 @@ const projects = [
       ]
     },
     screens: [
-      "./assets/projects/project-05/1.webp",
-      "./assets/projects/project-05/2.webp",
-      "./assets/projects/project-05/3.webp"
+      "./assets/projects/petshop/petshop-LANDING-PAGE.jpg",
+      "./assets/projects/petshop/petshop-detail.jpg",
+      "./assets/projects/petshop/petshop-list.jpg",
+      "./assets/projects/petshop/petshop-ordering.jpg",
     ],
     description: "«پت شاپ پت من» یک وب‌سایت شاداب و صمیمی برای خرید غذا و لوازم حیوانات خانگی است. دسته‌بندی‌های واضح گربه، سگ و پرندگان باعث می‌شود خریداران در سریع‌ترین زمان کالای مدنظر را انتخاب کنند."
   },
@@ -161,7 +165,60 @@ const projects = [
       "./assets/projects/sayra/ps-4.webp"
     ],
     description: "«سایرا» یک برنامه آنلاین کاربردی برای رزرو سیستم‌ها و کنسول‌های گیم‌نت است. این سیستم به مالکان گیم‌نت اجازه می‌دهد سیستم‌ها را مدیریت کنند و بازیکنان بدون معطلی و تداخل، زمان بازی خود را آنلاین رزرو کنند."
-  }
+  },
+  {
+    id: 7,
+    title: "ابزارچی",
+    category: "ecommerce",
+    categoryLabel: "فروشگاه آبزارآلات خانگی و صنعتی",
+    year: "۱۴۰۴",
+    cover: "./assets/projects/abzarchee/abzaercheee.webp",
+    type: "saas",
+    featured: false,
+    specs: {
+      type: "سامانه رزرو و مدیریت سیستم‌های گیم‌نت",
+      duration: "۹ هفته",
+      techs: ["رزرو لحظه‌ای", "پنل مدیریت", "اعلان پیامکی"],
+      metrics: [
+        { label: "سرعت ثبت رزرو", value: "زیر ۱ ثانیه" },
+        { label: "تست عملکرد", value: "موفق" },
+        { label: "جلوگیری از تداخل رزرو", value: "۱۰۰٪" }
+      ]
+    },
+    screens: [
+      "./assets/projects/abzarchee/abzaercheee.webp",
+      "./assets/projects/abzarchee/abzaercheee-detail.webp",
+      "./assets/projects/abzarchee/abzaercheee-list.webp",
+    ],
+    description: "«سایرا» یک برنامه آنلاین کاربردی برای رزرو سیستم‌ها و کنسول‌های گیم‌نت است. این سیستم به مالکان گیم‌نت اجازه می‌دهد سیستم‌ها را مدیریت کنند و بازیکنان بدون معطلی و تداخل، زمان بازی خود را آنلاین رزرو کنند."
+  },
+  {
+    id: 8,
+    title: " مدمن" ,
+    category: "ecommerce",
+    categoryLabel: "فروشگاه آنلاین پوشاک و مد",
+    year: "۱۴۰۴",
+    cover: "./assets/projects/modeman/modam-main.jpg",
+    type: "saas",
+    featured: false,
+    specs: {
+      type: "سامانه رزرو و مدیریت سیستم‌های گیم‌نت",
+      duration: "۹ هفته",
+      techs: ["رزرو لحظه‌ای", "پنل مدیریت", "اعلان پیامکی"],
+      metrics: [
+        { label: "سرعت ثبت رزرو", value: "زیر ۱ ثانیه" },
+        { label: "تست عملکرد", value: "موفق" },
+        { label: "جلوگیری از تداخل رزرو", value: "۱۰۰٪" }
+      ]
+    },
+    screens: [
+      "./assets/projects/modeman/modam-main.jpg",
+      "./assets/projects/modeman/modam-DETAL.jpg",
+      "./assets/projects/modeman/modam-list.jpg",
+      "./assets/projects/modeman/modam-ordering.jpg"
+    ],
+    description: "«سایرا» یک برنامه آنلاین کاربردی برای رزرو سیستم‌ها و کنسول‌های گیم‌نت است. این سیستم به مالکان گیم‌نت اجازه می‌دهد سیستم‌ها را مدیریت کنند و بازیکنان بدون معطلی و تداخل، زمان بازی خود را آنلاین رزرو کنند."
+  },
 ];
 
 // Global state for Blog Posts
