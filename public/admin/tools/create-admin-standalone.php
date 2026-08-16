@@ -1,24 +1,16 @@
 <?php
 /**
- * Administrator Initial Creation Tool
- *
- * Secure tool to create the single Administrator account.
- * Supports execution via CLI (preferred) and Web setup fallback (disabled automatically after 1st admin creation).
+ * Administrator Initial Creation Tool (Standalone)
  */
 
-// Error handling - avoid leaking sensitive details to browser
 ini_set('display_errors', 0);
 error_reporting(E_ALL);
 
-// Load Database Connection with robust path resolution for all deployment layouts
 $configPath = null;
 $possiblePaths = [
-    __DIR__ . '/../config/database.php',
     __DIR__ . '/../../config/database.php',
     __DIR__ . '/../../../config/database.php',
-    __DIR__ . '/../public/config/database.php',
-    __DIR__ . '/../../public/config/database.php',
-    __DIR__ . '/../database.php'
+    __DIR__ . '/../config/database.php'
 ];
 
 foreach ($possiblePaths as $path) {
@@ -33,16 +25,13 @@ if (!$configPath) {
         echo "Error: Database configuration file not found.\n";
     } else {
         http_response_code(500);
-        echo "خطا در بارگذاری فایل پیکربندی دیتابیس. لطفاً مسیر فایل config/database.php را بررسی کنید.";
+        echo "خطا در بارگذاری فایل پیکربندی دیتابیس.";
     }
     exit(1);
 }
 
 require_once $configPath;
 
-/**
- * Ensures admin_users table exists
- */
 function ensureAdminTableExists(PDO $pdo): void {
     $sql = "CREATE TABLE IF NOT EXISTS admin_users (
         id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
@@ -59,18 +48,12 @@ function ensureAdminTableExists(PDO $pdo): void {
     $pdo->exec($sql);
 }
 
-/**
- * Checks if any admin exists
- */
 function countExistingAdmins(PDO $pdo): int {
     ensureAdminTableExists($pdo);
     $stmt = $pdo->query("SELECT COUNT(*) FROM admin_users");
     return (int) $stmt->fetchColumn();
 }
 
-/**
- * Validates password strength
- */
 function validatePasswordStrength(string $password): array {
     $errors = [];
     if (mb_strlen($password, 'UTF-8') < 8) {
@@ -88,9 +71,6 @@ function validatePasswordStrength(string $password): array {
     return $errors;
 }
 
-/**
- * Creates single admin user
- */
 function createAdminUser(PDO $pdo, string $username, string $password): bool {
     ensureAdminTableExists($pdo);
 
@@ -106,7 +86,6 @@ function createAdminUser(PDO $pdo, string $username, string $password): bool {
     ]);
 }
 
-// Check database connection and admin count
 $isCli = (php_sapi_name() === 'cli');
 
 try {
@@ -123,7 +102,6 @@ try {
     exit(1);
 }
 
-// Single Admin Restriction Check
 if ($adminCount > 0) {
     if ($isCli) {
         echo "Error: An admin account already exists. Multiple administrator accounts are not allowed.\n";
@@ -139,14 +117,12 @@ if ($adminCount > 0) {
     }
 }
 
-// --- CLI EXECUTION ---
 if ($isCli) {
     echo "========================================\n";
     echo " Depix Digital Product Studio\n";
     echo " Initial Admin Setup Utility\n";
     echo "========================================\n\n";
 
-    // Read username
     echo "Enter Admin Username: ";
     $username = trim((string) fgets(STDIN));
 
@@ -155,11 +131,9 @@ if ($isCli) {
         exit(1);
     }
 
-    // Read password
     echo "Enter Admin Password: ";
     $password = trim((string) fgets(STDIN));
 
-    // Read password confirmation
     echo "Confirm Admin Password: ";
     $confirmPassword = trim((string) fgets(STDIN));
 
@@ -188,7 +162,6 @@ if ($isCli) {
     }
 }
 
-// --- WEB EXECUTION FALLBACK (Active ONLY if 0 admins exist) ---
 $errorMessage = '';
 $successMessage = '';
 
@@ -213,13 +186,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
         }
     }
-}
-
-// Determine relative login page URL dynamically
-$scriptDir = dirname($_SERVER['SCRIPT_NAME']);
-$loginUrl = '../login.php';
-if (strpos($scriptDir, '/tools') !== false) {
-    $loginUrl = '../login.php';
 }
 ?>
 <!DOCTYPE html>
@@ -248,7 +214,7 @@ if (strpos($scriptDir, '/tools') !== false) {
             <div class="bg-emerald-900/40 border border-emerald-500/50 text-emerald-300 p-4 rounded-xl text-sm mb-6 text-center">
                 <?php echo htmlspecialchars($successMessage, ENT_QUOTES, 'UTF-8'); ?>
                 <div class="mt-4">
-                    <a href="<?php echo htmlspecialchars($loginUrl, ENT_QUOTES, 'UTF-8'); ?>" class="inline-block px-4 py-2 bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg transition-colors font-medium">ورود به پنل مدیریت</a>
+                    <a href="../login.php" class="inline-block px-4 py-2 bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg transition-colors font-medium">ورود به پنل مدیریت</a>
                 </div>
             </div>
         <?php else: ?>
