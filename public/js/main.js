@@ -1612,18 +1612,15 @@ class ProjectPreview {
             </div>
           </div>
 
-          <!-- Left side: Controls (Zoom & Fullscreen) -->
+          <!-- Left side: Controls (Zoom Badge & Fullscreen Button) -->
           <div class="flex items-center gap-2">
             ${this.options.zoom ? `
-              <!-- Zoom Controls -->
-              <div class="flex items-center rounded-xl bg-card-bg border border-border-subtle p-0.5 text-xs">
-                <button type="button" class="zoom-out-btn p-1.5 text-muted-fg hover:text-fg-main rounded-lg hover:bg-muted-bg transition-colors disabled:opacity-40 cursor-pointer" aria-label="کاهش زوم">
-                  <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M20 12H4"/></svg>
-                </button>
-                <span class="zoom-value font-mono font-bold text-xs px-2 min-w-[42px] text-center text-fg-main">100%</span>
-                <button type="button" class="zoom-in-btn p-1.5 text-muted-fg hover:text-fg-main rounded-lg hover:bg-muted-bg transition-colors disabled:opacity-40 cursor-pointer" aria-label="افزایش زوم">
-                  <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
-                </button>
+              <!-- Zoom Indicator Badge -->
+              <div class="zoom-badge flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-card-bg border border-border-subtle text-xs font-semibold text-muted-fg select-none">
+                <svg class="w-4 h-4 text-primary-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m-3-3h6"/>
+                </svg>
+                <span class="zoom-value font-mono font-bold text-fg-main">100%</span>
               </div>
             ` : ''}
 
@@ -1639,7 +1636,7 @@ class ProjectPreview {
         </div>
 
         <!-- 2. PREVIEW VIEWPORT -->
-        <div class="preview-viewport relative w-full overflow-hidden bg-black/40 cursor-grab active:cursor-grabbing">
+        <div class="preview-viewport relative w-full overflow-hidden bg-black/40 cursor-zoom-in">
 
           <!-- Scroll Viewport Container -->
           <div class="viewport-scroll-container w-full overflow-y-auto overflow-x-auto scrollbar-none transition-all duration-300" style="height: min(720px, 70vh); max-height: 720px; -webkit-overflow-scrolling: touch;">
@@ -1647,7 +1644,7 @@ class ProjectPreview {
             <!-- Image Wrap for Zoom support -->
             <div class="image-wrapper relative w-full transition-all duration-200 mx-auto" style="width: 100%;">
               <img
-                class="screenshot-img block w-full h-auto select-none opacity-0 transition-opacity duration-300"
+                class="screenshot-img block w-full h-auto select-none opacity-0 transition-opacity duration-300 cursor-zoom-in"
                 src=""
                 alt=""
                 draggable="false"
@@ -1724,6 +1721,7 @@ class ProjectPreview {
 
   cacheElements() {
     this.root = this.container.querySelector('.project-preview-component');
+    this.previewHeader = this.container.querySelector('.preview-header');
     this.viewport = this.container.querySelector('.preview-viewport');
     this.scrollContainer = this.container.querySelector('.viewport-scroll-container');
     this.imageWrapper = this.container.querySelector('.image-wrapper');
@@ -1734,11 +1732,11 @@ class ProjectPreview {
     this.scrollHint = this.container.querySelector('.scroll-hint');
     this.railThumb = this.container.querySelector('.scroll-rail-thumb');
     this.topProgressFill = this.container.querySelector('.top-progress-fill');
+    this.sliderNav = this.container.querySelector('.slider-navigation');
     this.prevBtn = this.container.querySelector('.prev-slide-btn');
     this.nextBtn = this.container.querySelector('.next-slide-btn');
     this.dots = this.container.querySelectorAll('.slide-dot');
-    this.zoomOutBtn = this.container.querySelector('.zoom-out-btn');
-    this.zoomInBtn = this.container.querySelector('.zoom-in-btn');
+    this.zoomBadge = this.container.querySelector('.zoom-badge');
     this.zoomValEl = this.container.querySelector('.zoom-value');
     this.fullscreenBtn = this.container.querySelector('.fullscreen-btn');
   }
@@ -1771,19 +1769,24 @@ class ProjectPreview {
       const isAtBottom = scrollTop + clientHeight >= scrollHeight - 1;
 
       if ((isAtTop && deltaY < 0) || (isAtBottom && deltaY > 0)) {
-        // Allow outer page to scroll naturally, do not stop propagation
         return;
       }
 
-      // Can scroll internally
       e.stopPropagation();
     }, { passive: false });
 
-    // Pointer Events for Click-and-Drag Vertical Navigation
+    // Pointer Events for Click-and-Drag Vertical Navigation & Drag Distance tracking
+    let dragDist = 0;
+    let dragStartX = 0;
+    let dragStartY = 0;
+
     if (this.options.drag) {
       this.viewport.addEventListener('pointerdown', (e) => {
-        if (e.target.closest('button')) return; // Ignore control buttons
+        if (e.target.closest('button')) return;
         this.isDragging = true;
+        dragDist = 0;
+        dragStartX = e.clientX;
+        dragStartY = e.clientY;
         this.startY = e.clientY;
         this.initialScrollTop = this.scrollContainer.scrollTop;
         this.viewport.setPointerCapture(e.pointerId);
@@ -1791,6 +1794,8 @@ class ProjectPreview {
 
       this.viewport.addEventListener('pointermove', (e) => {
         if (!this.isDragging) return;
+        const currentDist = Math.hypot(e.clientX - dragStartX, e.clientY - dragStartY);
+        if (currentDist > dragDist) dragDist = currentDist;
         const deltaY = e.clientY - this.startY;
         this.scrollContainer.scrollTop = this.initialScrollTop - deltaY;
       });
@@ -1805,6 +1810,33 @@ class ProjectPreview {
 
       this.viewport.addEventListener('pointerup', endDrag);
       this.viewport.addEventListener('pointercancel', endDrag);
+    }
+
+    // Direct Image / Viewport Click-to-Zoom with Magnifying Glass Cursor
+    if (this.options.zoom) {
+      this.viewport.addEventListener('click', (e) => {
+        if (e.target.closest('button')) return;
+        if (dragDist > 6) return; // User was dragging, do not trigger zoom
+
+        const rect = this.img.getBoundingClientRect();
+        if (!rect || rect.width === 0 || rect.height === 0) return;
+
+        if (
+          e.clientX >= rect.left &&
+          e.clientX <= rect.right &&
+          e.clientY >= rect.top &&
+          e.clientY <= rect.bottom
+        ) {
+          const clickXRatio = (e.clientX - rect.left) / rect.width;
+          const clickYRatio = (e.clientY - rect.top) / rect.height;
+
+          if (this.zoomLevel > 100) {
+            this.setZoom(100);
+          } else {
+            this.setZoom(200, clickXRatio, clickYRatio);
+          }
+        }
+      });
     }
 
     // Slider Buttons
@@ -1822,14 +1854,6 @@ class ProjectPreview {
         this.goToSlide(idx);
       });
     });
-
-    // Zoom Buttons
-    if (this.zoomOutBtn) {
-      this.zoomOutBtn.addEventListener('click', () => this.setZoom(this.zoomLevel - 20));
-    }
-    if (this.zoomInBtn) {
-      this.zoomInBtn.addEventListener('click', () => this.setZoom(this.zoomLevel + 20));
-    }
 
     // Fullscreen Toggle Button
     if (this.fullscreenBtn) {
@@ -1967,10 +1991,12 @@ class ProjectPreview {
     }
   }
 
-  setZoom(level) {
-    // Clamp zoom level
-    if (level < 80) level = 80;
-    if (level > 150) level = 150;
+  setZoom(level, clickXRatio = 0.5, clickYRatio = 0.5) {
+    if (level <= 100) {
+      level = 100;
+    } else if (level > 250) {
+      level = 250;
+    }
 
     this.zoomLevel = level;
     if (this.zoomValEl) {
@@ -1981,8 +2007,46 @@ class ProjectPreview {
       this.imageWrapper.style.width = `${this.zoomLevel}%`;
     }
 
-    if (this.zoomOutBtn) this.zoomOutBtn.disabled = (this.zoomLevel <= 80);
-    if (this.zoomInBtn) this.zoomInBtn.disabled = (this.zoomLevel >= 150);
+    // Update magnifying glass cursor styles on viewport and image
+    if (this.zoomLevel > 100) {
+      if (this.viewport) {
+        this.viewport.classList.remove('cursor-zoom-in');
+        this.viewport.classList.add('cursor-zoom-out');
+      }
+      if (this.img) {
+        this.img.classList.remove('cursor-zoom-in');
+        this.img.classList.add('cursor-zoom-out');
+      }
+    } else {
+      if (this.viewport) {
+        this.viewport.classList.remove('cursor-zoom-out');
+        this.viewport.classList.add('cursor-zoom-in');
+      }
+      if (this.img) {
+        this.img.classList.remove('cursor-zoom-out');
+        this.img.classList.add('cursor-zoom-in');
+      }
+    }
+
+    if (this.zoomLevel > 100) {
+      requestAnimationFrame(() => {
+        const scrollW = this.scrollContainer.scrollWidth;
+        const scrollH = this.scrollContainer.scrollHeight;
+        const clientW = this.scrollContainer.clientWidth;
+        const clientH = this.scrollContainer.clientHeight;
+
+        const targetX = (clickXRatio * scrollW) - (clientW / 2);
+        const targetY = (clickYRatio * scrollH) - (clientH / 2);
+
+        this.scrollContainer.scrollTo({
+          left: Math.max(0, targetX),
+          top: Math.max(0, targetY),
+          behavior: 'smooth'
+        });
+      });
+    } else {
+      this.scrollContainer.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+    }
 
     setTimeout(() => {
       this.updateScrollProgress();
@@ -2020,8 +2084,10 @@ class ProjectPreview {
     if (!overlay) {
       overlay = document.createElement('div');
       overlay.id = 'project-preview-fullscreen-modal';
-      overlay.className = 'fixed inset-0 z-[100] bg-black/95 backdrop-blur-md flex flex-col p-4 sm:p-8 opacity-0 transition-opacity duration-300 select-none';
+      overlay.className = 'fixed inset-0 z-[100] bg-black flex flex-col p-0 m-0 opacity-0 transition-opacity duration-300 select-none overflow-hidden';
       document.body.appendChild(overlay);
+    } else {
+      overlay.className = 'fixed inset-0 z-[100] bg-black flex flex-col p-0 m-0 opacity-0 transition-opacity duration-300 select-none overflow-hidden';
     }
 
     // Move root component into overlay
@@ -2029,9 +2095,45 @@ class ProjectPreview {
     this.root.parentNode.insertBefore(this.placeholder, this.root);
     overlay.appendChild(this.root);
 
-    // Style adjustments for fullscreen
-    this.scrollContainer.style.height = 'calc(100vh - 160px)';
+    // Fullscreen edge-to-edge root styling without padding or border
+    this.root.className = 'project-preview-component relative w-full h-full bg-black border-0 rounded-none overflow-hidden flex flex-col transition-all duration-300 is-fullscreen';
+
+    // Header styling overlay in fullscreen mode
+    if (this.previewHeader) {
+      this.previewHeader.className = 'preview-header absolute top-0 left-0 right-0 z-30 pointer-events-none p-4 sm:p-6 flex items-center justify-between select-none bg-gradient-to-b from-black/80 via-black/30 to-transparent';
+      const headerControls = this.previewHeader.querySelectorAll('*');
+      headerControls.forEach(el => el.classList.add('pointer-events-auto'));
+    }
+
+    // Fullscreen toggle button update
+    if (this.fullscreenBtn) {
+      this.fullscreenBtn.setAttribute('aria-label', 'خروج از تمام‌صفحه');
+      this.fullscreenBtn.className = 'fullscreen-btn pointer-events-auto p-2.5 rounded-xl bg-black/75 border border-white/20 text-white hover:bg-black/90 hover:border-primary-accent/50 shadow-2xl backdrop-blur-md transition-all cursor-pointer';
+      this.fullscreenBtn.innerHTML = `
+        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      `;
+    }
+
+    // Scroll container occupies 100vh full height
+    this.scrollContainer.style.height = '100vh';
     this.scrollContainer.style.maxHeight = 'none';
+
+    // Absolute position slide navigation at the bottom floating on top of image
+    if (this.sliderNav) {
+      this.sliderNav.className = 'slider-navigation absolute bottom-6 left-0 right-0 z-30 pointer-events-none flex items-center justify-between px-6 sm:px-12 select-none';
+      if (this.prevBtn) {
+        this.prevBtn.className = 'prev-slide-btn pointer-events-auto inline-flex items-center gap-2 px-5 py-3 rounded-2xl bg-black/75 border border-white/20 text-xs sm:text-sm font-bold text-white hover:bg-black/90 hover:border-primary-accent/50 shadow-2xl backdrop-blur-md transition-all cursor-pointer disabled:opacity-40';
+      }
+      if (this.nextBtn) {
+        this.nextBtn.className = 'next-slide-btn pointer-events-auto inline-flex items-center gap-2 px-5 py-3 rounded-2xl bg-black/75 border border-white/20 text-xs sm:text-sm font-bold text-white hover:bg-black/90 hover:border-primary-accent/50 shadow-2xl backdrop-blur-md transition-all cursor-pointer disabled:opacity-40';
+      }
+      const slideDotsEl = this.sliderNav.querySelector('.slide-dots');
+      if (slideDotsEl) {
+        slideDotsEl.className = 'slide-dots pointer-events-auto flex items-center justify-center gap-2 px-4 py-2.5 rounded-full bg-black/60 border border-white/15 backdrop-blur-md shadow-2xl';
+      }
+    }
 
     overlay.classList.remove('hidden');
     document.body.style.overflow = 'hidden';
@@ -2053,9 +2155,45 @@ class ProjectPreview {
         this.placeholder.remove();
         overlay.remove();
 
+        // Restore normal mode styling
+        this.root.className = 'project-preview-component relative w-full bg-card-bg border border-border-subtle rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl flex flex-col transition-all duration-300';
+
+        if (this.previewHeader) {
+          this.previewHeader.className = 'preview-header flex flex-wrap items-center justify-between gap-3 px-4 sm:px-6 py-3.5 bg-muted-bg/90 border-b border-border-subtle backdrop-blur-md select-none z-20';
+        }
+
+        if (this.fullscreenBtn) {
+          this.fullscreenBtn.setAttribute('aria-label', 'نمایش تمام‌صفحه');
+          this.fullscreenBtn.className = 'fullscreen-btn p-2 rounded-xl bg-card-bg border border-border-subtle text-muted-fg hover:text-fg-main hover:border-primary-accent/40 transition-colors cursor-pointer';
+          this.fullscreenBtn.innerHTML = `
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4"/>
+            </svg>
+          `;
+        }
+
         // Restore default height styling
         this.scrollContainer.style.height = 'min(720px, 70vh)';
         this.scrollContainer.style.maxHeight = '720px';
+
+        // Restore default slider navigation bar
+        if (this.sliderNav) {
+          this.sliderNav.className = 'slider-navigation flex flex-wrap items-center justify-between gap-4 px-4 sm:px-6 py-4 bg-muted-bg/60 border-t border-border-subtle select-none';
+          if (this.prevBtn) {
+            this.prevBtn.className = 'prev-slide-btn inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-card-bg border border-border-subtle hover:border-primary-accent/40 text-xs font-bold text-fg-main hover:text-primary-accent transition-all-custom cursor-pointer disabled:opacity-40';
+          }
+          if (this.nextBtn) {
+            this.nextBtn.className = 'next-slide-btn inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-card-bg border border-border-subtle hover:border-primary-accent/40 text-xs font-bold text-fg-main hover:text-primary-accent transition-all-custom cursor-pointer disabled:opacity-40';
+          }
+          const slideDotsEl = this.sliderNav.querySelector('.slide-dots');
+          if (slideDotsEl) {
+            slideDotsEl.className = 'slide-dots flex items-center justify-center gap-2';
+          }
+        }
+
+        if (this.zoomLevel > 100) {
+          this.setZoom(100);
+        }
 
         document.body.style.overflow = '';
         this.updateScrollProgress();
