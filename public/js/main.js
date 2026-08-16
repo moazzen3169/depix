@@ -2474,9 +2474,27 @@ function initConsultationExperience() {
 
   // Form Submission Point
   async function submitProjectInquiry(data) {
-    // Configurable Backend/API Endpoint Integration Point
-    console.log("Submitting Project Inquiry Data to Backend API:", data);
-    return new Promise((resolve) => setTimeout(resolve, 1500));
+    const payload = {
+      fullName: data.name,
+      phone: data.contact,
+      projectType: data.type || 'سایر',
+      budget: data.budget || '',
+      projectDesc: data.desc
+    };
+
+    const response = await fetch('api/project-request.php', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(payload)
+    });
+
+    const result = await response.json();
+    if (!response.ok || !result.success) {
+      throw new Error(result.message || 'خطایی در ثبت اطلاعات رخ داده است.');
+    }
+    return result;
   }
 
   inquiryForm.addEventListener('submit', async (e) => {
@@ -2536,7 +2554,7 @@ function initConsultationExperience() {
         });
       }
     } catch (err) {
-      showFormError("خطایی در ثبت درخواست رخ داده است. لطفاً دوباره تلاش کنید.");
+      showFormError(err.message || "خطایی در ثبت درخواست رخ داده است. لطفاً دوباره تلاش کنید.");
     } finally {
       submitBtn.disabled = false;
       submitBtn.innerHTML = origHtml;
