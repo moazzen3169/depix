@@ -115,7 +115,7 @@
          01 — HERO SECTION
          ========================================== -->
     <section id="hero"
-      class="relative pt-32 pb-20 md:pt-48 md:pb-32 overflow-hidden bg-radial from-primary-accent/5 via-transparent to-transparent">
+      class="relative pt-28 pb-10 sm:pt-36 sm:pb-16 md:pt-48 md:pb-32 overflow-hidden bg-radial from-primary-accent/5 via-transparent to-transparent">
       <!-- Glow Elements -->
       <div
         class="absolute top-24 right-1/4 w-[500px] h-[500px] rounded-full bg-primary-accent/5 blur-[120px] pointer-events-none">
@@ -125,10 +125,10 @@
       </div>
 
       <div class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12">
-        <div class="flex flex-col items-center text-center justify-center min-h-[50vh]">
+        <div class="flex flex-col items-center text-center justify-center min-h-0 sm:min-h-[40vh] md:min-h-[50vh]">
 
           <!-- Copy Content -->
-          <div class="max-w-4xl space-y-8 animate-fade-in-up">
+          <div class="max-w-4xl space-y-5 sm:space-y-8 animate-fade-in-up">
 
             <!-- Small Label -->
             <div
@@ -142,20 +142,18 @@
               سایت خوب، نتیجه می‌سازد
             </h1>
 
-
-
             <p class="text-base sm:text-lg text-muted-fg max-w-2xl mx-auto leading-relaxed">
               طراحی و توسعه وب‌سایت و فروشگاه اینترنتی، سریع، مدرن و متناسب با کسب‌وکار شما.
             </p>
 
             <!-- CTA Links -->
-            <div class="flex flex-wrap gap-4 justify-center pt-4">
+            <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3.5 sm:gap-4 pt-2 sm:pt-4 w-full max-w-sm sm:max-w-none mx-auto">
               <a href="#contact"
-                class="px-8 py-4 rounded-xl text-base font-bold text-white bg-primary-accent hover:bg-accent-hover shadow-xl shadow-primary-accent/20 hover:-translate-y-0.5 transition-all duration-200">
+                class="w-full sm:w-auto px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl text-sm sm:text-base font-bold text-white bg-primary-accent hover:bg-accent-hover shadow-xl shadow-primary-accent/20 hover:-translate-y-0.5 transition-all duration-200 text-center flex items-center justify-center">
                 سفارش پروژه و مشاوره رایگان
               </a>
               <a href="#portfolio"
-                class="px-8 py-4 rounded-xl text-base font-bold text-fg-main bg-muted-bg border border-border-subtle hover:bg-border-subtle hover:-translate-y-0.5 transition-all duration-200">
+                class="w-full sm:w-auto px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl text-sm sm:text-base font-bold text-fg-main bg-muted-bg border border-border-subtle hover:bg-border-subtle hover:-translate-y-0.5 transition-all duration-200 text-center flex items-center justify-center">
                 مشاهده نمونه‌کارها
               </a>
             </div>
@@ -169,7 +167,7 @@
     <!-- ==========================================
          02 — SELECTED WORK (PORTFOLIO SECTION)
          ========================================== -->
-    <section id="portfolio" class="py-24 sm:py-32 border-t border-border-subtle scroll-animate">
+    <section id="portfolio" class="py-12 sm:py-24 lg:py-32 border-t border-border-subtle scroll-animate">
       <div class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12">
 
         <!-- Title block -->
@@ -928,7 +926,7 @@
   <div id="consultation-widget">
     <!-- Floating Consultation CTA Trigger Button -->
     <button id="consultation-trigger" aria-label="مشاوره پروژه"
-      class="fixed bottom-4 left-4 right-4 md:bottom-6 md:left-auto md:right-6 w-[calc(100%-32px)] md:w-auto h-12 md:h-14 px-6 rounded-full glass border border-white/10 text-white font-bold flex items-center justify-between md:justify-center gap-3 shadow-lg hover:border-primary-accent/40 hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 z-40 cursor-pointer group">
+      class="fixed bottom-4 left-4 right-4 md:bottom-6 md:left-auto md:right-6 w-[calc(100%-32px)] md:w-auto h-12 md:h-14 px-6 rounded-full glass border border-border-subtle dark:border-white/10 text-fg-main dark:text-white font-bold flex items-center justify-between md:justify-center gap-3 shadow-lg hover:border-primary-accent/40 hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 z-40 cursor-pointer group">
       <div class="flex items-center gap-2">
         <span class="relative flex h-2.5 w-2.5">
           <span
