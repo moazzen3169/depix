@@ -29,17 +29,24 @@ header('X-Content-Type-Options: nosniff');
 header('X-Frame-Options: DENY');
 header('Referrer-Policy: strict-origin-when-cross-origin');
 
-// Determine base URL paths
-$isPublicSubdir = (strpos($_SERVER['REQUEST_URI'], '/public/') !== false);
-$adminBasePath = $isPublicSubdir ? '/public/admin/' : '/admin/';
-
-// If already logged in, redirect to admin home
+// If already logged in, redirect to admin index
 if (!empty($_SESSION['admin_authenticated']) && !empty($_SESSION['admin_id'])) {
-    header("Location: " . $adminBasePath . "index.php");
+    header("Location: index.php");
     exit;
 }
 
 require_once __DIR__ . '/includes/db.php';
+
+// Check if any admin exists in database
+$noAdminExists = false;
+try {
+    $pdo = getAdminDbConnection();
+    if (countExistingAdmins($pdo) === 0) {
+        $noAdminExists = true;
+    }
+} catch (Exception $e) {
+    error_log("Database connection error in login.php: " . $e->getMessage());
+}
 
 // Generate CSRF token if missing
 if (empty($_SESSION['csrf_token'])) {
@@ -94,8 +101,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         $_SESSION['admin_authenticated'] = true;
                         $_SESSION['last_activity']       = time();
 
-                        // Redirect to admin panel
-                        header("Location: " . $adminBasePath . "index.php");
+                        // Redirect to admin panel index
+                        header("Location: index.php");
                         exit;
                     } else {
                         // Failed password verify
@@ -137,6 +144,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <h1 class="text-2xl font-bold text-white tracking-tight">ورود مدیر سیستم</h1>
             <p class="text-slate-400 text-sm mt-1">احراز هویت تنها حساب Administrator</p>
         </div>
+
+        <?php if ($noAdminExists): ?>
+            <div class="bg-amber-950/60 border border-amber-500/50 text-amber-200 p-5 rounded-xl text-sm mb-6 text-center">
+                <div class="font-medium text-base mb-1">حساب مدیری ثبت نشده است</div>
+                <p class="text-xs text-amber-300/80 mb-4 leading-relaxed">برای اولین بار باید مدیر اصلی سیستم را ایجاد کنید.</p>
+                <a href="tools/create-admin.php" class="inline-block px-4 py-2.5 bg-amber-600 hover:bg-amber-500 text-slate-950 font-semibold rounded-xl text-xs transition-colors shadow-lg shadow-amber-600/20">
+                    ساخت اولین حساب مدیر
+                </a>
+            </div>
+        <?php endif; ?>
 
         <?php if ($noticeMessage): ?>
             <div class="bg-indigo-950/50 border border-indigo-500/40 text-indigo-200 p-4 rounded-xl text-sm mb-6 text-center">
