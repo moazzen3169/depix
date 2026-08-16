@@ -79,9 +79,9 @@ if ($companyName !== '' && mb_strlen($companyName, 'UTF-8') > 150) {
 }
 
 if ($phone === '') {
-    $errors[] = 'لطفاً شماره تماس خود را وارد کنید.';
-} elseif (mb_strlen($phone, 'UTF-8') > 30) {
-    $errors[] = 'شماره تماس نباید بیشتر از ۳۰ کاراکتر باشد.';
+    $errors[] = 'لطفاً شماره تماس یا راه ارتباطی خود را وارد کنید.';
+} elseif (mb_strlen($phone, 'UTF-8') < 3 || mb_strlen($phone, 'UTF-8') > 30) {
+    $errors[] = 'شماره تماس یا راه ارتباطی باید بین ۳ تا ۳۰ کاراکتر باشد.';
 } else {
     // Convert Persian / Arabic numerals to English digits for validation
     $convertedPhone = strtr($phone, [
@@ -90,8 +90,8 @@ if ($phone === '') {
         '٠'=>'0', '١'=>'1', '٢'=>'2', '٣'=>'3', '٤'=>'4',
         '٥'=>'5', '٦'=>'6', '٧'=>'7', '٨'=>'8', '٩'=>'9'
     ]);
-    if (!preg_match('/^[0-9+() -]{7,30}$/', $convertedPhone)) {
-        $errors[] = 'شماره تماس وارد شده معتبر نیست.';
+    if (!preg_match('/^[a-zA-Z0-9+() ._@-]{3,30}$/u', $convertedPhone)) {
+        $errors[] = 'شماره تماس یا راه ارتباطی وارد شده معتبر نیست.';
     }
 }
 
