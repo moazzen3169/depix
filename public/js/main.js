@@ -26,8 +26,8 @@ const projects = [
     },
     screens: [
       "./assets/projects/project-01/cover.webp",
-      "./assets/projects/project-01/3.jpg",
-      "./assets/projects/project-01/4.jpg",
+      "./assets/projects/project-01/3.webp",
+      "./assets/projects/project-01/4.webp",
       "./assets/projects/project-01/screen-01.webp",
     ],
     description: "«کفشام» یک وب‌سایت مدرن و بسیار کاربرپسند برای فروشگاه آنلاین کفش است. در طراحی این سایت تمرکز اصلی روی نمایش شفاف محصولات و خرید آسان در ۳ کلیک بوده است تا مشتریان بدون معطلی کفش مورد نظرشان را انتخاب و خریداری کنند."
@@ -131,7 +131,7 @@ const projects = [
     screens: [
       "./assets/projects/project-05/1.webp",
       "./assets/projects/project-05/2.webp",
-      "./assets/projects/project-05/3.jpg"
+      "./assets/projects/project-05/3.webp"
     ],
     description: "«پت شاپ پت من» یک وب‌سایت شاداب و صمیمی برای خرید غذا و لوازم حیوانات خانگی است. دسته‌بندی‌های واضح گربه، سگ و پرندگان باعث می‌شود خریداران در سریع‌ترین زمان کالای مدنظر را انتخاب کنند."
   },
