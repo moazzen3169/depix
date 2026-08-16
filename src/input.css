@@ -106,6 +106,14 @@
   }
 
   /* Custom visual utilities */
+  .scrollbar-none::-webkit-scrollbar {
+    display: none;
+  }
+  .scrollbar-none {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
   .glass {
     background: rgba(10, 10, 11, 0.75);
     backdrop-filter: blur(16px);

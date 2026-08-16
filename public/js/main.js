@@ -1489,6 +1489,533 @@ function openCaseStudy(id) {
 }
 
 /**
+ * ProjectPreview - Premium Interactive Long-Screenshot Preview Component
+ * Pure Vanilla JavaScript, Tailwind CSS, Accessibility & Keyboard Nav support.
+ */
+class ProjectPreview {
+  constructor(config) {
+    this.container = typeof config.container === 'string'
+      ? document.querySelector(config.container)
+      : config.container;
+
+    if (!this.container) return;
+
+    this.title = config.title || '';
+    this.slides = config.slides || [];
+    this.options = Object.assign({
+      maxHeight: 720,
+      fullscreen: true,
+      zoom: true,
+      drag: true,
+      progress: true
+    }, config.options || {});
+
+    this.currentIndex = 0;
+    this.zoomLevel = 100; // 80, 100, 120, 150
+    this.isDragging = false;
+    this.startY = 0;
+    this.initialScrollTop = 0;
+    this.hasUserScrolled = false;
+    this.isFullscreen = false;
+    this.rafPending = false;
+
+    // Event handler references for removal
+    this.boundKeyHandler = this.handleKeyDown.bind(this);
+
+    this.init();
+  }
+
+  init() {
+    if (!this.slides.length) return;
+    this.render();
+    this.cacheElements();
+    this.bindEvents();
+    this.loadSlide(this.currentIndex);
+  }
+
+  render() {
+    this.container.innerHTML = `
+      <div class="project-preview-component relative w-full bg-card-bg border border-border-subtle rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl flex flex-col transition-all duration-300">
+
+        <!-- 1. PREVIEW HEADER -->
+        <div class="preview-header flex flex-wrap items-center justify-between gap-3 px-4 sm:px-6 py-3.5 bg-muted-bg/90 border-b border-border-subtle backdrop-blur-md select-none z-20">
+
+          <!-- Right side: Title & Slide Counter -->
+          <div class="flex items-center gap-3">
+            <div class="flex items-center gap-1.5 pl-2 border-l border-border-subtle/60">
+              <span class="w-3 h-3 rounded-full bg-red-500/80 inline-block"></span>
+              <span class="w-3 h-3 rounded-full bg-yellow-500/80 inline-block"></span>
+              <span class="w-3 h-3 rounded-full bg-green-500/80 inline-block"></span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="slide-title font-bold text-sm sm:text-base text-fg-main"></span>
+              <span class="slide-counter text-xs text-primary-accent font-extrabold px-2.5 py-1 rounded-full bg-primary-accent/10 border border-primary-accent/20">
+                01 / ${String(this.slides.length).padStart(2, '0')}
+              </span>
+            </div>
+          </div>
+
+          <!-- Left side: Controls (Zoom & Fullscreen) -->
+          <div class="flex items-center gap-2">
+            ${this.options.zoom ? `
+              <!-- Zoom Controls -->
+              <div class="flex items-center rounded-xl bg-card-bg border border-border-subtle p-0.5 text-xs">
+                <button type="button" class="zoom-out-btn p-1.5 text-muted-fg hover:text-fg-main rounded-lg hover:bg-muted-bg transition-colors disabled:opacity-40 cursor-pointer" aria-label="کاهش زوم">
+                  <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M20 12H4"/></svg>
+                </button>
+                <span class="zoom-value font-mono font-bold text-xs px-2 min-w-[42px] text-center text-fg-main">100%</span>
+                <button type="button" class="zoom-in-btn p-1.5 text-muted-fg hover:text-fg-main rounded-lg hover:bg-muted-bg transition-colors disabled:opacity-40 cursor-pointer" aria-label="افزایش زوم">
+                  <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
+                </button>
+              </div>
+            ` : ''}
+
+            ${this.options.fullscreen ? `
+              <!-- Fullscreen Button -->
+              <button type="button" class="fullscreen-btn p-2 rounded-xl bg-card-bg border border-border-subtle text-muted-fg hover:text-fg-main hover:border-primary-accent/40 transition-colors cursor-pointer" aria-label="نمایش تمام‌صفحه">
+                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4"/>
+                </svg>
+              </button>
+            ` : ''}
+          </div>
+        </div>
+
+        <!-- 2. PREVIEW VIEWPORT -->
+        <div class="preview-viewport relative w-full overflow-hidden bg-black/40 cursor-grab active:cursor-grabbing">
+
+          <!-- Scroll Viewport Container -->
+          <div class="viewport-scroll-container w-full overflow-y-auto overflow-x-auto scrollbar-none transition-all duration-300" style="height: min(720px, 70vh); max-height: 720px; -webkit-overflow-scrolling: touch;">
+
+            <!-- Image Wrap for Zoom support -->
+            <div class="image-wrapper relative w-full transition-all duration-200 mx-auto" style="width: 100%;">
+              <img
+                class="screenshot-img block w-full h-auto select-none opacity-0 transition-opacity duration-300"
+                src=""
+                alt=""
+                draggable="false"
+              >
+            </div>
+
+          </div>
+
+          <!-- Loading Spinner Overlay -->
+          <div class="loading-overlay absolute inset-0 bg-card-bg/80 backdrop-blur-xs flex items-center justify-center transition-opacity duration-300 z-10 pointer-events-none opacity-100">
+            <div class="flex flex-col items-center gap-3">
+              <svg class="animate-spin w-8 h-8 text-primary-accent" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+              </svg>
+              <span class="text-xs font-bold text-muted-fg">در حال بارگذاری تصویر...</span>
+            </div>
+          </div>
+
+          <!-- Scroll Progress Rail (Side Vertical Rail) -->
+          <div class="scroll-rail absolute left-3 top-4 bottom-4 w-1.5 rounded-full bg-white/10 overflow-hidden pointer-events-none transition-opacity duration-300 z-10">
+            <div class="scroll-rail-thumb w-full rounded-full bg-primary-accent transition-transform duration-75" style="height: 20%; transform: translateY(0%);"></div>
+          </div>
+
+          <!-- Top Progress Rail (Horizontal Top Bar) -->
+          <div class="top-progress-bar absolute top-0 left-0 right-0 h-1 bg-primary-accent/20 z-10 pointer-events-none">
+            <div class="top-progress-fill h-full bg-primary-accent transition-all duration-75" style="width: 0%;"></div>
+          </div>
+
+          <!-- Scroll Hint ("Scroll to explore") -->
+          <div class="scroll-hint absolute bottom-6 left-1/2 -translate-x-1/2 z-10 pointer-events-none transition-all duration-500 opacity-0 translate-y-2">
+            <div class="px-4 py-2 rounded-full glass border border-white/15 text-xs font-bold text-white shadow-2xl flex items-center gap-2 animate-bounce">
+              <span>جهت پیمایش اسکرول کنید</span>
+              <svg class="w-4 h-4 text-primary-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
+              </svg>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- 3. SLIDER NAVIGATION -->
+        <div class="slider-navigation flex flex-wrap items-center justify-between gap-4 px-4 sm:px-6 py-4 bg-muted-bg/60 border-t border-border-subtle select-none">
+
+          <!-- Previous Button -->
+          <button type="button" class="prev-slide-btn inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-card-bg border border-border-subtle hover:border-primary-accent/40 text-xs font-bold text-fg-main hover:text-primary-accent transition-all-custom cursor-pointer disabled:opacity-40" aria-label="تصویر قبلی">
+            <svg class="w-4 h-4 transform rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
+            <span>قبلی</span>
+          </button>
+
+          <!-- Slide indicators / Dots -->
+          <div class="slide-dots flex items-center justify-center gap-2">
+            ${this.slides.map((s, idx) => `
+              <button
+                type="button"
+                class="slide-dot w-2.5 h-2.5 rounded-full bg-border-subtle hover:bg-muted-fg transition-all cursor-pointer ${idx === 0 ? '!bg-primary-accent !w-6' : ''}"
+                data-index="${idx}"
+                aria-label="رفتن به تصویر ${idx + 1}"
+              ></button>
+            `).join('')}
+          </div>
+
+          <!-- Next Button -->
+          <button type="button" class="next-slide-btn inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-card-bg border border-border-subtle hover:border-primary-accent/40 text-xs font-bold text-fg-main hover:text-primary-accent transition-all-custom cursor-pointer disabled:opacity-40" aria-label="تصویر بعدی">
+            <span>بعدی</span>
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
+          </button>
+
+        </div>
+
+      </div>
+    `;
+  }
+
+  cacheElements() {
+    this.root = this.container.querySelector('.project-preview-component');
+    this.viewport = this.container.querySelector('.preview-viewport');
+    this.scrollContainer = this.container.querySelector('.viewport-scroll-container');
+    this.imageWrapper = this.container.querySelector('.image-wrapper');
+    this.img = this.container.querySelector('.screenshot-img');
+    this.loadingOverlay = this.container.querySelector('.loading-overlay');
+    this.titleEl = this.container.querySelector('.slide-title');
+    this.counterEl = this.container.querySelector('.slide-counter');
+    this.scrollHint = this.container.querySelector('.scroll-hint');
+    this.railThumb = this.container.querySelector('.scroll-rail-thumb');
+    this.topProgressFill = this.container.querySelector('.top-progress-fill');
+    this.prevBtn = this.container.querySelector('.prev-slide-btn');
+    this.nextBtn = this.container.querySelector('.next-slide-btn');
+    this.dots = this.container.querySelectorAll('.slide-dot');
+    this.zoomOutBtn = this.container.querySelector('.zoom-out-btn');
+    this.zoomInBtn = this.container.querySelector('.zoom-in-btn');
+    this.zoomValEl = this.container.querySelector('.zoom-value');
+    this.fullscreenBtn = this.container.querySelector('.fullscreen-btn');
+  }
+
+  bindEvents() {
+    // Scroll event inside viewport
+    this.scrollContainer.addEventListener('scroll', () => {
+      if (!this.rafPending) {
+        this.rafPending = true;
+        requestAnimationFrame(() => {
+          this.updateScrollProgress();
+          this.rafPending = false;
+        });
+      }
+
+      if (!this.hasUserScrolled) {
+        this.hasUserScrolled = true;
+        this.hideScrollHint();
+      }
+    }, { passive: true });
+
+    // Wheel event to prevent trapped scroll at boundaries
+    this.scrollContainer.addEventListener('wheel', (e) => {
+      const scrollTop = this.scrollContainer.scrollTop;
+      const scrollHeight = this.scrollContainer.scrollHeight;
+      const clientHeight = this.scrollContainer.clientHeight;
+      const deltaY = e.deltaY;
+
+      const isAtTop = scrollTop <= 0;
+      const isAtBottom = scrollTop + clientHeight >= scrollHeight - 1;
+
+      if ((isAtTop && deltaY < 0) || (isAtBottom && deltaY > 0)) {
+        // Allow outer page to scroll naturally, do not stop propagation
+        return;
+      }
+
+      // Can scroll internally
+      e.stopPropagation();
+    }, { passive: false });
+
+    // Pointer Events for Click-and-Drag Vertical Navigation
+    if (this.options.drag) {
+      this.viewport.addEventListener('pointerdown', (e) => {
+        if (e.target.closest('button')) return; // Ignore control buttons
+        this.isDragging = true;
+        this.startY = e.clientY;
+        this.initialScrollTop = this.scrollContainer.scrollTop;
+        this.viewport.setPointerCapture(e.pointerId);
+      });
+
+      this.viewport.addEventListener('pointermove', (e) => {
+        if (!this.isDragging) return;
+        const deltaY = e.clientY - this.startY;
+        this.scrollContainer.scrollTop = this.initialScrollTop - deltaY;
+      });
+
+      const endDrag = (e) => {
+        if (!this.isDragging) return;
+        this.isDragging = false;
+        try {
+          this.viewport.releasePointerCapture(e.pointerId);
+        } catch (err) {}
+      };
+
+      this.viewport.addEventListener('pointerup', endDrag);
+      this.viewport.addEventListener('pointercancel', endDrag);
+    }
+
+    // Slider Buttons
+    if (this.prevBtn) {
+      this.prevBtn.addEventListener('click', () => this.prevSlide());
+    }
+    if (this.nextBtn) {
+      this.nextBtn.addEventListener('click', () => this.nextSlide());
+    }
+
+    // Dots
+    this.dots.forEach(dot => {
+      dot.addEventListener('click', (e) => {
+        const idx = parseInt(e.currentTarget.getAttribute('data-index'), 10);
+        this.goToSlide(idx);
+      });
+    });
+
+    // Zoom Buttons
+    if (this.zoomOutBtn) {
+      this.zoomOutBtn.addEventListener('click', () => this.setZoom(this.zoomLevel - 20));
+    }
+    if (this.zoomInBtn) {
+      this.zoomInBtn.addEventListener('click', () => this.setZoom(this.zoomLevel + 20));
+    }
+
+    // Fullscreen Toggle Button
+    if (this.fullscreenBtn) {
+      this.fullscreenBtn.addEventListener('click', () => this.toggleFullscreen());
+    }
+
+    // Keyboard support
+    document.addEventListener('keydown', this.boundKeyHandler);
+  }
+
+  handleKeyDown(e) {
+    // Only handle if in viewport or fullscreen or focused inside component
+    const isFocusedHere = this.container.contains(document.activeElement) || this.isFullscreen;
+    if (!isFocusedHere) return;
+
+    if (e.key === 'ArrowLeft') {
+      e.preventDefault();
+      this.nextSlide();
+    } else if (e.key === 'ArrowRight') {
+      e.preventDefault();
+      this.prevSlide();
+    } else if (e.key === 'Escape' && this.isFullscreen) {
+      e.preventDefault();
+      this.closeFullscreen();
+    }
+  }
+
+  loadSlide(index) {
+    const slide = this.slides[index];
+    if (!slide) return;
+
+    // Show loading
+    if (this.loadingOverlay) {
+      this.loadingOverlay.classList.remove('opacity-0', 'pointer-events-none');
+      this.loadingOverlay.classList.add('opacity-100');
+    }
+    this.img.classList.remove('opacity-100');
+    this.img.classList.add('opacity-0');
+
+    // Reset scroll & hint
+    this.scrollContainer.scrollTop = 0;
+    this.hasUserScrolled = false;
+
+    // Update Title & Counter
+    if (this.titleEl) {
+      this.titleEl.textContent = slide.title || this.title;
+    }
+    if (this.counterEl) {
+      this.counterEl.textContent = `${String(index + 1).padStart(2, '0')} / ${String(this.slides.length).padStart(2, '0')}`;
+    }
+
+    // Update Dots
+    this.dots.forEach((dot, i) => {
+      if (i === index) {
+        dot.className = 'slide-dot w-6 h-2.5 rounded-full bg-primary-accent transition-all cursor-pointer';
+      } else {
+        dot.className = 'slide-dot w-2.5 h-2.5 rounded-full bg-border-subtle hover:bg-muted-fg transition-all cursor-pointer';
+      }
+    });
+
+    // Load Image
+    const tempImg = new Image();
+    let loaded = false;
+    const onImgLoad = () => {
+      if (loaded) return;
+      loaded = true;
+
+      this.img.src = slide.image;
+      this.img.alt = slide.alt || slide.title || 'تصویر پیش‌نمایش پروژه';
+
+      if (this.loadingOverlay) {
+        this.loadingOverlay.classList.remove('opacity-100');
+        this.loadingOverlay.classList.add('opacity-0', 'pointer-events-none');
+      }
+      this.img.classList.remove('opacity-0');
+      this.img.classList.add('opacity-100');
+
+      // Check if scrollable to display scroll hint
+      this.checkScrollable();
+      this.updateScrollProgress();
+
+      // Preload next slide
+      const nextIdx = (index + 1) % this.slides.length;
+      if (this.slides[nextIdx]) {
+        const preloader = new Image();
+        preloader.src = this.slides[nextIdx].image;
+      }
+    };
+
+    tempImg.onload = onImgLoad;
+    tempImg.onerror = onImgLoad;
+    tempImg.src = slide.image;
+    if (tempImg.complete) {
+      onImgLoad();
+    }
+  }
+
+  checkScrollable() {
+    const isScrollable = this.scrollContainer.scrollHeight > this.scrollContainer.clientHeight + 20;
+    if (isScrollable && !this.hasUserScrolled) {
+      this.showScrollHint();
+    } else {
+      this.hideScrollHint();
+    }
+  }
+
+  showScrollHint() {
+    if (this.scrollHint) {
+      this.scrollHint.classList.remove('opacity-0', 'translate-y-2');
+      this.scrollHint.classList.add('opacity-100', 'translate-y-0');
+    }
+  }
+
+  hideScrollHint() {
+    if (this.scrollHint) {
+      this.scrollHint.classList.add('opacity-0', 'translate-y-2');
+      this.scrollHint.classList.remove('opacity-100', 'translate-y-0');
+    }
+  }
+
+  updateScrollProgress() {
+    const scrollTop = this.scrollContainer.scrollTop;
+    const maxScroll = this.scrollContainer.scrollHeight - this.scrollContainer.clientHeight;
+    const ratio = maxScroll > 0 ? Math.min(1, Math.max(0, scrollTop / maxScroll)) : 0;
+    const percentage = Math.round(ratio * 100);
+
+    // Update Side Rail Thumb
+    if (this.railThumb) {
+      this.railThumb.style.transform = `translateY(${ratio * 400}%)`;
+    }
+
+    // Update Top Horizontal Progress Fill
+    if (this.topProgressFill) {
+      this.topProgressFill.style.width = `${percentage}%`;
+    }
+  }
+
+  setZoom(level) {
+    // Clamp zoom level
+    if (level < 80) level = 80;
+    if (level > 150) level = 150;
+
+    this.zoomLevel = level;
+    if (this.zoomValEl) {
+      this.zoomValEl.textContent = `${this.zoomLevel}%`;
+    }
+
+    if (this.imageWrapper) {
+      this.imageWrapper.style.width = `${this.zoomLevel}%`;
+    }
+
+    if (this.zoomOutBtn) this.zoomOutBtn.disabled = (this.zoomLevel <= 80);
+    if (this.zoomInBtn) this.zoomInBtn.disabled = (this.zoomLevel >= 150);
+
+    setTimeout(() => {
+      this.updateScrollProgress();
+      this.checkScrollable();
+    }, 200);
+  }
+
+  goToSlide(index) {
+    if (index < 0 || index >= this.slides.length) return;
+    this.currentIndex = index;
+    this.loadSlide(this.currentIndex);
+  }
+
+  nextSlide() {
+    const nextIdx = (this.currentIndex + 1) % this.slides.length;
+    this.goToSlide(nextIdx);
+  }
+
+  prevSlide() {
+    const prevIdx = (this.currentIndex - 1 + this.slides.length) % this.slides.length;
+    this.goToSlide(prevIdx);
+  }
+
+  toggleFullscreen() {
+    if (this.isFullscreen) {
+      this.closeFullscreen();
+    } else {
+      this.openFullscreen();
+    }
+  }
+
+  openFullscreen() {
+    this.isFullscreen = true;
+    let overlay = document.getElementById('project-preview-fullscreen-modal');
+    if (!overlay) {
+      overlay = document.createElement('div');
+      overlay.id = 'project-preview-fullscreen-modal';
+      overlay.className = 'fixed inset-0 z-[100] bg-black/95 backdrop-blur-md flex flex-col p-4 sm:p-8 opacity-0 transition-opacity duration-300 select-none';
+      document.body.appendChild(overlay);
+    }
+
+    // Move root component into overlay
+    this.placeholder = document.createElement('div');
+    this.root.parentNode.insertBefore(this.placeholder, this.root);
+    overlay.appendChild(this.root);
+
+    // Style adjustments for fullscreen
+    this.scrollContainer.style.height = 'calc(100vh - 160px)';
+    this.scrollContainer.style.maxHeight = 'none';
+
+    overlay.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+
+    setTimeout(() => {
+      overlay.classList.remove('opacity-0');
+      this.updateScrollProgress();
+    }, 10);
+  }
+
+  closeFullscreen() {
+    this.isFullscreen = false;
+    const overlay = document.getElementById('project-preview-fullscreen-modal');
+
+    if (overlay && this.placeholder && this.placeholder.parentNode) {
+      overlay.classList.add('opacity-0');
+      setTimeout(() => {
+        this.placeholder.parentNode.insertBefore(this.root, this.placeholder);
+        this.placeholder.remove();
+        overlay.remove();
+
+        // Restore default height styling
+        this.scrollContainer.style.height = 'min(720px, 70vh)';
+        this.scrollContainer.style.maxHeight = '720px';
+
+        document.body.style.overflow = '';
+        this.updateScrollProgress();
+      }, 250);
+    }
+  }
+
+  destroy() {
+    document.removeEventListener('keydown', this.boundKeyHandler);
+    if (this.isFullscreen) {
+      this.closeFullscreen();
+    }
+    this.container.innerHTML = '';
+  }
+}
+
+/**
  * Helper utilities for formatting markdown-like blog text into clean HTML
  */
 function formatInlineMarkdown(text) {
@@ -2656,42 +3183,10 @@ function initProjectDetailPage() {
     `;
   }
 
-  // Slider HTML for the dedicated page
+  // Preview Container Placeholder for ProjectPreview Component
   const sliderHTML = `
-    <div class="relative w-full overflow-hidden rounded-2xl border border-border-subtle bg-muted-bg/30 aspect-[16/10]" dir="ltr">
-      <div id="project-page-carousel-slides" class="flex transition-transform duration-500 ease-out h-full" style="transform: translateX(0%);">
-        ${project.screens.map((scr, idx) => `
-          <div class="w-full flex-shrink-0 h-full relative group cursor-zoom-in">
-            <img src="${scr}" alt="${project.title} - تصویر ${idx + 1}" class="w-full h-full object-cover select-none" loading="lazy">
-            <div class="absolute inset-0 bg-black/35 opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-center justify-center pointer-events-none">
-              <span class="p-3.5 rounded-full bg-white/20 backdrop-blur text-white">
-                <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7" />
-                </svg>
-              </span>
-            </div>
-          </div>
-        `).join('')}
-      </div>
-
-      ${project.screens.length > 1 ? `
-        <button id="project-page-carousel-slide-prev" class="absolute top-1/2 left-4 -translate-y-1/2 p-3 rounded-full bg-black/60 hover:bg-black/80 text-white transition-all cursor-pointer z-10" aria-label="تصویر قبلی">
-          <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
-          </svg>
-        </button>
-        <button id="project-page-carousel-slide-next" class="absolute top-1/2 right-4 -translate-y-1/2 p-3 rounded-full bg-black/60 hover:bg-black/80 text-white transition-all cursor-pointer z-10" aria-label="تصویر بعدی">
-          <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
-          </svg>
-        </button>
-
-        <div class="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2 z-10">
-          ${project.screens.map((_, idx) => `
-            <button class="project-page-carousel-dot w-2.5 h-2.5 rounded-full bg-white/40 hover:bg-white transition-all cursor-pointer" data-index="${idx}"></button>
-          `).join('')}
-        </div>
-      ` : ''}
+    <div id="project-interactive-preview-container" class="w-full">
+      <!-- ProjectPreview component will mount here -->
     </div>
   `;
 
@@ -2791,15 +3286,23 @@ function initProjectDetailPage() {
     </div>
   `;
 
-  // Initialize Carousel Slider
-  setupCarouselLogic('project-page-carousel', project.screens);
+  // Initialize Interactive Long-Screenshot Preview Component
+  const previewSlides = project.screens.map((src, idx) => ({
+    title: `${project.title} — بخش ${idx + 1}`,
+    image: src,
+    alt: `پیش‌نمایش کامل طراحی ${project.title} - تصویر ${idx + 1}`
+  }));
 
-  // Setup slide click triggers for Lightbox zoom on dedicated page
-  const sliderImages = detailContainer.querySelectorAll('#project-page-carousel-slides img');
-  sliderImages.forEach((img, idx) => {
-    img.addEventListener('click', (e) => {
-      e.stopPropagation();
-      openLightbox(project.screens, idx);
-    });
+  new ProjectPreview({
+    container: "#project-interactive-preview-container",
+    title: project.title,
+    slides: previewSlides,
+    options: {
+      maxHeight: 720,
+      fullscreen: true,
+      zoom: true,
+      drag: true,
+      progress: true
+    }
   });
 }
