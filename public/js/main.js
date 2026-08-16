@@ -2093,7 +2093,7 @@ function initModal() {
 }
 
 /**
- * 9. Contact Form Validation and Simulated States
+ * 9. Contact Form AJAX Submission with PDO Backend Integration
  */
 function initContactForm() {
   const form = document.getElementById('project-form');
@@ -2132,37 +2132,29 @@ function initContactForm() {
     statusContainer.classList.remove('hidden');
   };
 
-  form.addEventListener('submit', (e) => {
+  form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
     // Reset status
     if (statusContainer) statusContainer.classList.add('hidden');
 
     // Get Fields
-    const name = form.querySelector('#fullName')?.value.trim();
-    const phone = form.querySelector('#phone')?.value.trim();
-    const email = form.querySelector('#email')?.value.trim();
-    const projectType = form.querySelector('#projectType')?.value;
-    const message = form.querySelector('#projectDesc')?.value.trim();
+    const fullName = form.querySelector('#fullName')?.value.trim() || '';
+    const companyName = form.querySelector('#companyName')?.value.trim() || '';
+    const phone = form.querySelector('#phone')?.value.trim() || '';
+    const socialHandle = form.querySelector('#socialHandle')?.value.trim() || '';
+    const projectType = form.querySelector('#projectType')?.value || '';
+    const budget = form.querySelector('#budget')?.value || '';
+    const projectDesc = form.querySelector('#projectDesc')?.value.trim() || '';
 
-    // Client-side Validation
-    if (!name) {
+    // Frontend Validation
+    if (!fullName) {
       showStatus('error', 'لطفاً نام و نام خانوادگی خود را وارد کنید.');
       return;
     }
 
-    if (!phone && !email) {
-      showStatus('error', 'لطفاً حداقل یک راه ارتباطی (ایمیل یا شماره تماس) وارد کنید.');
-      return;
-    }
-
-    if (phone && !/^[0-9+() -]{9,15}$/.test(phone)) {
-      showStatus('error', 'فرمت شماره تماس معتبر نیست.');
-      return;
-    }
-
-    if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      showStatus('error', 'فرمت آدرس ایمیل معتبر نیست.');
+    if (!phone) {
+      showStatus('error', 'لطفاً شماره تماس خود را وارد کنید.');
       return;
     }
 
@@ -2171,34 +2163,59 @@ function initContactForm() {
       return;
     }
 
-    if (!message) {
-      showStatus('error', 'لطفاً توضیح مختصری از پروژه خود ارائه دهید.');
+    if (!projectDesc) {
+      showStatus('error', 'لطفاً توضیحات پروژه خود را وارد کنید.');
       return;
     }
 
-    // Simulate Loading State
+    // Prepare Payload
+    const payload = {
+      fullName,
+      companyName,
+      phone,
+      socialHandle,
+      projectType,
+      budget,
+      projectDesc
+    };
+
+    // Disable button & show spinner
+    const origText = btn ? btn.innerHTML : '';
     if (btn) {
-      const origText = btn.innerHTML;
       btn.disabled = true;
       btn.innerHTML = `
         <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white inline-block" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
           <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
           <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
         </svg>
-        در حال ثبت اطلاعات...
+        در حال ارسال...
       `;
+    }
 
-      setTimeout(() => {
-        // Restore button state
+    try {
+      const response = await fetch('api/project-request.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(payload)
+      });
+
+      const result = await response.json();
+
+      if (response.ok && result.success) {
+        showStatus('success', result.message || 'درخواست شما با موفقیت ثبت شد!');
+        form.reset();
+      } else {
+        showStatus('error', result.message || 'خطایی در ثبت اطلاعات رخ داده است.');
+      }
+    } catch (err) {
+      showStatus('error', 'ارتباط با سرور برقرار نشد. لطفاً اتصال اینترنت خود را بررسی کنید.');
+    } finally {
+      if (btn) {
         btn.disabled = false;
         btn.innerHTML = origText;
-
-        // Show Success
-        showStatus('success', 'درخواست شما با موفقیت ثبت شد! به زودی همکاران ما با شما تماس خواهند گرفت.');
-
-        // Reset form inputs
-        form.reset();
-      }, 1500);
+      }
     }
   });
 }
