@@ -2,31 +2,20 @@
 /**
  * Administrator Initial Creation Tool
  *
- * Secure tool to create the single Administrator account.
- * Supports execution via CLI (preferred) and Web setup fallback (disabled automatically after 1st admin creation).
+ * Tool to create the single Administrator account.
+ * Disabled automatically after the 1st admin account is created.
  */
 
 // Error handling - avoid leaking sensitive details to browser
 ini_set('display_errors', 0);
 error_reporting(E_ALL);
 
-// Load Database Connection
-$configPath = null;
-$possiblePaths = [
-    __DIR__ . '/../config/database.php',
-    __DIR__ . '/../public/config/database.php'
-];
+// Load Admin DB & Database Configuration
+$dbHelperPath = __DIR__ . '/../includes/db.php';
 
-foreach ($possiblePaths as $path) {
-    if (file_exists($path)) {
-        $configPath = $path;
-        break;
-    }
-}
-
-if (!$configPath) {
+if (!file_exists($dbHelperPath)) {
     if (php_sapi_name() === 'cli') {
-        echo "Error: Database configuration file not found.\n";
+        echo "Error: Database helper file not found.\n";
     } else {
         http_response_code(500);
         echo "خطا در بارگذاری فایل پیکربندی دیتابیس.";
@@ -34,35 +23,7 @@ if (!$configPath) {
     exit(1);
 }
 
-require_once $configPath;
-
-/**
- * Ensures admin_users table exists
- */
-function ensureAdminTableExists(PDO $pdo): void {
-    $sql = "CREATE TABLE IF NOT EXISTS admin_users (
-        id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-        username VARCHAR(100) NOT NULL UNIQUE,
-        password_hash VARCHAR(255) NOT NULL,
-        is_active BOOLEAN NOT NULL DEFAULT TRUE,
-        created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-        updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-        last_login_at TIMESTAMP NULL,
-        failed_login_attempts INT UNSIGNED NOT NULL DEFAULT 0,
-        locked_until TIMESTAMP NULL
-    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;";
-
-    $pdo->exec($sql);
-}
-
-/**
- * Checks if any admin exists
- */
-function countExistingAdmins(PDO $pdo): int {
-    ensureAdminTableExists($pdo);
-    $stmt = $pdo->query("SELECT COUNT(*) FROM admin_users");
-    return (int) $stmt->fetchColumn();
-}
+require_once $dbHelperPath;
 
 /**
  * Validates password strength
@@ -88,8 +49,6 @@ function validatePasswordStrength(string $password): array {
  * Creates single admin user
  */
 function createAdminUser(PDO $pdo, string $username, string $password): bool {
-    ensureAdminTableExists($pdo);
-
     if (countExistingAdmins($pdo) > 0) {
         return false;
     }
@@ -106,15 +65,14 @@ function createAdminUser(PDO $pdo, string $username, string $password): bool {
 $isCli = (php_sapi_name() === 'cli');
 
 try {
-    $pdo = getDbConnection();
-    ensureAdminTableExists($pdo);
+    $pdo = getAdminDbConnection();
     $adminCount = countExistingAdmins($pdo);
 } catch (Exception $e) {
     if ($isCli) {
         echo "Database connection error: " . $e->getMessage() . "\n";
     } else {
         http_response_code(500);
-        echo "خطا در اتصال به دیتابیس.";
+        echo "خطا در اتصال به دیتابیس. لطفاً تنظیمات دیتابیس را بررسی کنید.";
     }
     exit(1);
 }
@@ -122,15 +80,45 @@ try {
 // Single Admin Restriction Check
 if ($adminCount > 0) {
     if ($isCli) {
-        echo "Error: An admin account already exists. Multiple administrator accounts are not allowed.\n";
+        echo "Error: An admin account already exists. Creation of additional admin accounts is prohibited.\n";
         exit(1);
     } else {
         http_response_code(403);
         header('Content-Type: text/html; charset=utf-8');
-        echo '<!DOCTYPE html><html lang="fa" dir="rtl"><head><meta charset="UTF-8"><title>خطا - دسترسی غیرمجاز</title>';
-        echo '<style>body{font-family:sans-serif;background:#0f172a;color:#f8fafc;display:flex;justify-content:center;align-items:center;min-height:100vh;margin:0;}';
-        echo '.box{background:rgba(30,41,59,0.8);border:1px solid #334155;padding:2rem;border-radius:1rem;max-width:500px;text-align:center;box-shadow:0 10px 25px rgba(0,0,0,0.5);}</style></head><body>';
-        echo '<div class="box"><h2 style="color:#ef4444;">ایجاد مدیر جدید امکان‌پذیر نیست</h2><p>یک حساب مدیر قبلاً در سیستم ثبت شده است. جهت حفظ امنیت، امکان ایجاد حساب دوم وجود ندارد.</p></div></body></html>';
+        ?>
+        <!DOCTYPE html>
+        <html lang="fa" dir="rtl">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>خطا - دسترسی غیرمجاز | دپیکس</title>
+            <script src="https://cdn.tailwindcss.com"></script>
+            <style>
+                body {
+                    background-color: #0b0f19;
+                    color: #f8fafc;
+                    font-family: system-ui, -apple-system, sans-serif;
+                }
+            </style>
+        </head>
+        <body class="flex items-center justify-center min-h-screen p-4 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.15),rgba(255,255,255,0))]">
+            <div class="w-full max-w-md bg-slate-900/90 border border-slate-800 rounded-2xl p-8 shadow-2xl backdrop-blur-xl text-center">
+                <div class="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-rose-500/20 border border-rose-500/30 text-rose-400 mb-4">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+                    </svg>
+                </div>
+                <h2 class="text-xl font-bold text-white mb-2">ایجاد مدیر جدید امکان‌پذیر نیست</h2>
+                <p class="text-slate-400 text-sm mb-6 leading-relaxed">
+                    یک حساب مدیر قبلاً در سیستم ثبت شده است. جهت حفظ امنیت، امکان ساخت حساب دوم وجود ندارد.
+                </p>
+                <a href="../login.php" class="inline-flex items-center justify-center px-5 py-2.5 bg-indigo-600 hover:bg-indigo-500 text-white rounded-xl text-sm font-medium transition-colors shadow-lg shadow-indigo-600/25">
+                    ورود به پنل مدیریت
+                </a>
+            </div>
+        </body>
+        </html>
+        <?php
         exit;
     }
 }
@@ -142,7 +130,6 @@ if ($isCli) {
     echo " Initial Admin Setup Utility\n";
     echo "========================================\n\n";
 
-    // Read username
     echo "Enter Admin Username: ";
     $username = trim((string) fgets(STDIN));
 
@@ -151,11 +138,9 @@ if ($isCli) {
         exit(1);
     }
 
-    // Read password
     echo "Enter Admin Password: ";
     $password = trim((string) fgets(STDIN));
 
-    // Read password confirmation
     echo "Confirm Admin Password: ";
     $confirmPassword = trim((string) fgets(STDIN));
 
@@ -203,7 +188,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $errorMessage = implode('<br>', $strengthErrors);
         } else {
             if (createAdminUser($pdo, $username, $password)) {
-                $successMessage = 'حساب مدیر اصلی با موفقیت ساخته شد! این ابزار نصب اکنون برای همیشه غیرفعال شد.';
+                $successMessage = 'حساب مدیر اصلی با موفقیت ساخته شد! این ابزار ثبت اکنون برای همیشه غیرفعال شد.';
             } else {
                 $errorMessage = 'خطا در ساخت حساب مدیر.';
             }
@@ -226,23 +211,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     </style>
 </head>
-<body class="flex items-center justify-center min-h-screen p-4">
+<body class="flex items-center justify-center min-h-screen p-4 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.15),rgba(255,255,255,0))]">
     <div class="w-full max-w-md bg-slate-900/90 border border-slate-800 rounded-2xl p-8 shadow-2xl backdrop-blur-xl">
         <div class="text-center mb-8">
+            <div class="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-indigo-600/20 border border-indigo-500/30 text-indigo-400 mb-3">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"/>
+                </svg>
+            </div>
             <h1 class="text-2xl font-bold text-white mb-2">راه‌اندازی مدیر اصلی</h1>
             <p class="text-slate-400 text-sm">ساخت تنها حساب Administrator سیستم</p>
         </div>
 
         <?php if ($successMessage): ?>
-            <div class="bg-emerald-900/40 border border-emerald-500/50 text-emerald-300 p-4 rounded-xl text-sm mb-6 text-center">
-                <?php echo htmlspecialchars($successMessage, ENT_QUOTES, 'UTF-8'); ?>
-                <div class="mt-4">
-                    <a href="../admin/login.php" class="inline-block px-4 py-2 bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg transition-colors font-medium">ورود به پنل مدیریت</a>
-                </div>
+            <div class="bg-emerald-950/60 border border-emerald-500/50 text-emerald-300 p-5 rounded-xl text-sm mb-6 text-center">
+                <p class="font-medium text-base mb-2">ثبت با موفقیت انجام شد</p>
+                <p class="text-slate-300 text-xs leading-relaxed mb-4"><?php echo htmlspecialchars($successMessage, ENT_QUOTES, 'UTF-8'); ?></p>
+                <a href="../login.php" class="inline-block px-5 py-2.5 bg-emerald-600 hover:bg-emerald-500 text-white rounded-xl font-medium transition-colors shadow-lg shadow-emerald-600/25 text-sm">
+                    ورود به پنل مدیریت
+                </a>
             </div>
         <?php else: ?>
             <?php if ($errorMessage): ?>
-                <div class="bg-rose-900/40 border border-rose-500/50 text-rose-300 p-4 rounded-xl text-sm mb-6">
+                <div class="bg-rose-950/60 border border-rose-500/50 text-rose-300 p-4 rounded-xl text-sm mb-6">
                     <?php echo $errorMessage; ?>
                 </div>
             <?php endif; ?>
@@ -251,23 +242,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <div>
                     <label class="block text-slate-300 text-sm mb-2 font-medium">نام کاربری</label>
                     <input type="text" name="username" required value="<?php echo isset($_POST['username']) ? htmlspecialchars($_POST['username'], ENT_QUOTES, 'UTF-8') : ''; ?>"
-                        class="w-full bg-slate-800/80 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-indigo-500 text-left dir-ltr">
+                        class="w-full bg-slate-950/60 border border-slate-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 text-left dir-ltr transition-all">
                 </div>
 
                 <div>
                     <label class="block text-slate-300 text-sm mb-2 font-medium">رمز عبور</label>
                     <input type="password" name="password" required
-                        class="w-full bg-slate-800/80 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-indigo-500 text-left dir-ltr">
+                        class="w-full bg-slate-950/60 border border-slate-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 text-left dir-ltr transition-all">
                     <p class="text-xs text-slate-500 mt-1">حداقل ۸ کاراکتر شامل حروف بزرگ، کوچک و عدد/نماد</p>
                 </div>
 
                 <div>
                     <label class="block text-slate-300 text-sm mb-2 font-medium">تکرار رمز عبور</label>
                     <input type="password" name="confirm_password" required
-                        class="w-full bg-slate-800/80 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-indigo-500 text-left dir-ltr">
+                        class="w-full bg-slate-950/60 border border-slate-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 text-left dir-ltr transition-all">
                 </div>
 
-                <button type="submit" class="w-full py-3 px-4 bg-indigo-600 hover:bg-indigo-500 text-white font-medium rounded-xl transition-colors shadow-lg shadow-indigo-600/30">
+                <button type="submit" class="w-full py-3.5 px-4 bg-indigo-600 hover:bg-indigo-500 text-white font-medium rounded-xl transition-all shadow-lg shadow-indigo-600/25 active:scale-[0.99]">
                     ایجاد حساب مدیر
                 </button>
             </form>

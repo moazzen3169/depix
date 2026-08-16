@@ -129,6 +129,7 @@ $budgetVal       = $budget !== '' ? $budget : null;
 
 try {
     $pdo = getDbConnection();
+    ensureDatabaseTablesExist($pdo);
 
     $sql = "INSERT INTO project_requests
             (full_name, company_name, phone, social_handle, project_type, budget, project_description, status)
@@ -153,7 +154,6 @@ try {
     ], JSON_UNESCAPED_UNICODE);
 
 } catch (PDOException $e) {
-    // Log exception internally if needed, but return generic user message
     error_log("Database Error in project-request.php: " . $e->getMessage());
 
     http_response_code(500);

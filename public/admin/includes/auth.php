@@ -76,9 +76,7 @@ if (isset($_SESSION['last_activity']) && (time() - $_SESSION['last_activity'] > 
     }
     session_destroy();
 
-    // Determine login page redirect path
-    $loginUrl = (strpos($_SERVER['REQUEST_URI'], '/public/') !== false) ? '/public/admin/login.php?expired=1' : '/admin/login.php?expired=1';
-    header("Location: " . $loginUrl);
+    header("Location: login.php?expired=1");
     exit;
 }
 
@@ -88,7 +86,6 @@ $_SESSION['last_activity'] = time();
  * Enforce Server-Side Authentication
  */
 if (empty($_SESSION['admin_authenticated']) || empty($_SESSION['admin_id'])) {
-    $loginUrl = (strpos($_SERVER['REQUEST_URI'], '/public/') !== false) ? '/public/admin/login.php' : '/admin/login.php';
-    header("Location: " . $loginUrl);
+    header("Location: login.php");
     exit;
 }

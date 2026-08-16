@@ -45,9 +45,6 @@ if (ini_get("session.use_cookies")) {
 
 session_destroy();
 
-// Redirect to Login page
-$isPublicSubdir = (strpos($_SERVER['REQUEST_URI'], '/public/') !== false);
-$loginUrl = $isPublicSubdir ? '/public/admin/login.php?logout=1' : '/admin/login.php?logout=1';
-
-header("Location: " . $loginUrl);
+// Redirect to Login page using relative URL
+header("Location: login.php?logout=1");
 exit;
