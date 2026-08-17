@@ -19,7 +19,7 @@
 
   @font-face {
     font-family: "Peyda";
-    src: url("././public/assets/fonts/Peyda-Thin.woff2") format("woff2");
+    src: url("./assets/fonts/Peyda-Thin.woff2") format("woff2");
     font-weight: 100;
     font-style: normal;
     font-display: swap;
@@ -27,7 +27,7 @@
 
   @font-face {
     font-family: "Peyda";
-    src: url("./fonts/peyda-light.woff2") format("woff2");
+    src: url("./assets/fonts/peyda-light.woff2") format("woff2");
     font-weight: 300;
     font-style: normal;
     font-display: swap;
@@ -35,7 +35,7 @@
 
   @font-face {
     font-family: "Peyda";
-    src: url("./fonts/Peyda-Medium.woff2") format("woff2");
+    src: url("./assets/fonts/Peyda-Medium.woff2") format("woff2");
     font-weight: 500;
     font-style: normal;
     font-display: swap;
@@ -43,7 +43,7 @@
 
   @font-face {
     font-family: "Peyda";
-    src: url("./fonts/Peyda-Bold.woff2") format("woff2");
+    src: url("./assets/fonts/Peyda-Bold.woff2") format("woff2");
     font-weight: 700;
     font-style: normal;
     font-display: swap;
@@ -51,7 +51,7 @@
 
   @font-face {
     font-family: "Peyda";
-    src: url("./fonts/Peyda-black.woff2") format("woff2");
+    src: url("./assets/fonts/Peyda-black.woff2") format("woff2");
     font-weight: 900;
     font-style: normal;
     font-display: swap;
