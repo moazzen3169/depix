@@ -220,6 +220,57 @@ const projects = [
     ],
     description: "«سایرا» یک برنامه آنلاین کاربردی برای رزرو سیستم‌ها و کنسول‌های گیم‌نت است. این سیستم به مالکان گیم‌نت اجازه می‌دهد سیستم‌ها را مدیریت کنند و بازیکنان بدون معطلی و تداخل، زمان بازی خود را آنلاین رزرو کنند."
   },
+  {
+    id: 9,
+    title: " پنلم" ,
+    category: "dashboard",
+    categoryLabel: "پنل مدیرت آنلاین و آفلاین مغازه",
+    year: "۱۴۰۴",
+    cover: "./assets/projects/panelam/dashboard.webp",
+    type: "saas",
+    featured: false,
+    specs: {
+      type: "سامانه رزرو و مدیریت سیستم‌های گیم‌نت",
+      duration: "۹ هفته",
+      techs: ["رزرو لحظه‌ای", "پنل مدیریت", "اعلان پیامکی"],
+      metrics: [
+        { label: "سرعت ثبت رزرو", value: "زیر ۱ ثانیه" },
+        { label: "تست عملکرد", value: "موفق" },
+        { label: "جلوگیری از تداخل رزرو", value: "۱۰۰٪" }
+      ]
+    },
+    screens: [
+      "./assets/projects/panelam/modam-main.webp",
+      "./assets/projects/panelam/show-all-factor.webp",
+      "./assets/projects/panelam/show-all-factor2.webp",
+    ],
+    description: "«سایرا» یک برنامه آنلاین کاربردی برای رزرو سیستم‌ها و کنسول‌های گیم‌نت است. این سیستم به مالکان گیم‌نت اجازه می‌دهد سیستم‌ها را مدیریت کنند و بازیکنان بدون معطلی و تداخل، زمان بازی خود را آنلاین رزرو کنند."
+  },
+  {
+    id: 10,
+    title: " بوکیتو" ,
+    category: "ecommerce",
+    categoryLabel: "سایت فروشگاهی کتاب بوکیتو",
+    year: "۱۴۰۴",
+    cover: "./assets/projects/bookito/categorys-page.webp",
+    type: "saas",
+    featured: false,
+    specs: {
+      type: "سامانه رزرو و مدیریت سیستم‌های گیم‌نت",
+      duration: "۹ هفته",
+      techs: ["رزرو لحظه‌ای", "پنل مدیریت", "اعلان پیامکی"],
+      metrics: [
+        { label: "سرعت ثبت رزرو", value: "زیر ۱ ثانیه" },
+        { label: "تست عملکرد", value: "موفق" },
+        { label: "جلوگیری از تداخل رزرو", value: "۱۰۰٪" }
+      ]
+    },
+    screens: [
+      "./assets/projects/bookito/categorys-page.webp",
+      "./assets/projects/bookito/index-page.webp",
+    ],
+    description: "«سایرا» یک برنامه آنلاین کاربردی برای رزرو سیستم‌ها و کنسول‌های گیم‌نت است. این سیستم به مالکان گیم‌نت اجازه می‌دهد سیستم‌ها را مدیریت کنند و بازیکنان بدون معطلی و تداخل، زمان بازی خود را آنلاین رزرو کنند."
+  },
 ];
 
 // Global state for Blog Posts
