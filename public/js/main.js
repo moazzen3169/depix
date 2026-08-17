@@ -1252,75 +1252,34 @@ function initPortfolioGrid() {
 
   if (!container) return;
 
-  // Clear mapping object for Bento layout configuration to Tailwind classes
-  const layoutClasses = {
-    featured: "col-span-1 row-span-2 sm:col-span-2 md:col-span-6 lg:col-span-8 lg:row-span-2",
-    large: "col-span-1 row-span-2 sm:col-span-2 md:col-span-6 lg:col-span-6 lg:row-span-2",
-    wide: "col-span-1 row-span-1 sm:col-span-2 md:col-span-6 lg:col-span-8 lg:row-span-1",
-    tall: "col-span-1 row-span-2 sm:col-span-1 md:col-span-3 lg:col-span-4 lg:row-span-2",
-    standard: "col-span-1 row-span-1 sm:col-span-1 md:col-span-3 lg:col-span-4 lg:row-span-1"
-  };
-
-  // Render function to draw Bento Portfolio Grid
+  // Render function to draw uniform clean Portfolio Grid
   const renderProjects = (filterType = 'all') => {
     container.innerHTML = '';
 
     const filtered = projects.filter(p => filterType === 'all' || p.category === filterType);
 
     filtered.forEach(p => {
-      const cardLayout = p.layout || (p.featured ? 'featured' : 'standard');
-      const gridSpan = layoutClasses[cardLayout] || layoutClasses.standard;
-
       const card = document.createElement('article');
-      card.className = `${gridSpan} project-card group relative flex flex-col bg-card-bg border border-border-subtle rounded-2xl lg:rounded-3xl overflow-hidden hover:border-primary-accent/50 hover:shadow-2xl transition-all duration-500 ease-out cursor-pointer`;
+      card.className = `project-card group flex flex-col bg-card-bg border border-border-subtle rounded-2xl overflow-hidden hover:border-primary-accent/40 hover:shadow-xl transition-all duration-300 cursor-pointer h-full`;
       card.setAttribute('data-id', p.id);
-      card.setAttribute('role', 'button');
+      card.setAttribute('role', 'link');
       card.setAttribute('tabindex', '0');
       card.setAttribute('aria-label', `مشاهده پروژه ${p.title}`);
 
-      // Extract main category tag
-      const mainCategory = p.categoryLabel.split('·')[0].trim();
-
       card.innerHTML = `
-        <!-- Image Container filling grid item -->
-        <div class="absolute inset-0 w-full h-full overflow-hidden bg-muted-bg/50">
-          <img src="${p.cover}" alt="${p.title}" class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" loading="lazy">
-          <!-- Gradient Contrast Overlay -->
-          <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/35 to-transparent transition-opacity duration-500 group-hover:from-black/95 group-hover:via-black/50"></div>
+        <!-- 1. Clean Image Frame Area (No text overlays) -->
+        <div class="relative w-full aspect-[16/10] overflow-hidden bg-muted-bg/50">
+          <img src="${p.cover}" alt="${p.title}" class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-105" loading="lazy">
         </div>
 
-        <!-- Content Overlay -->
-        <div class="relative z-10 flex flex-col justify-between h-full p-5 sm:p-6 lg:p-7 text-right text-white select-none">
-          <!-- Top Badge Row -->
-          <div class="flex items-center justify-between gap-2">
-            <span class="px-3 py-1 rounded-full bg-black/40 backdrop-blur-md border border-white/15 text-xs font-semibold text-white/90">
-              ${mainCategory}
-            </span>
-            <span class="px-2.5 py-1 rounded-full bg-black/40 backdrop-blur-md border border-white/15 text-[11px] font-mono font-bold text-white/80">
-              ${p.year}
-            </span>
-          </div>
-
-          <!-- Bottom Metadata Reveal -->
-          <div class="space-y-2.5 transform transition-transform duration-300 group-hover:-translate-y-1">
-            <h3 class="text-lg sm:text-xl lg:text-2xl font-black text-white group-hover:text-primary-accent transition-colors duration-300 leading-snug">
-              ${p.title}
-            </h3>
-            <p class="text-xs sm:text-sm text-gray-300 line-clamp-2 font-medium opacity-90 leading-relaxed">
-              ${p.categoryLabel}
-            </p>
-
-            <div class="pt-2 flex items-center justify-between border-t border-white/15">
-              <span class="text-xs font-bold text-primary-accent flex items-center gap-1.5 opacity-80 group-hover:opacity-100 transition-opacity duration-300">
-                <span>مشاهده پروژه</span>
-                <span class="transform rotate-180 inline-block transition-transform duration-300 group-hover:translate-x-1">←</span>
-              </span>
-              <div class="w-8 h-8 rounded-full bg-white/10 border border-white/20 flex items-center justify-center text-white group-hover:bg-primary-accent group-hover:border-primary-accent transition-all duration-300">
-                <svg class="w-4 h-4 transform rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </svg>
-              </div>
-            </div>
+        <!-- 2. Information Area (Positioned outside & below image) -->
+        <div class="p-5 flex flex-col justify-between flex-1 text-right space-y-2">
+          <h3 class="text-base sm:text-lg font-bold text-fg-main group-hover:text-primary-accent transition-colors duration-200 leading-snug">
+            ${p.title}
+          </h3>
+          <div class="flex items-center justify-between text-xs sm:text-sm text-muted-fg pt-1">
+            <span class="font-medium truncate pl-2">${p.categoryLabel}</span>
+            <span class="font-mono text-xs font-semibold text-muted-fg/80 shrink-0">${p.year}</span>
           </div>
         </div>
       `;
