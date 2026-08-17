@@ -861,6 +861,9 @@
   .flex-col {
     flex-direction: column;
   }
+  .flex-nowrap {
+    flex-wrap: nowrap;
+  }
   .flex-wrap {
     flex-wrap: wrap;
   }
@@ -1725,6 +1728,9 @@
   .object-cover {
     object-fit: cover;
   }
+  .object-top {
+    object-position: top;
+  }
   .p-0 {
     padding: 0px;
   }
@@ -1856,6 +1862,9 @@
   }
   .pr-6 {
     padding-right: calc(var(--spacing) * 6);
+  }
+  .pb-1 {
+    padding-bottom: var(--spacing);
   }
   .pb-2 {
     padding-bottom: calc(var(--spacing) * 2);

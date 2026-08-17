@@ -1281,7 +1281,7 @@ function initPortfolioGrid() {
       card.innerHTML = `
         <!-- 1. Clean Image Frame Area (No text overlays) -->
         <div class="relative w-full aspect-[16/10] overflow-hidden bg-muted-bg/50">
-          <img src="${p.cover}" alt="${p.title}" class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-105" loading="lazy">
+          <img src="${p.cover}" alt="${p.title}" class="w-full h-full object-cover object-top transition-transform duration-500 ease-out group-hover:scale-105" loading="lazy">
         </div>
 
         <!-- 2. Information Area (Positioned outside & below image) -->
@@ -3455,7 +3455,7 @@ function initProjectDetailPage() {
     relatedHTML += `
       <div onclick="window.location.href='project.html?slug=${encodeURIComponent(p.slug)}'" class="group block bg-card-bg border border-border-subtle rounded-2xl overflow-hidden hover:border-primary-accent/40 hover:shadow-xl transition-all duration-300 cursor-pointer">
         <div class="aspect-[16/10] overflow-hidden bg-muted-bg/50">
-          <img src="${p.cover}" alt="${p.title}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-102">
+          <img src="${p.cover}" alt="${p.title}" class="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-102">
         </div>
         <div class="p-5 text-right">
           <h4 class="text-base font-extrabold text-fg-main group-hover:text-primary-accent transition-colors">${p.title}</h4>
