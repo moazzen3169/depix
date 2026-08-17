@@ -28,6 +28,7 @@ const projects = [
       "./assets/projects/kafsham/kafsham-detail.webp",
       "./assets/projects/kafsham/kafsham-list.webp",
       "./assets/projects/kafsham/cover.webp",
+      "./assets/projects/kafsham/kafsham-ordering.webp",
     ],
     description: "«کفشام» یک وب‌سایت مدرن و بسیار کاربرپسند برای فروشگاه آنلاین کفش است. در طراحی این سایت تمرکز اصلی روی نمایش شفاف محصولات و خرید آسان در ۳ کلیک بوده است تا مشتریان بدون معطلی کفش مورد نظرشان را انتخاب و خریداری کنند."
   },
@@ -37,7 +38,7 @@ const projects = [
     category: "ecommerce",
     categoryLabel: "فروشگاه لوازم کمپینگ و سفر",
     year: "۱۴۰۴",
-    cover: "assets/projects/champing/1.webp",
+    cover: "./assets/projects/champing/camping-PAGE.webp",
     type: "website",
     featured: false,
     specs: {
@@ -51,7 +52,7 @@ const projects = [
       ]
     },
     screens: [
-      "./assets/projects/champing/camping-PAGE.jpg",
+      "./assets/projects/champing/camping-PAGE.webp",
       "./assets/projects/champing/camping-DETAIL.webp",
       "./assets/projects/champing/camping-LIST.webp",
       "./assets/projects/champing/camping-ordering.webp",
@@ -78,10 +79,10 @@ const projects = [
       ]
     },
     screens: [
-      "./assets/projects/panter/panter-main.jpg",
-      "./assets/projects/panter/panter-DETAL.jpg",
-      "./assets/projects/panter/panter-list.jpg",
-      "./assets/projects/panter/panter.jpg",
+      "./assets/projects/panter/panter-main.webp",
+      "./assets/projects/panter/panter-DETAL.webp",
+      "./assets/projects/panter/panter-list.webp",
+      "./assets/projects/panter/panter.webp",
     ],
     description: "«پنتر» یک سایت شیک و لوکس برای فروشگاه‌های لباس و مزون‌های پوشاک است. ظاهر مرتب و تیره سایت باعث می‌شود لباس‌ها و جزئیات بافت پارچه به زیبایی به چشم بیایند."
   },
@@ -105,10 +106,10 @@ const projects = [
       ]
     },
     screens: [
-      "./assets/projects/watch/watch-home.jpg",
-      "./assets/projects/watch/watch-detail.jpg",
-      "./assets/projects/watch/watch-list.jpg",
-      "./assets/projects/watch/watch-ordering.jpg",
+      "./assets/projects/watch/watch-home.webp",
+      "./assets/projects/watch/watch-detail.webp",
+      "./assets/projects/watch/watch-list.webp",
+      "./assets/projects/watch/watch-ordering.webp",
     ],
     description: "«تایم‌لند» یک فروشگاه فوق‌العاده شیک برای گالری‌های ساعت مچی و اکسسوری‌های خاص است. استفاده از فونت‌های چشم‌نواز و افکت‌های ملایم، احساس حضور در یک مغازه شیک را به مشتری منتقل می‌کند."
   },
@@ -132,10 +133,10 @@ const projects = [
       ]
     },
     screens: [
-      "./assets/projects/petshop/petshop-LANDING-PAGE.jpg",
-      "./assets/projects/petshop/petshop-detail.jpg",
-      "./assets/projects/petshop/petshop-list.jpg",
-      "./assets/projects/petshop/petshop-ordering.jpg",
+      "./assets/projects/petshop/petshop-LANDING-PAGE.webp",
+      "./assets/projects/petshop/petshop-detail.webp",
+      "./assets/projects/petshop/petshop-list.webp",
+      "./assets/projects/petshop/petshop-ordering.webp",
     ],
     description: "«پت شاپ پت من» یک وب‌سایت شاداب و صمیمی برای خرید غذا و لوازم حیوانات خانگی است. دسته‌بندی‌های واضح گربه، سگ و پرندگان باعث می‌شود خریداران در سریع‌ترین زمان کالای مدنظر را انتخاب کنند."
   },
@@ -198,7 +199,7 @@ const projects = [
     category: "ecommerce",
     categoryLabel: "فروشگاه آنلاین پوشاک و مد",
     year: "۱۴۰۴",
-    cover: "./assets/projects/modeman/modam-main.jpg",
+    cover: "./assets/projects/modeman/modam-main.webp",
     type: "saas",
     featured: false,
     specs: {
@@ -212,10 +213,10 @@ const projects = [
       ]
     },
     screens: [
-      "./assets/projects/modeman/modam-main.jpg",
-      "./assets/projects/modeman/modam-DETAL.jpg",
-      "./assets/projects/modeman/modam-list.jpg",
-      "./assets/projects/modeman/modam-ordering.jpg"
+      "./assets/projects/modeman/modam-main.webp",
+      "./assets/projects/modeman/modam-DETAL.webp",
+      "./assets/projects/modeman/modam-list.webp",
+      "./assets/projects/modeman/modam-ordering.webp"
     ],
     description: "«سایرا» یک برنامه آنلاین کاربردی برای رزرو سیستم‌ها و کنسول‌های گیم‌نت است. این سیستم به مالکان گیم‌نت اجازه می‌دهد سیستم‌ها را مدیریت کنند و بازیکنان بدون معطلی و تداخل، زمان بازی خود را آنلاین رزرو کنند."
   },
