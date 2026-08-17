@@ -304,7 +304,7 @@ const blogPosts = [
     category: "رشد کسب‌وکار",
     date: "۱۴۰۴/۱۱/۲۰",
     readTime: "۶ دقیقه",
-    image: "./assets/projects/project-02/1.webp",
+    image: "./assets/blog/1.jpg",
     excerpt: "یک سایت ضعیف فقط یک آدرس اینترنتی است؛ اما یک سایت حرفه‌ای می‌تواند به جذب مشتری، افزایش اعتماد و افزایش فروش کمک کند.",
     author: {
       name: "هادی موذن",
@@ -390,7 +390,7 @@ const blogPosts = [
     category: "تعرفه‌ها و هزینه‌ها",
     date: "۱۴۰۴/۱۱/۱۲",
     readTime: "۸ دقیقه",
-    image: "./assets/projects/project-03/cover.webp",
+    image: "./assets/blog/3.jpg",
     excerpt: "بررسی تعرفه‌های سال ۱۴۰۵، بازه تقریبی قیمت‌ها و مهم‌ترین عوامل موثر بر هزینه طراحی وب‌سایت و فروشگاه اینترنتی.",
     author: {
       name: "هادی موذن",
@@ -534,7 +534,7 @@ const blogPosts = [
     category: "معماری محصول",
     date: "۱۴۰۴/۱۱/۰۵",
     readTime: "۷ دقیقه",
-    image: "./assets/projects/project-01/cover.webp",
+    image: "./assets/blog/2.jpg",
     excerpt: "مقایسه کامل طراحی اختصاصی وب‌سایت در برابر قالب‌های آماده؛ بررسی مزایا، معایب، هزینه‌های پنهان و مقیاس‌پذیری.",
     author: {
       name: "هادی موذن",
