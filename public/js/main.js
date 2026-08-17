@@ -14,6 +14,7 @@ const projects = [
     cover: "./assets/projects/kafsham/cover.webp",
     type: "website",
     featured: true,
+    layout: "featured",
     specs: {
       type: "فروشگاه اینترنتی کفش و کتانی",
       duration: "۴ هفته",
@@ -41,6 +42,7 @@ const projects = [
     cover: "./assets/projects/champing/camping-PAGE.webp",
     type: "website",
     featured: false,
+    layout: "standard",
     specs: {
       type: "فروشگاه آنلاین تجهیزات مسافرتی",
       duration: "۵ هفته",
@@ -68,6 +70,7 @@ const projects = [
     cover: "./assets/projects/panter/cover.webp",
     type: "website",
     featured: false,
+    layout: "tall",
     specs: {
       type: "فروشگاه اینترنتی لباس و مزون",
       duration: "۴ هفته",
@@ -95,6 +98,7 @@ const projects = [
     cover: "./assets/projects/watch/cover.webp",
     type: "website",
     featured: true,
+    layout: "large",
     specs: {
       type: "فروشگاه اختصاصی ساعت و زیورآلات",
       duration: "۵ هفته",
@@ -122,6 +126,7 @@ const projects = [
     cover: "./assets/projects/petshop/2.webp",
     type: "website",
     featured: false,
+    layout: "standard",
     specs: {
       type: "فروشگاه اینترنتی پت شاپ",
       duration: "۳ هفته",
@@ -149,6 +154,7 @@ const projects = [
     cover: "./assets/projects/sayra/ps-1.webp",
     type: "saas",
     featured: false,
+    layout: "wide",
     specs: {
       type: "سامانه رزرو و مدیریت سیستم‌های گیم‌نت",
       duration: "۹ هفته",
@@ -176,6 +182,7 @@ const projects = [
     cover: "./assets/projects/abzarchee/abzaercheee.webp",
     type: "saas",
     featured: false,
+    layout: "standard",
     specs: {
       type: "سامانه رزرو و مدیریت سیستم‌های گیم‌نت",
       duration: "۹ هفته",
@@ -202,6 +209,7 @@ const projects = [
     cover: "./assets/projects/modeman/modam-main.webp",
     type: "saas",
     featured: false,
+    layout: "tall",
     specs: {
       type: "سامانه رزرو و مدیریت سیستم‌های گیم‌نت",
       duration: "۹ هفته",
@@ -229,6 +237,7 @@ const projects = [
     cover: "./assets/projects/panelam/dashboard.webp",
     type: "saas",
     featured: false,
+    layout: "wide",
     specs: {
       type: "سامانه رزرو و مدیریت سیستم‌های گیم‌نت",
       duration: "۹ هفته",
@@ -255,6 +264,7 @@ const projects = [
     cover: "./assets/projects/bookito/categorys-page.webp",
     type: "saas",
     featured: false,
+    layout: "standard",
     specs: {
       type: "سامانه رزرو و مدیریت سیستم‌های گیم‌نت",
       duration: "۹ هفته",
@@ -1242,47 +1252,75 @@ function initPortfolioGrid() {
 
   if (!container) return;
 
-  // Render function to draw Dribbble-inspired grid
+  // Clear mapping object for Bento layout configuration to Tailwind classes
+  const layoutClasses = {
+    featured: "col-span-1 row-span-2 sm:col-span-2 md:col-span-6 lg:col-span-8 lg:row-span-2",
+    large: "col-span-1 row-span-2 sm:col-span-2 md:col-span-6 lg:col-span-6 lg:row-span-2",
+    wide: "col-span-1 row-span-1 sm:col-span-2 md:col-span-6 lg:col-span-8 lg:row-span-1",
+    tall: "col-span-1 row-span-2 sm:col-span-1 md:col-span-3 lg:col-span-4 lg:row-span-2",
+    standard: "col-span-1 row-span-1 sm:col-span-1 md:col-span-3 lg:col-span-4 lg:row-span-1"
+  };
+
+  // Render function to draw Bento Portfolio Grid
   const renderProjects = (filterType = 'all') => {
     container.innerHTML = '';
 
     const filtered = projects.filter(p => filterType === 'all' || p.category === filterType);
 
     filtered.forEach(p => {
-      // featured card logic - desktop spans 2 columns
-      const spanClass = p.featured ? 'md:col-span-2' : 'col-span-1';
+      const cardLayout = p.layout || (p.featured ? 'featured' : 'standard');
+      const gridSpan = layoutClasses[cardLayout] || layoutClasses.standard;
 
       const card = document.createElement('article');
-      card.className = `${spanClass} project-card group relative flex flex-col bg-card-bg border border-border-subtle rounded-2xl overflow-hidden hover:border-primary-accent/40 hover:shadow-2xl transition-all-custom cursor-pointer`;
+      card.className = `${gridSpan} project-card group relative flex flex-col bg-card-bg border border-border-subtle rounded-2xl lg:rounded-3xl overflow-hidden hover:border-primary-accent/50 hover:shadow-2xl transition-all duration-500 ease-out cursor-pointer`;
       card.setAttribute('data-id', p.id);
       card.setAttribute('role', 'button');
       card.setAttribute('tabindex', '0');
       card.setAttribute('aria-label', `مشاهده پروژه ${p.title}`);
 
-      card.innerHTML = `
-        <div class="project-media relative aspect-[16/10] overflow-hidden bg-muted-bg/50">
-          <img src="${p.cover}" alt="${p.title}" class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]" loading="lazy">
+      // Extract main category tag
+      const mainCategory = p.categoryLabel.split('·')[0].trim();
 
-          <!-- Subtle Premium Hover Overlay -->
-          <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-            <span class="px-5 py-2.5 rounded-full bg-white text-black font-bold text-sm shadow-xl flex items-center gap-2 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
-              <span>مشاهده پروژه</span>
-              <svg class="w-4 h-4 transform rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-              </svg>
-            </span>
-          </div>
+      card.innerHTML = `
+        <!-- Image Container filling grid item -->
+        <div class="absolute inset-0 w-full h-full overflow-hidden bg-muted-bg/50">
+          <img src="${p.cover}" alt="${p.title}" class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" loading="lazy">
+          <!-- Gradient Contrast Overlay -->
+          <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/35 to-transparent transition-opacity duration-500 group-hover:from-black/95 group-hover:via-black/50"></div>
         </div>
 
-        <div class="project-meta p-5 flex items-center justify-between border-t border-border-subtle/50">
-          <div class="space-y-1 text-right">
-            <h3 class="text-base font-bold text-fg-main group-hover:text-primary-accent transition-colors duration-200">${p.title}</h3>
-            <span class="text-xs text-muted-fg font-medium">${p.categoryLabel}</span>
+        <!-- Content Overlay -->
+        <div class="relative z-10 flex flex-col justify-between h-full p-5 sm:p-6 lg:p-7 text-right text-white select-none">
+          <!-- Top Badge Row -->
+          <div class="flex items-center justify-between gap-2">
+            <span class="px-3 py-1 rounded-full bg-black/40 backdrop-blur-md border border-white/15 text-xs font-semibold text-white/90">
+              ${mainCategory}
+            </span>
+            <span class="px-2.5 py-1 rounded-full bg-black/40 backdrop-blur-md border border-white/15 text-[11px] font-mono font-bold text-white/80">
+              ${p.year}
+            </span>
           </div>
-          <div class="w-8 h-8 rounded-full border border-border-subtle bg-muted-bg group-hover:border-primary-accent group-hover:bg-primary-accent/10 flex items-center justify-center text-muted-fg group-hover:text-primary-accent transition-all duration-300">
-            <svg class="w-4 h-4 transform rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-            </svg>
+
+          <!-- Bottom Metadata Reveal -->
+          <div class="space-y-2.5 transform transition-transform duration-300 group-hover:-translate-y-1">
+            <h3 class="text-lg sm:text-xl lg:text-2xl font-black text-white group-hover:text-primary-accent transition-colors duration-300 leading-snug">
+              ${p.title}
+            </h3>
+            <p class="text-xs sm:text-sm text-gray-300 line-clamp-2 font-medium opacity-90 leading-relaxed">
+              ${p.categoryLabel}
+            </p>
+
+            <div class="pt-2 flex items-center justify-between border-t border-white/15">
+              <span class="text-xs font-bold text-primary-accent flex items-center gap-1.5 opacity-80 group-hover:opacity-100 transition-opacity duration-300">
+                <span>مشاهده پروژه</span>
+                <span class="transform rotate-180 inline-block transition-transform duration-300 group-hover:translate-x-1">←</span>
+              </span>
+              <div class="w-8 h-8 rounded-full bg-white/10 border border-white/20 flex items-center justify-center text-white group-hover:bg-primary-accent group-hover:border-primary-accent transition-all duration-300">
+                <svg class="w-4 h-4 transform rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </div>
+            </div>
           </div>
         </div>
       `;
