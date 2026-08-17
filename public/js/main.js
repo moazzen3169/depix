@@ -7,6 +7,7 @@
 const projects = [
   {
     id: 1,
+    slug: "کفشام",
     title: "کفشام",
     category: "ecommerce",
     categoryLabel: "فروشگاه آنلاین کفش · خرید سریع و آسان",
@@ -35,6 +36,7 @@ const projects = [
   },
   {
     id: 2,
+    slug: "چمپینگ",
     title: "چمپینگ",
     category: "ecommerce",
     categoryLabel: "فروشگاه لوازم کمپینگ و سفر",
@@ -63,6 +65,7 @@ const projects = [
   },
   {
     id: 3,
+    slug: "پنتر",
     title: "پنتر",
     category: "ecommerce",
     categoryLabel: "فروشگاه آنلاین پوشاک و مد",
@@ -91,6 +94,7 @@ const projects = [
   },
   {
     id: 4,
+    slug: "تایم‌لند",
     title: "تایم‌لند",
     category: "ecommerce",
     categoryLabel: "فروشگاه لوکس ساعت و اکسسوری",
@@ -119,6 +123,7 @@ const projects = [
   },
   {
     id: 5,
+    slug: "پت-شاپ-پت-من",
     title: "پت شاپ پت من",
     category: "ecommerce",
     categoryLabel: "فروشگاه آنلاین غذا و لوازم حیوانات خانگی",
@@ -147,6 +152,7 @@ const projects = [
   },
   {
     id: 6,
+    slug: "سایرا",
     title: "Sayra",
     category: "saas",
     categoryLabel: "سامانه آنلاین رزرو گیم‌نت",
@@ -177,6 +183,7 @@ const projects = [
   },
   {
     id: 7,
+    slug: "ابزارچی",
     title: "ابزارچی",
     category: "ecommerce",
     categoryLabel: "فروشگاه آبزارآلات خانگی و صنعتی",
@@ -204,6 +211,7 @@ const projects = [
   },
   {
     id: 8,
+    slug: "مدمن",
     title: " مدمن" ,
     category: "ecommerce",
     categoryLabel: "فروشگاه آنلاین پوشاک و مد",
@@ -232,6 +240,7 @@ const projects = [
   },
   {
     id: 9,
+    slug: "پنلم",
     title: " پنلم" ,
     category: "dashboard",
     categoryLabel: "پنل مدیرت آنلاین و آفلاین مغازه",
@@ -259,6 +268,7 @@ const projects = [
   },
   {
     id: 10,
+    slug: "بوکیتو",
     title: " بوکیتو" ,
     category: "ecommerce",
     categoryLabel: "سایت فروشگاهی کتاب بوکیتو",
@@ -1288,7 +1298,7 @@ function initPortfolioGrid() {
 
       // Click / Keyboard Key navigates directly to the project detail page
       const navigateToProject = () => {
-        window.location.href = `project.html?id=${p.id}`;
+        window.location.href = `project.html?slug=${encodeURIComponent(p.slug)}`;
       };
       card.addEventListener('click', navigateToProject);
       card.addEventListener('keydown', (e) => {
@@ -1536,7 +1546,7 @@ function openCaseStudy(id) {
           <h3 class="text-xl font-black text-fg-main">آیا این پروژه به نیاز شما نزدیک است؟</h3>
           <p class="text-sm text-muted-fg max-w-lg mx-auto">ما مشتاقیم تجربه‌ای مشابه یا حتی فراتر را برای کسب‌وکار شما مهندسی کنیم.</p>
           <div class="flex flex-wrap gap-4 justify-center">
-            <a href="project.html?id=${project.id}" class="inline-flex items-center justify-center px-6 py-3 rounded-xl text-sm font-bold text-white bg-primary-accent hover:bg-accent-hover transition-all-custom shadow-lg shadow-primary-accent/15">
+            <a href="project.html?slug=${encodeURIComponent(project.slug)}" class="inline-flex items-center justify-center px-6 py-3 rounded-xl text-sm font-bold text-white bg-primary-accent hover:bg-accent-hover transition-all-custom shadow-lg shadow-primary-accent/15">
               مشاهده صفحه اختصاصی پروژه
             </a>
             <a href="#contact" id="cs-cta-btn" class="inline-flex items-center justify-center px-6 py-3 rounded-xl text-sm font-bold text-fg-main bg-card-bg border border-border-subtle hover:bg-muted-bg transition-all">
@@ -3366,11 +3376,13 @@ function initProjectDetailPage() {
   const detailContainer = document.getElementById('project-detail-container');
   if (!detailContainer) return; // We are not on project.html
 
-  // Parse ID from Query String
+  // Parse Slug or ID from Query String
   const params = new URLSearchParams(window.location.search);
+  const rawSlug = params.get('slug');
+  const decodedSlug = rawSlug ? decodeURIComponent(rawSlug) : null;
   const projectId = Number(params.get('id'));
 
-  const project = projects.find(p => p.id === projectId) || projects[0];
+  const project = projects.find(p => (decodedSlug && p.slug === decodedSlug) || (projectId && p.id === projectId)) || projects[0];
 
   // Title update
   document.title = `${project.title} | پورتفولیو دپیکس`;
@@ -3441,7 +3453,7 @@ function initProjectDetailPage() {
   let relatedHTML = '';
   related.forEach(p => {
     relatedHTML += `
-      <div onclick="window.location.href='project.html?id=${p.id}'" class="group block bg-card-bg border border-border-subtle rounded-2xl overflow-hidden hover:border-primary-accent/40 hover:shadow-xl transition-all duration-300 cursor-pointer">
+      <div onclick="window.location.href='project.html?slug=${encodeURIComponent(p.slug)}'" class="group block bg-card-bg border border-border-subtle rounded-2xl overflow-hidden hover:border-primary-accent/40 hover:shadow-xl transition-all duration-300 cursor-pointer">
         <div class="aspect-[16/10] overflow-hidden bg-muted-bg/50">
           <img src="${p.cover}" alt="${p.title}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-102">
         </div>
