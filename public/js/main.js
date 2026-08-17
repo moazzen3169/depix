@@ -166,10 +166,12 @@ const projects = [
       ]
     },
     screens: [
-      "./assets/projects/sayra/ps-1.webp",
-      "./assets/projects/sayra/ps-2.webp",
-      "./assets/projects/sayra/ps-3.webp",
-      "./assets/projects/sayra/ps-4.webp"
+      "./assets/projects/sayra/sayra-main.webp",
+      "./assets/projects/sayra/sayra-detail.webp",
+      "./assets/projects/sayra/sayra-gamenets.webp",
+      "./assets/projects/sayra/sayra-profile.webp",
+      "./assets/projects/sayra/sayra-support.webp",
+      "./assets/projects/sayra/sayra-blog.webp",
     ],
     description: "«سایرا» یک برنامه آنلاین کاربردی برای رزرو سیستم‌ها و کنسول‌های گیم‌نت است. این سیستم به مالکان گیم‌نت اجازه می‌دهد سیستم‌ها را مدیریت کنند و بازیکنان بدون معطلی و تداخل، زمان بازی خود را آنلاین رزرو کنند."
   },
