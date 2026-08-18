@@ -943,10 +943,10 @@
 
     <!-- Fullscreen Immersive Contact Overlay -->
     <div id="consultation-overlay" role="dialog" aria-modal="true" aria-labelledby="consultation-title"
-      class="fixed inset-0 z-50 bg-black/95 backdrop-blur-md opacity-0 pointer-events-none transition-opacity duration-300 flex items-center justify-center p-4 sm:p-6 md:p-12 overflow-y-auto">
+      class="fixed inset-0 z-[100] bg-bg-main backdrop-blur-md opacity-0 pointer-events-none transition-opacity duration-300 flex items-start md:items-center justify-center p-4 sm:p-6 md:p-12 overflow-y-auto">
       <!-- Background Project Collage: real project screenshots, low-opacity, grayscale, blur -->
       <div
-        class="absolute inset-0 z-0 overflow-hidden opacity-[0.08] grayscale blur-xs pointer-events-none grid grid-cols-2 sm:grid-cols-3 gap-4 p-4">
+        class="fixed inset-0 z-0 overflow-hidden opacity-[0.06] dark:opacity-[0.08] grayscale blur-xs pointer-events-none grid grid-cols-2 sm:grid-cols-3 gap-4 p-4">
         <img src="assets/projects/project-01/cover.webp" alt="" class="w-full h-full object-cover rounded-xl">
         <img src="assets/projects/project-02/1.webp" alt="" class="w-full h-full object-cover rounded-xl">
         <img src="assets/projects/project-03/cover.webp" alt="" class="w-full h-full object-cover rounded-xl">
@@ -959,18 +959,18 @@
 
       <!-- Close Button -->
       <button id="consultation-close" aria-label="بستن"
-        class="absolute top-6 left-6 md:top-8 md:left-8 z-50 p-2.5 text-muted-fg hover:text-fg-main rounded-lg border border-border-subtle/50 hover:bg-muted-bg cursor-pointer transition-colors focus-visible:ring-2 focus-visible:ring-primary-accent">
+        class="fixed top-4 left-4 sm:top-6 sm:left-6 md:top-8 md:left-8 z-[110] p-2.5 text-muted-fg hover:text-fg-main rounded-xl border border-border-subtle bg-card-bg/80 hover:bg-muted-bg backdrop-blur-md shadow-md cursor-pointer transition-all focus-visible:ring-2 focus-visible:ring-primary-accent">
         <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
           <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
         </svg>
       </button>
 
       <!-- Center Container for Content -->
-      <div class="relative z-10 w-full max-w-5xl mx-auto flex flex-col justify-center min-h-[80vh] py-12">
+      <div class="relative z-10 w-full max-w-5xl mx-auto flex flex-col justify-center min-h-none md:min-h-[80vh] pt-14 pb-12 sm:pt-16 md:py-12">
 
         <!-- STATE 1: CONTACT EXPERIENCES -->
         <div id="consultation-state-contact"
-          class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center text-right">
+          class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-center text-right">
 
           <!-- Left Column: Introduction & Project CTA -->
           <div class="lg:col-span-6 space-y-8">

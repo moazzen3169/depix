@@ -3253,7 +3253,7 @@ function initConsultationExperience() {
           </div>
           <div class="space-y-0.5">
             <span class="text-xs text-muted-fg font-bold block">${data.label}</span>
-            <span class="text-sm font-extrabold text-fg-main group-hover:text-primary-accent transition-colors duration-200 font-mono">${data.value}</span>
+            <span class="text-sm font-extrabold text-fg-main group-hover:text-primary-accent transition-colors duration-200">${data.value}</span>
           </div>
         </div>
         <svg class="w-4 h-4 text-muted-fg transform rotate-180 transition-transform duration-300 group-hover:translate-x-1 group-hover:text-primary-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
@@ -3349,6 +3349,7 @@ function initConsultationExperience() {
   };
 
   const openOverlay = () => {
+    overlay.scrollTop = 0;
     overlay.classList.remove('pointer-events-none');
     lockScroll(true);
     openTl.play();
@@ -3379,6 +3380,7 @@ function initConsultationExperience() {
 
   // Transition from Contact View to Inquiry Form
   toInquiryBtn.addEventListener('click', () => {
+    overlay.scrollTop = 0;
     if (isReduced) {
       stateContact.classList.add('hidden');
       stateInquiry.classList.remove('hidden');
@@ -3403,6 +3405,7 @@ function initConsultationExperience() {
 
   // Transition back to Contact View
   backToContactBtn.addEventListener('click', () => {
+    overlay.scrollTop = 0;
     if (isReduced) {
       stateInquiry.classList.add('hidden');
       stateContact.classList.remove('hidden');
