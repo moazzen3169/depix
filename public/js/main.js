@@ -896,6 +896,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initStartupStory();
   initCooperationModal();
   initBlogGrid();
+  initAllBlogPage(); // Check if we are on blog.html
   initAccordion();
   initContactForm();
   initScrollAnimations();
@@ -1355,37 +1356,32 @@ function initCooperationModal() {
 }
 
 /**
- * 3.6. Dynamic Blog Preview Grid rendering
+ * Helper function to create a standardized Blog Post Card element
  */
-function initBlogGrid() {
-  const container = document.getElementById('blog-grid-container');
-  if (!container) return;
+function createBlogCardElement(post) {
+  const card = document.createElement('article');
+  card.className = `group bg-card-bg border border-border-subtle rounded-2xl overflow-hidden hover:border-primary-accent/40 hover:shadow-2xl transition-all-custom cursor-pointer h-full flex flex-col justify-between`;
+  card.setAttribute('role', 'article');
+  card.setAttribute('tabindex', '0');
+  card.setAttribute('aria-label', `مطالعه مقاله: ${post.title}`);
 
-  container.innerHTML = '';
+  card.innerHTML = `
+    <div class="relative aspect-[16/10] overflow-hidden bg-muted-bg/50 shrink-0">
+      <img src="${post.image}" alt="${post.title}" class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]" loading="lazy">
 
-  blogPosts.forEach(post => {
-    const card = document.createElement('article');
-    card.className = `group bg-card-bg border border-border-subtle rounded-2xl overflow-hidden hover:border-primary-accent/40 hover:shadow-2xl transition-all-custom cursor-pointer`;
-    card.setAttribute('role', 'article');
-    card.setAttribute('tabindex', '0');
-    card.setAttribute('aria-label', `مطالعه مقاله: ${post.title}`);
-
-    card.innerHTML = `
-      <div class="relative aspect-[16/10] overflow-hidden bg-muted-bg/50">
-        <img src="${post.image}" alt="${post.title}" class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]" loading="lazy">
-
-        <!-- Subtle Overlay on Hover -->
-        <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-          <span class="px-5 py-2.5 rounded-full bg-white text-black font-bold text-sm shadow-xl flex items-center gap-2 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
-            <span>مطالعه مقاله</span>
-            <svg class="w-4 h-4 transform rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-            </svg>
-          </span>
-        </div>
+      <!-- Subtle Overlay on Hover -->
+      <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+        <span class="px-5 py-2.5 rounded-full bg-white text-black font-bold text-sm shadow-xl flex items-center gap-2 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+          <span>مطالعه مقاله</span>
+          <svg class="w-4 h-4 transform rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+          </svg>
+        </span>
       </div>
+    </div>
 
-      <div class="p-6 text-right space-y-4">
+    <div class="p-6 text-right space-y-4 flex-1 flex flex-col justify-between">
+      <div class="space-y-3">
         <div class="flex items-center justify-between">
           <span class="text-xs text-primary-accent font-bold">${post.category}</span>
           <span class="text-xs text-muted-fg font-medium">${post.readTime} مطالعه</span>
@@ -1394,32 +1390,202 @@ function initBlogGrid() {
         <h3 class="text-base sm:text-lg font-bold text-fg-main group-hover:text-primary-accent transition-colors duration-200 line-clamp-2 leading-snug">
           ${post.title}
         </h3>
+      </div>
 
-        <div class="flex items-center justify-between pt-2 border-t border-border-subtle/30 text-xs text-muted-fg">
-          <span>${post.date}</span>
-          <div class="flex items-center gap-1 text-primary-accent font-bold group-hover:gap-2 transition-all">
-            <span>ادامه مطلب</span>
-            <span class="transform rotate-180">←</span>
+      <div class="flex items-center justify-between pt-3 border-t border-border-subtle/30 text-xs text-muted-fg">
+        <span>${post.date}</span>
+        <div class="flex items-center gap-1 text-primary-accent font-bold group-hover:gap-2 transition-all">
+          <span>ادامه مطلب</span>
+          <span class="transform rotate-180">←</span>
+        </div>
+      </div>
+    </div>
+  `;
+
+  // Click triggers
+  const readArticle = () => {
+    window.location.href = `blog-detail.html?slug=${encodeURIComponent(post.slug)}`;
+  };
+
+  card.addEventListener('click', readArticle);
+  card.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      readArticle();
+    }
+  });
+
+  return card;
+}
+
+/**
+ * 3.6. Dynamic Blog Preview Grid rendering (index.html - 3 latest posts)
+ */
+function initBlogGrid() {
+  const container = document.getElementById('blog-grid-container');
+  if (!container) return;
+
+  container.innerHTML = '';
+
+  // Only render the 3 latest blog posts on homepage
+  const latestPosts = blogPosts.slice(0, 3);
+
+  latestPosts.forEach(post => {
+    const card = createBlogCardElement(post);
+    container.appendChild(card);
+  });
+}
+
+/**
+ * Dedicated All-Blog Posts Page Logic (blog.html)
+ */
+function initAllBlogPage() {
+  const gridContainer = document.getElementById('all-blog-grid-container');
+  const sliderSlides = document.getElementById('blog-slider-slides');
+
+  if (!gridContainer || !sliderSlides) return; // We are not on blog.html
+
+  // 1. Update total blogs count badge
+  const countBadge = document.getElementById('all-blogs-count');
+  if (countBadge) {
+    const toPersianNum = (num) => String(num).replace(/\d/g, d => '۰۱۲۳۴۵۶۷۸۹'[d]);
+    countBadge.textContent = `${toPersianNum(blogPosts.length)} مقاله منتشر شده`;
+  }
+
+  // 2. Render All Blog Cards into Grid
+  gridContainer.innerHTML = '';
+  blogPosts.forEach(post => {
+    const card = createBlogCardElement(post);
+    gridContainer.appendChild(card);
+  });
+
+  // 3. Build & Render Top Featured Blog Slider
+  sliderSlides.innerHTML = '';
+
+  blogPosts.forEach((post, index) => {
+    const slide = document.createElement('div');
+    slide.className = 'w-full flex-shrink-0 flex flex-col lg:flex-row items-center gap-8 lg:gap-12 p-6 sm:p-10 lg:p-12 text-right';
+
+    slide.innerHTML = `
+      <!-- Slide Image -->
+      <div class="w-full lg:w-1/2 aspect-[16/10] overflow-hidden rounded-2xl bg-muted-bg/50 relative group cursor-pointer shrink-0">
+        <img src="${post.image}" alt="${post.title}" class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" loading="lazy">
+        <div class="absolute inset-0 bg-black/20 group-hover:bg-black/30 transition-colors duration-300"></div>
+        <span class="absolute top-4 right-4 px-3.5 py-1.5 rounded-full bg-black/60 backdrop-blur-md text-white text-xs font-bold border border-white/10">
+          ${post.category}
+        </span>
+      </div>
+
+      <!-- Slide Details -->
+      <div class="w-full lg:w-1/2 flex flex-col justify-between space-y-6">
+        <div class="space-y-4">
+          <div class="flex items-center gap-3 text-xs font-semibold text-muted-fg">
+            <span class="text-primary-accent font-bold">• ${post.readTime} مطالعه</span>
+            <span>• ${post.date}</span>
           </div>
+
+          <h3 class="text-xl sm:text-2xl lg:text-3xl font-black text-fg-main hover:text-primary-accent transition-colors duration-200 cursor-pointer leading-tight line-clamp-2">
+            ${post.title}
+          </h3>
+
+          <p class="text-sm sm:text-base text-muted-fg leading-relaxed line-clamp-3">
+            ${post.excerpt}
+          </p>
+        </div>
+
+        <!-- Author Bar & CTA -->
+        <div class="flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-border-subtle/50">
+          <div class="flex items-center gap-3">
+            <img src="${post.author.avatar}" alt="${post.author.name}" class="w-10 h-10 rounded-full border border-border-subtle object-cover">
+            <div>
+              <p class="text-xs font-bold text-fg-main">${post.author.name}</p>
+              <p class="text-[11px] text-muted-fg">${post.author.role}</p>
+            </div>
+          </div>
+
+          <a href="blog-detail.html?slug=${encodeURIComponent(post.slug)}" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold text-white bg-primary-accent hover:bg-accent-hover shadow-lg shadow-primary-accent/15 transition-all">
+            <span>مطالعه مقاله</span>
+            <svg class="w-4 h-4 transform rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+            </svg>
+          </a>
         </div>
       </div>
     `;
 
-    // Click triggers
-    const readArticle = () => {
+    // Click on slide image or title navigates to detail
+    const navigateToDetail = () => {
       window.location.href = `blog-detail.html?slug=${encodeURIComponent(post.slug)}`;
     };
+    slide.querySelector('img').addEventListener('click', navigateToDetail);
+    slide.querySelector('h3').addEventListener('click', navigateToDetail);
 
-    card.addEventListener('click', readArticle);
-    card.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        readArticle();
-      }
-    });
-
-    container.appendChild(card);
+    sliderSlides.appendChild(slide);
   });
+
+  // 4. Slider Controls Logic
+  let currentSlide = 0;
+  const totalSlides = blogPosts.length;
+  const dotsContainer = document.getElementById('blog-slider-dots');
+  const counterEl = document.getElementById('blog-slider-counter');
+  const prevBtn = document.getElementById('blog-slide-prev');
+  const nextBtn = document.getElementById('blog-slide-next');
+
+  // Build dots
+  if (dotsContainer) {
+    dotsContainer.innerHTML = '';
+    blogPosts.forEach((_, idx) => {
+      const dot = document.createElement('button');
+      dot.className = `w-2.5 h-2.5 rounded-full transition-all cursor-pointer ${idx === 0 ? 'bg-primary-accent w-6' : 'bg-white/40 hover:bg-white'}`;
+      dot.setAttribute('aria-label', `رفتن به اسلاید ${idx + 1}`);
+      dot.addEventListener('click', () => updateSlide(idx));
+      dotsContainer.appendChild(dot);
+    });
+  }
+
+  const updateSlide = (idx) => {
+    currentSlide = (idx + totalSlides) % totalSlides;
+    sliderSlides.style.transform = `translateX(-${currentSlide * 100}%)`;
+
+    // Update Counter
+    if (counterEl) {
+      const toPersianNum = (num) => String(num).padStart(2, '0').replace(/\d/g, d => '۰۱۲۳۴۵۶۷۸۹'[d]);
+      counterEl.textContent = `${toPersianNum(currentSlide + 1)} / ${toPersianNum(totalSlides)}`;
+    }
+
+    // Update Dots
+    if (dotsContainer) {
+      const dots = dotsContainer.querySelectorAll('button');
+      dots.forEach((d, i) => {
+        if (i === currentSlide) {
+          d.className = 'w-6 h-2.5 rounded-full bg-primary-accent transition-all cursor-pointer';
+        } else {
+          d.className = 'w-2.5 h-2.5 rounded-full bg-white/40 hover:bg-white transition-all cursor-pointer';
+        }
+      });
+    }
+  };
+
+  if (prevBtn) prevBtn.addEventListener('click', () => updateSlide(currentSlide - 1));
+  if (nextBtn) nextBtn.addEventListener('click', () => updateSlide(currentSlide + 1));
+
+  // Auto slide interval
+  let slideInterval = setInterval(() => {
+    updateSlide(currentSlide + 1);
+  }, 6000);
+
+  // Pause auto slide on hover
+  const sliderViewport = sliderSlides.parentElement;
+  if (sliderViewport) {
+    sliderViewport.addEventListener('mouseenter', () => clearInterval(slideInterval));
+    sliderViewport.addEventListener('mouseleave', () => {
+      clearInterval(slideInterval);
+      slideInterval = setInterval(() => updateSlide(currentSlide + 1), 6000);
+    });
+  }
+
+  // Initial update
+  updateSlide(0);
 }
 
 /**
@@ -2594,7 +2760,7 @@ function initBlogDetailPage() {
       <nav class="flex items-center gap-2 text-xs font-semibold text-muted-fg">
         <a href="index.html" class="hover:text-primary-accent transition-colors">خانه</a>
         <span>/</span>
-        <a href="index.html#blog" class="hover:text-primary-accent transition-colors">وبلاگ</a>
+        <a href="blog.html" class="hover:text-primary-accent transition-colors">وبلاگ</a>
         <span>/</span>
         <span class="text-fg-main truncate max-w-[200px] sm:max-w-none">${post.title}</span>
       </nav>
@@ -2649,7 +2815,7 @@ function initBlogDetailPage() {
     <div class="mt-20 border-t border-border-subtle/60 pt-16 space-y-8 text-right">
       <div class="flex items-center justify-between">
         <h3 class="text-2xl font-black text-fg-main">مقالات مرتبط</h3>
-        <a href="index.html#blog" class="text-xs sm:text-sm font-bold text-primary-accent hover:gap-2.5 transition-all flex items-center gap-1.5">
+        <a href="blog.html" class="text-xs sm:text-sm font-bold text-primary-accent hover:gap-2.5 transition-all flex items-center gap-1.5">
           <span>همه مقالات</span>
           <span class="transform rotate-180">←</span>
         </a>
