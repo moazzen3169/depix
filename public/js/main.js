@@ -892,6 +892,8 @@ const consultationConfig = {
 document.addEventListener('DOMContentLoaded', () => {
   initTheme();
   initNavigation();
+  initBentoGallery();
+  initFeaturedProjects();
   initPortfolioGrid();
   initAllProjectsPage(); // Check if we are on projects.html
   initStartupStory();
@@ -950,6 +952,161 @@ function initTheme() {
   themeToggle.addEventListener('click', () => {
     const nextTheme = document.documentElement.classList.contains('light') ? 'dark' : 'light';
     applyTheme(nextTheme);
+  });
+}
+
+/**
+ * 2.5. GSAP Scrubbed Bento Gallery
+ */
+function initBentoGallery() {
+  const gallery = document.getElementById('bento-gallery');
+  if (!gallery) return;
+
+  const bentoGrid = gallery.querySelector('.bento-grid');
+  const bentoItems = gallery.querySelectorAll('.bento-item');
+  if (!bentoGrid || !bentoItems.length) return;
+
+  if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  // Click handler on bento items to navigate to project detail
+  bentoItems.forEach(item => {
+    const slug = item.getAttribute('data-slug');
+    if (slug) {
+      item.addEventListener('click', (e) => {
+        if (!e.target.closest('a')) {
+          window.location.href = `project.html?slug=${encodeURIComponent(slug)}`;
+        }
+      });
+    }
+  });
+
+  const isMobile = window.innerWidth < 768;
+
+  if (isMobile) {
+    // Mobile responsive version with light scrub
+    gsap.fromTo(bentoItems,
+      { opacity: 0.85, scale: 0.96, y: 15 },
+      {
+        opacity: 1,
+        scale: 1,
+        y: 0,
+        stagger: 0.08,
+        scrollTrigger: {
+          trigger: gallery,
+          start: "top 85%",
+          end: "bottom 20%",
+          scrub: 0.6
+        }
+      }
+    );
+    return;
+  }
+
+  // Desktop / Tablet Scrubbed Bento Animation
+  const tl = gsap.timeline({
+    scrollTrigger: {
+      trigger: gallery,
+      start: "top top",
+      end: "+=1800",
+      scrub: 1,
+      pin: true,
+      anticipatePin: 1
+    }
+  });
+
+  // Animate items smoothly on scroll into full immersive layout
+  bentoItems.forEach((item, index) => {
+    const offsets = [
+      { scale: 0.9, xPercent: -5, yPercent: -5 },
+      { scale: 0.92, xPercent: 5, yPercent: -5 },
+      { scale: 0.88, xPercent: -4, yPercent: 4 },
+      { scale: 0.9, xPercent: 4, yPercent: 4 },
+      { scale: 0.92, xPercent: -5, yPercent: 2 },
+      { scale: 0.9, xPercent: 5, yPercent: 2 },
+      { scale: 0.88, xPercent: -3, yPercent: 5 },
+      { scale: 0.9, xPercent: 3, yPercent: 5 }
+    ];
+
+    const offset = offsets[index % offsets.length];
+
+    tl.fromTo(item,
+      { scale: offset.scale, xPercent: offset.xPercent, yPercent: offset.yPercent, opacity: 0.85 },
+      { scale: 1.04, xPercent: 0, yPercent: 0, opacity: 1, ease: "power2.out" },
+      0
+    );
+  });
+}
+
+/**
+ * 2.6. Render exactly 6 Featured Projects
+ */
+function initFeaturedProjects() {
+  const container = document.getElementById('featured-projects-grid');
+  if (!container) return;
+
+  container.innerHTML = '';
+
+  // Exactly 6 projects
+  const featured = projects.slice(0, 6);
+
+  featured.forEach(p => {
+    const card = document.createElement('article');
+    card.className = `group flex flex-col bg-card-bg border border-border-subtle rounded-2xl sm:rounded-3xl overflow-hidden hover:border-primary-accent/40 hover:shadow-2xl transition-all duration-300 cursor-pointer h-full`;
+    card.setAttribute('role', 'link');
+    card.setAttribute('tabindex', '0');
+    card.setAttribute('aria-label', `مشاهده پروژه ${p.title}`);
+
+    card.innerHTML = `
+      <!-- Project Image -->
+      <div class="relative w-full aspect-[16/10] overflow-hidden bg-muted-bg/50">
+        <img src="${p.cover}" alt="${p.title}" class="w-full h-full object-cover object-top transition-transform duration-500 ease-out group-hover:scale-105" loading="lazy">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-between p-4">
+          <span class="px-3 py-1 rounded-full bg-white/20 backdrop-blur-md text-white text-xs font-bold border border-white/20">
+            بررسی جزییات ←
+          </span>
+        </div>
+      </div>
+
+      <!-- Information Area -->
+      <div class="p-6 flex flex-col justify-between flex-1 text-right space-y-4">
+        <div class="space-y-2">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-bold text-primary-accent">${p.categoryLabel}</span>
+            <span class="text-xs font-mono font-semibold text-muted-fg">${p.year}</span>
+          </div>
+          <h3 class="text-lg sm:text-xl font-black text-fg-main group-hover:text-primary-accent transition-colors leading-snug">
+            ${p.title}
+          </h3>
+          <p class="text-xs sm:text-sm text-muted-fg leading-relaxed line-clamp-2">
+            ${p.description}
+          </p>
+        </div>
+
+        <div class="flex items-center justify-between pt-3 border-t border-border-subtle/40 text-xs font-bold text-fg-main">
+          <span class="text-muted-fg font-normal">${p.specs ? p.specs.type : ''}</span>
+          <span class="text-primary-accent group-hover:translate-x-[-4px] transition-transform inline-flex items-center gap-1">
+            <span>مشاهده پروژه</span>
+            <span class="transform rotate-180">←</span>
+          </span>
+        </div>
+      </div>
+    `;
+
+    const navigateToProject = () => {
+      window.location.href = `project.html?slug=${encodeURIComponent(p.slug)}`;
+    };
+
+    card.addEventListener('click', navigateToProject);
+    card.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        navigateToProject();
+      }
+    });
+
+    container.appendChild(card);
   });
 }
 
