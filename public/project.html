@@ -38,7 +38,7 @@
       <!-- Left Side: Theme Toggle & Primary CTA (Desktop) -->
       <div class="flex items-center gap-4">
         <!-- Theme Toggle Button -->
-        <button id="theme-toggle" class="p-2.5 rounded-lg border border-border-subtle bg-card-bg text-muted-fg hover:text-fg-main transition-all-custom cursor-pointer" aria-label="تغییر پوسته تاریک و روشن">
+        <button id="theme-toggle" class="w-11 h-11 flex items-center justify-center rounded-xl border border-border-subtle bg-card-bg text-muted-fg hover:text-fg-main transition-all-custom cursor-pointer" aria-label="تغییر پوسته تاریک و روشن">
           <!-- Sun Icon (Dark Mode View) -->
           <svg class="sun-icon w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
             <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m12.728 0l-.707-.707M6.343 6.343l-.707-.707M12 8a4 4 0 100 8 4 4 0 000-8z" />
@@ -50,12 +50,12 @@
         </button>
 
         <!-- CTA Button -->
-        <button type="button" id="open-cooperation-modal-btn" class="open-cooperation-modal-btn hidden sm:inline-flex items-center justify-center px-5 py-2.5 rounded-xl text-sm font-semibold text-white bg-primary-accent hover:bg-accent-hover shadow-lg shadow-primary-accent/15 transition-all-custom cursor-pointer">
+        <button type="button" id="open-cooperation-modal-btn" class="open-cooperation-modal-btn hidden sm:inline-flex items-center justify-center min-h-[44px] px-5 py-2.5 rounded-xl text-sm font-semibold text-white bg-primary-accent hover:bg-accent-hover shadow-lg shadow-primary-accent/15 transition-all-custom cursor-pointer">
           شروع یک پروژه
         </button>
 
         <!-- Mobile Menu Toggle Button -->
-        <button id="mobile-menu-btn" class="md:hidden p-2.5 rounded-lg border border-border-subtle bg-card-bg text-muted-fg hover:text-fg-main transition-all-custom cursor-pointer" aria-expanded="false" aria-controls="mobile-menu" aria-label="منوی ناوبری">
+        <button id="mobile-menu-btn" class="md:hidden w-11 h-11 flex items-center justify-center rounded-xl border border-border-subtle bg-card-bg text-muted-fg hover:text-fg-main transition-all-custom cursor-pointer" aria-expanded="false" aria-controls="mobile-menu" aria-label="منوی ناوبری">
           <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
             <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
           </svg>
@@ -65,15 +65,14 @@
     </div>
 
     <!-- Mobile Navigation Drawer -->
-    <div id="mobile-menu" class="hidden md:hidden absolute top-20 left-4 right-4 bg-card-bg border border-border-subtle rounded-2xl p-6 shadow-xl opacity-0 -translate-y-4 transition-all duration-300 z-50">
-      <nav class="flex flex-col gap-4 text-base font-semibold">
-        <a href="index.html#hero" class="text-fg-main hover:text-primary-accent py-2 border-b border-border-subtle/50">خانه</a>
-        <a href="index.html#portfolio" class="text-muted-fg hover:text-primary-accent py-2 border-b border-border-subtle/50">نمونه‌کارها</a>
-        <a href="index.html#services" class="text-muted-fg hover:text-primary-accent py-2 border-b border-border-subtle/50">خدمات</a>
-        <a href="index.html#process" class="text-muted-fg hover:text-primary-accent py-2 border-b border-border-subtle/50">فرآیند ما</a>
-        <a href="index.html#faq" class="text-muted-fg hover:text-primary-accent py-2">پرسش‌ها</a>
+    <div id="mobile-menu" class="hidden md:hidden absolute top-20 left-4 right-4 bg-card-bg/95 border border-border-subtle rounded-2xl p-6 shadow-2xl backdrop-blur-xl opacity-0 -translate-y-4 transition-all duration-300 z-50">
+      <nav class="flex flex-col gap-1 text-base font-semibold">
+        <a href="index.html#hero" class="text-fg-main hover:text-primary-accent py-3 px-2 border-b border-border-subtle/50 flex items-center min-h-[44px]">خانه</a>
+        <a href="projects.html" class="text-muted-fg hover:text-primary-accent py-3 px-2 border-b border-border-subtle/50 flex items-center min-h-[44px]">نمونه‌کارها</a>
+        <a href="index.html#how-we-work" class="text-muted-fg hover:text-primary-accent py-3 px-2 border-b border-border-subtle/50 flex items-center min-h-[44px]">چطور می‌سازیم؟</a>
+        <a href="blog.html" class="text-muted-fg hover:text-primary-accent py-3 px-2 flex items-center min-h-[44px]">وبلاگ</a>
 
-        <button type="button" class="open-cooperation-modal-btn mt-4 w-full inline-flex items-center justify-center py-3 rounded-xl text-sm font-bold text-white bg-primary-accent hover:bg-accent-hover transition-colors cursor-pointer">
+        <button type="button" class="open-cooperation-modal-btn mt-3 w-full inline-flex items-center justify-center min-h-[48px] py-3.5 rounded-xl text-sm font-bold text-white bg-primary-accent hover:bg-accent-hover transition-colors cursor-pointer">
           شروع یک پروژه
         </button>
       </nav>

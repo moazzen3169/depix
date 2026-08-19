@@ -106,14 +106,21 @@
       overflow-x: hidden;
     }
 
-    /* Accessible focus rings */
+    /* Accessible focus rings & Touch Target Optimization */
     a:focus-visible,
     button:focus-visible,
     input:focus-visible,
     textarea:focus-visible,
     select:focus-visible {
       outline: 2px solid var(--primary);
-      outline-offset: 4px;
+      outline-offset: 2px;
+    }
+
+    /* Prevent iOS auto-zoom on input focus by setting minimum 16px font-size on mobile viewports */
+    @media (max-width: 639px) {
+      input, select, textarea {
+        font-size: 16px !important;
+      }
     }
   }
 
