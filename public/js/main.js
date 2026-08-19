@@ -893,6 +893,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initTheme();
   initNavigation();
   initPortfolioGrid();
+  initAllProjectsPage(); // Check if we are on projects.html
   initStartupStory();
   initCooperationModal();
   initBlogGrid();
@@ -1672,6 +1673,197 @@ function initPortfolioGrid() {
 
   // Initial render
   renderProjects();
+}
+
+/**
+ * Helper function to create a standardized Project Card element (Identical design to Portfolio Grid)
+ */
+function createProjectCardElement(p) {
+  const card = document.createElement('article');
+  card.className = `project-card group flex flex-col bg-card-bg border border-border-subtle rounded-2xl overflow-hidden hover:border-primary-accent/40 hover:shadow-xl transition-all duration-300 cursor-pointer h-full`;
+  card.setAttribute('data-id', p.id);
+  card.setAttribute('role', 'link');
+  card.setAttribute('tabindex', '0');
+  card.setAttribute('aria-label', `مشاهده پروژه ${p.title}`);
+
+  card.innerHTML = `
+    <!-- 1. Clean Image Frame Area (No text overlays) -->
+    <div class="relative w-full aspect-[16/10] overflow-hidden bg-muted-bg/50">
+      <img src="${p.cover}" alt="${p.title}" class="w-full h-full object-cover object-top transition-transform duration-500 ease-out group-hover:scale-105" loading="lazy">
+    </div>
+
+    <!-- 2. Information Area (Positioned outside & below image) -->
+    <div class="p-5 flex flex-col justify-between flex-1 text-right space-y-2">
+      <h3 class="text-base sm:text-lg font-bold text-fg-main group-hover:text-primary-accent transition-colors duration-200 leading-snug">
+        ${p.title}
+      </h3>
+      <div class="flex items-center justify-between text-xs sm:text-sm text-muted-fg pt-1">
+        <span class="font-medium truncate pl-2">${p.categoryLabel}</span>
+        <span class="font-mono text-xs font-semibold text-muted-fg/80 shrink-0">${p.year}</span>
+      </div>
+    </div>
+  `;
+
+  // Click / Keyboard Key navigates directly to the project detail page
+  const navigateToProject = () => {
+    window.location.href = `project.html?slug=${encodeURIComponent(p.slug)}`;
+  };
+  card.addEventListener('click', navigateToProject);
+  card.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      navigateToProject();
+    }
+  });
+
+  return card;
+}
+
+/**
+ * Dedicated "All Projects" Page Logic (projects.html)
+ */
+function initAllProjectsPage() {
+  const gridContainer = document.getElementById('all-projects-grid-container');
+  if (!gridContainer) return; // We are not on projects.html
+
+  const searchInput = document.getElementById('projects-search-input');
+  const clearSearchBtn = document.getElementById('projects-search-clear');
+  const sortSelect = document.getElementById('projects-sort-select');
+  const filterBtns = document.querySelectorAll('.all-projects-filter-btn');
+  const countBadge = document.getElementById('projects-count-badge');
+  const emptyState = document.getElementById('projects-empty-state');
+  const resetFiltersBtn = document.getElementById('projects-reset-filters-btn');
+
+  let activeCategory = 'all';
+  let searchQuery = '';
+  let activeSort = 'newest';
+
+  const toPersianDigits = (num) => String(num).replace(/\d/g, d => '۰۱۲۳۴۵۶۷۸۹'[d]);
+
+  const updateProjects = () => {
+    // 1. Filter by Category
+    let result = projects.filter(p => activeCategory === 'all' || p.category === activeCategory);
+
+    // 2. Search Query Filter (real-time title, category label, or description match)
+    const trimmedQuery = searchQuery.trim().toLowerCase();
+    if (trimmedQuery) {
+      result = result.filter(p => {
+        const titleMatch = p.title.toLowerCase().includes(trimmedQuery);
+        const categoryMatch = p.categoryLabel.toLowerCase().includes(trimmedQuery);
+        const descMatch = p.description ? p.description.toLowerCase().includes(trimmedQuery) : false;
+        return titleMatch || categoryMatch || descMatch;
+      });
+    }
+
+    // 3. Sorting
+    result = [...result];
+    if (activeSort === 'newest') {
+      result.sort((a, b) => b.id - a.id);
+    } else if (activeSort === 'oldest') {
+      result.sort((a, b) => a.id - b.id);
+    } else if (activeSort === 'alphabetical') {
+      result.sort((a, b) => a.title.localeCompare(b.title, 'fa'));
+    }
+
+    // 4. Render Grid
+    gridContainer.innerHTML = '';
+
+    if (result.length === 0) {
+      if (emptyState) emptyState.classList.remove('hidden');
+    } else {
+      if (emptyState) emptyState.classList.add('hidden');
+      result.forEach(p => {
+        const card = createProjectCardElement(p);
+        gridContainer.appendChild(card);
+      });
+    }
+
+    // 5. Update Badge Counter
+    if (countBadge) {
+      countBadge.textContent = `${toPersianDigits(result.length)} پروژه یافت شد`;
+    }
+  };
+
+  // Search Input Handler
+  if (searchInput) {
+    searchInput.addEventListener('input', (e) => {
+      searchQuery = e.target.value;
+      if (clearSearchBtn) {
+        if (searchQuery.trim().length > 0) {
+          clearSearchBtn.classList.remove('hidden');
+        } else {
+          clearSearchBtn.classList.add('hidden');
+        }
+      }
+      updateProjects();
+    });
+  }
+
+  // Clear Search Handler
+  if (clearSearchBtn && searchInput) {
+    clearSearchBtn.addEventListener('click', () => {
+      searchInput.value = '';
+      searchQuery = '';
+      clearSearchBtn.classList.add('hidden');
+      searchInput.focus();
+      updateProjects();
+    });
+  }
+
+  // Sorting Handler
+  if (sortSelect) {
+    sortSelect.addEventListener('change', (e) => {
+      activeSort = e.target.value;
+      updateProjects();
+    });
+  }
+
+  // Category Filter Handler
+  if (filterBtns) {
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => {
+          b.classList.remove('bg-primary-accent', 'text-white', 'border-primary-accent');
+          b.classList.add('bg-muted-bg', 'text-muted-fg', 'border-border-subtle');
+        });
+        btn.classList.add('bg-primary-accent', 'text-white', 'border-primary-accent');
+        btn.classList.remove('bg-muted-bg', 'text-muted-fg', 'border-border-subtle');
+
+        activeCategory = btn.getAttribute('data-filter');
+        updateProjects();
+      });
+    });
+  }
+
+  // Reset Filters Handler
+  if (resetFiltersBtn) {
+    resetFiltersBtn.addEventListener('click', () => {
+      activeCategory = 'all';
+      searchQuery = '';
+      activeSort = 'newest';
+
+      if (searchInput) searchInput.value = '';
+      if (clearSearchBtn) clearSearchBtn.classList.add('hidden');
+      if (sortSelect) sortSelect.value = 'newest';
+
+      if (filterBtns) {
+        filterBtns.forEach(btn => {
+          if (btn.getAttribute('data-filter') === 'all') {
+            btn.classList.add('bg-primary-accent', 'text-white', 'border-primary-accent');
+            btn.classList.remove('bg-muted-bg', 'text-muted-fg', 'border-border-subtle');
+          } else {
+            btn.classList.remove('bg-primary-accent', 'text-white', 'border-primary-accent');
+            btn.classList.add('bg-muted-bg', 'text-muted-fg', 'border-border-subtle');
+          }
+        });
+      }
+
+      updateProjects();
+    });
+  }
+
+  // Initial render
+  updateProjects();
 }
 
 /**
