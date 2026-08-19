@@ -1484,6 +1484,7 @@ function initAllBlogPage() {
   blogPosts.forEach((post, index) => {
     const slide = document.createElement('div');
     slide.className = 'w-full flex-shrink-0 flex flex-col lg:flex-row items-center gap-8 lg:gap-12 p-6 sm:p-10 lg:p-12 text-right';
+    slide.setAttribute('dir', 'rtl');
 
     slide.innerHTML = `
       <!-- Slide Image -->
@@ -1746,7 +1747,7 @@ function initAllProjectsPage() {
 
   let activeCategory = 'all';
   let searchQuery = '';
-  let activeSort = 'newest';
+  let activeSort = 'oldest';
 
   const toPersianDigits = (num) => String(num).replace(/\d/g, d => '۰۱۲۳۴۵۶۷۸۹'[d]);
 
@@ -1850,11 +1851,11 @@ function initAllProjectsPage() {
     resetFiltersBtn.addEventListener('click', () => {
       activeCategory = 'all';
       searchQuery = '';
-      activeSort = 'newest';
+      activeSort = 'oldest';
 
       if (searchInput) searchInput.value = '';
       if (clearSearchBtn) clearSearchBtn.classList.add('hidden');
-      if (sortSelect) sortSelect.value = 'newest';
+      if (sortSelect) sortSelect.value = 'oldest';
 
       if (filterBtns) {
         filterBtns.forEach(btn => {
