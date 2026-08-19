@@ -763,6 +763,9 @@
   .flex-1 {
     flex: 1;
   }
+  .flex-none {
+    flex: none;
+  }
   .flex-shrink-0 {
     flex-shrink: 0;
   }
@@ -1323,12 +1326,6 @@
     background-color: color-mix(in srgb, #000 60%, transparent);
     @supports (color: color-mix(in lab, red, red)) {
       background-color: color-mix(in oklab, var(--color-black) 60%, transparent);
-    }
-  }
-  .bg-black\/75 {
-    background-color: color-mix(in srgb, #000 75%, transparent);
-    @supports (color: color-mix(in lab, red, red)) {
-      background-color: color-mix(in oklab, var(--color-black) 75%, transparent);
     }
   }
   .bg-black\/80 {
@@ -2544,14 +2541,6 @@
         background-color: color-mix(in oklab, var(--color-black) 80%, transparent);
       }
     }
-    .hover\:bg-black\/90:hover {
-      background-color: color-mix(in srgb, #000 90%, transparent);
-    }
-    @supports (color: color-mix(in lab, red, red)) {
-      .hover\:bg-black\/90:hover {
-        background-color: color-mix(in oklab, var(--color-black) 90%, transparent);
-      }
-    }
     .hover\:bg-border-subtle:hover {
       background-color: var(--color-border-subtle);
     }
@@ -3048,7 +3037,7 @@
   font-style: normal;
   font-display: swap;
 }
-/* @layer base {
+@layer base {
   :root {
     --background: #0A0A0B;
     --foreground: #F5F5F5;
@@ -3074,46 +3063,6 @@
     --accent: #4F46E5;
     --card: #FFFFFF;
     --card-foreground: #09090B;
-  } */
-
-  :root {
-    --background: #080808;
-    --foreground: #F5F5F5;
-  
-    --muted: #111111;
-    --muted-foreground: #929292;
-  
-    --primary: #8F1D2C;
-    --primary-foreground: #FFFFFF;
-  
-    --border: #272020;
-  
-    --accent: #B52A3A;
-  
-    --card: #0F0F0F;
-    --card-foreground: #F5F5F5;
-  
-    --radius: 0.75rem;
-  }
-  
-  :root.light {
-    --background: #FAFAFA;
-    --foreground: #101010;
-  
-    --muted: #F2F2F2;
-    --muted-foreground: #6F6F6F;
-  
-    --primary: #8F1D2C;
-    --primary-foreground: #FFFFFF;
-  
-    --border: #E3DADB;
-  
-    --accent: #A51F32;
-  
-    --card: #FFFFFF;
-    --card-foreground: #101010;
-  
-    --radius: 0.75rem;
   }
   body {
     background-color: var(--background);
@@ -3126,7 +3075,7 @@
     outline: 2px solid var(--primary);
     outline-offset: 4px;
   }
-
+}
 .scrollbar-none::-webkit-scrollbar {
   display: none;
 }

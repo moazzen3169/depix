@@ -1311,30 +1311,38 @@ function initStartupStory() {
  */
 function initCooperationModal() {
   const modal = document.getElementById('cooperation-modal');
-  const openBtn = document.getElementById('open-cooperation-modal-btn');
-  const closeBtn = document.getElementById('cooperation-modal-close');
+  if (!modal) return;
 
-  if (!modal || !openBtn) return;
+  const closeBtn = document.getElementById('cooperation-modal-close');
 
   const openModal = () => {
     modal.classList.remove('hidden');
     document.body.style.overflow = 'hidden'; // Lock background scroll
     setTimeout(() => {
       modal.classList.remove('opacity-0');
-      modal.querySelector('.modal-content').classList.remove('scale-95', 'opacity-0');
+      const content = modal.querySelector('.modal-content');
+      if (content) content.classList.remove('scale-95', 'opacity-0');
     }, 10);
   };
 
   const closeModal = () => {
     modal.classList.add('opacity-0');
-    modal.querySelector('.modal-content').classList.add('scale-95', 'opacity-0');
+    const content = modal.querySelector('.modal-content');
+    if (content) content.classList.add('scale-95', 'opacity-0');
     setTimeout(() => {
       modal.classList.add('hidden');
       document.body.style.overflow = ''; // Unlock scroll
     }, 250);
   };
 
-  openBtn.addEventListener('click', openModal);
+  // Event delegation for opening cooperation modal from any button
+  document.addEventListener('click', (e) => {
+    const trigger = e.target.closest('#open-cooperation-modal-btn, .open-cooperation-modal-btn, [data-open-modal="cooperation"]');
+    if (trigger) {
+      e.preventDefault();
+      openModal();
+    }
+  });
 
   if (closeBtn) {
     closeBtn.addEventListener('click', closeModal);
@@ -2036,7 +2044,7 @@ class ProjectPreview {
           <div class="viewport-scroll-container w-full overflow-y-auto overflow-x-auto scrollbar-none transition-all duration-300" style="height: min(720px, 70vh); max-height: 720px; -webkit-overflow-scrolling: touch;">
 
             <!-- Image Wrap for Zoom support -->
-            <div class="image-wrapper relative w-full transition-all duration-200 mx-auto" style="width: 100%;">
+            <div class="image-wrapper relative w-full mx-auto" style="width: 100%;">
               <img
                 class="screenshot-img block w-full h-auto select-none opacity-0 transition-opacity duration-300 cursor-zoom-in"
                 src=""
@@ -2221,8 +2229,8 @@ class ProjectPreview {
           e.clientY >= rect.top &&
           e.clientY <= rect.bottom
         ) {
-          const clickXRatio = (e.clientX - rect.left) / rect.width;
-          const clickYRatio = (e.clientY - rect.top) / rect.height;
+          const clickXRatio = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
+          const clickYRatio = Math.max(0, Math.min(1, (e.clientY - rect.top) / rect.height));
 
           if (this.zoomLevel > 100) {
             this.setZoom(100);
@@ -2423,20 +2431,18 @@ class ProjectPreview {
     }
 
     if (this.zoomLevel > 100) {
-      requestAnimationFrame(() => {
-        const scrollW = this.scrollContainer.scrollWidth;
-        const scrollH = this.scrollContainer.scrollHeight;
-        const clientW = this.scrollContainer.clientWidth;
-        const clientH = this.scrollContainer.clientHeight;
+      const scrollW = this.scrollContainer.scrollWidth;
+      const scrollH = this.scrollContainer.scrollHeight;
+      const clientW = this.scrollContainer.clientWidth;
+      const clientH = this.scrollContainer.clientHeight;
 
-        const targetX = (clickXRatio * scrollW) - (clientW / 2);
-        const targetY = (clickYRatio * scrollH) - (clientH / 2);
+      const targetX = (clickXRatio * scrollW) - (clientW / 2);
+      const targetY = (clickYRatio * scrollH) - (clientH / 2);
 
-        this.scrollContainer.scrollTo({
-          left: Math.max(0, targetX),
-          top: Math.max(0, targetY),
-          behavior: 'smooth'
-        });
+      this.scrollContainer.scrollTo({
+        left: Math.max(0, targetX),
+        top: Math.max(0, targetY),
+        behavior: 'smooth'
       });
     } else {
       this.scrollContainer.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
@@ -2490,19 +2496,17 @@ class ProjectPreview {
     overlay.appendChild(this.root);
 
     // Fullscreen edge-to-edge root styling without padding or border
-    this.root.className = 'project-preview-component relative w-full h-full bg-black border-0 rounded-none overflow-hidden flex flex-col transition-all duration-300 is-fullscreen';
+    this.root.className = 'project-preview-component relative w-full h-full bg-black border-0 rounded-none overflow-hidden flex flex-col is-fullscreen';
 
-    // Header styling overlay in fullscreen mode
+    // Header styling in fullscreen mode (separate top bar, NOT absolute, NOT overlapping)
     if (this.previewHeader) {
-      this.previewHeader.className = 'preview-header absolute top-0 left-0 right-0 z-30 pointer-events-none p-4 sm:p-6 flex items-center justify-between select-none bg-gradient-to-b from-black/80 via-black/30 to-transparent';
-      const headerControls = this.previewHeader.querySelectorAll('*');
-      headerControls.forEach(el => el.classList.add('pointer-events-auto'));
+      this.previewHeader.className = 'preview-header flex-none w-full bg-black border-b border-white/10 px-4 sm:px-6 py-3.5 flex items-center justify-between gap-3 select-none z-20';
     }
 
     // Fullscreen toggle button update
     if (this.fullscreenBtn) {
       this.fullscreenBtn.setAttribute('aria-label', 'خروج از تمام‌صفحه');
-      this.fullscreenBtn.className = 'fullscreen-btn pointer-events-auto p-2.5 rounded-xl bg-black/75 border border-white/20 text-white hover:bg-black/90 hover:border-primary-accent/50 shadow-2xl backdrop-blur-md transition-all cursor-pointer';
+      this.fullscreenBtn.className = 'fullscreen-btn p-2.5 rounded-xl bg-white/10 border border-white/20 text-white hover:bg-white/20 shadow-md backdrop-blur-md transition-all cursor-pointer';
       this.fullscreenBtn.innerHTML = `
         <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
           <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
@@ -2510,22 +2514,27 @@ class ProjectPreview {
       `;
     }
 
-    // Scroll container occupies 100vh full height
-    this.scrollContainer.style.height = '100vh';
+    // Viewport occupies middle space
+    if (this.viewport) {
+      this.viewport.className = 'preview-viewport relative w-full flex-1 min-h-0 bg-black overflow-hidden cursor-zoom-in';
+    }
+
+    // Scroll container occupies full height of middle section
+    this.scrollContainer.style.height = '100%';
     this.scrollContainer.style.maxHeight = 'none';
 
-    // Absolute position slide navigation at the bottom floating on top of image
+    // Bottom slide navigation in separate bottom bar (flex-none, NOT absolute, NOT overlapping)
     if (this.sliderNav) {
-      this.sliderNav.className = 'slider-navigation absolute bottom-6 left-0 right-0 z-30 pointer-events-none flex items-center justify-between px-6 sm:px-12 select-none';
+      this.sliderNav.className = 'slider-navigation flex-none w-full bg-black border-t border-white/10 px-4 sm:px-6 py-3.5 flex flex-wrap items-center justify-between gap-4 select-none z-20';
       if (this.prevBtn) {
-        this.prevBtn.className = 'prev-slide-btn pointer-events-auto inline-flex items-center gap-2 px-5 py-3 rounded-2xl bg-black/75 border border-white/20 text-xs sm:text-sm font-bold text-white hover:bg-black/90 hover:border-primary-accent/50 shadow-2xl backdrop-blur-md transition-all cursor-pointer disabled:opacity-40';
+        this.prevBtn.className = 'prev-slide-btn inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white/10 border border-white/20 text-xs sm:text-sm font-bold text-white hover:bg-white/20 shadow-md backdrop-blur-md transition-all cursor-pointer disabled:opacity-40';
       }
       if (this.nextBtn) {
-        this.nextBtn.className = 'next-slide-btn pointer-events-auto inline-flex items-center gap-2 px-5 py-3 rounded-2xl bg-black/75 border border-white/20 text-xs sm:text-sm font-bold text-white hover:bg-black/90 hover:border-primary-accent/50 shadow-2xl backdrop-blur-md transition-all cursor-pointer disabled:opacity-40';
+        this.nextBtn.className = 'next-slide-btn inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white/10 border border-white/20 text-xs sm:text-sm font-bold text-white hover:bg-white/20 shadow-md backdrop-blur-md transition-all cursor-pointer disabled:opacity-40';
       }
       const slideDotsEl = this.sliderNav.querySelector('.slide-dots');
       if (slideDotsEl) {
-        slideDotsEl.className = 'slide-dots pointer-events-auto flex items-center justify-center gap-2 px-4 py-2.5 rounded-full bg-black/60 border border-white/15 backdrop-blur-md shadow-2xl';
+        slideDotsEl.className = 'slide-dots flex items-center justify-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/15 backdrop-blur-md shadow-md';
       }
     }
 
@@ -2564,6 +2573,10 @@ class ProjectPreview {
               <path stroke-linecap="round" stroke-linejoin="round" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4"/>
             </svg>
           `;
+        }
+
+        if (this.viewport) {
+          this.viewport.className = 'preview-viewport relative w-full overflow-hidden bg-black/40 cursor-zoom-in';
         }
 
         // Restore default height styling
@@ -3856,9 +3869,9 @@ function initProjectDetailPage() {
         <div class="bg-gradient-to-tr from-primary-accent to-accent-hover text-white rounded-2xl p-8 text-center space-y-6 shadow-xl shadow-primary-accent/15">
           <h3 class="text-xl font-black">پروژه مشابه‌ای در ذهن دارید؟</h3>
           <p class="text-sm opacity-90 leading-relaxed">ما در استودیو دپیکس آماده‌ایم ایده خلاقانه شما را با برترین متدهای مهندسی و بصری پیاده‌سازی کنیم.</p>
-          <a href="index.html#contact" class="inline-flex w-full items-center justify-center py-3.5 px-6 rounded-xl text-sm font-bold bg-white text-primary-accent hover:bg-gray-50 transition-all-custom">
+          <button type="button" id="open-cooperation-modal-btn" class="open-cooperation-modal-btn inline-flex w-full items-center justify-center py-3.5 px-6 rounded-xl text-sm font-bold bg-white text-primary-accent hover:bg-gray-50 transition-all-custom cursor-pointer">
             شروع یک گفتگو رایگان
-          </a>
+          </button>
         </div>
 
       </div>
