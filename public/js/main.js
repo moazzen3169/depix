@@ -307,7 +307,7 @@ const blogPosts = [
     category: "تحلیل بازار",
     date: "۱۴۰۴/۱۱/۲۵",
     readTime: "۹ دقیقه",
-    image: "./assets/blog/1.jpg",
+    image: "./assets/blog/blog4.webp",
     excerpt: "بررسی واقع‌بینانه آمار تجارت الکترونیکی در ایران، تحلیل رفتار خریداران ایرانی و پاسخ به این سؤال که سایت چه نقشی در رشد کسب‌وکارهای کوچک دارد.",
     author: {
       name: "هادی موذن",
@@ -390,7 +390,7 @@ const blogPosts = [
     category: "استراتژی دیجیتال",
     date: "۱۴۰۴/۱۱/۲۸",
     readTime: "۱۰ دقیقه",
-    image: "./assets/blog/2.jpg",
+    image: "./assets/blog/blog5.webp",
     excerpt: "سایت رقیب اینستاگرام نیست، بلکه مکمل آن است. بررسی اختصاصی ۷ قابلیتی که وب‌سایت به یک پیج اینستاگرامی فروشگاهی اضافه می‌کند.",
     author: {
       name: "هادی موذن",
