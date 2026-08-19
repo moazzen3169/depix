@@ -53,7 +53,7 @@
       <div class="flex items-center gap-4">
         <!-- Theme Toggle Button -->
         <button id="theme-toggle"
-          class="p-2.5 rounded-lg border border-border-subtle bg-card-bg text-muted-fg hover:text-fg-main transition-all-custom cursor-pointer"
+          class="w-11 h-11 flex items-center justify-center rounded-xl border border-border-subtle bg-card-bg text-muted-fg hover:text-fg-main transition-all-custom cursor-pointer"
           aria-label="تغییر پوسته تاریک و روشن">
           <!-- Sun Icon -->
           <svg class="sun-icon w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -69,13 +69,13 @@
 
         <!-- CTA Button -->
         <a href="#contact"
-          class="hidden sm:inline-flex items-center justify-center px-5 py-2.5 rounded-xl text-sm font-semibold text-white bg-primary-accent hover:bg-accent-hover shadow-lg shadow-primary-accent/15 transition-all-custom">
+          class="hidden sm:inline-flex items-center justify-center min-h-[44px] px-5 py-2.5 rounded-xl text-sm font-semibold text-white bg-primary-accent hover:bg-accent-hover shadow-lg shadow-primary-accent/15 transition-all-custom">
           شروع یک پروژه
         </a>
 
         <!-- Mobile Menu Toggle Button -->
         <button id="mobile-menu-btn"
-          class="md:hidden p-2.5 rounded-lg border border-border-subtle bg-card-bg text-muted-fg hover:text-fg-main transition-all-custom cursor-pointer"
+          class="md:hidden w-11 h-11 flex items-center justify-center rounded-xl border border-border-subtle bg-card-bg text-muted-fg hover:text-fg-main transition-all-custom cursor-pointer"
           aria-expanded="false" aria-controls="mobile-menu" aria-label="منوی ناوبری">
           <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
             <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
@@ -87,19 +87,19 @@
 
     <!-- Mobile Navigation Drawer -->
     <div id="mobile-menu"
-      class="hidden md:hidden absolute top-20 left-4 right-4 bg-card-bg border border-border-subtle rounded-2xl p-6 shadow-xl opacity-0 -translate-y-4 transition-all duration-300 z-50">
-      <nav class="flex flex-col gap-4 text-base font-semibold">
-        <a href="#hero" class="text-fg-main hover:text-primary-accent py-2 border-b border-border-subtle/50">خانه</a>
+      class="hidden md:hidden absolute top-20 left-4 right-4 bg-card-bg/95 border border-border-subtle rounded-2xl p-6 shadow-2xl backdrop-blur-xl opacity-0 -translate-y-4 transition-all duration-300 z-50">
+      <nav class="flex flex-col gap-1 text-base font-semibold">
+        <a href="#hero" class="text-fg-main hover:text-primary-accent py-3 px-2 border-b border-border-subtle/50 flex items-center min-h-[44px]">خانه</a>
         <a href="projects.html"
-          class="text-muted-fg hover:text-primary-accent py-2 border-b border-border-subtle/50">نمونه‌کارها</a>
+          class="text-muted-fg hover:text-primary-accent py-3 px-2 border-b border-border-subtle/50 flex items-center min-h-[44px]">نمونه‌کارها</a>
         <a href="#startup-story"
-          class="hidden text-muted-fg hover:text-primary-accent py-2 border-b border-border-subtle/50">داستان محصول</a>
+          class="hidden text-muted-fg hover:text-primary-accent py-3 px-2 border-b border-border-subtle/50 flex items-center min-h-[44px]">داستان محصول</a>
         <a href="#how-we-work"
-          class="text-muted-fg hover:text-primary-accent py-2 border-b border-border-subtle/50">چطور می‌سازیم؟</a>
-        <a href="blog.html" class="text-muted-fg hover:text-primary-accent py-2">وبلاگ</a>
+          class="text-muted-fg hover:text-primary-accent py-3 px-2 border-b border-border-subtle/50 flex items-center min-h-[44px]">چطور می‌سازیم؟</a>
+        <a href="blog.html" class="text-muted-fg hover:text-primary-accent py-3 px-2 flex items-center min-h-[44px]">وبلاگ</a>
 
         <a href="#contact"
-          class="mt-4 w-full inline-flex items-center justify-center py-3 rounded-xl text-sm font-bold text-white bg-primary-accent hover:bg-accent-hover transition-colors">
+          class="mt-3 w-full inline-flex items-center justify-center min-h-[48px] py-3.5 rounded-xl text-sm font-bold text-white bg-primary-accent hover:bg-accent-hover transition-colors">
           شروع یک پروژه
         </a>
       </nav>
@@ -182,16 +182,16 @@
               کرده‌ایم.</p>
           </div>
 
-          <!-- Segmented filters -->
-          <div class="flex w-full md:w-auto overflow-x-auto flex-nowrap gap-2.5 scrollbar-none pb-1 md:pb-0">
+          <!-- Segmented filters with touch snapping & accessible touch target -->
+          <div class="flex w-full md:w-auto overflow-x-auto flex-nowrap gap-2.5 scrollbar-none pb-1 md:pb-0 snap-x snap-mandatory">
             <button
-              class="portfolio-filter-btn px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold border bg-primary-accent text-white border-primary-accent transition-all-custom cursor-pointer whitespace-nowrap shrink-0"
+              class="portfolio-filter-btn min-h-[44px] px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold border bg-primary-accent text-white border-primary-accent transition-all-custom cursor-pointer whitespace-nowrap shrink-0 snap-start"
               data-filter="all">همه نمونه‌کارها</button>
             <button
-              class="portfolio-filter-btn px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold border bg-muted-bg text-muted-fg border-border-subtle hover:text-fg-main transition-all-custom cursor-pointer whitespace-nowrap shrink-0"
+              class="portfolio-filter-btn min-h-[44px] px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold border bg-muted-bg text-muted-fg border-border-subtle hover:text-fg-main transition-all-custom cursor-pointer whitespace-nowrap shrink-0 snap-start"
               data-filter="ecommerce">فروشگاه اینترنتی</button>
             <button
-              class="portfolio-filter-btn px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold border bg-muted-bg text-muted-fg border-border-subtle hover:text-fg-main transition-all-custom cursor-pointer whitespace-nowrap shrink-0"
+              class="portfolio-filter-btn min-h-[44px] px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold border bg-muted-bg text-muted-fg border-border-subtle hover:text-fg-main transition-all-custom cursor-pointer whitespace-nowrap shrink-0 snap-start"
               data-filter="saas">سامانه و نرم‌افزار</button>
           </div>
         </div>

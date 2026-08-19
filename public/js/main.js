@@ -994,7 +994,7 @@ function initNavigation() {
       }
     });
 
-    // Close menu when clicking links
+    // Close menu when clicking links or clicking outside
     const mobileLinks = mobileMenu.querySelectorAll('a');
     mobileLinks.forEach(link => {
       link.addEventListener('click', () => {
@@ -1004,6 +1004,16 @@ function initNavigation() {
           mobileMenu.classList.add('hidden');
         }, 200);
       });
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!mobileMenu.classList.contains('hidden') && !mobileMenu.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+        mobileMenuBtn.setAttribute('aria-expanded', 'false');
+        mobileMenu.classList.add('opacity-0', '-translate-y-4');
+        setTimeout(() => {
+          mobileMenu.classList.add('hidden');
+        }, 200);
+      }
     });
   }
 }
