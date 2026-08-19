@@ -963,14 +963,13 @@ function initBentoGallery() {
   if (!gallery) return;
 
   const bentoGrid = gallery.querySelector('.bento-grid');
-  const bentoItems = gallery.querySelectorAll('.bento-item');
+  const bentoItems = gsap.utils.toArray(gallery.querySelectorAll('.bento-item'));
   if (!bentoGrid || !bentoItems.length) return;
 
   if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
 
   gsap.registerPlugin(ScrollTrigger);
 
-  // Click handler on bento items to navigate to project detail
   bentoItems.forEach(item => {
     const slug = item.getAttribute('data-slug');
     if (slug) {
@@ -982,60 +981,91 @@ function initBentoGallery() {
     }
   });
 
-  const isMobile = window.innerWidth < 768;
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const isMobile = window.matchMedia('(max-width: 767px)').matches;
+
+  if (prefersReduced) {
+    gsap.set(bentoItems, { clearProps: 'transform,opacity' });
+    return;
+  }
 
   if (isMobile) {
-    // Mobile responsive version with light scrub
     gsap.fromTo(bentoItems,
-      { opacity: 0.85, scale: 0.96, y: 15 },
+      { opacity: 0.82, y: 28, scale: 0.98 },
       {
         opacity: 1,
-        scale: 1,
         y: 0,
-        stagger: 0.08,
+        scale: 1,
+        stagger: 0.06,
+        ease: 'power2.out',
         scrollTrigger: {
           trigger: gallery,
-          start: "top 85%",
-          end: "bottom 20%",
-          scrub: 0.6
+          start: 'top 82%',
+          end: 'bottom 35%',
+          scrub: 0.7
         }
       }
     );
     return;
   }
 
-  // Desktop / Tablet Scrubbed Bento Animation
+  const itemStates = [
+    { xPercent: -10, yPercent: -8, scale: 0.92, rotate: -1.2 },
+    { xPercent: 8, yPercent: -9, scale: 0.9, rotate: 1.1 },
+    { xPercent: -7, yPercent: 7, scale: 0.94, rotate: 0.8 },
+    { xPercent: 7, yPercent: 8, scale: 0.93, rotate: -0.8 },
+    { xPercent: -9, yPercent: 4, scale: 0.91, rotate: 1.4 },
+    { xPercent: 9, yPercent: 4, scale: 0.9, rotate: -1 },
+    { xPercent: -5, yPercent: 10, scale: 0.92, rotate: -0.6 },
+    { xPercent: 5, yPercent: 10, scale: 0.91, rotate: 0.9 }
+  ];
+
+  gsap.set(gallery, { minHeight: '100vh' });
+  gsap.set(bentoGrid, { transformOrigin: '50% 50%' });
+  gsap.set(bentoItems, { transformOrigin: '50% 50%', willChange: 'transform, opacity, border-radius' });
+
   const tl = gsap.timeline({
+    defaults: { ease: 'none' },
     scrollTrigger: {
       trigger: gallery,
-      start: "top top",
-      end: "+=1800",
-      scrub: 1,
+      start: 'top top',
+      end: '+=2200',
+      scrub: 1.15,
       pin: true,
-      anticipatePin: 1
+      anticipatePin: 1,
+      invalidateOnRefresh: true
     }
   });
 
-  // Animate items smoothly on scroll into full immersive layout
-  bentoItems.forEach((item, index) => {
-    const offsets = [
-      { scale: 0.9, xPercent: -5, yPercent: -5 },
-      { scale: 0.92, xPercent: 5, yPercent: -5 },
-      { scale: 0.88, xPercent: -4, yPercent: 4 },
-      { scale: 0.9, xPercent: 4, yPercent: 4 },
-      { scale: 0.92, xPercent: -5, yPercent: 2 },
-      { scale: 0.9, xPercent: 5, yPercent: 2 },
-      { scale: 0.88, xPercent: -3, yPercent: 5 },
-      { scale: 0.9, xPercent: 3, yPercent: 5 }
-    ];
+  tl.to(bentoGrid, { gap: 14, scale: 1.03, duration: 0.45 }, 0)
+    .to(bentoGrid, { scale: 1.12, duration: 0.55 }, 0.45);
 
-    const offset = offsets[index % offsets.length];
+  bentoItems.forEach((item, index) => {
+    const state = itemStates[index % itemStates.length];
+    const image = item.querySelector('img');
+    const label = item.querySelector('div:last-child');
 
     tl.fromTo(item,
-      { scale: offset.scale, xPercent: offset.xPercent, yPercent: offset.yPercent, opacity: 0.85 },
-      { scale: 1.04, xPercent: 0, yPercent: 0, opacity: 1, ease: "power2.out" },
+      { ...state, opacity: 0.88, borderRadius: '1.5rem' },
+      { xPercent: 0, yPercent: 0, scale: index < 2 ? 1.08 : 1.03, rotate: 0, opacity: 1, borderRadius: '0.9rem', duration: 0.55 },
       0
+    ).to(item,
+      {
+        xPercent: index % 2 === 0 ? -2.5 : 2.5,
+        yPercent: index < 4 ? -2 : 2,
+        scale: index === 0 ? 1.22 : index === 1 ? 1.16 : 1.08,
+        duration: 0.45
+      },
+      0.55
     );
+
+    if (image) {
+      tl.fromTo(image, { yPercent: -3, scale: 1.06 }, { yPercent: 3, scale: 1.14, duration: 1 }, 0);
+    }
+
+    if (label) {
+      tl.to(label, { y: -10, opacity: index < 4 ? 1 : 0.78, duration: 0.45 }, 0.55);
+    }
   });
 }
 
