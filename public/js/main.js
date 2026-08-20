@@ -967,11 +967,6 @@ function initScrubbedBentoHero() {
 
   if (!bentoSection || !centerItem) return;
 
-  // Click on center focal item navigates to project
-  centerItem.addEventListener('click', () => {
-    window.location.href = 'project.html?slug=' + encodeURIComponent('سایرا');
-  });
-
   // Check reduced motion preference
   const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -979,10 +974,7 @@ function initScrubbedBentoHero() {
   if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
     gsap.registerPlugin(ScrollTrigger);
 
-    if (prefersReduced) {
-      if (centerCaption) gsap.set(centerCaption, { opacity: 1 });
-      return;
-    }
+    if (prefersReduced) return;
 
     // Measure viewport dimensions dynamically
     const isMobile = window.innerWidth < 768;
@@ -1042,23 +1034,6 @@ function initScrubbedBentoHero() {
       duration: 1,
       ease: "power2.inOut"
     }, 0.2);
-
-    // Counter-scale caption text so it stays crisp and 1:1 natural size on screen
-    const captionContent = document.getElementById('bento-caption-content');
-    if (captionContent) {
-      tl.to(captionContent, {
-        scale: 1 / targetScale,
-        duration: 1,
-        ease: "power2.inOut"
-      }, 0.2);
-    }
-
-    // Phase 4: Fullscreen caption overlay fades in over center item as it becomes fullscreen
-    tl.to(centerCaption, {
-      opacity: 1,
-      duration: 0.4,
-      ease: "power2.out"
-    }, 0.8);
 
     // Padding hold at end of fullscreen transformation before scrolling into Featured Projects
     tl.to({}, { duration: 0.3 });
@@ -1339,7 +1314,7 @@ function initAllBlogPage() {
 
   blogPosts.forEach((post, index) => {
     const slide = document.createElement('div');
-    slide.className = 'w-full flex-shrink-0 flex flex-col lg:flex-row items-center gap-8 lg:gap-12 p-6 sm:p-10 lg:p-12 text-right';
+    slide.className = 'w-full flex-shrink-0 flex flex-col lg:flex-row items-center gap-8 lg:gap-12 p-6 sm:p-10 lg:p-12 pb-14 sm:pb-10 lg:pb-12 text-right';
     slide.setAttribute('dir', 'rtl');
 
     slide.innerHTML = `
