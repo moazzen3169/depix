@@ -110,97 +110,58 @@
   <main class="overflow-hidden">
 
     <!-- ==========================================
-         01 — HERO SECTION
+         01 — GSAP SCRUBBED BENTO HERO
          ========================================== -->
-    <section id="hero"
-      class="relative pt-28 pb-10 sm:pt-36 sm:pb-16 md:pt-48 md:pb-32 overflow-hidden bg-radial from-primary-accent/5 via-transparent to-transparent">
-      <!-- Glow Elements -->
-      <div
-        class="absolute top-24 right-1/4 w-[500px] h-[500px] rounded-full bg-primary-accent/5 blur-[120px] pointer-events-none">
-      </div>
-      <div
-        class="absolute bottom-10 left-1/4 w-[350px] h-[350px] rounded-full bg-accent-hover/5 blur-[90px] pointer-events-none">
-      </div>
+    <section id="hero" class="scrub-bento-hero relative w-full h-[100dvh] overflow-hidden bg-bg-main" aria-label="گالری منتخب پروژه‌های دپیکس">
+      <div class="scrub-bento-stage absolute inset-0 h-[100dvh] w-full overflow-hidden">
+        <div class="scrub-bento-main absolute inset-0 z-0 opacity-0 overflow-hidden bg-black" aria-hidden="true">
+          <img src="./assets/projects/kafsham/kafsham-main.webp" alt="" class="h-full w-full object-cover object-top" decoding="async">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/65 via-black/10 to-black/25"></div>
+        </div>
 
-      <div class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12">
-        <div class="flex flex-col items-center text-center justify-center min-h-0 sm:min-h-[40vh] md:min-h-[50vh]">
-
-          <!-- Copy Content -->
-          <div class="max-w-4xl space-y-5 sm:space-y-8 animate-fade-in-up">
-
-            <!-- Small Label -->
-            <div
-              class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-primary-accent/20 bg-primary-accent/5 text-primary-accent text-xs font-semibold">
-              <span class="w-1.5 h-1.5 rounded-full bg-primary-accent animate-pulse"></span>
-              طراحی و ساخت وب‌سایت و فروشگاه اینترنتی با کیفیت عالی
-            </div>
-
-            <!-- Big Core Headline -->
-            <h1 class="text-4xl sm:text-6xl lg:text-7xl font-black text-fg-main leading-tight tracking-tight">
-              سایت خوب، نتیجه می‌سازد
-            </h1>
-
-            <p class="text-base sm:text-lg text-muted-fg max-w-2xl mx-auto leading-relaxed">
-              طراحی و توسعه وب‌سایت و فروشگاه اینترنتی، سریع، مدرن و متناسب با کسب‌وکار شما.
-            </p>
-
-            <!-- CTA Links -->
-            <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3.5 sm:gap-4 pt-2 sm:pt-4 w-full max-w-sm sm:max-w-none mx-auto">
-              <a href="#contact"
-                class="w-full sm:w-auto px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl text-sm sm:text-base font-bold text-white bg-primary-accent hover:bg-accent-hover shadow-xl shadow-primary-accent/20 hover:-translate-y-0.5 transition-all duration-200 text-center flex items-center justify-center">
-                سفارش پروژه و مشاوره رایگان
-              </a>
-              <a href="#portfolio"
-                class="w-full sm:w-auto px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl text-sm sm:text-base font-bold text-fg-main bg-muted-bg border border-border-subtle hover:bg-border-subtle hover:-translate-y-0.5 transition-all duration-200 text-center flex items-center justify-center">
-                مشاهده نمونه‌کارها
-              </a>
-            </div>
-
+        <div class="scrub-bento-shell relative z-10 h-full w-full px-3 py-24 sm:px-6 lg:px-10 lg:py-24">
+          <div class="scrub-bento-grid mx-auto grid h-full max-w-[1540px] grid-cols-[0.82fr_1.45fr_0.82fr] grid-rows-[0.82fr_1.45fr_0.92fr] gap-2.5 sm:gap-4 lg:gap-5" aria-label="نه تصویر منتخب از نمونه‌کارهای دپیکس">
+            <figure class="bento-tile bento-a" data-bento-tile><img src="./assets/projects/sayra/sayra-dashboard.webp" alt="نمای داشبورد پروژه سایرا" class="h-full w-full object-cover object-top" fetchpriority="high" decoding="async"></figure>
+            <figure class="bento-tile bento-b" data-bento-tile><img src="./assets/projects/champing/camping-PAGE.webp" alt="صفحه اصلی فروشگاه چمپینگ" class="h-full w-full object-cover object-top" loading="lazy" decoding="async"></figure>
+            <figure class="bento-tile bento-c" data-bento-tile><img src="./assets/projects/panter/panter-main.webp" alt="صفحه اصلی فروشگاه پوشاک پنتر" class="h-full w-full object-cover object-top" loading="lazy" decoding="async"></figure>
+            <figure class="bento-tile bento-d" data-bento-tile><img src="./assets/projects/watch/watch-home.webp" alt="صفحه اصلی فروشگاه تایم‌لند" class="h-full w-full object-cover object-top" loading="lazy" decoding="async"></figure>
+            <figure class="bento-tile bento-center" data-bento-center><img src="./assets/projects/kafsham/kafsham-main.webp" alt="تصویر شاخص پروژه کفشام" class="h-full w-full object-cover object-top" fetchpriority="high" decoding="async"></figure>
+            <figure class="bento-tile bento-e" data-bento-tile><img src="./assets/projects/petshop/petshop-LANDING PAGE.webp" alt="لندینگ فروشگاه پت شاپ پت من" class="h-full w-full object-cover object-top" loading="lazy" decoding="async"></figure>
+            <figure class="bento-tile bento-f" data-bento-tile><img src="./assets/projects/abzarchee/abzaercheee.webp" alt="صفحه اصلی فروشگاه ابزارچی" class="h-full w-full object-cover object-top" loading="lazy" decoding="async"></figure>
+            <figure class="bento-tile bento-g" data-bento-tile><img src="./assets/projects/modeman/modam-main.webp" alt="صفحه اصلی فروشگاه مدم" class="h-full w-full object-cover object-top" loading="lazy" decoding="async"></figure>
+            <figure class="bento-tile bento-h" data-bento-tile><img src="./assets/projects/bookito/categorys-page.webp" alt="صفحه دسته‌بندی پروژه بوکیتو" class="h-full w-full object-cover object-top" loading="lazy" decoding="async"></figure>
           </div>
+        </div>
 
+        <div class="scrub-bento-caption pointer-events-none absolute inset-x-0 bottom-8 z-20 mx-auto flex max-w-[1440px] items-end justify-between gap-6 px-4 text-right sm:px-6 lg:px-12">
+          <div class="max-w-xl space-y-3">
+            <p class="text-xs font-black tracking-[0.35em] text-primary-accent">SELECTED DIGITAL PRODUCTS</p>
+            <h1 class="text-3xl font-black leading-tight text-white drop-shadow-lg sm:text-5xl lg:text-7xl">نمونه‌کارها، در یک قاب زنده</h1>
+          </div>
+          <div class="hidden max-w-xs text-sm font-medium leading-7 text-white/75 md:block">اسکرول کنید تا قاب مرکزی از دل گرید باز شود و تجربه تمام‌صفحه پروژه را بسازد.</div>
         </div>
       </div>
     </section>
 
     <!-- ==========================================
-         02 — SELECTED WORK (PORTFOLIO SECTION)
+         02 — FEATURED PROJECTS
          ========================================== -->
-    <section id="portfolio" class="py-12 sm:py-24 lg:py-32 border-t border-border-subtle scroll-animate">
+    <section id="portfolio" class="featured-projects-section py-16 sm:py-24 lg:py-32 border-t border-border-subtle scroll-animate">
       <div class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12">
-
-        <!-- Title block -->
-        <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16 text-right">
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 text-right">
           <div class="space-y-3">
-              <div class="flex items-center gap-4 flex-wrap">
-                <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-fg-main">نمونه‌کارهای ما</h2>
-                <a href="projects.html" class="text-xs sm:text-sm font-bold text-primary-accent hover:gap-2 transition-all inline-flex items-center gap-1">
-                  <span>مشاهده همه پروژه‌ها</span>
-                  <span class="transform rotate-180">←</span>
-                </a>
-              </div>
-            <p class="text-base sm:text-lg text-muted-fg">نمونه وب‌سایت‌ها و فروشگاه‌هایی که برای مشتریانمان طراحی
-              کرده‌ایم.</p>
-          </div>
-
-          <!-- Segmented filters with touch snapping & accessible touch target -->
-          <div class="flex w-full md:w-auto overflow-x-auto flex-nowrap gap-2.5 scrollbar-none pb-1 md:pb-0 snap-x snap-mandatory">
-            <button
-              class="portfolio-filter-btn min-h-[44px] px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold border bg-primary-accent text-white border-primary-accent transition-all-custom cursor-pointer whitespace-nowrap shrink-0 snap-start"
-              data-filter="all">همه نمونه‌کارها</button>
-            <button
-              class="portfolio-filter-btn min-h-[44px] px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold border bg-muted-bg text-muted-fg border-border-subtle hover:text-fg-main transition-all-custom cursor-pointer whitespace-nowrap shrink-0 snap-start"
-              data-filter="ecommerce">فروشگاه اینترنتی</button>
-            <button
-              class="portfolio-filter-btn min-h-[44px] px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold border bg-muted-bg text-muted-fg border-border-subtle hover:text-fg-main transition-all-custom cursor-pointer whitespace-nowrap shrink-0 snap-start"
-              data-filter="saas">سامانه و نرم‌افزار</button>
+            <span class="text-xs font-black tracking-[0.28em] text-primary-accent">FEATURED WORK</span>
+            <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-fg-main">شش پروژه منتخب</h2>
+            <p class="text-base sm:text-lg text-muted-fg">یک انتخاب کوتاه از وب‌سایت‌ها و محصولاتی که برای برندهای مختلف ساخته‌ایم.</p>
           </div>
         </div>
-
-        <!-- Dynamic Uniform Grid Container (1 col mobile, 2 cols tablet, 3 cols desktop) -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8" id="portfolio-grid-container">
-          <!-- Populated from projects array inside js/main.js -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8" id="featured-projects-grid" aria-label="شش پروژه منتخب دپیکس"></div>
+        <div class="mt-12 flex justify-center">
+          <a href="projects.html" class="featured-projects-cta group inline-flex min-h-[52px] items-center justify-center gap-3 rounded-full border border-primary-accent bg-primary-accent px-7 py-3 text-sm font-black text-white transition-all duration-300 hover:bg-transparent hover:text-primary-accent focus-visible:ring-2 focus-visible:ring-primary-accent">
+            <span>مشاهده همه پروژه‌ها</span>
+            <span class="transition-transform duration-300 group-hover:-translate-x-1" aria-hidden="true">←</span>
+          </a>
         </div>
-
       </div>
     </section>
 
