@@ -892,6 +892,8 @@ const consultationConfig = {
 document.addEventListener('DOMContentLoaded', () => {
   initTheme();
   initNavigation();
+  initScrubBentoHero();
+  initFeaturedProjects();
   initPortfolioGrid();
   initAllProjectsPage(); // Check if we are on projects.html
   initStartupStory();
@@ -1606,6 +1608,113 @@ function initAllBlogPage() {
 
   // Initial update
   updateSlide(0);
+}
+
+
+/**
+ * GSAP scrubbed Bento hero for the Home page.
+ */
+function initScrubBentoHero() {
+  const section = document.querySelector('.scrub-bento-hero');
+  if (!section || typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const stage = section.querySelector('.scrub-bento-stage');
+  const shell = section.querySelector('.scrub-bento-shell');
+  const grid = section.querySelector('.scrub-bento-grid');
+  const center = section.querySelector('[data-bento-center]');
+  const tiles = gsap.utils.toArray(section.querySelectorAll('[data-bento-tile]'));
+  const fullImage = section.querySelector('.scrub-bento-main');
+  const caption = section.querySelector('.scrub-bento-caption');
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (!stage || !grid || !center || reduceMotion) {
+    section.classList.add('scrub-bento-reduced');
+    return;
+  }
+
+  const ctx = gsap.context(() => {
+    gsap.set(center, { transformOrigin: 'center center', zIndex: 5 });
+    gsap.set(fullImage, { scale: 1.06, opacity: 0 });
+
+    const getCenterTransform = () => {
+      const rect = center.getBoundingClientRect();
+      const scaleX = window.innerWidth / rect.width;
+      const scaleY = window.innerHeight / rect.height;
+      const x = (window.innerWidth / 2) - (rect.left + rect.width / 2);
+      const y = (window.innerHeight / 2) - (rect.top + rect.height / 2);
+      return { x, y, scaleX, scaleY };
+    };
+
+    const tl = gsap.timeline({
+      defaults: { ease: 'none' },
+      scrollTrigger: {
+        trigger: section,
+        start: 'top top',
+        end: () => `+=${Math.max(window.innerHeight * 2.4, 1800)}`,
+        scrub: 1,
+        pin: true,
+        anticipatePin: 1,
+        invalidateOnRefresh: true
+      }
+    });
+
+    tl.to(caption, { opacity: 0, y: -36, duration: 0.18 }, 0)
+      .to(shell, { scale: 0.985, duration: 0.18 }, 0)
+      .to(tiles, {
+        x: (i) => [-150, 0, 150, -220, 220, -180, 0, 180][i] || 0,
+        y: (i) => [-100, -140, -90, 0, 0, 130, 165, 120][i] || 0,
+        scale: 0.86,
+        opacity: 0,
+        filter: 'blur(8px)',
+        duration: 0.62,
+        stagger: { each: 0.015, from: 'center' }
+      }, 0.12)
+      .to(center, {
+        x: () => getCenterTransform().x,
+        y: () => getCenterTransform().y,
+        scaleX: () => getCenterTransform().scaleX,
+        scaleY: () => getCenterTransform().scaleY,
+        borderRadius: 0,
+        duration: 0.74
+      }, 0.16)
+      .to(center.querySelector('img'), { scale: 1.02, duration: 0.74 }, 0.16)
+      .to(fullImage, { opacity: 1, scale: 1, duration: 0.26 }, 0.74)
+      .to(center, { opacity: 0, duration: 0.16 }, 0.82)
+      .to(fullImage, { scale: 1.015, duration: 0.2 }, 0.88);
+  }, section);
+
+  window.addEventListener('pagehide', () => ctx.revert(), { once: true });
+}
+
+/**
+ * Featured Projects grid on the Home page: exactly six existing projects.
+ */
+function initFeaturedProjects() {
+  const container = document.getElementById('featured-projects-grid');
+  if (!container) return;
+
+  container.innerHTML = '';
+  projects.slice(0, 6).forEach((p, index) => {
+    const card = document.createElement('a');
+    card.href = `project.html?slug=${encodeURIComponent(p.slug)}`;
+    card.className = 'featured-project-card group block overflow-hidden rounded-2xl border border-border-subtle bg-card-bg transition-all duration-300 hover:-translate-y-1 hover:border-primary-accent/45 focus-visible:ring-2 focus-visible:ring-primary-accent';
+    card.setAttribute('aria-label', `مشاهده پروژه ${p.title}`);
+    card.innerHTML = `
+      <div class="relative aspect-[16/11] overflow-hidden bg-muted-bg/60">
+        <img src="${p.cover}" alt="تصویر پروژه ${p.title}" class="h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-105" loading="${index === 0 ? 'eager' : 'lazy'}" decoding="async">
+      </div>
+      <div class="space-y-3 p-5 text-right">
+        <div class="flex items-center justify-between gap-4 text-xs font-bold text-muted-fg">
+          <span class="truncate">${p.categoryLabel}</span>
+          <span class="font-mono">${p.year}</span>
+        </div>
+        <h3 class="text-xl font-black text-fg-main transition-colors group-hover:text-primary-accent">${p.title}</h3>
+      </div>
+    `;
+    container.appendChild(card);
+  });
 }
 
 /**

@@ -196,3 +196,128 @@
   .transition-all-custom {
     transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
   }
+
+  @layer components {
+    .scrub-bento-hero {
+      isolation: isolate;
+    }
+
+    .scrub-bento-grid {
+      direction: ltr;
+      grid-template-areas:
+        "a b c"
+        "d center e"
+        "f g h";
+    }
+
+    .bento-tile {
+      position: relative;
+      min-width: 0;
+      min-height: 0;
+      overflow: hidden;
+      border-radius: clamp(1rem, 1.8vw, 2rem);
+      background: var(--muted);
+      box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.08);
+      will-change: transform, opacity, filter;
+    }
+
+    .bento-tile::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: linear-gradient(180deg, rgb(0 0 0 / 0.04), rgb(0 0 0 / 0.24));
+    }
+
+    .bento-a { grid-area: a; margin-top: 4vh; }
+    .bento-b { grid-area: b; margin-inline: 5%; margin-bottom: 1.5vh; }
+    .bento-c { grid-area: c; margin-top: 9vh; }
+    .bento-d { grid-area: d; margin-inline-start: 8%; margin-block: -2vh 3vh; }
+    .bento-center { grid-area: center; margin: -3vh -2vw; border-radius: clamp(1.25rem, 2.4vw, 2.75rem); box-shadow: 0 28px 80px rgb(0 0 0 / 0.38); }
+    .bento-e { grid-area: e; margin-inline-end: 8%; margin-block: 2vh -2vh; }
+    .bento-f { grid-area: f; margin-bottom: 7vh; }
+    .bento-g { grid-area: g; margin-inline: 8%; margin-top: 1.5vh; }
+    .bento-h { grid-area: h; margin-bottom: 4vh; }
+
+    .scrub-bento-main,
+    .scrub-bento-shell,
+    .scrub-bento-caption {
+      will-change: transform, opacity;
+    }
+
+    .featured-project-card {
+      text-decoration: none;
+    }
+  }
+
+  @media (max-width: 1023px) {
+    .scrub-bento-grid {
+      grid-template-columns: 0.75fr 1.35fr 0.75fr;
+      grid-template-rows: 0.8fr 1.35fr 0.85fr;
+      gap: 0.75rem;
+    }
+
+    .bento-a { margin-top: 7vh; }
+    .bento-c { margin-top: 11vh; }
+    .bento-center { margin: -1.5vh -5vw; }
+  }
+
+  @media (max-width: 639px) {
+    .scrub-bento-shell {
+      padding: 6.5rem 0.75rem 5.5rem;
+    }
+
+    .scrub-bento-grid {
+      grid-template-columns: 0.68fr 1.45fr 0.68fr;
+      grid-template-rows: 0.72fr 1.45fr 0.72fr;
+      gap: 0.5rem;
+    }
+
+    .bento-tile {
+      border-radius: 0.95rem;
+    }
+
+    .bento-a,
+    .bento-c,
+    .bento-f,
+    .bento-h {
+      opacity: 0.72;
+    }
+
+    .bento-b,
+    .bento-g {
+      margin-inline: 0;
+    }
+
+    .bento-d,
+    .bento-e {
+      margin-inline: 0;
+      margin-block: 1.5vh;
+    }
+
+    .bento-center {
+      margin: -1vh -13vw;
+      border-radius: 1.25rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .scrub-bento-hero,
+    .scrub-bento-stage {
+      height: 100dvh;
+    }
+
+    .scrub-bento-main {
+      display: none;
+    }
+
+    .bento-tile,
+    .scrub-bento-shell,
+    .scrub-bento-caption,
+    .featured-project-card,
+    .featured-project-card img,
+    .featured-projects-cta span {
+      transition: none !important;
+      animation: none !important;
+    }
+  }
