@@ -110,95 +110,164 @@
   <main class="overflow-hidden">
 
     <!-- ==========================================
-         01 — HERO SECTION
+         01 — GSAP SCRUBBED BENTO HERO
          ========================================== -->
-    <section id="hero"
-      class="relative pt-28 pb-10 sm:pt-36 sm:pb-16 md:pt-48 md:pb-32 overflow-hidden bg-radial from-primary-accent/5 via-transparent to-transparent">
-      <!-- Glow Elements -->
-      <div
-        class="absolute top-24 right-1/4 w-[500px] h-[500px] rounded-full bg-primary-accent/5 blur-[120px] pointer-events-none">
-      </div>
-      <div
-        class="absolute bottom-10 left-1/4 w-[350px] h-[350px] rounded-full bg-accent-hover/5 blur-[90px] pointer-events-none">
-      </div>
+    <section id="hero" class="relative w-full h-[100dvh] overflow-hidden bg-bg-main select-none">
 
-      <div class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12">
-        <div class="flex flex-col items-center text-center justify-center min-h-0 sm:min-h-[40vh] md:min-h-[50vh]">
+      <!-- Fixed Outer Container inside pinned section -->
+      <div id="bento-hero-wrapper" class="relative w-full h-full flex flex-col justify-between p-4 sm:p-6 lg:p-8 overflow-hidden">
 
-          <!-- Copy Content -->
-          <div class="max-w-4xl space-y-5 sm:space-y-8 animate-fade-in-up">
+        <!-- Background Ambient Glow -->
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-primary-accent/10 blur-[140px] pointer-events-none z-0"></div>
 
-            <!-- Small Label -->
-            <div
-              class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-primary-accent/20 bg-primary-accent/5 text-primary-accent text-xs font-semibold">
-              <span class="w-1.5 h-1.5 rounded-full bg-primary-accent animate-pulse"></span>
-              طراحی و ساخت وب‌سایت و فروشگاه اینترنتی با کیفیت عالی
+        <!-- Hero Text Header (Overlaid, fades on scroll) -->
+        <div id="hero-header-text" class="relative z-20 text-center max-w-3xl mx-auto space-y-3 sm:space-y-4 pt-16 sm:pt-20 transition-all duration-300 pointer-events-auto">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-primary-accent/20 bg-primary-accent/10 text-primary-accent text-xs font-semibold backdrop-blur-md">
+            <span class="w-1.5 h-1.5 rounded-full bg-primary-accent animate-pulse"></span>
+            استودیو اختصاصی طراحی و توسعه محصول دیجیتال
+          </div>
+          <h1 class="text-3xl sm:text-5xl lg:text-6xl font-black text-fg-main tracking-tight leading-tight drop-shadow-md">
+            سایت خوب، نتیجه می‌سازد
+          </h1>
+          <p class="text-xs sm:text-base text-muted-fg max-w-xl mx-auto leading-relaxed">
+            طراحی و توسعه وب‌سایت و فروشگاه اینترنتی، سریع، مدرن و متناسب با برند شما.
+          </p>
+        </div>
+
+        <!-- Bento Grid Container -->
+        <div id="bento-grid-container" class="relative z-10 w-full max-w-[1380px] mx-auto h-[55dvh] sm:h-[60dvh] my-auto">
+
+          <!-- Desktop 9-Image Asymmetric Editorial Bento Grid -->
+          <div class="w-full h-full grid grid-cols-12 grid-rows-12 gap-2.5 sm:gap-4 relative">
+
+            <!-- Item 1: Top Left stacked (Cols 1-4, Rows 1-4) -->
+            <div data-bento="item" class="bento-item col-start-1 col-span-4 row-start-1 row-span-4 rounded-xl sm:rounded-2xl overflow-hidden bg-card-bg border border-border-subtle/80 shadow-lg relative group">
+              <img src="assets/projects/kafsham/kafsham-main.webp" alt="کفشام" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="eager">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-3">
+                <span class="text-xs font-bold text-white">فروشگاه آنلاین کفشام</span>
+              </div>
             </div>
 
-            <!-- Big Core Headline -->
-            <h1 class="text-4xl sm:text-6xl lg:text-7xl font-black text-fg-main leading-tight tracking-tight">
-              سایت خوب، نتیجه می‌سازد
-            </h1>
+            <!-- Item 2: Mid Left stacked (Cols 1-4, Rows 5-8) -->
+            <div data-bento="item" class="bento-item col-start-1 col-span-4 row-start-5 row-span-4 rounded-xl sm:rounded-2xl overflow-hidden bg-card-bg border border-border-subtle/80 shadow-lg relative group">
+              <img src="assets/projects/watch/watch-home.webp" alt="تایم‌لند" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="eager">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-3">
+                <span class="text-xs font-bold text-white">تایم‌لند</span>
+              </div>
+            </div>
 
-            <p class="text-base sm:text-lg text-muted-fg max-w-2xl mx-auto leading-relaxed">
-              طراحی و توسعه وب‌سایت و فروشگاه اینترنتی، سریع، مدرن و متناسب با کسب‌وکار شما.
-            </p>
+            <!-- Item 3: Bottom Left stacked (Cols 1-4, Rows 9-12) -->
+            <div data-bento="item" class="bento-item col-start-1 col-span-4 row-start-9 row-span-4 rounded-xl sm:rounded-2xl overflow-hidden bg-card-bg border border-border-subtle/80 shadow-lg relative group">
+              <img src="assets/projects/champing/camping-PAGE.webp" alt="چمپینگ" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="eager">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-3">
+                <span class="text-xs font-bold text-white">چمپینگ</span>
+              </div>
+            </div>
 
-            <!-- CTA Links -->
-            <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3.5 sm:gap-4 pt-2 sm:pt-4 w-full max-w-sm sm:max-w-none mx-auto">
-              <a href="#contact"
-                class="w-full sm:w-auto px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl text-sm sm:text-base font-bold text-white bg-primary-accent hover:bg-accent-hover shadow-xl shadow-primary-accent/20 hover:-translate-y-0.5 transition-all duration-200 text-center flex items-center justify-center">
-                سفارش پروژه و مشاوره رایگان
-              </a>
-              <a href="#portfolio"
-                class="w-full sm:w-auto px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl text-sm sm:text-base font-bold text-fg-main bg-muted-bg border border-border-subtle hover:bg-border-subtle hover:-translate-y-0.5 transition-all duration-200 text-center flex items-center justify-center">
-                مشاهده نمونه‌کارها
-              </a>
+            <!-- Item 4: Top Center stacked (Cols 5-8, Rows 1-3) -->
+            <div data-bento="item" class="bento-item col-start-5 col-span-4 row-start-1 row-span-3 rounded-xl sm:rounded-2xl overflow-hidden bg-card-bg border border-border-subtle/80 shadow-lg relative group">
+              <img src="assets/projects/panter/panter-main.webp" alt="پنتر" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="eager">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-3">
+                <span class="text-xs font-bold text-white">پنتر</span>
+              </div>
+            </div>
+
+            <!-- CENTER MAIN FOCAL ITEM (Cols 5-8, Rows 4-9) -->
+            <div id="bento-center-item" class="col-start-5 col-span-4 row-start-4 row-span-6 rounded-2xl sm:rounded-3xl overflow-hidden bg-card-bg border-2 border-primary-accent/60 shadow-2xl relative z-30 group cursor-pointer">
+              <img id="bento-center-img" src="assets/projects/sayra/sayra-main.webp" alt="Sayra - سامانه آنلاین رزرو گیم‌نت" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="eager">
+              <!-- Fullscreen Caption Overlay (Fades in when expanded) -->
+              <div id="bento-center-caption" class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent opacity-0 transition-opacity duration-500 flex flex-col justify-end p-6 sm:p-12 text-right pointer-events-none">
+                <div id="bento-caption-content" class="max-w-xl space-y-2 origin-bottom-right">
+                  <span class="text-xs sm:text-sm font-bold text-primary-accent tracking-widest uppercase block">پروژه برتر</span>
+                  <h3 class="text-2xl sm:text-4xl font-black text-white leading-tight">پلتفرم هوشمند سایرا (Sayra)</h3>
+                  <p class="text-xs sm:text-base text-gray-200 mt-2 font-medium leading-relaxed">سامانه جامع آنلاین رزرو و مدیریت گیم‌نت‌ها و کلوب‌های بازی</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Item 6: Bottom Center stacked (Cols 5-8, Rows 10-12) -->
+            <div data-bento="item" class="bento-item col-start-5 col-span-4 row-start-10 row-span-3 rounded-xl sm:rounded-2xl overflow-hidden bg-card-bg border border-border-subtle/80 shadow-lg relative group">
+              <img src="assets/projects/petshop/petshop-LANDING PAGE.webp" alt="پت‌شاپ" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="eager">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-3">
+                <span class="text-xs font-bold text-white">پت شاپ پت من</span>
+              </div>
+            </div>
+
+            <!-- Item 7: Top Right stacked (Cols 9-12, Rows 1-4) -->
+            <div data-bento="item" class="bento-item col-start-9 col-span-4 row-start-1 row-span-4 rounded-xl sm:rounded-2xl overflow-hidden bg-card-bg border border-border-subtle/80 shadow-lg relative group">
+              <img src="assets/projects/abzarchee/abzaercheee.webp" alt="ابزارچی" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="eager">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-3">
+                <span class="text-xs font-bold text-white">ابزارچی</span>
+              </div>
+            </div>
+
+            <!-- Item 8: Mid Right stacked (Cols 9-12, Rows 5-8) -->
+            <div data-bento="item" class="bento-item col-start-9 col-span-4 row-start-5 row-span-4 rounded-xl sm:rounded-2xl overflow-hidden bg-card-bg border border-border-subtle/80 shadow-lg relative group">
+              <img src="assets/projects/modeman/modam-main.webp" alt="مدم" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="eager">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-3">
+                <span class="text-xs font-bold text-white">مدم</span>
+              </div>
+            </div>
+
+            <!-- Item 9: Bottom Right stacked (Cols 9-12, Rows 9-12) -->
+            <div data-bento="item" class="bento-item col-start-9 col-span-4 row-start-9 row-span-4 rounded-xl sm:rounded-2xl overflow-hidden bg-card-bg border border-border-subtle/80 shadow-lg relative group">
+              <img src="assets/projects/panelam/dashboard.webp" alt="پنلم" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="eager">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-3">
+                <span class="text-xs font-bold text-white">داشبورد مدیریت پنلم</span>
+              </div>
             </div>
 
           </div>
 
         </div>
+
+        <!-- Scroll Indicator Footer -->
+        <div id="hero-scroll-indicator" class="relative z-20 flex flex-col items-center gap-1.5 pb-4 pointer-events-none transition-all duration-300">
+          <span class="text-[11px] font-bold text-muted-fg tracking-widest uppercase">برای پیمایش گالری، اسکرول کنید</span>
+          <svg class="w-4 h-4 text-primary-accent animate-bounce" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
+          </svg>
+        </div>
+
       </div>
+
     </section>
 
     <!-- ==========================================
-         02 — SELECTED WORK (PORTFOLIO SECTION)
+         02 — FEATURED PROJECTS
          ========================================== -->
-    <section id="portfolio" class="py-12 sm:py-24 lg:py-32 border-t border-border-subtle scroll-animate">
+    <section id="featured-projects" class="py-20 sm:py-28 border-t border-border-subtle bg-bg-main relative z-20">
       <div class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12">
 
-        <!-- Title block -->
-        <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16 text-right">
+        <!-- Title Block -->
+        <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-12 sm:mb-16 text-right">
           <div class="space-y-3">
-              <div class="flex items-center gap-4 flex-wrap">
-                <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-fg-main">نمونه‌کارهای ما</h2>
-                <a href="projects.html" class="text-xs sm:text-sm font-bold text-primary-accent hover:gap-2 transition-all inline-flex items-center gap-1">
-                  <span>مشاهده همه پروژه‌ها</span>
-                  <span class="transform rotate-180">←</span>
-                </a>
-              </div>
-            <p class="text-base sm:text-lg text-muted-fg">نمونه وب‌سایت‌ها و فروشگاه‌هایی که برای مشتریانمان طراحی
-              کرده‌ایم.</p>
+            <span class="text-xs font-bold text-primary-accent tracking-widest uppercase">نمونه‌کارهای منتخب</span>
+            <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-fg-main">پروژه‌های شاخص استودیو</h2>
+            <p class="text-sm sm:text-base text-muted-fg max-w-xl">مجموعه‌ای از وب‌سایت‌ها و سامانه‌های دیجیتال طراحی‌شده توسط تیم دپیکس.</p>
           </div>
 
-          <!-- Segmented filters with touch snapping & accessible touch target -->
-          <div class="flex w-full md:w-auto overflow-x-auto flex-nowrap gap-2.5 scrollbar-none pb-1 md:pb-0 snap-x snap-mandatory">
-            <button
-              class="portfolio-filter-btn min-h-[44px] px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold border bg-primary-accent text-white border-primary-accent transition-all-custom cursor-pointer whitespace-nowrap shrink-0 snap-start"
-              data-filter="all">همه نمونه‌کارها</button>
-            <button
-              class="portfolio-filter-btn min-h-[44px] px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold border bg-muted-bg text-muted-fg border-border-subtle hover:text-fg-main transition-all-custom cursor-pointer whitespace-nowrap shrink-0 snap-start"
-              data-filter="ecommerce">فروشگاه اینترنتی</button>
-            <button
-              class="portfolio-filter-btn min-h-[44px] px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold border bg-muted-bg text-muted-fg border-border-subtle hover:text-fg-main transition-all-custom cursor-pointer whitespace-nowrap shrink-0 snap-start"
-              data-filter="saas">سامانه و نرم‌افزار</button>
+          <!-- Category filter buttons -->
+          <div class="flex w-full sm:w-auto overflow-x-auto flex-nowrap gap-2.5 scrollbar-none pb-1 sm:pb-0 snap-x snap-mandatory">
+            <button class="featured-filter-btn min-h-[44px] px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold border bg-primary-accent text-white border-primary-accent transition-all cursor-pointer whitespace-nowrap shrink-0 snap-start" data-filter="all">همه پروژه‌ها</button>
+            <button class="featured-filter-btn min-h-[44px] px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold border bg-muted-bg text-muted-fg border-border-subtle hover:text-fg-main transition-all cursor-pointer whitespace-nowrap shrink-0 snap-start" data-filter="ecommerce">فروشگاه اینترنتی</button>
+            <button class="featured-filter-btn min-h-[44px] px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold border bg-muted-bg text-muted-fg border-border-subtle hover:text-fg-main transition-all cursor-pointer whitespace-nowrap shrink-0 snap-start" data-filter="saas">سامانه و آنلاین</button>
           </div>
         </div>
 
-        <!-- Dynamic Uniform Grid Container (1 col mobile, 2 cols tablet, 3 cols desktop) -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8" id="portfolio-grid-container">
-          <!-- Populated from projects array inside js/main.js -->
+        <!-- Clean Grid: Desktop 3 cols, Tablet 2 cols, Mobile 1 col -->
+        <div id="featured-projects-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+          <!-- Dynamically populated exactly 6 project cards via js/main.js -->
+        </div>
+
+        <!-- View All Projects Prominent CTA -->
+        <div class="mt-14 sm:mt-18 text-center">
+          <a href="projects.html" class="group inline-flex items-center justify-center gap-3 px-8 py-4 rounded-2xl text-sm sm:text-base font-bold text-fg-main bg-card-bg border border-border-subtle hover:border-primary-accent hover:text-primary-accent hover:shadow-xl transition-all duration-300">
+            <span>مشاهده تمامی پروژه‌ها</span>
+            <svg class="w-5 h-5 text-primary-accent transform rotate-180 transition-transform duration-300 group-hover:-translate-x-1.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+            </svg>
+          </a>
         </div>
 
       </div>

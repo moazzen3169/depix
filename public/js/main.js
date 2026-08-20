@@ -892,6 +892,8 @@ const consultationConfig = {
 document.addEventListener('DOMContentLoaded', () => {
   initTheme();
   initNavigation();
+  initScrubbedBentoHero();
+  initFeaturedProjects();
   initPortfolioGrid();
   initAllProjectsPage(); // Check if we are on projects.html
   initStartupStory();
@@ -951,6 +953,159 @@ function initTheme() {
     const nextTheme = document.documentElement.classList.contains('light') ? 'dark' : 'light';
     applyTheme(nextTheme);
   });
+}
+
+/**
+ * 1.5. GSAP Scrubbed Bento Gallery Hero Interaction
+ */
+function initScrubbedBentoHero() {
+  const heroSection = document.getElementById('hero');
+  const bentoGrid = document.getElementById('bento-grid-container');
+  const centerItem = document.getElementById('bento-center-item');
+  const outerItems = document.querySelectorAll('.bento-item');
+  const heroText = document.getElementById('hero-header-text');
+  const scrollIndicator = document.getElementById('hero-scroll-indicator');
+  const centerCaption = document.getElementById('bento-center-caption');
+
+  if (!heroSection || !centerItem) return;
+
+  // Click on center focal item navigates to project
+  centerItem.addEventListener('click', () => {
+    window.location.href = 'project.html?slug=' + encodeURIComponent('سایرا');
+  });
+
+  // Check reduced motion preference
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Register GSAP ScrollTrigger
+  if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+    gsap.registerPlugin(ScrollTrigger);
+
+    if (prefersReduced) {
+      if (centerCaption) gsap.set(centerCaption, { opacity: 1 });
+      return;
+    }
+
+    // Measure viewport dimensions dynamically
+    const isMobile = window.innerWidth < 768;
+
+    // Create scrubbed pinned timeline
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: heroSection,
+        start: "top top",
+        end: isMobile ? "+=180%" : "+=220%",
+        pin: true,
+        scrub: 1,
+        anticipatePin: 1,
+        invalidateOnRefresh: true
+      }
+    });
+
+    // Phase 1: Header text and scroll indicator fade/move away
+    tl.to([heroText, scrollIndicator], {
+      opacity: 0,
+      y: -30,
+      scale: 0.95,
+      duration: 0.4,
+      ease: "power2.out"
+    }, 0);
+
+    // Phase 2: Surrounding 8 bento items shrink, fade out and scatter slightly outward
+    outerItems.forEach((item, index) => {
+      // Calculate slight outward drift depending on index
+      const angle = (index / outerItems.length) * Math.PI * 2;
+      const moveX = Math.cos(angle) * (isMobile ? 30 : 60);
+      const moveY = Math.sin(angle) * (isMobile ? 30 : 60);
+
+      tl.to(item, {
+        opacity: 0,
+        scale: 0.75,
+        x: moveX,
+        y: moveY,
+        duration: 0.6,
+        ease: "power2.inOut"
+      }, 0.1);
+    });
+
+    // Phase 3: Center focal item expands to cover viewport
+    // Calculate required scale to cover 100vw x 100dvh
+    const centerRect = centerItem.getBoundingClientRect();
+    const targetScaleX = window.innerWidth / (centerRect.width || 300);
+    const targetScaleY = window.innerHeight / (centerRect.height || 300);
+    const targetScale = Math.max(targetScaleX, targetScaleY) * 1.05;
+
+    tl.to(centerItem, {
+      scale: targetScale,
+      borderRadius: "0px",
+      borderColor: "transparent",
+      boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.8)",
+      duration: 1,
+      ease: "power2.inOut"
+    }, 0.2);
+
+    // Counter-scale caption text so it stays crisp and 1:1 natural size on screen
+    const captionContent = document.getElementById('bento-caption-content');
+    if (captionContent) {
+      tl.to(captionContent, {
+        scale: 1 / targetScale,
+        duration: 1,
+        ease: "power2.inOut"
+      }, 0.2);
+    }
+
+    // Phase 4: Fullscreen caption overlay fades in over center item as it becomes fullscreen
+    tl.to(centerCaption, {
+      opacity: 1,
+      duration: 0.4,
+      ease: "power2.out"
+    }, 0.8);
+
+    // Padding hold at end of fullscreen transformation before scrolling into Featured Projects
+    tl.to({}, { duration: 0.3 });
+  }
+}
+
+/**
+ * 1.6. Featured Projects Grid Handler (Exactly 6 Projects)
+ */
+function initFeaturedProjects() {
+  const container = document.getElementById('featured-projects-grid');
+  const filterBtns = document.querySelectorAll('.featured-filter-btn');
+
+  if (!container) return;
+
+  const renderFeatured = (category = 'all') => {
+    container.innerHTML = '';
+
+    // Filter and take exactly up to 6 projects
+    let filtered = projects.filter(p => category === 'all' || p.category === category);
+    const featuredList = filtered.slice(0, 6);
+
+    featuredList.forEach(p => {
+      const card = createProjectCardElement(p);
+      container.appendChild(card);
+    });
+  };
+
+  if (filterBtns) {
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => {
+          b.classList.remove('bg-primary-accent', 'text-white', 'border-primary-accent');
+          b.classList.add('bg-muted-bg', 'text-muted-fg', 'border-border-subtle');
+        });
+        btn.classList.add('bg-primary-accent', 'text-white', 'border-primary-accent');
+        btn.classList.remove('bg-muted-bg', 'text-muted-fg', 'border-border-subtle');
+
+        const cat = btn.getAttribute('data-filter');
+        renderFeatured(cat);
+      });
+    });
+  }
+
+  // Initial render exactly 6 projects
+  renderFeatured();
 }
 
 /**
