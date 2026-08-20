@@ -200,36 +200,6 @@
   @layer components {
     .scrub-bento-hero {
       isolation: isolate;
-      position: relative;
-      width: 100%;
-      height: 100dvh;
-      overflow: hidden;
-      background: var(--background);
-    }
-
-    .scrub-bento-stage {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100dvh;
-      overflow: hidden;
-    }
-
-    .scrub-bento-shell {
-      position: relative;
-      z-index: 10;
-      width: 100%;
-      height: 100%;
-      padding: 6rem 0.75rem;
-    }
-
-    .scrub-bento-grid {
-      display: grid;
-      width: 100%;
-      height: 100%;
-      max-width: 1540px;
-      margin-inline: auto;
-      gap: 0.625rem;
     }
 
     .scrub-bento-grid {
