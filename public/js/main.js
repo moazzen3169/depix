@@ -896,7 +896,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initFeaturedProjects();
   initPortfolioGrid();
   initAllProjectsPage(); // Check if we are on projects.html
-  initStartupStory();
   initCooperationModal();
   initBlogGrid();
   initAllBlogPage(); // Check if we are on blog.html
@@ -959,15 +958,14 @@ function initTheme() {
  * 1.5. GSAP Scrubbed Bento Gallery Hero Interaction
  */
 function initScrubbedBentoHero() {
-  const heroSection = document.getElementById('hero');
+  const bentoSection = document.getElementById('hero-bento');
   const bentoGrid = document.getElementById('bento-grid-container');
   const centerItem = document.getElementById('bento-center-item');
   const outerItems = document.querySelectorAll('.bento-item');
-  const heroText = document.getElementById('hero-header-text');
   const scrollIndicator = document.getElementById('hero-scroll-indicator');
   const centerCaption = document.getElementById('bento-center-caption');
 
-  if (!heroSection || !centerItem) return;
+  if (!bentoSection || !centerItem) return;
 
   // Click on center focal item navigates to project
   centerItem.addEventListener('click', () => {
@@ -989,10 +987,10 @@ function initScrubbedBentoHero() {
     // Measure viewport dimensions dynamically
     const isMobile = window.innerWidth < 768;
 
-    // Create scrubbed pinned timeline
+    // Create scrubbed pinned timeline for the Bento Gallery Hero section
     const tl = gsap.timeline({
       scrollTrigger: {
-        trigger: heroSection,
+        trigger: bentoSection,
         start: "top top",
         end: isMobile ? "+=180%" : "+=220%",
         pin: true,
@@ -1002,14 +1000,15 @@ function initScrubbedBentoHero() {
       }
     });
 
-    // Phase 1: Header text and scroll indicator fade/move away
-    tl.to([heroText, scrollIndicator], {
-      opacity: 0,
-      y: -30,
-      scale: 0.95,
-      duration: 0.4,
-      ease: "power2.out"
-    }, 0);
+    // Phase 1: Scroll indicator fades out
+    if (scrollIndicator) {
+      tl.to(scrollIndicator, {
+        opacity: 0,
+        y: -20,
+        duration: 0.3,
+        ease: "power2.out"
+      }, 0);
+    }
 
     // Phase 2: Surrounding 8 bento items shrink, fade out and scatter slightly outward
     outerItems.forEach((item, index) => {
@@ -1173,304 +1172,6 @@ function initNavigation() {
   }
 }
 
-/**
- * 3.5. Interactive Startup Story logic (GSAP Pinned Scroll Implementation)
- */
-function initStartupStory() {
-  const section = document.getElementById('startup-story');
-  if (!section) return;
-
-  // If the section is hidden (e.g. on mobile/tablet viewports), bypass initialization completely
-  if (window.getComputedStyle(section).display === 'none') {
-    return;
-  }
-
-  // 1. Preload story images
-  const imagesToPreload = [
-    "./assets/projects/sayra/ps-0.webp",
-    "./assets/projects/sayra/ps-1.webp",
-    "./assets/projects/sayra/ps-2.webp",
-    "./assets/projects/sayra/ps-3.webp",
-    "./assets/projects/sayra/ps-4.webp"
-  ];
-  imagesToPreload.forEach(src => {
-    const img = new Image();
-    img.src = src;
-  });
-
-  // Query DOM elements
-  const images = section.querySelectorAll('[data-story-image]');
-  const desktopButtons = section.querySelectorAll('[data-story-step]');
-  const mobileButtons = section.querySelectorAll('[data-story-step-mob]');
-  const introBlock = document.getElementById('story-intro-block');
-  const microLabel = document.getElementById('story-micro-label');
-  const microStep = document.getElementById('story-micro-step');
-  const microStepNum = document.getElementById('micro-step-num');
-  const desktopHud = document.getElementById('story-desktop-hud');
-  const mobileHud = document.getElementById('story-mobile-hud');
-  const ctaOverlay = document.getElementById('product-cta-overlay');
-  const desktopProgressFill = document.getElementById('story-desktop-progress-fill');
-
-  // Step information
-    const stepsData = {
-    1: { num: "۰۱", title: "۱. شناخت نیاز و مسئله", desc: "بررسی دقیق مشکلات افراد برای رزرو آنلاین سیستم‌های گیم‌نت بدون اتلاف وقت." },
-    2: { num: "۰۲", title: "۲. برنامه‌ریزی و ایده‌پردازی", desc: "طراحی یک مسیر ساده و سریع برای رزرو فوری سیستم‌ها و کنسول‌های بازی." },
-    3: { num: "۰۳", title: "۳. طراحی ظاهر و منوها", desc: "ساخت ظاهری جذاب و آسان برای بازیکنان و پنل مدیریت راحت برای صاحبان گیم‌نت." },
-    4: { num: "۰۴", title: "۴. ساخت و کدنویسی سریع", desc: "برنامه‌نویسی بدون نقص به طوری که تمام رزروها بلافاصله و بدون معطلی ثبت شوند." },
-    5: { num: "۰۵", title: "۵. تحویل کامل و راه‌اندازی", desc: "راه‌اندازی کامل سامانه سایرا و ارائه خدمات عالی به کاربران و گیمرها." }
-  };
-
-  // Check reduced motion
-  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  // Active stage updater
-  const updateActiveUI = (stageNum) => {
-    const persianNum = stepsData[stageNum].num;
-
-    // Update micro step number
-    if (microStepNum) microStepNum.textContent = persianNum;
-
-    // Update Desktop list styles
-    desktopButtons.forEach(btn => {
-      const step = parseInt(btn.getAttribute('data-story-step'), 10);
-      if (step === stageNum) {
-        btn.classList.add('active');
-        gsap.to(btn, { opacity: 1, duration: 0.3 });
-      } else {
-        btn.classList.remove('active');
-        gsap.to(btn, { opacity: 0.4, duration: 0.3 });
-      }
-    });
-
-    // Update Mobile text & buttons styling
-    if (mobileHud) {
-      const mobStepNum = document.getElementById('mobile-step-num');
-      const mobStepTitle = document.getElementById('mobile-step-title');
-      const mobStepDesc = document.getElementById('mobile-step-desc');
-      const mobileTextContainer = document.getElementById('mobile-text-container');
-      const mobileHudCta = document.getElementById('mobile-hud-cta');
-
-      // Check if text has changed to prevent flashing
-      if (mobStepTitle && mobStepTitle.textContent !== stepsData[stageNum].title) {
-        // Micro transitions for mobile text swap
-        gsap.killTweensOf(mobileTextContainer);
-        gsap.fromTo(mobileTextContainer,
-          { opacity: 0.4, y: 5 },
-          { opacity: 1, y: 0, duration: 0.4, ease: "power2.out" }
-        );
-
-        if (mobStepNum) mobStepNum.textContent = `مرحله ${persianNum}`;
-        if (mobStepTitle) mobStepTitle.textContent = stepsData[stageNum].title;
-        if (mobStepDesc) mobStepDesc.textContent = stepsData[stageNum].desc;
-      }
-
-      // Show/Hide integrated mobile HUD CTA in Step 5
-      if (mobileHudCta) {
-        if (stageNum === 5) {
-          mobileHudCta.classList.remove('hidden');
-          gsap.fromTo(mobileHudCta, { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.4, ease: "power2.out" });
-        } else {
-          mobileHudCta.classList.add('hidden');
-        }
-      }
-
-      mobileButtons.forEach(btn => {
-        const step = parseInt(btn.getAttribute('data-story-step-mob'), 10);
-        if (step === stageNum) {
-          btn.className = "w-9 h-9 rounded-full border-2 border-primary-accent bg-primary-accent/10 text-white flex items-center justify-center text-xs font-black transition-all cursor-pointer";
-        } else if (step < stageNum) {
-          btn.className = "w-9 h-9 rounded-full border-2 border-primary-accent/60 bg-black/40 text-primary-accent flex items-center justify-center text-xs font-black transition-all cursor-pointer";
-        } else {
-          btn.className = "w-9 h-9 rounded-full border-2 border-white/10 bg-black/40 text-white/50 flex items-center justify-center text-xs font-black transition-all cursor-pointer";
-        }
-      });
-
-      // Update mobile connector progress fills
-      for (let i = 1; i <= 4; i++) {
-        const fill = document.getElementById(`mobile-progress-${i}`);
-        if (fill) {
-          if (i < stageNum) {
-            fill.style.width = '100%';
-          } else {
-            fill.style.width = '0%';
-          }
-        }
-      }
-    }
-  };
-
-  // Register ScrollTrigger
-  gsap.registerPlugin(ScrollTrigger);
-
-  // Set initial states for elements
-  gsap.set([microLabel, microStep], { opacity: 0, y: -10 });
-  gsap.set([desktopHud], { opacity: 0, x: 20 });
-  gsap.set([mobileHud], { opacity: 0, y: 20 });
-  gsap.set(ctaOverlay, { opacity: 0, y: 15 });
-
-  // Pre-set images scales and opacities
-  images.forEach(img => {
-    const idx = parseInt(img.getAttribute('data-story-image'), 10);
-    if (idx === 1) {
-      gsap.set(img, { opacity: 1, scale: 1 });
-    } else {
-      gsap.set(img, { opacity: 0, scale: prefersReduced ? 1 : 1.04 });
-    }
-  });
-
-  const isMobileViewport = window.innerWidth < 1024;
-
-  // Create GSAP ScrollTrigger timeline with increased delay/scroll-range on mobile
-  const tl = gsap.timeline({
-    scrollTrigger: {
-      trigger: section,
-      start: "top top",
-      end: isMobileViewport ? "+=5200" : "+=3600",
-      scrub: isMobileViewport ? 1.8 : 1.2, // smoother scrub lag for touch-inertia feel
-      pin: true,
-      anticipatePin: 1,
-      invalidateOnRefresh: true,
-      onUpdate: (self) => {
-        // Track progress to calculate the current active stage
-        // Stages: 1 (0 to 0.2), 2 (0.2 to 0.4), 3 (0.4 to 0.6), 4 (0.6 to 0.8), 5 (0.8 to 1.0)
-        const prog = self.progress;
-        let activeStage = 1;
-        if (prog >= 0.2 && prog < 0.4) activeStage = 2;
-        else if (prog >= 0.4 && prog < 0.6) activeStage = 3;
-        else if (prog >= 0.6 && prog < 0.8) activeStage = 4;
-        else if (prog >= 0.8) activeStage = 5;
-
-        updateActiveUI(activeStage);
-
-        // Update Desktop Progress Fill Line height
-        if (desktopProgressFill) {
-          desktopProgressFill.style.transform = `scaleY(${prog})`;
-        }
-      }
-    }
-  });
-
-  // Build the timeline animations step by step
-
-  // 1. Scroll starts: Fade out intro-block & fade in HUDs
-  tl.to(introBlock, {
-    opacity: 0,
-    scale: prefersReduced ? 1 : 0.95,
-    y: prefersReduced ? 0 : -30,
-    duration: 0.5
-  }, 0);
-
-  // Expand image-container slightly
-  images.forEach(img => {
-    const idx = parseInt(img.getAttribute('data-story-image'), 10);
-    if (idx === 1) {
-      if (!prefersReduced) {
-        tl.to(img, { scale: 1.01, duration: 0.5 }, 0);
-      }
-    }
-  });
-
-  // Fade in HUD Overlays & Micro labels
-  tl.to([microLabel, microStep], {
-    opacity: 1,
-    y: 0,
-    stagger: 0.1,
-    duration: 0.4
-  }, 0.2);
-
-  tl.to([desktopHud, mobileHud], {
-    opacity: 1,
-    x: 0,
-    y: 0,
-    duration: 0.5
-  }, 0.3);
-
-  // Define crossfade helpers for stage transitions on timeline
-  const addCrossfade = (fromIdx, toIdx, startTime) => {
-    const fromImg = section.querySelector(`[data-story-image="${fromIdx}"]`);
-    const toImg = section.querySelector(`[data-story-image="${toIdx}"]`);
-
-    if (fromImg && toImg) {
-      // Fade out fromImg
-      tl.to(fromImg, {
-        opacity: 0,
-        scale: prefersReduced ? 1 : 1.04,
-        duration: 0.6
-      }, startTime);
-
-      // Fade in toImg
-      tl.to(toImg, {
-        opacity: 1,
-        scale: 1,
-        duration: 0.6
-      }, startTime);
-    }
-  };
-
-  // Transition Stage 1 -> Stage 2
-  addCrossfade(1, 2, 0.6);
-
-  // Transition Stage 2 -> Stage 3
-  addCrossfade(2, 3, 1.2);
-
-  // Transition Stage 3 -> Stage 4
-  addCrossfade(3, 4, 1.8);
-
-  // Transition Stage 4 -> Stage 5
-  addCrossfade(4, 5, 2.4);
-
-  // CTA Overlay appears at Stage 5
-  tl.to(ctaOverlay, {
-    opacity: 1,
-    y: 0,
-    duration: 0.4
-  }, 2.6);
-
-  // Extra padding time at the end to let product stage stay a bit
-  tl.to({}, { duration: 0.4 });
-
-  // Handle Button Clicks (both desktop and mobile) for direct smooth navigation
-  const setupNavClicks = (buttons, isMobile) => {
-    buttons.forEach(btn => {
-      btn.addEventListener('click', () => {
-        const stepAttr = isMobile ? 'data-story-step-mob' : 'data-story-step';
-        const targetStep = parseInt(btn.getAttribute(stepAttr), 10);
-
-        // Map target steps to accurate timeline progress points
-        const stepProgressMap = {
-          1: 0.05,
-          2: 0.30,
-          3: 0.50,
-          4: 0.70,
-          5: 0.95
-        };
-
-        const targetProgress = stepProgressMap[targetStep];
-        const scrollTriggerInstance = tl.scrollTrigger;
-
-        if (scrollTriggerInstance) {
-          const start = scrollTriggerInstance.start;
-          const end = scrollTriggerInstance.end;
-          const targetScroll = start + (end - start) * targetProgress;
-
-          gsap.to(window, {
-            scrollTo: { y: targetScroll, autoKill: false },
-            duration: 1.2,
-            ease: "power2.out"
-          });
-        }
-      });
-    });
-  };
-
-  setupNavClicks(desktopButtons, false);
-  setupNavClicks(mobileButtons, true);
-
-  // Initial trigger refresh to sync layouts
-  setTimeout(() => {
-    ScrollTrigger.refresh();
-  }, 100);
-}
 
 /**
  * 3.5b. Cooperation/Contact Modal Handling

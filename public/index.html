@@ -44,7 +44,6 @@
       <nav class="hidden md:flex items-center gap-8 text-sm font-medium">
         <a href="#hero" class="text-fg-main hover:text-primary-accent transition-colors">خانه</a>
         <a href="projects.html" class="text-muted-fg hover:text-primary-accent transition-colors">نمونه‌کارها</a>
-        <a href="#startup-story" class="text-muted-fg hover:text-primary-accent transition-colors">داستان محصول</a>
         <a href="#how-we-work" class="text-muted-fg hover:text-primary-accent transition-colors">چطور می‌سازیم؟</a>
         <a href="blog.html" class="text-muted-fg hover:text-primary-accent transition-colors">وبلاگ</a>
       </nav>
@@ -92,8 +91,6 @@
         <a href="#hero" class="text-fg-main hover:text-primary-accent py-3 px-2 border-b border-border-subtle/50 flex items-center min-h-[44px]">خانه</a>
         <a href="projects.html"
           class="text-muted-fg hover:text-primary-accent py-3 px-2 border-b border-border-subtle/50 flex items-center min-h-[44px]">نمونه‌کارها</a>
-        <a href="#startup-story"
-          class="hidden text-muted-fg hover:text-primary-accent py-3 px-2 border-b border-border-subtle/50 flex items-center min-h-[44px]">داستان محصول</a>
         <a href="#how-we-work"
           class="text-muted-fg hover:text-primary-accent py-3 px-2 border-b border-border-subtle/50 flex items-center min-h-[44px]">چطور می‌سازیم؟</a>
         <a href="blog.html" class="text-muted-fg hover:text-primary-accent py-3 px-2 flex items-center min-h-[44px]">وبلاگ</a>
@@ -110,9 +107,65 @@
   <main class="overflow-hidden">
 
     <!-- ==========================================
-         01 — GSAP SCRUBBED BENTO HERO
+         01 — HERO SECTION 1: TEXT HERO (100dvh)
          ========================================== -->
-    <section id="hero" class="relative w-full h-[100dvh] overflow-hidden bg-bg-main select-none">
+    <section id="hero" class="relative w-full h-[100dvh] flex flex-col justify-between items-center px-4 sm:px-6 lg:px-8 pt-24 pb-8 overflow-hidden bg-bg-main text-center select-none">
+
+      <!-- Background Ambient Glow -->
+      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-primary-accent/10 blur-[140px] pointer-events-none z-0"></div>
+
+      <!-- Top Spacer -->
+      <div></div>
+
+      <!-- Main Text Content -->
+      <div class="relative z-10 max-w-3xl mx-auto space-y-6 sm:space-y-8">
+        <!-- Studio Badge -->
+        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-primary-accent/20 bg-primary-accent/10 text-primary-accent text-xs sm:text-sm font-semibold backdrop-blur-md">
+          <span class="w-2 h-2 rounded-full bg-primary-accent animate-pulse"></span>
+          استودیو اختصاصی طراحی و توسعه محصول دیجیتال
+        </div>
+
+        <!-- Title -->
+        <h1 class="text-4xl sm:text-6xl lg:text-7xl font-black text-fg-main tracking-tight leading-tight sm:leading-none drop-shadow-md">
+          سایت خوب، نتیجه می‌سازد
+        </h1>
+
+        <!-- Subtitle Description -->
+        <p class="text-sm sm:text-lg text-muted-fg max-w-2xl mx-auto leading-relaxed">
+          طراحی و توسعه وب‌سایت و فروشگاه اینترنتی، سریع، مدرن و متناسب با برند شما.
+        </p>
+
+        <!-- CTA Action Buttons -->
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2">
+          <button id="open-cooperation-modal-btn"
+            class="w-full sm:w-auto px-8 py-4 rounded-2xl text-sm sm:text-base font-bold text-white bg-primary-accent hover:bg-accent-hover shadow-xl shadow-primary-accent/20 transition-all-custom cursor-pointer flex items-center justify-center gap-2.5 hover:scale-[1.02] active:scale-[0.98]">
+            <span>شروع پروژه</span>
+            <svg class="w-4 h-4 transform rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+            </svg>
+          </button>
+
+          <a href="#hero-bento"
+            class="w-full sm:w-auto px-8 py-4 rounded-2xl text-sm sm:text-base font-bold text-fg-main bg-card-bg border border-border-subtle hover:border-primary-accent/50 hover:text-primary-accent transition-all-custom flex items-center justify-center gap-2">
+            <span>مشاهده نمونه‌کارها</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Scroll Down Guide Indicator -->
+      <a href="#hero-bento" aria-label="اسکرول به بخش گالری" class="relative z-10 flex flex-col items-center gap-2 pb-2 text-muted-fg hover:text-primary-accent transition-colors group cursor-pointer">
+        <span class="text-xs font-bold tracking-widest uppercase">مشاهده گالری</span>
+        <svg class="w-5 h-5 text-primary-accent animate-bounce" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
+        </svg>
+      </a>
+
+    </section>
+
+    <!-- ==========================================
+         01.5 — HERO SECTION 2: GSAP BENTO GALLERY (100dvh)
+         ========================================== -->
+    <section id="hero-bento" class="relative w-full h-[100dvh] overflow-hidden bg-bg-main select-none">
 
       <!-- Fixed Outer Container inside pinned section -->
       <div id="bento-hero-wrapper" class="relative w-full h-full flex flex-col justify-between p-4 sm:p-6 lg:p-8 overflow-hidden">
@@ -120,22 +173,8 @@
         <!-- Background Ambient Glow -->
         <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-primary-accent/10 blur-[140px] pointer-events-none z-0"></div>
 
-        <!-- Hero Text Header (Overlaid, fades on scroll) -->
-        <div id="hero-header-text" class="relative z-20 text-center max-w-3xl mx-auto space-y-3 sm:space-y-4 pt-16 sm:pt-20 transition-all duration-300 pointer-events-auto">
-          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-primary-accent/20 bg-primary-accent/10 text-primary-accent text-xs font-semibold backdrop-blur-md">
-            <span class="w-1.5 h-1.5 rounded-full bg-primary-accent animate-pulse"></span>
-            استودیو اختصاصی طراحی و توسعه محصول دیجیتال
-          </div>
-          <h1 class="text-3xl sm:text-5xl lg:text-6xl font-black text-fg-main tracking-tight leading-tight drop-shadow-md">
-            سایت خوب، نتیجه می‌سازد
-          </h1>
-          <p class="text-xs sm:text-base text-muted-fg max-w-xl mx-auto leading-relaxed">
-            طراحی و توسعه وب‌سایت و فروشگاه اینترنتی، سریع، مدرن و متناسب با برند شما.
-          </p>
-        </div>
-
         <!-- Bento Grid Container -->
-        <div id="bento-grid-container" class="relative z-10 w-full max-w-[1380px] mx-auto h-[55dvh] sm:h-[60dvh] my-auto">
+        <div id="bento-grid-container" class="relative z-10 w-full max-w-[1380px] mx-auto h-[70dvh] sm:h-[75dvh] my-auto">
 
           <!-- Desktop 9-Image Asymmetric Editorial Bento Grid -->
           <div class="w-full h-full grid grid-cols-12 grid-rows-12 gap-2.5 sm:gap-4 relative">
@@ -273,259 +312,6 @@
       </div>
     </section>
 
-    <!-- ==========================================
-         03 — OUR PRODUCT / STARTUP STORY
-         ========================================== -->
-    <section id="startup-story" class="hidden md:block relative w-full h-screen overflow-hidden bg-bg-main"
-      aria-label="داستان ساخت محصول">
-
-      <!-- Immersive Image Hero Canvas -->
-      <div id="story-image-container" class="absolute inset-0 w-full h-full z-0 overflow-hidden">
-        <!-- Deep Radial & Linear Overlay for outstanding text contrast -->
-        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-black/70 z-10 pointer-events-none">
-        </div>
-        <div
-          class="absolute inset-0 bg-gradient-to-l from-black/60 via-transparent to-black/60 z-10 pointer-events-none">
-        </div>
-
-        <!-- The 5 Cinematic Images -->
-        <div class="relative w-full h-full">
-          <img data-story-image="1" src="assets/projects/sayra/ps-0.webp" alt="نیاز"
-            class="absolute inset-0 w-full h-full object-cover origin-center opacity-100 z-0 select-none pointer-events-none" />
-          <img data-story-image="2" src="assets/projects/sayra/ps-1.webp" alt="ایده"
-            class="absolute inset-0 w-full h-full object-cover origin-center opacity-0 z-0 select-none pointer-events-none" />
-          <img data-story-image="3" src="assets/projects/sayra/ps-2.webp" alt="طراحی"
-            class="absolute inset-0 w-full h-full object-cover origin-center opacity-0 z-0 select-none pointer-events-none" />
-          <img data-story-image="4" src="assets/projects/sayra/ps-3.webp" alt="توسعه"
-            class="absolute inset-0 w-full h-full object-cover origin-center opacity-0 z-0 select-none pointer-events-none" />
-          <img data-story-image="5" src="assets/projects/sayra/ps-4.webp" alt="محصول نهایی"
-            class="absolute inset-0 w-full h-full object-cover origin-center opacity-0 z-0 select-none pointer-events-none" />
-        </div>
-      </div>
-
-      <!-- Foreground Interactive Overlay Content -->
-      <div class="absolute inset-0 w-full h-full z-20 flex flex-col justify-between p-6 sm:p-10 lg:p-12">
-
-        <!-- Header / Micro-Label Row -->
-        <div class="flex items-center justify-between w-full pointer-events-none">
-          <div id="story-micro-label" class="opacity-0 translate-y-[-10px] transition-all duration-500">
-            <span class="text-xs font-bold text-primary-accent tracking-widest uppercase">داستان توسعه پلتفرم
-              Sayra</span>
-          </div>
-          <div id="story-micro-step" class="opacity-0 translate-y-[-10px] transition-all duration-500">
-            <span class="text-xs font-black text-white/50 tracking-wider font-mono">STEP <span
-                id="micro-step-num">۰۱</span>/۰۵</span>
-          </div>
-        </div>
-
-        <!-- Centered Intro Block (Fades away as scroll progresses) -->
-        <div id="story-intro-block"
-          class="absolute inset-0 flex flex-col items-center justify-center text-center max-w-2xl mx-auto px-4 z-30 pointer-events-none">
-          <h2
-            class="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white mb-4 drop-shadow-lg leading-tight">
-            از ایده تا تحویل کامل سایت</h2>
-          <p class="text-base sm:text-xl text-gray-200 drop-shadow font-medium">نگاهی به مراحل تبدیل یک ایده به وب‌سایتی
-            واقعی و پرفروش (نمونه پروژه Sayra)</p>
-          <div class="mt-8 flex flex-col items-center gap-2">
-            <span class="text-xs text-white/40 tracking-widest font-bold uppercase animate-bounce">برای مشاهده مراحل،
-              اسکرول کنید</span>
-            <svg class="w-5 h-5 text-primary-accent animate-pulse" fill="none" viewBox="0 0 24 24"
-              stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 13l-7 7-7-7m14-6l-7 7-7-7" />
-            </svg>
-          </div>
-        </div>
-
-        <!-- Main Desktop Interactive HUD Overlay (hidden on lg and down) -->
-        <div class="hidden lg:flex items-center justify-between w-full h-full pointer-events-none">
-          <!-- Left side blank or subtle details -->
-          <div class="flex-1"></div>
-
-          <!-- Right side Glassmorphism Step Indicator/Navigator -->
-          <div id="story-desktop-hud"
-            class="pointer-events-auto relative flex flex-col gap-5 p-8 rounded-2xl border border-white/10 bg-black/45 backdrop-blur-xl max-w-sm text-right shadow-2xl mr-auto translate-x-[20px] opacity-0 transition-all duration-500">
-
-            <!-- Progress Line Track -->
-            <div class="absolute right-[27px] top-[40px] bottom-[40px] w-[2px] bg-white/10 pointer-events-none">
-              <div id="story-desktop-progress-fill"
-                class="absolute top-0 right-0 left-0 w-full bg-primary-accent origin-top scale-y-0 h-full"></div>
-            </div>
-
-            <!-- Steps list container -->
-            <div class="flex flex-col gap-6 pr-6 relative">
-              <!-- Step 1 -->
-              <button data-story-step="1"
-                class="group flex items-start gap-4 text-right focus:outline-none transition-all duration-300 opacity-100 cursor-pointer">
-                <span
-                  class="step-dot absolute right-[-24px] w-3 h-3 rounded-full border-2 border-white/40 bg-black transition-all group-hover:border-primary-accent z-10 flex items-center justify-center">
-                  <span
-                    class="w-1.5 h-1.5 rounded-full bg-primary-accent scale-0 transition-transform duration-300"></span>
-                </span>
-                <div class="space-y-0.5">
-                  <div class="text-[10px] font-bold text-primary-accent tracking-wider uppercase font-mono">مرحله ۰۱
-                  </div>
-                  <div class="text-xl font-black text-white group-hover:text-primary-accent transition-colors">شناخت
-                    نیاز و مسئله</div>
-                  <div
-                    class="text-xs text-gray-300 font-medium leading-relaxed max-h-0 overflow-hidden group-[.active]:max-h-[100px] transition-all duration-500 opacity-0 group-[.active]:opacity-100 font-normal">
-                    بررسی دقیق مشکلات افراد برای رزرو آنلاین سیستم‌های گیم‌نت بدون اتلاف وقت.</div>
-                </div>
-              </button>
-
-              <!-- Step 2 -->
-              <button data-story-step="2"
-                class="group flex items-start gap-4 text-right focus:outline-none transition-all duration-300 opacity-40 cursor-pointer">
-                <span
-                  class="step-dot absolute right-[-24px] w-3 h-3 rounded-full border-2 border-white/20 bg-black transition-all group-hover:border-primary-accent z-10 flex items-center justify-center">
-                  <span
-                    class="w-1.5 h-1.5 rounded-full bg-primary-accent scale-0 transition-transform duration-300"></span>
-                </span>
-                <div class="space-y-0.5">
-                  <div class="text-[10px] font-bold text-gray-400 tracking-wider uppercase font-mono">مرحله ۰۲</div>
-                  <div class="text-xl font-black text-white group-hover:text-primary-accent transition-colors">
-                    برنامه‌ریزی و ایده‌پردازی</div>
-                  <div
-                    class="text-xs text-gray-300 font-medium leading-relaxed max-h-0 overflow-hidden group-[.active]:max-h-[100px] transition-all duration-500 opacity-0 group-[.active]:opacity-100 font-normal">
-                    طراحی یک مسیر ساده و سریع برای رزرو فوری سیستم‌ها و کنسول‌های بازی.</div>
-                </div>
-              </button>
-
-              <!-- Step 3 -->
-              <button data-story-step="3"
-                class="group flex items-start gap-4 text-right focus:outline-none transition-all duration-300 opacity-40 cursor-pointer">
-                <span
-                  class="step-dot absolute right-[-24px] w-3 h-3 rounded-full border-2 border-white/20 bg-black transition-all group-hover:border-primary-accent z-10 flex items-center justify-center">
-                  <span
-                    class="w-1.5 h-1.5 rounded-full bg-primary-accent scale-0 transition-transform duration-300"></span>
-                </span>
-                <div class="space-y-0.5">
-                  <div class="text-[10px] font-bold text-gray-400 tracking-wider uppercase font-mono">مرحله ۰۳</div>
-                  <div class="text-xl font-black text-white group-hover:text-primary-accent transition-colors">طراحی
-                    ظاهر و منوها</div>
-                  <div
-                    class="text-xs text-gray-300 font-medium leading-relaxed max-h-0 overflow-hidden group-[.active]:max-h-[100px] transition-all duration-500 opacity-0 group-[.active]:opacity-100 font-normal">
-                    ساخت ظاهری جذاب و آسان برای بازیکنان و پنل مدیریت راحت برای صاحبان گیم‌نت.</div>
-                </div>
-              </button>
-
-              <!-- Step 4 -->
-              <button data-story-step="4"
-                class="group flex items-start gap-4 text-right focus:outline-none transition-all duration-300 opacity-40 cursor-pointer">
-                <span
-                  class="step-dot absolute right-[-24px] w-3 h-3 rounded-full border-2 border-white/20 bg-black transition-all group-hover:border-primary-accent z-10 flex items-center justify-center">
-                  <span
-                    class="w-1.5 h-1.5 rounded-full bg-primary-accent scale-0 transition-transform duration-300"></span>
-                </span>
-                <div class="space-y-0.5">
-                  <div class="text-[10px] font-bold text-gray-400 tracking-wider uppercase font-mono">مرحله ۰۴</div>
-                  <div class="text-xl font-black text-white group-hover:text-primary-accent transition-colors">ساخت و
-                    کدنویسی سریع</div>
-                  <div
-                    class="text-xs text-gray-300 font-medium leading-relaxed max-h-0 overflow-hidden group-[.active]:max-h-[100px] transition-all duration-500 opacity-0 group-[.active]:opacity-100 font-normal">
-                    برنامه‌نویسی بدون نقص به طوری که تمام رزروها بلافاصله و بدون معطلی ثبت شوند.</div>
-                </div>
-              </button>
-
-              <!-- Step 5 -->
-              <button data-story-step="5"
-                class="group flex items-start gap-4 text-right focus:outline-none transition-all duration-300 opacity-40 cursor-pointer">
-                <span
-                  class="step-dot absolute right-[-24px] w-3 h-3 rounded-full border-2 border-white/20 bg-black transition-all group-hover:border-primary-accent z-10 flex items-center justify-center">
-                  <span
-                    class="w-1.5 h-1.5 rounded-full bg-primary-accent scale-0 transition-transform duration-300"></span>
-                </span>
-                <div class="space-y-0.5">
-                  <div class="text-[10px] font-bold text-gray-400 tracking-wider uppercase font-mono">مرحله ۰۵</div>
-                  <div class="text-xl font-black text-white group-hover:text-primary-accent transition-colors">تحویل
-                    کامل و راه‌اندازی</div>
-                  <div
-                    class="text-xs text-gray-300 font-medium leading-relaxed max-h-0 overflow-hidden group-[.active]:max-h-[100px] transition-all duration-500 opacity-0 group-[.active]:opacity-100 font-normal">
-                    راه‌اندازی کامل سامانه سایرا و ارائه خدمات عالی به کاربران و گیمرها.</div>
-                </div>
-              </button>
-            </div>
-
-          </div>
-        </div>
-
-        <!-- Mobile Glassmorphism HUD Overlay (hidden on lg and up) -->
-        <div id="story-mobile-hud"
-          class="lg:hidden w-full p-5 rounded-2xl border border-white/10 bg-black/50 backdrop-blur-xl flex flex-col gap-4 text-right shadow-2xl pointer-events-auto opacity-0 translate-y-[20px] transition-all duration-500">
-          <!-- Text Display Container -->
-          <div class="min-h-[110px] sm:min-h-[90px] flex flex-col justify-center transition-all duration-300"
-            id="mobile-text-container">
-            <span id="mobile-step-num" class="text-[10px] font-bold text-primary-accent uppercase font-mono">مرحله
-              ۰۱</span>
-            <h4 id="mobile-step-title" class="text-base font-black text-white mt-0.5 font-bold">کشف نیاز و مسئله</h4>
-            <p id="mobile-step-desc" class="text-xs text-gray-300 font-normal leading-relaxed mt-1">تحلیل چالش‌های عمیق
-              مدیریت پروژه در تیم‌های توزیع‌شده و کشف خلأهای موجود در ابزارهای فعلی بازار.</p>
-          </div>
-
-          <!-- Integrated CTA inside Mobile HUD for Step 5 (prevents overlapping) -->
-          <div id="mobile-hud-cta"
-            class="hidden flex items-center justify-between p-3 rounded-xl border border-white/10 bg-white/5 text-right transition-all duration-300 animate-fade-in">
-            <div class="space-y-0.5">
-              <h5 class="text-xs font-bold text-white">سامانه هوشمند Sayra</h5>
-              <p class="text-[10px] text-gray-400 font-normal">پلتفرم هوشمند مدیریت و رزرو آنلاین گیم‌نت</p>
-            </div>
-            <a href="project.html?id=6"
-              class="px-3.5 py-1.5 rounded-lg bg-primary-accent hover:bg-accent-hover text-white text-[11px] font-bold transition-all shadow-md shadow-primary-accent/25">
-              مشاهده محصول ←
-            </a>
-          </div>
-
-          <!-- Bottom Stepper controls -->
-          <div class="flex items-center justify-between border-t border-white/10 pt-3">
-            <div class="flex items-center justify-between w-full gap-2">
-              <button data-story-step-mob="1"
-                class="w-9 h-9 rounded-full border-2 border-primary-accent bg-primary-accent/10 text-white flex items-center justify-center text-xs font-black transition-all cursor-pointer">۰۱</button>
-              <div class="flex-1 h-[2px] bg-white/10 relative">
-                <div id="mobile-progress-1"
-                  class="absolute inset-y-0 right-0 bg-primary-accent w-0 transition-all duration-300"></div>
-              </div>
-              <button data-story-step-mob="2"
-                class="w-9 h-9 rounded-full border-2 border-white/10 bg-black/40 text-white/50 flex items-center justify-center text-xs font-black transition-all cursor-pointer">۰۲</button>
-              <div class="flex-1 h-[2px] bg-white/10 relative">
-                <div id="mobile-progress-2"
-                  class="absolute inset-y-0 right-0 bg-primary-accent w-0 transition-all duration-300"></div>
-              </div>
-              <button data-story-step-mob="3"
-                class="w-9 h-9 rounded-full border-2 border-white/10 bg-black/40 text-white/50 flex items-center justify-center text-xs font-black transition-all cursor-pointer">۰۳</button>
-              <div class="flex-1 h-[2px] bg-white/10 relative">
-                <div id="mobile-progress-3"
-                  class="absolute inset-y-0 right-0 bg-primary-accent w-0 transition-all duration-300"></div>
-              </div>
-              <button data-story-step-mob="4"
-                class="w-9 h-9 rounded-full border-2 border-white/10 bg-black/40 text-white/50 flex items-center justify-center text-xs font-black transition-all cursor-pointer">۰۴</button>
-              <div class="flex-1 h-[2px] bg-white/10 relative">
-                <div id="mobile-progress-4"
-                  class="absolute inset-y-0 right-0 bg-primary-accent w-0 transition-all duration-300"></div>
-              </div>
-              <button data-story-step-mob="5"
-                class="w-9 h-9 rounded-full border-2 border-white/10 bg-black/40 text-white/50 flex items-center justify-center text-xs font-black transition-all cursor-pointer">۰۵</button>
-            </div>
-          </div>
-        </div>
-
-        <!-- Bottom Row (CTA and Floating Product Info - Hidden on mobile, shown on lg and up only to prevent overlapping) -->
-        <div class="hidden lg:flex items-center justify-between w-full z-30">
-          <div id="product-cta-overlay"
-            class="opacity-0 translate-y-[15px] transition-all duration-500 flex items-center justify-between p-4 rounded-xl border border-white/10 bg-black/50 backdrop-blur-md text-right max-w-[280px] sm:max-w-sm pointer-events-auto">
-            <div class="space-y-0.5 ml-6 sm:ml-10">
-              <h3 class="text-sm sm:text-base font-bold text-white">سایرا (Sayra)</h3>
-              <p class="text-[10px] sm:text-xs text-gray-300 font-normal">پلتفرم هوشمند مدیریت و رزرو آنلاین گیم‌نت</p>
-            </div>
-            <a href="project.html?slug=سایرا"
-              class="px-3.5 py-2 rounded-lg bg-primary-accent hover:bg-accent-hover text-white text-xs font-bold transition-all shadow-md shadow-primary-accent/25 flex-shrink-0 cursor-pointer">
-              مشاهده محصول ←
-            </a>
-          </div>
-          <!-- Left side spacer for visual balance -->
-          <div class="hidden sm:block"></div>
-        </div>
-
-      </div>
-    </section>
 
     <!-- ==========================================
          04 — HOW WE WORK (PROCESS SECTION)
@@ -784,8 +570,6 @@
             <ul class="space-y-2 text-sm text-muted-fg">
               <li><a href="#hero" class="hover:text-primary-accent transition-colors">خانه</a></li>
               <li><a href="projects.html" class="hover:text-primary-accent transition-colors">نمونه‌کارها</a></li>
-              <li class="hidden md:block"><a href="#startup-story"
-                  class="hover:text-primary-accent transition-colors">داستان محصول</a></li>
               <li><a href="#how-we-work" class="hover:text-primary-accent transition-colors">چطور می‌سازیم؟</a></li>
               <li><a href="blog.html" class="hover:text-primary-accent transition-colors">وبلاگ</a></li>
             </ul>
@@ -795,8 +579,6 @@
           <div class="lg:col-span-3 space-y-4">
             <h4 class="text-sm font-bold text-fg-main">مطالعه بیشتر</h4>
             <ul class="space-y-2 text-sm text-muted-fg">
-              <li class="hidden md:block"><a href="#startup-story"
-                  class="hover:text-primary-accent transition-colors">داستان پلتفرم Sayra</a></li>
               <li><a href="blog.html" class="hover:text-primary-accent transition-colors">یادداشت‌های فنی وبلاگ</a></li>
               <li><a href="#contact" class="hover:text-primary-accent transition-colors">دریافت پروپوزال و سفارش</a>
               </li>
