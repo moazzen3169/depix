@@ -1341,7 +1341,7 @@ function createBlogCardElement(post) {
 
   card.innerHTML = `
     <div class="relative aspect-[16/10] overflow-hidden bg-muted-bg/50 shrink-0">
-      <img src="${post.image}" alt="${post.title}" class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]" loading="lazy">
+      <img src="${post.image}" alt="${post.title}" class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]" loading="lazy" width="800" height="500">
 
       <!-- Subtle Overlay on Hover -->
       <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
@@ -1444,7 +1444,7 @@ function initAllBlogPage() {
     slide.innerHTML = `
       <!-- Slide Image -->
       <div class="w-full lg:w-1/2 aspect-[16/10] overflow-hidden rounded-2xl bg-muted-bg/50 relative group cursor-pointer shrink-0">
-        <img src="${post.image}" alt="${post.title}" class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" loading="lazy">
+        <img src="${post.image}" alt="${post.title}" class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" loading="lazy" width="1200" height="750">
         <div class="absolute inset-0 bg-black/20 group-hover:bg-black/30 transition-colors duration-300"></div>
         <span class="absolute top-4 right-4 px-3.5 py-1.5 rounded-full bg-black/60 backdrop-blur-md text-white text-xs font-bold border border-white/10">
           ${post.category}
@@ -1471,7 +1471,7 @@ function initAllBlogPage() {
         <!-- Author Bar & CTA -->
         <div class="flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-border-subtle/50">
           <div class="flex items-center gap-3">
-            <img src="${post.author.avatar}" alt="${post.author.name}" class="w-10 h-10 rounded-full border border-border-subtle object-cover">
+            <img src="${post.author.avatar}" alt="${post.author.name}" class="w-10 h-10 rounded-full border border-border-subtle object-cover" width="40" height="40" loading="lazy">
             <div>
               <p class="text-xs font-bold text-fg-main">${post.author.name}</p>
               <p class="text-[11px] text-muted-fg">${post.author.role}</p>
@@ -1589,7 +1589,7 @@ function initPortfolioGrid() {
       card.innerHTML = `
         <!-- 1. Clean Image Frame Area (No text overlays) -->
         <div class="relative w-full aspect-[16/10] overflow-hidden bg-muted-bg/50">
-          <img src="${p.cover}" alt="${p.title}" class="w-full h-full object-cover object-top transition-transform duration-500 ease-out group-hover:scale-105" loading="lazy">
+          <img src="${p.cover}" alt="${p.title}" class="w-full h-full object-cover object-top transition-transform duration-500 ease-out group-hover:scale-105" loading="lazy" width="1600" height="1000">
         </div>
 
         <!-- 2. Information Area (Positioned outside & below image) -->
@@ -1655,7 +1655,7 @@ function createProjectCardElement(p) {
   card.innerHTML = `
     <!-- 1. Clean Image Frame Area (No text overlays) -->
     <div class="relative w-full aspect-[16/10] overflow-hidden bg-muted-bg/50">
-      <img src="${p.cover}" alt="${p.title}" class="w-full h-full object-cover object-top transition-transform duration-500 ease-out group-hover:scale-105" loading="lazy">
+      <img src="${p.cover}" alt="${p.title}" class="w-full h-full object-cover object-top transition-transform duration-500 ease-out group-hover:scale-105" loading="lazy" width="1600" height="1000">
     </div>
 
     <!-- 2. Information Area (Positioned outside & below image) -->
@@ -3624,7 +3624,7 @@ function initConsultationExperience() {
     });
   }
 
-  // Scroll Behavior: Slightly reduce visual footprint during rapid scrolling
+  // Scroll Behavior: Slightly reduce visual footprint during rapid scrolling (compositor-only, zero reflow)
   let isScrolling;
   let lastScrollY = window.scrollY;
   window.addEventListener('scroll', () => {
@@ -3632,24 +3632,16 @@ function initConsultationExperience() {
     const diff = Math.abs(currentScrollY - lastScrollY);
 
     if (diff > 25 && overlay.classList.contains('pointer-events-none')) {
-      // Rapid downward or upward scroll
+      // Rapid downward or upward scroll - GPU composited scale and opacity
       gsap.to(trigger, { scale: 0.94, opacity: 0.8, duration: 0.25, overwrite: "auto" });
-      const textSpan = document.getElementById('consultation-trigger-text');
-      if (textSpan && window.innerWidth >= 768) {
-        gsap.to(textSpan, { width: 0, opacity: 0, marginLeft: 0, duration: 0.25, overwrite: "auto" });
-      }
     }
 
     lastScrollY = currentScrollY;
 
     window.clearTimeout(isScrolling);
     isScrolling = setTimeout(() => {
-      // Stopped scrolling
+      // Stopped scrolling - restore default
       gsap.to(trigger, { scale: 1, opacity: 1, duration: 0.3, overwrite: "auto" });
-      const textSpan = document.getElementById('consultation-trigger-text');
-      if (textSpan && window.innerWidth >= 768) {
-        gsap.to(textSpan, { width: "auto", opacity: 1, marginLeft: "0.5rem", duration: 0.3, overwrite: "auto" });
-      }
     }, 200);
   }, { passive: true });
 
