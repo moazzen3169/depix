@@ -17,8 +17,72 @@
   <!-- Favicons -->
   <link rel="icon" type="image/png" href="./assets/brand/favicon.png">
 
-  <!-- Tailwind compiled styles -->
-  <link rel="stylesheet" href="./output.css">
+  <!-- Preload Critical Fonts -->
+  <link rel="preload" href="./assets/fonts/Peyda-Medium.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="./assets/fonts/Peyda-Bold.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="./assets/fonts/Peyda-black.woff2" as="font" type="font/woff2" crossorigin>
+
+  <!-- Critical Above-the-Fold CSS Inline -->
+  <style>
+    @font-face {
+      font-family: "Peyda";
+      src: url("./assets/fonts/Peyda-Medium.woff2") format("woff2");
+      font-weight: 500;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: "Peyda";
+      src: url("./assets/fonts/Peyda-Bold.woff2") format("woff2");
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: "Peyda";
+      src: url("./assets/fonts/Peyda-black.woff2") format("woff2");
+      font-weight: 900;
+      font-style: normal;
+      font-display: swap;
+    }
+    :root {
+      --background: #080808;
+      --foreground: #F5F5F5;
+      --muted: #111111;
+      --muted-foreground: #929292;
+      --primary: #8F1D2C;
+      --primary-foreground: #FFFFFF;
+      --border: #272020;
+      --accent: #B52A3A;
+      --card: #0F0F0F;
+      --card-foreground: #F5F5F5;
+      --radius: 0.75rem;
+    }
+    :root.light {
+      --background: #FAFAFA;
+      --foreground: #101010;
+      --muted: #F2F2F2;
+      --muted-foreground: #6F6F6F;
+      --primary: #8F1D2C;
+      --primary-foreground: #FFFFFF;
+      --border: #E3DADB;
+      --accent: #A51F32;
+      --card: #FFFFFF;
+      --card-foreground: #101010;
+      --radius: 0.75rem;
+    }
+    body {
+      background-color: var(--background);
+      color: var(--foreground);
+      font-family: 'Peyda', system-ui, -apple-system, sans-serif;
+      transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+      overflow-x: hidden;
+    }
+  </style>
+
+  <!-- Non-blocking Async Stylesheet -->
+  <link rel="preload" href="./output.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="./output.css"></noscript>
 </head>
 
 <body
@@ -35,9 +99,9 @@
         class="flex items-center gap-3 group focus-visible:ring-2 focus-visible:ring-primary-accent rounded-lg p-1"
         aria-label="صفحه اصلی استودیو دپیکس">
         <img src="./assets/brand/depix-persian-light.svg" alt="دپیکس"
-          class="h-9 hidden dark:block transition-all duration-300 group-hover:scale-105">
+          class="h-9 hidden dark:block transition-all duration-300 group-hover:scale-105" width="108" height="36">
         <img src="./assets/brand/depix-persian-dark.svg" alt="دپیکس"
-          class="h-9 block dark:hidden transition-all duration-300 group-hover:scale-105">
+          class="h-9 block dark:hidden transition-all duration-300 group-hover:scale-105" width="108" height="36">
       </a>
 
       <!-- Middle: Navigation Links (Desktop) -->
@@ -198,7 +262,7 @@
               class="bento-item col-start-1 col-span-4 row-start-1 row-span-4 rounded-none overflow-hidden bg-card-bg border border-border-subtle/80 shadow-lg relative group block">
               <img src="assets/projects/kafsham.webp" alt="کفشام"
                 class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                loading="eager">
+                loading="eager" width="1920" height="1080" fetchpriority="high">
             </a>
 
             <!-- Item 2: Mid Left stacked (Cols 1-4, Rows 5-8) -->
@@ -206,7 +270,7 @@
               class="bento-item col-start-1 col-span-4 row-start-5 row-span-4 rounded-none overflow-hidden bg-card-bg border border-border-subtle/80 shadow-lg relative group block">
               <img src="assets/projects/watchman.webp" alt="تایم‌لند"
                 class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                loading="eager">
+                loading="eager" width="1920" height="1080" fetchpriority="high">
             </a>
 
             <!-- Item 3: Bottom Left stacked (Cols 1-4, Rows 9-12) -->
@@ -214,7 +278,7 @@
               class="bento-item col-start-1 col-span-4 row-start-9 row-span-4 rounded-none overflow-hidden bg-card-bg border border-border-subtle/80 shadow-lg relative group block">
               <img src="assets/projects/champing.webp" alt="چمپینگ"
                 class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                loading="eager">
+                loading="eager" width="1920" height="1080" fetchpriority="high">
             </a>
 
             <!-- Item 4: Top Center stacked (Cols 5-8, Rows 1-3) -->
@@ -222,7 +286,7 @@
               class="bento-item  col-start-5 col-span-4 row-start-1 row-span-3 rounded-none overflow-hidden bg-card-bg border border-border-subtle/80 shadow-lg relative group block">
               <img id="bento-center-img" src="assets/projects/sayra.webp" alt="سایرا"
                 class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                loading="eager">
+                loading="eager" width="1920" height="1080" fetchpriority="high">
 
             </a>
 
@@ -231,7 +295,7 @@
               class="col-start-5 col-span-4 row-start-4 row-span-6 rounded-none overflow-hidden bg-card-bg border-2 border-primary-accent/60 shadow-2xl justify-iteme-top relative z-30 group cursor-pointer block">
               <img src="assets/projects/panelam.webp" alt="دپیکس"
                 class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                loading="eager">
+                loading="eager" width="1920" height="1080" fetchpriority="high">
 
             </a>
 
@@ -240,7 +304,7 @@
               class="bento-item col-start-5 col-span-4 row-start-10 row-span-3 rounded-none overflow-hidden bg-card-bg border border-border-subtle/80 shadow-lg relative group block">
               <img src="assets/projects/peteman.webp" alt="پت شاپ"
                 class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                loading="eager">
+                loading="eager" width="1920" height="1080" fetchpriority="high">
             </a>
 
             <!-- Item 7: Top Right stacked (Cols 9-12, Rows 1-4) -->
@@ -248,7 +312,7 @@
               class="bento-item col-start-9 col-span-4 row-start-1 row-span-4 rounded-none overflow-hidden bg-card-bg border border-border-subtle/80 shadow-lg relative group block">
               <img src="assets/projects/abzarchi.webp" alt="ابزارچی"
                 class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                loading="eager">
+                loading="eager" width="1920" height="1080" fetchpriority="high">
             </a>
 
             <!-- Item 8: Mid Right stacked (Cols 9-12, Rows 5-8) -->
@@ -256,7 +320,7 @@
               class="bento-item col-start-9 col-span-4 row-start-5 row-span-4 rounded-none overflow-hidden bg-card-bg border border-border-subtle/80 shadow-lg relative group block">
               <img src="assets/projects/modam.webp" alt="مدم"
                 class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                loading="eager">
+                loading="eager" width="1920" height="1080" fetchpriority="high">
             </a>
 
             <!-- Item 9: Bottom Right stacked (Cols 9-12, Rows 9-12) -->
@@ -264,7 +328,7 @@
               class="bento-item col-start-9 col-span-4 row-start-9 row-span-4 rounded-none overflow-hidden bg-card-bg border border-border-subtle/80 shadow-lg relative group block">
               <img src="assets/projects/panter2.webp" alt="پنتر"
                 class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                loading="eager">
+                loading="eager" width="1920" height="1080" fetchpriority="high">
             </a>
 
           </div>
@@ -577,9 +641,9 @@
               class="flex items-center gap-3 group focus-visible:ring-2 focus-visible:ring-primary-accent rounded-lg p-1"
               aria-label="صفحه اصلی استودیو دپیکس">
               <img src="assets/brand/depix-light.svg" alt="دپیکس"
-                class="h-8 hidden dark:block transition-all duration-300 group-hover:scale-105">
+                class="h-8 hidden dark:block transition-all duration-300 group-hover:scale-105" width="96" height="32" loading="lazy">
               <img src="assets/brand/depix-dark.svg" alt="دپیکس"
-                class="h-8 block dark:hidden transition-all duration-300 group-hover:scale-105">
+                class="h-8 block dark:hidden transition-all duration-300 group-hover:scale-105" width="96" height="32" loading="lazy">
             </a>
             <p class="text-sm text-muted-fg leading-relaxed">
               استودیو دپیکس متشکل از مهندسان خلاق و طراحان نخبه محصول دیجیتال است که با مهندسی کدهای بهینه، پایداری فنی
@@ -825,14 +889,14 @@
       <!-- Background Project Collage: real project screenshots, low-opacity, grayscale, blur -->
       <div
         class="fixed inset-0 z-0 overflow-hidden opacity-[0.06] dark:opacity-[0.08] grayscale blur-xs pointer-events-none grid grid-cols-2 sm:grid-cols-3 gap-4 p-4">
-        <img src="assets/projects/project-01/cover.webp" alt="" class="w-full h-full object-cover rounded-xl">
-        <img src="assets/projects/project-02/1.webp" alt="" class="w-full h-full object-cover rounded-xl">
-        <img src="assets/projects/project-03/cover.webp" alt="" class="w-full h-full object-cover rounded-xl">
-        <img src="assets/projects/project-04/1.webp" alt="" class="w-full h-full object-cover rounded-xl">
-        <img src="assets/projects/project-02/2.webp" alt=""
-          class="w-full h-full object-cover rounded-xl hidden sm:block">
-        <img src="assets/projects/project-01/screen-01.webp" alt=""
-          class="w-full h-full object-cover rounded-xl hidden sm:block">
+        <img src="assets/projects/kafsham/kafsham-main.webp" alt="" class="w-full h-full object-cover rounded-xl" width="1550" height="4475" loading="lazy">
+        <img src="assets/projects/champing/camping-PAGE.webp" alt="" class="w-full h-full object-cover rounded-xl" width="1550" height="4132" loading="lazy">
+        <img src="assets/projects/sayra/sayra-dashboard.webp" alt="" class="w-full h-full object-cover rounded-xl" width="1536" height="1290" loading="lazy">
+        <img src="assets/projects/watch/watch-detail.webp" alt="" class="w-full h-full object-cover rounded-xl" width="1550" height="3007" loading="lazy">
+        <img src="assets/projects/panter/panter-main.webp" alt=""
+          class="w-full h-full object-cover rounded-xl hidden sm:block" width="1550" height="3252" loading="lazy">
+        <img src="assets/projects/abzarchee/abzaercheee.webp" alt=""
+          class="w-full h-full object-cover rounded-xl hidden sm:block" width="1550" height="3978" loading="lazy">
       </div>
 
       <!-- Close Button -->

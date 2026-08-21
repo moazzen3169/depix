@@ -19,8 +19,72 @@
   <link rel="icon" type="image/png" href="./assets/brand/favicon.png" media="(prefers-color-scheme: light)">
   <link rel="icon" type="image/png" href="./assets/brand/favicon.png">
 
-  <!-- Tailwind compiled styles -->
-  <link rel="stylesheet" href="./output.css">
+  <!-- Preload Critical Fonts -->
+  <link rel="preload" href="./assets/fonts/Peyda-Medium.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="./assets/fonts/Peyda-Bold.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="./assets/fonts/Peyda-black.woff2" as="font" type="font/woff2" crossorigin>
+
+  <!-- Critical Above-the-Fold CSS Inline -->
+  <style>
+    @font-face {
+      font-family: "Peyda";
+      src: url("./assets/fonts/Peyda-Medium.woff2") format("woff2");
+      font-weight: 500;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: "Peyda";
+      src: url("./assets/fonts/Peyda-Bold.woff2") format("woff2");
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: "Peyda";
+      src: url("./assets/fonts/Peyda-black.woff2") format("woff2");
+      font-weight: 900;
+      font-style: normal;
+      font-display: swap;
+    }
+    :root {
+      --background: #080808;
+      --foreground: #F5F5F5;
+      --muted: #111111;
+      --muted-foreground: #929292;
+      --primary: #8F1D2C;
+      --primary-foreground: #FFFFFF;
+      --border: #272020;
+      --accent: #B52A3A;
+      --card: #0F0F0F;
+      --card-foreground: #F5F5F5;
+      --radius: 0.75rem;
+    }
+    :root.light {
+      --background: #FAFAFA;
+      --foreground: #101010;
+      --muted: #F2F2F2;
+      --muted-foreground: #6F6F6F;
+      --primary: #8F1D2C;
+      --primary-foreground: #FFFFFF;
+      --border: #E3DADB;
+      --accent: #A51F32;
+      --card: #FFFFFF;
+      --card-foreground: #101010;
+      --radius: 0.75rem;
+    }
+    body {
+      background-color: var(--background);
+      color: var(--foreground);
+      font-family: 'Peyda', system-ui, -apple-system, sans-serif;
+      transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+      overflow-x: hidden;
+    }
+  </style>
+
+  <!-- Non-blocking Async Stylesheet -->
+  <link rel="preload" href="./output.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="./output.css"></noscript>
 </head>
 
 <body
@@ -37,9 +101,9 @@
         class="flex items-center gap-3 group focus-visible:ring-2 focus-visible:ring-primary-accent rounded-lg p-1"
         aria-label="صفحه اصلی استودیو دپیکس">
         <img src="./assets/brand/depix-persian-light.svg" alt="دپیکس"
-          class="h-9 hidden dark:block transition-all duration-300 group-hover:scale-105">
+          class="h-9 hidden dark:block transition-all duration-300 group-hover:scale-105" width="108" height="36">
         <img src="./assets/brand/depix-persian-dark.svg" alt="دپیکس"
-          class="h-9 block dark:hidden transition-all duration-300 group-hover:scale-105">
+          class="h-9 block dark:hidden transition-all duration-300 group-hover:scale-105" width="108" height="36">
       </a>
 
       <!-- Middle: Navigation Links (Desktop) -->
@@ -238,9 +302,9 @@
       class="fixed inset-0 z-[100] bg-bg-main backdrop-blur-md opacity-0 pointer-events-none transition-opacity duration-300 flex items-start md:items-center justify-center p-4 sm:p-6 md:p-12 overflow-y-auto">
       <div
         class="fixed inset-0 z-0 overflow-hidden opacity-[0.06] dark:opacity-[0.08] grayscale blur-xs pointer-events-none grid grid-cols-2 sm:grid-cols-3 gap-4 p-4">
-        <img src="assets/projects/sayra/sayra-dashboard.webp" alt="" class="w-full h-full object-cover rounded-xl">
-        <img src="assets/projects/champing/camping-PAGE.webp" alt="" class="w-full h-full object-cover rounded-xl">
-        <img src="assets/projects/kafsham/kafsham-main.webp" alt="" class="w-full h-full object-cover rounded-xl">
+        <img src="assets/projects/sayra/sayra-dashboard.webp" alt="" class="w-full h-full object-cover rounded-xl" width="1536" height="1290" loading="lazy">
+        <img src="assets/projects/champing/camping-PAGE.webp" alt="" class="w-full h-full object-cover rounded-xl" width="1550" height="4132" loading="lazy">
+        <img src="assets/projects/kafsham/kafsham-main.webp" alt="" class="w-full h-full object-cover rounded-xl" width="1550" height="4475" loading="lazy">
       </div>
 
       <button id="consultation-close" aria-label="بستن"
@@ -363,8 +427,8 @@
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-16 pb-16 border-b border-border-subtle/50 text-right">
         <div class="lg:col-span-4 space-y-6">
           <a href="index.html" class="flex items-center gap-3 group" aria-label="صفحه اصلی استودیو دپیکس">
-            <img src="assets/brand/depix-light.svg" alt="دپیکس" class="h-8 hidden dark:block">
-            <img src="assets/brand/depix-dark.svg" alt="دپیکس" class="h-8 block dark:hidden">
+            <img src="assets/brand/depix-light.svg" alt="دپیکس" class="h-8 hidden dark:block" width="96" height="32" loading="lazy">
+            <img src="assets/brand/depix-dark.svg" alt="دپیکس" class="h-8 block dark:hidden" width="96" height="32" loading="lazy">
           </a>
           <p class="text-sm text-muted-fg leading-relaxed">
             استودیو دپیکس متشکل از مهندسان خلاق و طراحان نخبه محصول دیجیتال است که با مهندسی کدهای بهینه، پایداری فنی و ظرافت‌های بصری را همگام می‌سازند.

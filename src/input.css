@@ -196,3 +196,15 @@
   .transition-all-custom {
     transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
   }
+
+  /* GPU Compositor performance optimizations to prevent layout reflows */
+  .bento-item,
+  #bento-center-item,
+  #consultation-trigger,
+  #consultation-overlay,
+  #cooperation-modal,
+  .scroll-animate {
+    will-change: transform, opacity;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+  }
