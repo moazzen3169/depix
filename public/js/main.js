@@ -309,7 +309,7 @@ const blogPosts = [
     category: "طراحی و توسعه وب",
     date: "۱۴۰۵/۰۶/۰۱",
     readTime: "۵ دقیقه",
-    image: "./assets/blog/blog6.webp",
+    image: "./assets/blog/blog7.webp",
     excerpt: "اگر کسب‌وکار شما به سایتی فراتر از قالب‌های آماده و امکانات محدود نیاز دارد، طراحی و توسعه یک سایت اختصاصی راهکار ایده‌آل شماست.",
     author: {
       name: "هادی موذن",
