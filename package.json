@@ -1,10 +1,13 @@
 {
   "name": "pantter",
   "version": "1.0.0",
-  "description": "",
+  "description": "Depix Portfolio Website",
   "main": "index.js",
   "scripts": {
-    "dev": "npx @tailwindcss/cli -i ./src/input.css -o ./public/output.css --watch"
+    "dev": "npx @tailwindcss/cli -i ./src/input.css -o ./public/output.css --watch",
+    "build:css": "npx @tailwindcss/cli -i ./src/input.css -o ./public/output.css --minify",
+    "build:hash": "node scripts/build.js",
+    "build": "npm run build:css && npm run build:hash"
   },
   "keywords": [],
   "author": "",
