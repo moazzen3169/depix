@@ -105,6 +105,40 @@
 <body
   class="bg-bg-main text-fg-main antialiased selection:bg-primary-accent/20 selection:text-primary-accent overflow-x-hidden">
 
+  <!-- Minimal Conceptual Page Skeleton Overlay -->
+  <div id="page-skeleton" class="fixed inset-0 z-[100] bg-bg-main flex flex-col justify-between p-4 sm:p-8 pointer-events-none transition-opacity duration-500">
+    <!-- Nav Skeleton -->
+    <div class="max-w-[1440px] w-full mx-auto flex items-center justify-between h-20 px-4">
+      <div class="w-24 h-8 bg-muted-bg/80 rounded-xl animate-pulse"></div>
+      <div class="hidden md:flex gap-6">
+        <div class="w-16 h-4 bg-muted-bg/60 rounded-md animate-pulse"></div>
+        <div class="w-16 h-4 bg-muted-bg/60 rounded-md animate-pulse"></div>
+        <div class="w-16 h-4 bg-muted-bg/60 rounded-md animate-pulse"></div>
+      </div>
+      <div class="flex gap-3">
+        <div class="w-11 h-11 bg-muted-bg/80 rounded-xl animate-pulse"></div>
+        <div class="w-28 h-11 bg-muted-bg/80 rounded-xl animate-pulse"></div>
+      </div>
+    </div>
+
+    <!-- Hero Text Skeleton -->
+    <div class="max-w-3xl w-full mx-auto space-y-6 text-center my-auto px-4 flex flex-col items-center">
+      <div class="w-64 h-8 bg-primary-accent/15 border border-primary-accent/20 rounded-full animate-pulse"></div>
+      <div class="w-3/4 sm:w-2/3 h-12 sm:h-16 bg-muted-bg/80 rounded-2xl animate-pulse"></div>
+      <div class="w-full sm:w-1/2 h-5 bg-muted-bg/60 rounded-lg animate-pulse"></div>
+      <div class="flex flex-col sm:flex-row gap-4 w-full sm:w-auto pt-4 justify-center">
+        <div class="w-full sm:w-36 h-14 bg-primary-accent/40 rounded-2xl animate-pulse"></div>
+        <div class="w-full sm:w-40 h-14 bg-muted-bg/80 rounded-2xl animate-pulse"></div>
+      </div>
+    </div>
+
+    <!-- Footer Indicator Skeleton -->
+    <div class="flex flex-col items-center gap-2 pb-4">
+      <div class="w-24 h-3 bg-muted-bg/60 rounded-md animate-pulse"></div>
+      <div class="w-5 h-5 bg-muted-bg/80 rounded-full animate-pulse"></div>
+    </div>
+  </div>
+
   <!-- ==========================================
        00 — NAVIGATION
        ========================================== -->
@@ -236,7 +270,7 @@
           </button>
 
           <a href="#hero-bento"
-            class="w-full sm:w-auto px-8 py-4 rounded-2xl text-sm sm:text-base font-bold text-fg-main bg-card-bg border border-border-subtle hover:border-primary-accent/50 hover:text-primary-accent transition-all-custom flex items-center justify-center gap-2">
+            class="hero-bento-link w-full sm:w-auto px-8 py-4 rounded-2xl text-sm sm:text-base font-bold text-fg-main bg-card-bg border border-border-subtle hover:border-primary-accent/50 hover:text-primary-accent transition-all-custom flex items-center justify-center gap-2">
             <span>مشاهده نمونه‌کارها</span>
           </a>
         </div>
@@ -244,7 +278,7 @@
 
       <!-- Scroll Down Guide Indicator -->
       <a href="#hero-bento" aria-label="اسکرول به بخش گالری"
-        class="relative z-10 flex flex-col items-center gap-2 pb-2 text-muted-fg hover:text-primary-accent transition-colors group cursor-pointer">
+        class="hero-bento-link relative z-10 flex flex-col items-center gap-2 pb-2 text-muted-fg hover:text-primary-accent transition-colors group cursor-pointer">
         <span class="text-xs font-bold tracking-widest uppercase">مشاهده گالری</span>
         <svg class="w-5 h-5 text-primary-accent animate-bounce" fill="none" viewBox="0 0 24 24" stroke="currentColor"
           stroke-width="2.5">
@@ -256,8 +290,9 @@
 
     <!-- ==========================================
          01.5 — HERO SECTION 2: GSAP BENTO GALLERY (100dvh)
+         Hidden on mobile screens (<640px)
          ========================================== -->
-    <section id="hero-bento" class="relative w-full h-[100dvh] overflow-hidden bg-bg-main select-none">
+    <section id="hero-bento" class="hidden sm:block relative w-full h-[100dvh] overflow-hidden bg-bg-main select-none">
 
       <!-- Fixed Outer Container inside pinned section -->
       <div id="bento-hero-wrapper" class="relative w-full h-full flex flex-col justify-between  overflow-hidden">
@@ -363,7 +398,67 @@
 
         <!-- Clean Grid: Desktop 3 cols, Tablet 2 cols, Mobile 1 col -->
         <div id="featured-projects-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-          <!-- Dynamically populated exactly 6 project cards via js/main.js -->
+          <!-- Skeleton card placeholders before dynamic JS render -->
+          <article class="project-card flex flex-col bg-card-bg border border-border-subtle rounded-2xl overflow-hidden h-full animate-pulse">
+            <div class="relative w-full aspect-[16/10] bg-muted-bg/60"></div>
+            <div class="p-5 flex flex-col justify-between flex-1 space-y-3">
+              <div class="h-5 bg-muted-bg/80 rounded-md w-3/4"></div>
+              <div class="flex items-center justify-between pt-1">
+                <div class="h-3 bg-muted-bg/60 rounded-md w-1/2"></div>
+                <div class="h-3 bg-muted-bg/60 rounded-md w-1/6"></div>
+              </div>
+            </div>
+          </article>
+          <article class="project-card flex flex-col bg-card-bg border border-border-subtle rounded-2xl overflow-hidden h-full animate-pulse">
+            <div class="relative w-full aspect-[16/10] bg-muted-bg/60"></div>
+            <div class="p-5 flex flex-col justify-between flex-1 space-y-3">
+              <div class="h-5 bg-muted-bg/80 rounded-md w-3/4"></div>
+              <div class="flex items-center justify-between pt-1">
+                <div class="h-3 bg-muted-bg/60 rounded-md w-1/2"></div>
+                <div class="h-3 bg-muted-bg/60 rounded-md w-1/6"></div>
+              </div>
+            </div>
+          </article>
+          <article class="project-card flex flex-col bg-card-bg border border-border-subtle rounded-2xl overflow-hidden h-full animate-pulse">
+            <div class="relative w-full aspect-[16/10] bg-muted-bg/60"></div>
+            <div class="p-5 flex flex-col justify-between flex-1 space-y-3">
+              <div class="h-5 bg-muted-bg/80 rounded-md w-3/4"></div>
+              <div class="flex items-center justify-between pt-1">
+                <div class="h-3 bg-muted-bg/60 rounded-md w-1/2"></div>
+                <div class="h-3 bg-muted-bg/60 rounded-md w-1/6"></div>
+              </div>
+            </div>
+          </article>
+          <article class="project-card flex flex-col bg-card-bg border border-border-subtle rounded-2xl overflow-hidden h-full animate-pulse">
+            <div class="relative w-full aspect-[16/10] bg-muted-bg/60"></div>
+            <div class="p-5 flex flex-col justify-between flex-1 space-y-3">
+              <div class="h-5 bg-muted-bg/80 rounded-md w-3/4"></div>
+              <div class="flex items-center justify-between pt-1">
+                <div class="h-3 bg-muted-bg/60 rounded-md w-1/2"></div>
+                <div class="h-3 bg-muted-bg/60 rounded-md w-1/6"></div>
+              </div>
+            </div>
+          </article>
+          <article class="project-card flex flex-col bg-card-bg border border-border-subtle rounded-2xl overflow-hidden h-full animate-pulse">
+            <div class="relative w-full aspect-[16/10] bg-muted-bg/60"></div>
+            <div class="p-5 flex flex-col justify-between flex-1 space-y-3">
+              <div class="h-5 bg-muted-bg/80 rounded-md w-3/4"></div>
+              <div class="flex items-center justify-between pt-1">
+                <div class="h-3 bg-muted-bg/60 rounded-md w-1/2"></div>
+                <div class="h-3 bg-muted-bg/60 rounded-md w-1/6"></div>
+              </div>
+            </div>
+          </article>
+          <article class="project-card flex flex-col bg-card-bg border border-border-subtle rounded-2xl overflow-hidden h-full animate-pulse">
+            <div class="relative w-full aspect-[16/10] bg-muted-bg/60"></div>
+            <div class="p-5 flex flex-col justify-between flex-1 space-y-3">
+              <div class="h-5 bg-muted-bg/80 rounded-md w-3/4"></div>
+              <div class="flex items-center justify-between pt-1">
+                <div class="h-3 bg-muted-bg/60 rounded-md w-1/2"></div>
+                <div class="h-3 bg-muted-bg/60 rounded-md w-1/6"></div>
+              </div>
+            </div>
+          </article>
         </div>
 
         <!-- View All Projects Prominent CTA -->
@@ -551,7 +646,55 @@
 
         <!-- Blog Cards Grid (Exactly 3 Cards Rendered from blogPosts array) -->
         <div id="blog-grid-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
-          <!-- Dynamically populated via main.js -->
+          <!-- Skeleton blog card placeholders before dynamic JS render -->
+          <article class="bg-card-bg border border-border-subtle rounded-2xl overflow-hidden h-full flex flex-col justify-between animate-pulse">
+            <div class="relative aspect-[16/10] bg-muted-bg/60"></div>
+            <div class="p-6 space-y-4 flex-1 flex flex-col justify-between">
+              <div class="space-y-3">
+                <div class="flex items-center justify-between">
+                  <div class="h-3 bg-muted-bg/80 rounded-md w-1/4"></div>
+                  <div class="h-3 bg-muted-bg/60 rounded-md w-1/5"></div>
+                </div>
+                <div class="h-5 bg-muted-bg/80 rounded-md w-5/6"></div>
+              </div>
+              <div class="flex items-center justify-between pt-3 border-t border-border-subtle/30">
+                <div class="h-3 bg-muted-bg/60 rounded-md w-1/4"></div>
+                <div class="h-3 bg-muted-bg/60 rounded-md w-1/5"></div>
+              </div>
+            </div>
+          </article>
+          <article class="bg-card-bg border border-border-subtle rounded-2xl overflow-hidden h-full flex flex-col justify-between animate-pulse">
+            <div class="relative aspect-[16/10] bg-muted-bg/60"></div>
+            <div class="p-6 space-y-4 flex-1 flex flex-col justify-between">
+              <div class="space-y-3">
+                <div class="flex items-center justify-between">
+                  <div class="h-3 bg-muted-bg/80 rounded-md w-1/4"></div>
+                  <div class="h-3 bg-muted-bg/60 rounded-md w-1/5"></div>
+                </div>
+                <div class="h-5 bg-muted-bg/80 rounded-md w-5/6"></div>
+              </div>
+              <div class="flex items-center justify-between pt-3 border-t border-border-subtle/30">
+                <div class="h-3 bg-muted-bg/60 rounded-md w-1/4"></div>
+                <div class="h-3 bg-muted-bg/60 rounded-md w-1/5"></div>
+              </div>
+            </div>
+          </article>
+          <article class="bg-card-bg border border-border-subtle rounded-2xl overflow-hidden h-full flex flex-col justify-between animate-pulse">
+            <div class="relative aspect-[16/10] bg-muted-bg/60"></div>
+            <div class="p-6 space-y-4 flex-1 flex flex-col justify-between">
+              <div class="space-y-3">
+                <div class="flex items-center justify-between">
+                  <div class="h-3 bg-muted-bg/80 rounded-md w-1/4"></div>
+                  <div class="h-3 bg-muted-bg/60 rounded-md w-1/5"></div>
+                </div>
+                <div class="h-5 bg-muted-bg/80 rounded-md w-5/6"></div>
+              </div>
+              <div class="flex items-center justify-between pt-3 border-t border-border-subtle/30">
+                <div class="h-3 bg-muted-bg/60 rounded-md w-1/4"></div>
+                <div class="h-3 bg-muted-bg/60 rounded-md w-1/5"></div>
+              </div>
+            </div>
+          </article>
         </div>
 
       </div>
