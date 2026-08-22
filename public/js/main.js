@@ -158,7 +158,7 @@ const projects = [
     category: "ecommerce",
     categoryLabel: "فروشگاه آنلاین غذا و لوازم حیوانات خانگی",
     year: "۱۴۰۳",
-    cover: "./assets/projects/petshop/petshop-LANDING PAGE.webp",
+    cover: "./assets/projects/petshop/petshop-LANDING-PAGE.webp",
     type: "website",
     featured: false,
     layout: "standard",
