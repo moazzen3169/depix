@@ -3089,10 +3089,15 @@ p, h1, h2, h3, h4, h5, h6, span, a, button, label, input, textarea {
 .transition-all-custom {
   transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
-.bento-item, #bento-center-item, #consultation-trigger, #consultation-overlay, #cooperation-modal, .scroll-animate {
-  will-change: transform, opacity;
+.bento-item,
+#bento-center-item {
   transform: translateZ(0);
   backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+#bento-center-item {
+  transform-origin: center center;
 }
 @property --tw-translate-x {
   syntax: "*";

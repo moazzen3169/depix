@@ -1078,90 +1078,184 @@ function initTheme() {
   });
 }
 
-/**
- * 1.5. GSAP Scrubbed Bento Gallery Hero Interaction
- */
 function initScrubbedBentoHero() {
   const bentoSection = document.getElementById('hero-bento');
   const bentoGrid = document.getElementById('bento-grid-container');
   const centerItem = document.getElementById('bento-center-item');
-  const outerItems = document.querySelectorAll('.bento-item');
+  const outerItems = gsap.utils.toArray('.bento-item');
   const scrollIndicator = document.getElementById('hero-scroll-indicator');
-  const centerCaption = document.getElementById('bento-center-caption');
 
   if (!bentoSection || !centerItem) return;
 
-  // Check reduced motion preference
-  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // Reduced motion
+  const prefersReduced = window.matchMedia(
+    '(prefers-reduced-motion: reduce)'
+  ).matches;
 
-  // Register GSAP ScrollTrigger
-  if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
-    gsap.registerPlugin(ScrollTrigger);
+  if (prefersReduced) return;
 
-    if (prefersReduced) return;
+  // GSAP availability
+  if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') {
+    return;
+  }
 
-    // Measure viewport dimensions dynamically
-    const isMobile = window.innerWidth < 768;
+  gsap.registerPlugin(ScrollTrigger);
 
-    // Create scrubbed pinned timeline for the Bento Gallery Hero section
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: bentoSection,
-        start: "top top",
-        end: isMobile ? "+=180%" : "+=220%",
-        pin: true,
-        scrub: 1,
-        anticipatePin: 1,
-        invalidateOnRefresh: true
-      }
+  const isMobile = () => window.innerWidth < 768;
+
+  // GPU-friendly initial state
+  gsap.set([...outerItems, centerItem], {
+    force3D: true,
+    transformOrigin: 'center center',
+    willChange: 'transform, opacity'
+  });
+
+  if (scrollIndicator) {
+    gsap.set(scrollIndicator, {
+      force3D: true,
+      willChange: 'transform, opacity'
     });
+  }
 
-    // Phase 1: Scroll indicator fades out
-    if (scrollIndicator) {
-      tl.to(scrollIndicator, {
-        opacity: 0,
-        y: -20,
-        duration: 0.3,
-        ease: "power2.out"
-      }, 0);
+  const tl = gsap.timeline({
+    defaults: {
+      ease: 'none'
+    },
+
+    scrollTrigger: {
+      trigger: bentoSection,
+      start: 'top top',
+
+      // Slightly shorter on mobile
+      end: () => isMobile() ? '+=150%' : '+=200%',
+
+      pin: true,
+
+      // Much more responsive than scrub: 1
+      scrub: 0.45,
+
+      anticipatePin: 1,
+
+      invalidateOnRefresh: true,
+
+      // Prevent unnecessary refresh work
+      fastScrollEnd: true
     }
+  });
 
-    // Phase 2: Surrounding 8 bento items shrink, fade out and scatter slightly outward
-    outerItems.forEach((item, index) => {
-      // Calculate slight outward drift depending on index
-      const angle = (index / outerItems.length) * Math.PI * 2;
-      const moveX = Math.cos(angle) * (isMobile ? 30 : 60);
-      const moveY = Math.sin(angle) * (isMobile ? 30 : 60);
+  /*
+   * ---------------------------------------------------------
+   * Phase 1
+   * Scroll indicator
+   * ---------------------------------------------------------
+   */
 
-      tl.to(item, {
+  if (scrollIndicator) {
+    tl.to(
+      scrollIndicator,
+      {
         opacity: 0,
-        scale: 0.75,
+        y: -15,
+        duration: 0.25,
+        ease: 'power2.out'
+      },
+      0
+    );
+  }
+
+  /*
+   * ---------------------------------------------------------
+   * Phase 2
+   * Outer bento items
+   * ---------------------------------------------------------
+   */
+
+  outerItems.forEach((item, index) => {
+    const angle =
+      (index / outerItems.length) * Math.PI * 2;
+
+    const distance = isMobile() ? 18 : 45;
+
+    const moveX = Math.cos(angle) * distance;
+    const moveY = Math.sin(angle) * distance;
+
+    tl.to(
+      item,
+      {
+        opacity: 0,
+        scale: 0.78,
         x: moveX,
         y: moveY,
-        duration: 0.6,
-        ease: "power2.inOut"
-      }, 0.1);
-    });
+        duration: 0.55,
+        force3D: true
+      },
+      0.05
+    );
+  });
 
-    // Phase 3: Center focal item expands to cover viewport
-    // Calculate required scale to cover 100vw x 100dvh
-    const centerRect = centerItem.getBoundingClientRect();
-    const targetScaleX = window.innerWidth / (centerRect.width || 300);
-    const targetScaleY = window.innerHeight / (centerRect.height || 300);
-    const targetScale = Math.max(targetScaleX, targetScaleY) * 1.05;
+  /*
+   * ---------------------------------------------------------
+   * Phase 3
+   * Center item → fullscreen
+   * ---------------------------------------------------------
+   */
 
-    tl.to(centerItem, {
-      scale: targetScale,
-      borderRadius: "0px",
-      borderColor: "transparent",
-      boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.8)",
-      duration: 1,
-      ease: "power2.inOut"
-    }, 0.2);
+  tl.to(
+    centerItem,
+    {
+      scale: () => {
+        const rect = centerItem.getBoundingClientRect();
 
-    // Padding hold at end of fullscreen transformation before scrolling into Featured Projects
-    tl.to({}, { duration: 0.3 });
-  }
+        const viewportWidth = window.innerWidth;
+        const viewportHeight = window.innerHeight;
+
+        const scaleX = viewportWidth / rect.width;
+        const scaleY = viewportHeight / rect.height;
+
+        // Small safety margin
+        return Math.max(scaleX, scaleY) * 1.03;
+      },
+
+      // Keep this transform-only as much as possible
+      borderRadius: 0,
+
+      force3D: true,
+
+      duration: 1.0,
+      ease: 'power2.inOut'
+    },
+    0.15
+  );
+
+  /*
+   * ---------------------------------------------------------
+   * Phase 4
+   * Small hold
+   * ---------------------------------------------------------
+   */
+
+  tl.to({}, {
+    duration: 0.25
+  });
+
+  /*
+   * Cleanup after leaving the section
+   */
+  ScrollTrigger.create({
+    trigger: bentoSection,
+    start: 'top top',
+    end: () => isMobile() ? '+=150%' : '+=200%',
+    onLeave: () => {
+      gsap.set([...outerItems, centerItem], {
+        willChange: 'auto'
+      });
+    },
+    onEnterBack: () => {
+      gsap.set([...outerItems, centerItem], {
+        willChange: 'transform, opacity'
+      });
+    }
+  });
 }
 
 /**
