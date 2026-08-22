@@ -469,6 +469,9 @@
   .mt-1 {
     margin-top: var(--spacing);
   }
+  .mt-1\.5 {
+    margin-top: calc(var(--spacing) * 1.5);
+  }
   .mt-2 {
     margin-top: calc(var(--spacing) * 2);
   }
@@ -730,11 +733,11 @@
   .w-16 {
     width: calc(var(--spacing) * 16);
   }
+  .w-44 {
+    width: calc(var(--spacing) * 44);
+  }
   .w-48 {
     width: calc(var(--spacing) * 48);
-  }
-  .w-52 {
-    width: calc(var(--spacing) * 52);
   }
   .w-\[350px\] {
     width: 350px;
@@ -954,11 +957,6 @@
     margin-block-start: calc(calc(var(--spacing) * 0.5) * var(--tw-space-y-reverse));
     margin-block-end: calc(calc(var(--spacing) * 0.5) * calc(1 - var(--tw-space-y-reverse)));
   }
-  :where(.space-y-1 > :not(:last-child)) {
-    --tw-space-y-reverse: 0;
-    margin-block-start: calc(var(--spacing) * var(--tw-space-y-reverse));
-    margin-block-end: calc(var(--spacing) * calc(1 - var(--tw-space-y-reverse)));
-  }
   :where(.space-y-2 > :not(:last-child)) {
     --tw-space-y-reverse: 0;
     margin-block-start: calc(calc(var(--spacing) * 2) * var(--tw-space-y-reverse));
@@ -999,14 +997,14 @@
     margin-block-start: calc(calc(var(--spacing) * 12) * var(--tw-space-y-reverse));
     margin-block-end: calc(calc(var(--spacing) * 12) * calc(1 - var(--tw-space-y-reverse)));
   }
-  .gap-x-2 {
-    column-gap: calc(var(--spacing) * 2);
+  .gap-x-1 {
+    column-gap: var(--spacing);
+  }
+  .gap-x-1\.5 {
+    column-gap: calc(var(--spacing) * 1.5);
   }
   .gap-y-2 {
     row-gap: calc(var(--spacing) * 2);
-  }
-  .gap-y-3 {
-    row-gap: calc(var(--spacing) * 3);
   }
   :where(.divide-y > :not(:last-child)) {
     --tw-divide-y-reverse: 0;
@@ -1280,8 +1278,8 @@
   .\!bg-primary-accent {
     background-color: var(--color-primary-accent) !important;
   }
-  .bg-\[\#E22339\] {
-    background-color: #E22339;
+  .bg-\[\#8F1D2C\] {
+    background-color: #8F1D2C;
   }
   .bg-accent-hover {
     background-color: var(--color-accent-hover);
@@ -1776,6 +1774,9 @@
   .p-12 {
     padding: calc(var(--spacing) * 12);
   }
+  .px-1 {
+    padding-inline: var(--spacing);
+  }
   .px-1\.5 {
     padding-inline: calc(var(--spacing) * 1.5);
   }
@@ -1923,8 +1924,8 @@
   .pl-2 {
     padding-left: calc(var(--spacing) * 2);
   }
-  .pl-3 {
-    padding-left: calc(var(--spacing) * 3);
+  .pl-2\.5 {
+    padding-left: calc(var(--spacing) * 2.5);
   }
   .pl-9 {
     padding-left: calc(var(--spacing) * 9);
@@ -2039,8 +2040,8 @@
   .whitespace-pre-wrap {
     white-space: pre-wrap;
   }
-  .text-\[\#E22339\] {
-    color: #E22339;
+  .text-\[\#8F1D2C\] {
+    color: #8F1D2C;
   }
   .text-amber-200 {
     color: var(--color-amber-200);
@@ -2728,11 +2729,14 @@
     .sm\:inline-flex {
       display: inline-flex;
     }
-    .sm\:h-6 {
-      height: calc(var(--spacing) * 6);
+    .sm\:h-4 {
+      height: calc(var(--spacing) * 4);
     }
-    .sm\:h-12 {
-      height: calc(var(--spacing) * 12);
+    .sm\:h-5 {
+      height: calc(var(--spacing) * 5);
+    }
+    .sm\:h-11 {
+      height: calc(var(--spacing) * 11);
     }
     .sm\:h-\[100dvh\] {
       height: 100dvh;
@@ -2740,11 +2744,17 @@
     .sm\:max-h-\[80vh\] {
       max-height: 80vh;
     }
-    .sm\:w-6 {
-      width: calc(var(--spacing) * 6);
+    .sm\:w-5 {
+      width: calc(var(--spacing) * 5);
     }
-    .sm\:w-12 {
-      width: calc(var(--spacing) * 12);
+    .sm\:w-11 {
+      width: calc(var(--spacing) * 11);
+    }
+    .sm\:w-48 {
+      width: calc(var(--spacing) * 48);
+    }
+    .sm\:w-52 {
+      width: calc(var(--spacing) * 52);
     }
     .sm\:w-auto {
       width: auto;
@@ -2767,11 +2777,19 @@
     .sm\:items-end {
       align-items: flex-end;
     }
+    .sm\:gap-2 {
+      gap: calc(var(--spacing) * 2);
+    }
     .sm\:gap-4 {
       gap: calc(var(--spacing) * 4);
     }
     .sm\:gap-8 {
       gap: calc(var(--spacing) * 8);
+    }
+    :where(.sm\:space-y-4 > :not(:last-child)) {
+      --tw-space-y-reverse: 0;
+      margin-block-start: calc(calc(var(--spacing) * 4) * var(--tw-space-y-reverse));
+      margin-block-end: calc(calc(var(--spacing) * 4) * calc(1 - var(--tw-space-y-reverse)));
     }
     :where(.sm\:space-y-8 > :not(:last-child)) {
       --tw-space-y-reverse: 0;
@@ -2783,14 +2801,20 @@
       margin-block-start: calc(calc(var(--spacing) * 10) * var(--tw-space-y-reverse));
       margin-block-end: calc(calc(var(--spacing) * 10) * calc(1 - var(--tw-space-y-reverse)));
     }
-    .sm\:gap-x-4 {
-      column-gap: calc(var(--spacing) * 4);
+    .sm\:gap-x-3 {
+      column-gap: calc(var(--spacing) * 3);
     }
     .sm\:rounded-3xl {
       border-radius: var(--radius-3xl);
     }
+    .sm\:rounded-xl {
+      border-radius: var(--radius-xl);
+    }
     .sm\:p-4 {
       padding: calc(var(--spacing) * 4);
+    }
+    .sm\:p-5 {
+      padding: calc(var(--spacing) * 5);
     }
     .sm\:p-6 {
       padding: calc(var(--spacing) * 6);
@@ -2801,8 +2825,11 @@
     .sm\:p-10 {
       padding: calc(var(--spacing) * 10);
     }
-    .sm\:px-5 {
-      padding-inline: calc(var(--spacing) * 5);
+    .sm\:px-3 {
+      padding-inline: calc(var(--spacing) * 3);
+    }
+    .sm\:px-4 {
+      padding-inline: calc(var(--spacing) * 4);
     }
     .sm\:px-6 {
       padding-inline: calc(var(--spacing) * 6);
@@ -2813,11 +2840,11 @@
     .sm\:py-2 {
       padding-block: calc(var(--spacing) * 2);
     }
+    .sm\:py-2\.5 {
+      padding-block: calc(var(--spacing) * 2.5);
+    }
     .sm\:py-3 {
       padding-block: calc(var(--spacing) * 3);
-    }
-    .sm\:py-3\.5 {
-      padding-block: calc(var(--spacing) * 3.5);
     }
     .sm\:py-16 {
       padding-block: calc(var(--spacing) * 16);
@@ -2830,9 +2857,6 @@
     }
     .sm\:py-32 {
       padding-block: calc(var(--spacing) * 32);
-    }
-    .sm\:pt-3 {
-      padding-top: calc(var(--spacing) * 3);
     }
     .sm\:pt-16 {
       padding-top: calc(var(--spacing) * 16);
@@ -2887,6 +2911,10 @@
     .sm\:text-xl {
       font-size: var(--text-xl);
       line-height: var(--tw-leading, var(--text-xl--line-height));
+    }
+    .sm\:text-xs {
+      font-size: var(--text-xs);
+      line-height: var(--tw-leading, var(--text-xs--line-height));
     }
     .sm\:leading-none {
       --tw-leading: 1;
@@ -2963,10 +2991,6 @@
     .md\:text-base {
       font-size: var(--text-base);
       line-height: var(--tw-leading, var(--text-base--line-height));
-    }
-    .md\:text-xl {
-      font-size: var(--text-xl);
-      line-height: var(--tw-leading, var(--text-xl--line-height));
     }
   }
   @media (width >= 64rem) {
