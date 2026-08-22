@@ -2,6 +2,16 @@
 <html lang="fa" dir="rtl" class="dark font-sans">
 
 <head>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-QCL6XT59ND"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-QCL6XT59ND');
+  </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>طراحی سایت و توسعه وب | استودیو دپیکس</title>
@@ -31,6 +41,7 @@
       font-style: normal;
       font-display: swap;
     }
+
     @font-face {
       font-family: "Peyda";
       src: url("./assets/fonts/Peyda-Bold.woff2") format("woff2");
@@ -38,6 +49,7 @@
       font-style: normal;
       font-display: swap;
     }
+
     @font-face {
       font-family: "Peyda";
       src: url("./assets/fonts/Peyda-black.woff2") format("woff2");
@@ -45,6 +57,7 @@
       font-style: normal;
       font-display: swap;
     }
+
     :root {
       --background: #080808;
       --foreground: #F5F5F5;
@@ -58,6 +71,7 @@
       --card-foreground: #F5F5F5;
       --radius: 0.75rem;
     }
+
     :root.light {
       --background: #FAFAFA;
       --foreground: #101010;
@@ -71,6 +85,7 @@
       --card-foreground: #101010;
       --radius: 0.75rem;
     }
+
     body {
       background-color: var(--background);
       color: var(--foreground);
@@ -82,7 +97,9 @@
 
   <!-- Non-blocking Async Stylesheet -->
   <link rel="preload" href="./output.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <noscript><link rel="stylesheet" href="./output.css"></noscript>
+  <noscript>
+    <link rel="stylesheet" href="./output.css">
+  </noscript>
 </head>
 
 <body
@@ -243,8 +260,7 @@
     <section id="hero-bento" class="relative w-full h-[100dvh] overflow-hidden bg-bg-main select-none">
 
       <!-- Fixed Outer Container inside pinned section -->
-      <div id="bento-hero-wrapper"
-        class="relative w-full h-full flex flex-col justify-between  overflow-hidden">
+      <div id="bento-hero-wrapper" class="relative w-full h-full flex flex-col justify-between  overflow-hidden">
 
         <!-- Background Ambient Glow -->
         <div
@@ -641,9 +657,11 @@
               class="flex items-center gap-3 group focus-visible:ring-2 focus-visible:ring-primary-accent rounded-lg p-1"
               aria-label="صفحه اصلی استودیو دپیکس">
               <img src="assets/brand/depix-light.svg" alt="دپیکس"
-                class="h-8 hidden dark:block transition-all duration-300 group-hover:scale-105" width="96" height="32" loading="lazy">
+                class="h-8 hidden dark:block transition-all duration-300 group-hover:scale-105" width="96" height="32"
+                loading="lazy">
               <img src="assets/brand/depix-dark.svg" alt="دپیکس"
-                class="h-8 block dark:hidden transition-all duration-300 group-hover:scale-105" width="96" height="32" loading="lazy">
+                class="h-8 block dark:hidden transition-all duration-300 group-hover:scale-105" width="96" height="32"
+                loading="lazy">
             </a>
             <p class="text-sm text-muted-fg leading-relaxed">
               استودیو دپیکس متشکل از مهندسان خلاق و طراحان نخبه محصول دیجیتال است که با مهندسی کدهای بهینه، پایداری فنی
@@ -889,10 +907,14 @@
       <!-- Background Project Collage: real project screenshots, low-opacity, grayscale, blur -->
       <div
         class="fixed inset-0 z-0 overflow-hidden opacity-[0.06] dark:opacity-[0.08] grayscale blur-xs pointer-events-none grid grid-cols-2 sm:grid-cols-3 gap-4 p-4">
-        <img src="assets/projects/kafsham/kafsham-main.webp" alt="" class="w-full h-full object-cover rounded-xl" width="1550" height="4475" loading="lazy">
-        <img src="assets/projects/champing/camping-PAGE.webp" alt="" class="w-full h-full object-cover rounded-xl" width="1550" height="4132" loading="lazy">
-        <img src="assets/projects/sayra/sayra-dashboard.webp" alt="" class="w-full h-full object-cover rounded-xl" width="1536" height="1290" loading="lazy">
-        <img src="assets/projects/watch/watch-detail.webp" alt="" class="w-full h-full object-cover rounded-xl" width="1550" height="3007" loading="lazy">
+        <img src="assets/projects/kafsham/kafsham-main.webp" alt="" class="w-full h-full object-cover rounded-xl"
+          width="1550" height="4475" loading="lazy">
+        <img src="assets/projects/champing/camping-PAGE.webp" alt="" class="w-full h-full object-cover rounded-xl"
+          width="1550" height="4132" loading="lazy">
+        <img src="assets/projects/sayra/sayra-dashboard.webp" alt="" class="w-full h-full object-cover rounded-xl"
+          width="1536" height="1290" loading="lazy">
+        <img src="assets/projects/watch/watch-detail.webp" alt="" class="w-full h-full object-cover rounded-xl"
+          width="1550" height="3007" loading="lazy">
         <img src="assets/projects/panter/panter-main.webp" alt=""
           class="w-full h-full object-cover rounded-xl hidden sm:block" width="1550" height="3252" loading="lazy">
         <img src="assets/projects/abzarchee/abzaercheee.webp" alt=""
