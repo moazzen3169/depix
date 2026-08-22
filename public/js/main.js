@@ -94,37 +94,33 @@ const projects = [
     ],
     description: "«کفشام» یک وب‌سایت مدرن و بسیار کاربرپسند برای فروشگاه آنلاین کفش است. در طراحی این سایت تمرکز اصلی روی نمایش شفاف محصولات و خرید آسان در ۳ کلیک بوده است تا مشتریان بدون معطلی کفش مورد نظرشان را انتخاب و خریداری کنند."
   },
-
-  {
+{
     id: 6,
-    slug: "سایرا",
-    title: "Sayra",
-    category: "saas",
-    categoryLabel: "سامانه آنلاین رزرو گیم‌نت",
+    slug: "vanak",
+    title: "Vanak",
+    category: "ecommerce",
+    categoryLabel: "فروشگاه اینترنتی لوکس کفش زنانه",
     year: "۱۴۰۵",
-    cover: "./assets/projects/sayra/sayra-dashboard.webp",
-    type: "saas",
+    cover: "./assets/projects/vanak/VANAK.webp",
+    type: "ecommerce",
     featured: false,
     layout: "wide",
     specs: {
-      type: "سامانه رزرو و مدیریت سیستم‌های گیم‌نت",
-      duration: "۹ هفته",
-      techs: ["رزرو لحظه‌ای", "پنل مدیریت", "اعلان پیامکی"],
+      type: "طراحی رابط و تجربه کاربری (UI/UX) فروشگاه آنلاین",
+      duration: "۶ هفته",
+      techs: ["مینیمال و لوکس", "سیستم فیلترینگ پیشرفته", "سبد خرید و تسویه حساب سریع"],
       metrics: [
-        { label: "سرعت ثبت رزرو", value: "زیر ۱ ثانیه" },
-        { label: "تست عملکرد", value: "موفق" },
-        { label: "جلوگیری از تداخل رزرو", value: "۱۰۰٪" }
+        { label: "نرخ تبدیل (Conversion)", value: "+۳۰٪" },
+        { label: "رضایت تجربه کاربری", value: "۹۸٪" },
+        { label: "سازگاری موبایل و دسکتاپ", value: "۱۰۰٪" }
       ]
     },
     screens: [
-      "./assets/projects/sayra/sayra-main.webp",
-      "./assets/projects/sayra/sayra-detail.webp",
-      "./assets/projects/sayra/sayra-gamenets.webp",
-      "./assets/projects/sayra/sayra-profile.webp",
-      "./assets/projects/sayra/sayra-support.webp",
-      "./assets/projects/sayra/sayra-blog.webp",
+      "./assets/projects/vanak/VANAK.webp",
+      "./assets/projects/vanak/vanak-list.webp",
+      "./assets/projects/vanak/vanak-detail.webp"
     ],
-    description: "«سایرا» یک برنامه آنلاین کاربردی برای رزرو سیستم‌ها و کنسول‌های گیم‌نت است. این سیستم به مالکان گیم‌نت اجازه می‌دهد سیستم‌ها را مدیریت کنند و بازیکنان بدون معطلی و تداخل، زمان بازی خود را آنلاین رزرو کنند."
+    description: "«ونک» یک پلتفرم فروشگاهی آنلاین و لوکس برای کفش‌های مجلسی زنانه است. این سیستم با طراحی مینیمال، تمرکز بر تصاویر باکیفیت و تجربه کاربری روان، فرآیند انتخاب، بررسی جزئیات و خرید را برای مخاطبان خاص خود لذت‌بخش و بی‌نقص می‌سازد."
   },
   {
     id: 4,
@@ -239,6 +235,38 @@ const projects = [
       "./assets/projects/modeman/modam-DETAL.webp",
       "./assets/projects/modeman/modam-list.webp",
       "./assets/projects/modeman/modam-ordering.webp"
+    ],
+    description: "«سایرا» یک برنامه آنلاین کاربردی برای رزرو سیستم‌ها و کنسول‌های گیم‌نت است. این سیستم به مالکان گیم‌نت اجازه می‌دهد سیستم‌ها را مدیریت کنند و بازیکنان بدون معطلی و تداخل، زمان بازی خود را آنلاین رزرو کنند."
+  },
+  
+  {
+    id: 6,
+    slug: "سایرا",
+    title: "Sayra",
+    category: "saas",
+    categoryLabel: "سامانه آنلاین رزرو گیم‌نت",
+    year: "۱۴۰۵",
+    cover: "./assets/projects/sayra/sayra-dashboard.webp",
+    type: "saas",
+    featured: false,
+    layout: "wide",
+    specs: {
+      type: "سامانه رزرو و مدیریت سیستم‌های گیم‌نت",
+      duration: "۹ هفته",
+      techs: ["رزرو لحظه‌ای", "پنل مدیریت", "اعلان پیامکی"],
+      metrics: [
+        { label: "سرعت ثبت رزرو", value: "زیر ۱ ثانیه" },
+        { label: "تست عملکرد", value: "موفق" },
+        { label: "جلوگیری از تداخل رزرو", value: "۱۰۰٪" }
+      ]
+    },
+    screens: [
+      "./assets/projects/sayra/sayra-main.webp",
+      "./assets/projects/sayra/sayra-detail.webp",
+      "./assets/projects/sayra/sayra-gamenets.webp",
+      "./assets/projects/sayra/sayra-profile.webp",
+      "./assets/projects/sayra/sayra-support.webp",
+      "./assets/projects/sayra/sayra-blog.webp",
     ],
     description: "«سایرا» یک برنامه آنلاین کاربردی برای رزرو سیستم‌ها و کنسول‌های گیم‌نت است. این سیستم به مالکان گیم‌نت اجازه می‌دهد سیستم‌ها را مدیریت کنند و بازیکنان بدون معطلی و تداخل، زمان بازی خود را آنلاین رزرو کنند."
   },
