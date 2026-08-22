@@ -1789,14 +1789,27 @@ function initAllProjectsPage() {
   const searchInput = document.getElementById('projects-search-input');
   const clearSearchBtn = document.getElementById('projects-search-clear');
   const sortSelect = document.getElementById('projects-sort-select');
-  const filterBtns = document.querySelectorAll('.all-projects-filter-btn');
   const countBadge = document.getElementById('projects-count-badge');
   const emptyState = document.getElementById('projects-empty-state');
   const resetFiltersBtn = document.getElementById('projects-reset-filters-btn');
+  const clearAllBtn = document.getElementById('projects-clear-all-btn');
+  const filterToggleBtn = document.getElementById('projects-filter-toggle-btn');
+
+  const dropdownGroups = document.querySelectorAll('.filter-dropdown-group');
 
   let activeCategory = 'all';
+  let activeProjectType = 'all';
+  let activeIndustry = 'all';
+  let activeTech = 'all';
   let searchQuery = '';
   let activeSort = 'oldest';
+
+  const defaultLabels = {
+    category: 'دسته‌بندی',
+    projectType: 'نوع پروژه',
+    industry: 'صنعت',
+    tech: 'تکنولوژی'
+  };
 
   const toPersianDigits = (num) => String(num).replace(/\d/g, d => '۰۱۲۳۴۵۶۷۸۹'[d]);
 
@@ -1804,18 +1817,42 @@ function initAllProjectsPage() {
     // 1. Filter by Category
     let result = projects.filter(p => activeCategory === 'all' || p.category === activeCategory);
 
-    // 2. Search Query Filter (real-time title, category label, or description match)
+    // 2. Filter by Project Type
+    if (activeProjectType !== 'all') {
+      result = result.filter(p => p.type === activeProjectType || (p.specs && p.specs.type && p.specs.type.includes(activeProjectType)));
+    }
+
+    // 3. Filter by Industry
+    if (activeIndustry !== 'all') {
+      result = result.filter(p => {
+        const catLabel = p.categoryLabel || '';
+        const desc = p.description || '';
+        const specType = (p.specs && p.specs.type) || '';
+        return catLabel.includes(activeIndustry) || desc.includes(activeIndustry) || specType.includes(activeIndustry);
+      });
+    }
+
+    // 4. Filter by Tech
+    if (activeTech !== 'all') {
+      result = result.filter(p => {
+        if (!p.specs || !p.specs.techs) return false;
+        return p.specs.techs.some(t => t.includes(activeTech));
+      });
+    }
+
+    // 5. Search Query Filter
     const trimmedQuery = searchQuery.trim().toLowerCase();
     if (trimmedQuery) {
       result = result.filter(p => {
         const titleMatch = p.title.toLowerCase().includes(trimmedQuery);
         const categoryMatch = p.categoryLabel.toLowerCase().includes(trimmedQuery);
         const descMatch = p.description ? p.description.toLowerCase().includes(trimmedQuery) : false;
-        return titleMatch || categoryMatch || descMatch;
+        const techMatch = p.specs && p.specs.techs ? p.specs.techs.some(t => t.toLowerCase().includes(trimmedQuery)) : false;
+        return titleMatch || categoryMatch || descMatch || techMatch;
       });
     }
 
-    // 3. Sorting
+    // 6. Sorting
     result = [...result];
     if (activeSort === 'newest') {
       result.sort((a, b) => b.id - a.id);
@@ -1825,7 +1862,7 @@ function initAllProjectsPage() {
       result.sort((a, b) => a.title.localeCompare(b.title, 'fa'));
     }
 
-    // 4. Render Grid
+    // 7. Render Grid
     gridContainer.innerHTML = '';
 
     if (result.length === 0) {
@@ -1838,11 +1875,73 @@ function initAllProjectsPage() {
       });
     }
 
-    // 5. Update Badge Counter
+    // 8. Update Badge Counter
     if (countBadge) {
       countBadge.textContent = `${toPersianDigits(result.length)} پروژه یافت شد`;
     }
   };
+
+  // Dropdown Handling
+  dropdownGroups.forEach(group => {
+    const btn = group.querySelector('.filter-dropdown-btn');
+    const menu = group.querySelector('.filter-dropdown-menu');
+    const labelSpan = group.querySelector('.filter-dropdown-label');
+    const options = group.querySelectorAll('.filter-option');
+    const dropdownType = btn?.getAttribute('data-dropdown');
+
+    if (btn && menu) {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        // Close other open menus
+        dropdownGroups.forEach(g => {
+          if (g !== group) {
+            g.querySelector('.filter-dropdown-menu')?.classList.add('hidden');
+          }
+        });
+        menu.classList.toggle('hidden');
+      });
+    }
+
+    options.forEach(opt => {
+      opt.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const type = opt.getAttribute('data-type');
+        const val = opt.getAttribute('data-value');
+        const text = opt.textContent.trim();
+
+        if (type === 'category') activeCategory = val;
+        else if (type === 'projectType') activeProjectType = val;
+        else if (type === 'industry') activeIndustry = val;
+        else if (type === 'tech') activeTech = val;
+
+        // Update button label
+        if (labelSpan && dropdownType) {
+          if (val === 'all') {
+            labelSpan.textContent = defaultLabels[dropdownType] || text;
+            btn?.classList.remove('text-white', 'font-black');
+            btn?.classList.add('text-white/95');
+          } else {
+            labelSpan.textContent = text;
+            btn?.classList.add('text-white', 'font-black');
+            btn?.classList.remove('text-white/95');
+          }
+        }
+
+        menu?.classList.add('hidden');
+        updateProjects();
+      });
+    });
+  });
+
+  // Global document click listener to close dropdowns when clicking outside
+  document.addEventListener('click', (e) => {
+    dropdownGroups.forEach(group => {
+      const menu = group.querySelector('.filter-dropdown-menu');
+      if (menu && !group.contains(e.target)) {
+        menu.classList.add('hidden');
+      }
+    });
+  });
 
   // Search Input Handler
   if (searchInput) {
@@ -1878,48 +1977,49 @@ function initAllProjectsPage() {
     });
   }
 
-  // Category Filter Handler
-  if (filterBtns) {
-    filterBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        filterBtns.forEach(b => {
-          b.classList.remove('bg-primary-accent', 'text-white', 'border-primary-accent');
-          b.classList.add('bg-muted-bg', 'text-muted-fg', 'border-border-subtle');
-        });
-        btn.classList.add('bg-primary-accent', 'text-white', 'border-primary-accent');
-        btn.classList.remove('bg-muted-bg', 'text-muted-fg', 'border-border-subtle');
-
-        activeCategory = btn.getAttribute('data-filter');
-        updateProjects();
-      });
+  // Filter Toggle Button (Focuses search input)
+  if (filterToggleBtn) {
+    filterToggleBtn.addEventListener('click', () => {
+      if (searchInput) {
+        searchInput.focus();
+      }
     });
   }
 
-  // Reset Filters Handler
-  if (resetFiltersBtn) {
-    resetFiltersBtn.addEventListener('click', () => {
-      activeCategory = 'all';
-      searchQuery = '';
-      activeSort = 'oldest';
+  // Reset / Clear All Filters Function
+  const resetAllFilters = () => {
+    activeCategory = 'all';
+    activeProjectType = 'all';
+    activeIndustry = 'all';
+    activeTech = 'all';
+    searchQuery = '';
+    activeSort = 'oldest';
 
-      if (searchInput) searchInput.value = '';
-      if (clearSearchBtn) clearSearchBtn.classList.add('hidden');
-      if (sortSelect) sortSelect.value = 'oldest';
+    if (searchInput) searchInput.value = '';
+    if (clearSearchBtn) clearSearchBtn.classList.add('hidden');
+    if (sortSelect) sortSelect.value = 'oldest';
 
-      if (filterBtns) {
-        filterBtns.forEach(btn => {
-          if (btn.getAttribute('data-filter') === 'all') {
-            btn.classList.add('bg-primary-accent', 'text-white', 'border-primary-accent');
-            btn.classList.remove('bg-muted-bg', 'text-muted-fg', 'border-border-subtle');
-          } else {
-            btn.classList.remove('bg-primary-accent', 'text-white', 'border-primary-accent');
-            btn.classList.add('bg-muted-bg', 'text-muted-fg', 'border-border-subtle');
-          }
-        });
+    dropdownGroups.forEach(group => {
+      const btn = group.querySelector('.filter-dropdown-btn');
+      const labelSpan = group.querySelector('.filter-dropdown-label');
+      const dropdownType = btn?.getAttribute('data-dropdown');
+      if (labelSpan && dropdownType && defaultLabels[dropdownType]) {
+        labelSpan.textContent = defaultLabels[dropdownType];
       }
-
-      updateProjects();
+      btn?.classList.remove('text-white', 'font-black');
+      btn?.classList.add('text-white/95');
+      group.querySelector('.filter-dropdown-menu')?.classList.add('hidden');
     });
+
+    updateProjects();
+  };
+
+  if (clearAllBtn) {
+    clearAllBtn.addEventListener('click', resetAllFilters);
+  }
+
+  if (resetFiltersBtn) {
+    resetFiltersBtn.addEventListener('click', resetAllFilters);
   }
 
   // Initial render
