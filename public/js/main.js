@@ -1043,6 +1043,7 @@ const consultationConfig = {
 
 document.addEventListener('DOMContentLoaded', () => {
   initTheme();
+  initPageSkeleton();
   initNavigation();
   initScrubbedBentoHero();
   initFeaturedProjects();
@@ -1058,6 +1059,29 @@ document.addEventListener('DOMContentLoaded', () => {
   initBlogDetailPage(); // Check if we are on blog-detail.html
   initConsultationExperience(); // Initialize persistent floating CTA and overlay
 });
+
+/**
+ * 0. Page Skeleton Loader Handler
+ */
+function initPageSkeleton() {
+  const skeleton = document.getElementById('page-skeleton');
+  if (!skeleton) return;
+
+  const hideSkeleton = () => {
+    skeleton.classList.add('opacity-0');
+    setTimeout(() => {
+      skeleton.classList.add('hidden');
+    }, 500);
+  };
+
+  if (document.readyState === 'complete') {
+    hideSkeleton();
+  } else {
+    window.addEventListener('load', hideSkeleton);
+    // Safety fallback timeout in case load takes long or fails
+    setTimeout(hideSkeleton, 1500);
+  }
+}
 
 /**
  * 1. Theme Management (Dark / Light Mode)
@@ -1113,9 +1137,27 @@ function initScrubbedBentoHero() {
   const outerItems = gsap.utils.toArray('.bento-item');
   const scrollIndicator = document.getElementById('hero-scroll-indicator');
 
+  // Handle fallback navigation on mobile when #hero-bento is hidden
+  const handleMobileBentoLinks = () => {
+    const isMobile = window.innerWidth < 640;
+    const bentoLinks = document.querySelectorAll('.hero-bento-link');
+    bentoLinks.forEach(link => {
+      if (isMobile) {
+        link.setAttribute('href', '#featured-projects');
+      } else {
+        link.setAttribute('href', '#hero-bento');
+      }
+    });
+  };
+
+  handleMobileBentoLinks();
+  window.addEventListener('resize', handleMobileBentoLinks);
+
   if (!bentoSection || !centerItem) return;
 
-  // Reduced motion
+  // Reduced motion or mobile screen (<640px) check
+  if (window.innerWidth < 640 || window.getComputedStyle(bentoSection).display === 'none') return;
+
   const prefersReduced = window.matchMedia(
     '(prefers-reduced-motion: reduce)'
   ).matches;
